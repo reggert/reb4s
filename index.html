@@ -1,0 +1,111 @@
+<html>
+	<head>
+		<title>Regular Expression Builder for Java (reb4j)</title>
+	</head>
+	<body>
+		<h1>reb4j</h1>
+		<p>
+			Welcome to the home page for the Regular Expression Builder for Java (reb4j)
+			library project.
+		</p>
+		<p>
+			The purpose of <b>reb4j</b> is to provide a pure Java wrapper around
+			the regular expression syntax provided by the JRE's 
+			<a href="http://java.sun.com/javase/6/docs/api/java/util/regex/Pattern.html">java.util.regex.Pattern</a> class.
+		</p>
+		<p>
+			<b>reb4j</b> provides the following benefits over writing regular expressions directly:
+		</p>
+		<ul>
+			<li>
+				The <b>reb4j</b> API guarantees proper expression syntax.  
+				If the Java code compiles, the regular expression will compile at runtime.  
+				In other words, it is not necessary to deal with
+				<a href="http://java.sun.com/javase/6/docs/api/java/util/regex/PatternSyntaxException.html">PatternSyntaxException</a>s.
+				You will know right away if there is a syntax error in your regular expression, rather than
+				having to wait until runtime to find out. 
+			</li>
+			<li>
+				The <b>reb4j</b> API enables composition of subexpressions.  Complex expressions
+				can be broken into manageable pieces, each of which can be independently tested and
+				reused.
+			</li>
+			<li>
+				Patterns built using <b>reb4j</b> are inherently self-documenting
+				(at least, moreso than regular expression sytax).
+				Since composition is supported, each subexpression can be given a
+				meaningful name that describes what it represents.
+			</li>
+			<li>
+				Since <b>reb4j</b> hides regular expression syntax from the developer,
+				there is no need to memorize (or repeatedly look up) what symbols
+				represent which expression constructs, nor is it necessary to 
+				"double-escape" strings (i.e., escaped once to override how the pattern
+				compiler interprets special characters, and escaped again to fit into
+				Java string literals).
+			</li>
+		</ul>
+		<p>
+			Of course, this comes at the cost of a modest performance penalty at
+			startup as <b>reb4j</b> builds strings to pass into the pattern
+			compiler, but the time required for this processing is dwarfed by the
+			time spent by the compiler itself and should not be noticeable.
+		</p>
+		<p>
+			As a quick example, here's one way to use <b>reb4j</b> to describe a pattern 
+			that validates the format of a dotted decimal IP address (ensuring that
+			each octet is a decimal value between 0 and 255):
+		</p>
+		<pre>
+	final Regex oneDigitOctet = 
+		CharClass.POSIX_DIGIT;
+	final Regex twoDigitOctet = 
+		CharClass.range('1', '9').then(CharClass.POSIX_DIGIT);
+	final Regex oneHundredsOctet =
+		Regex.literal("1").then(CharClass.POSIX_DIGIT.repeat(2, 2));
+	final Regex lowTwoHundredsOctet =
+		Regex.literal("2").then(CharClass.range('0', '4')).then(CharClass.POSIX_DIGIT);
+	final Regex highTwoHundredsOctet =
+		Regex.literal("25").then(CharClass.range('0', '5'));
+	final Regex octet =
+		Regex.or(
+				oneDigitOctet, 
+				twoDigitOctet, 
+				oneHundredsOctet, 
+				lowTwoHundredsOctet, 
+				highTwoHundredsOctet
+			);
+	final Regex dottedDecimalIPAddress =
+		octet.then(Regex.literal(".")).repeat(3, 3).then(octet);
+		
+	final Pattern pattern = dottedDecimalIPAddress.toPattern();
+	String input = "10.10.1.204";
+	boolean valid = pattern.matcher(input).matches();
+	
+		</pre>
+		<p>
+			For reference, the generated regular expression looks like this
+			(note that <b>reb4j</b> makes liberal use of "non-matching groups"):
+		</p>
+		<pre>(?:(?:(?:(?:\p{Digit}|(?:[1-9]\p{Digit})|(?:(?:1)(?:\p{Digit}{2}))|(?:(?:(?:2)[0-4])\p{Digit})|(?:(?:25)[0-5]))(?:\.)){3})(?:\p{Digit}|(?:[1-9]\p{Digit})|(?:(?:1)(?:\p{Digit}{2}))|(?:(?:(?:2)[0-4])\p{Digit})|(?:(?:25)[0-5])))</pre>
+		<p>
+			Aside from the above example, documentation is sparse as of yet.  
+			Feel free to browse through the project's
+			<a href="doc/index.html">API Javadocs</a> to get started.
+		</p>
+		<p>
+			The compiled library and source code can be downloaded from the
+			<a href="https://sourceforge.net/projects/reb4j/">project page</a> 
+			at SourceForge.
+		</p>
+		<p>
+			Additionally, bug reports can be filed using
+			<a href="https://sourceforge.net/apps/trac/reb4j/wiki">Trac</a>.
+		</p>
+		<p>
+			<b>reb4j</b> was written by Richard W. Eggert II and is currently
+			released under the Lesser GNU Public License v3 (LGPLv3), though I am
+			considering releasing under a different/additional open source license.
+		</p>
+	</body>
+</html>
