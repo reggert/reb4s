@@ -16,7 +16,7 @@ public class IPAddressExampleTest
 	private final Regex twoDigitOctet = 
 		CharClass.range('1', '9').then(CharClass.POSIX_DIGIT);
 	private final Regex oneHundredsOctet =
-		Regex.literal("1").then(CharClass.POSIX_DIGIT.repeat(2, 2));
+		Regex.literal("1").then(CharClass.POSIX_DIGIT.repeat(2));
 	private final Regex lowTwoHundredsOctet =
 		Regex.literal("2").then(CharClass.range('0', '4')).then(CharClass.POSIX_DIGIT);
 	private final Regex highTwoHundredsOctet =
@@ -30,7 +30,7 @@ public class IPAddressExampleTest
 				highTwoHundredsOctet
 			);
 	private final Regex dottedDecimalIPAddress =
-		octet.then(Regex.literal(".")).repeat(3, 3).then(octet);
+		octet.then(Regex.literal(".")).repeat(3).then(octet);
 	
 	
 	
