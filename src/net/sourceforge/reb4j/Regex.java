@@ -377,6 +377,58 @@ public class Regex implements Serializable
 	public Regex repeat(int minTimes, int maxTimes)
 	{return repeat(minTimes, maxTimes, QuantifierMode.GREEDY);}
 	
+	
+	/**
+	 * Constructs a Regex that matches this Regex repeated a specified number 
+	 * of times.
+	 * 
+	 * This method is equivalent to 
+	 * <code>repeat(times, times, {@link QuantifierMode#GREEDY})</code>.
+	 * 
+	 * @param times 
+	 * 	the exact number of times that this Regex must be repeated in order 
+	 * 	for the new Regex to match.
+	 * @return a Regex that matches this Regex repeated the specified number
+	 * 	times.
+	 * @see #repeat(int, int, QuantifierMode)
+	 * @throws IllegalArgumentException 
+	 * 	if <code>times</code> is not positive.
+	 */
+	public Regex repeat(int times)
+	{
+		if (times <= 0)
+			throw new IllegalArgumentException("times <= 0");
+		return repeat(times, times, QuantifierMode.GREEDY);
+	}
+	
+	
+	/**
+	 * Constructs a Regex that matches this Regex repeated a specified number 
+	 * of times.
+	 * 
+	 * This method is equivalent to 
+	 * <code>repeat(times, times, mode)</code>.
+	 * 
+	 * @param times 
+	 * 	the exact number of times that this Regex must be repeated in order 
+	 * 	for the new Regex to match.
+	 * @param mode
+	 * 	whether to use a greedy, reluctant (?), or possessive (+) quantifier.
+	 * @return a Regex that matches this Regex repeated the specified number
+	 * 	times.
+	 * @see #repeat(int, int, QuantifierMode)
+	 * @throws NullPointerException if <code>mode</code> is null.
+	 * @throws IllegalArgumentException 
+	 * 	if <code>times</code> is not positive.
+	 */
+	public Regex repeat(int times, QuantifierMode mode)
+	{
+		if (times <= 0)
+			throw new IllegalArgumentException("times <= 0");
+		return repeat(times, times, mode);
+	}
+	
+	
 
 	/**
 	 * Constructs a Regex that matches this Regex repeated at least the
