@@ -755,7 +755,10 @@ public class Regex implements Serializable
 	 * @return a Regex that enables or disables the specified flag.
 	 * @throws IllegalArgumentException
 	 * 	if <code>flag</code> is not one of 'i', 'd', 'm', 's', 'u', or 'x'.
+	 * @deprecated
+	 * 	Use {@link #enable(Flag...)} or {@link #disable(Flag...)} instead.
 	 */
+	@Deprecated
 	public Regex setFlag(char flag, boolean on)
 	{
 		validateFlag(flag);
@@ -772,6 +775,114 @@ public class Regex implements Serializable
 	
 	
 	
+	private static char getFlagChar(Flag flag)
+	{
+		if (flag == null)
+			throw new NullPointerException("flag");
+		switch (flag)
+		{
+			case CASE_INSENSITIVE: return 'i';
+			case UNIX_LINES: return 'd';
+			case MULTILINE: return 'm';
+			case DOTALL: return 's';
+			case UNICODE_CASE: return 'u';
+			case COMMENTS: return 'x';
+		}
+		throw new IllegalArgumentException("flag");
+	}
+	
+	
+	/**
+	 * Constructs a Regex that represents this Regex with the specified flag(s)
+	 * enabled.
+	 * 
+	 * @param flags
+	 * 	the flag(s) to enable. 
+	 * @return a Regex that enables the specified flag(s).
+	 * @throws NullPointerException
+	 * 	if flags or any of its members are null.
+	 */
+	public Regex enable(Flag... flags)
+	{
+		StringBuilder builder = new StringBuilder();
+		builder.append('(').append('?');
+		for (Flag f : flags)
+		{
+			builder.append(getFlagChar(f));
+		}
+		builder.append(':').append(toString()).append(')');
+		return new Regex(builder.toString());
+	}
+	
+	
+	/**
+	 * Constructs a Regex that represents this Regex with the specified flag(s)
+	 * disabled.
+	 * 
+	 * @param flags
+	 * 	the flag(s) to disable. 
+	 * @return a Regex that disables the specified flag(s).
+	 * @throws NullPointerException
+	 * 	if flags or any of its members are null.
+	 */
+	public Regex disable(Flag... flags)
+	{
+		StringBuilder builder = new StringBuilder();
+		builder.append('(').append('?').append('-');
+		for (Flag f : flags)
+		{
+			builder.append(getFlagChar(f));
+		}
+		builder.append(':').append(toString()).append(')');
+		return new Regex(builder.toString());
+	}
+	
+	
+	/**
+	 * Constructs a Regex that enables the specified flag(s).
+	 * 
+	 * @param flags
+	 * 	the flag(s) to enable. 
+	 * @return a Regex that enables the specified flag(s).
+	 * @throws NullPointerException
+	 * 	if flags or any of its members are null.
+	 */
+	public static Regex enableDirective(Flag... flags)
+	{
+		StringBuilder builder = new StringBuilder();
+		builder.append('(').append('?');
+		for (Flag f : flags)
+		{
+			builder.append(getFlagChar(f));
+		}
+		builder.append(')');
+		return new Regex(builder.toString());
+	}
+	
+	
+
+	/**
+	 * Constructs a Regex that disables the specified flag(s).
+	 * 
+	 * @param flags
+	 * 	the flag(s) to disable. 
+	 * @return a Regex that disables the specified flag(s).
+	 * @throws NullPointerException
+	 * 	if flags or any of its members are null.
+	 */
+	public static Regex disableDirective(Flag... flags)
+	{
+		StringBuilder builder = new StringBuilder();
+		builder.append('(').append('?').append('-');
+		for (Flag f : flags)
+		{
+			builder.append(getFlagChar(f));
+		}
+		builder.append(')');
+		return new Regex(builder.toString());
+	}
+	
+	
 	/**
 	 * Constructs an empty Regex that enables or disables the specified flag.
 	 * 
@@ -783,7 +894,11 @@ public class Regex implements Serializable
 	 * @return a Regex that enables or disables the specified flag.
 	 * @throws IllegalArgumentException
 	 * 	if <code>flag</code> is not one of 'i', 'd', 'm', 's', 'u', or 'x'.
+	 * @deprecated
+	 * 	Use {@link #enableDirective(Flag...)} or {@link #disableDirective(Flag...)}
+	 * 	instead.
 	 */
+	@Deprecated
 	public static Regex flagDirective(char flag, boolean on)
 	{
 		validateFlag(flag);

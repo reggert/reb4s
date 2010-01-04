@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: reb4j
 Bundle-SymbolicName: net.sourceforge.reb4j
-Bundle-Version: 0.1.1.beta
-Export-Package: net.sourceforge.reb4j;version="0.1.1"
+Bundle-Version: 0.2.0.beta
+Export-Package: net.sourceforge.reb4j;version="0.2.0"
 Bundle-Vendor: Richard W. Eggert II
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
