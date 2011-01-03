@@ -5,10 +5,10 @@ package net.sourceforge.reb4j;
  * expressions.
  * 
  * @author Richard W. Eggert II
- * @see {@link Regex#enable(Flag...)}
- * @see {@link Regex#disable(Flag...)}
- * @see {@link Regex#enableDirective(Flag...)}
- * @see {@link Regex#disableDirective(Flag...)}
+ * @see Regex#enable(Flag...)
+ * @see Regex#disable(Flag...)
+ * @see Regex#enableDirective(Flag...)
+ * @see Regex#disableDirective(Flag...)
  *
  */
 public enum Flag
