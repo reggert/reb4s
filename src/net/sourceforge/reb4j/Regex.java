@@ -724,54 +724,9 @@ public class Regex implements Serializable
 	}
 	
 	
-	
-	
-	private static void validateFlag(char flag)
-	{
-		switch (flag)
-		{
-			case 'i':
-			case 'd':
-			case 'm':
-			case 's':
-			case 'u':
-			case 'x':
-				break;
-			default:
-				throw new IllegalArgumentException("flag");
-		}
-	}
 	 
 	
-	/**
-	 * Constructs a Regex that represents this Regex with the specified flag 
-	 * enabled or disabled.
-	 * 
-	 * @param flag
-	 * 	the flag to enable or disable; 
-	 * 	must be one of 'i', 'd', 'm', 's', 'u', or 'x'.
-	 * @param on
-	 * 	if true, the flag will be enabled; if false, the flag will be disabled.
-	 * @return a Regex that enables or disables the specified flag.
-	 * @throws IllegalArgumentException
-	 * 	if <code>flag</code> is not one of 'i', 'd', 'm', 's', 'u', or 'x'.
-	 * @deprecated
-	 * 	Use {@link #enable(Flag...)} or {@link #disable(Flag...)} instead.
-	 */
-	@Deprecated
-	public Regex setFlag(char flag, boolean on)
-	{
-		validateFlag(flag);
-		StringBuilder builder = new StringBuilder();
-		builder.append('(').append('?');
-		if (!on)
-			builder.append('-');
-		builder.append(flag)
-			.append(':')
-			.append(toString())
-			.append(')');
-		return new Regex(builder.toString());
-	}
+	
 	
 	
 	
@@ -882,33 +837,7 @@ public class Regex implements Serializable
 		return new Regex(builder.toString());
 	}
 	
-	
-	/**
-	 * Constructs an empty Regex that enables or disables the specified flag.
-	 * 
-	 * @param flag
-	 * 	the flag to enable or disable; 
-	 * 	must be one of 'i', 'd', 'm', 's', 'u', or 'x'.
-	 * @param on
-	 * 	if true, the flag will be enabled; if false, the flag will be disabled.
-	 * @return a Regex that enables or disables the specified flag.
-	 * @throws IllegalArgumentException
-	 * 	if <code>flag</code> is not one of 'i', 'd', 'm', 's', 'u', or 'x'.
-	 * @deprecated
-	 * 	Use {@link #enableDirective(Flag...)} or {@link #disableDirective(Flag...)}
-	 * 	instead.
-	 */
-	@Deprecated
-	public static Regex flagDirective(char flag, boolean on)
-	{
-		validateFlag(flag);
-		StringBuilder builder = new StringBuilder();
-		builder.append('(').append('?');
-		if (!on)
-			builder.append('-');
-		builder.append(flag).append(')');
-		return new Regex(builder.toString());
-	}
+
 	
 	
 	/**
