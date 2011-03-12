@@ -15,6 +15,26 @@
 	<packaging>bundle</packaging>
 	<name>Regular Expression Builder for Java</name>
 
+	<organization>
+		<name>reb4j Project</name>
+		<url>reb4j.sourceforge.net</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<id>reggert</id>
+			<name>Richard W. Eggert II</name>
+			<email>reggert@users.sourceforge.net</email>
+			<roles>
+				<role>lead</role>
+				<role>developer</role>
+				<role>administrator</role>
+				<role>imperator</role>
+			</roles>
+			<timezone>-5</timezone>
+		</developer>
+	</developers>
+
 	<scm>
 		<connection>
 			scm:svn:https://reb4j.svn.sourceforge.net/svnroot/reb4j
@@ -26,24 +46,30 @@
 		<url>http://reb4j.svn.sourceforge.net/viewvc/reb4j/</url>
 	</scm>
 
-	<plugins>
-		<plugin>
-			<groupId>org.apache.felix</groupId>
-			<artifactId>maven-bundle-plugin</artifactId>
-			<extensions>true</extensions>
-			<configuration>
-				<manifestLocation>META-INF</manifestLocation>
-				<instructions>
-					<Bundle-SymbolicName>
-						${project.artifactId}
-					</Bundle-SymbolicName>
-					<Export-Package>
-						net.sourceforge.reb4j;version="${project.version}"
-					</Export-Package>
-				</instructions>
-			</configuration>
-		</plugin>
-	</plugins>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<version>2.3.4</version>
+				<extensions>true</extensions>
+				<configuration>
+					<manifestLocation>META-INF</manifestLocation>
+					<instructions>
+						<Bundle-SymbolicName>
+							${project.artifactId}
+						</Bundle-SymbolicName>
+						<Export-Package>
+							net.sourceforge.reb4j;version="${project.version}"
+						</Export-Package>
+						<Bundle-RequiredExecutionEnvironment>
+							JavaSE-1.6
+						</Bundle-RequiredExecutionEnvironment>
+					</instructions>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 	<dependencies>
 		<dependency>
