@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project 
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://maven.apache.org/POM/4.0.0 
+			http://maven.apache.org/xsd/maven-4.0.0.xsd
+		"
+>
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>net.sourceforge.reb4j</groupId>
+	<artifactId>net.sourceforge.reb4j</artifactId>
+	<version>0.3-SNAPSHOT</version>
+	<packaging>bundle</packaging>
+	<name>Regular Expression Builder for Java</name>
+
+	<scm>
+		<connection>
+			scm:svn:https://reb4j.svn.sourceforge.net/svnroot/reb4j
+		</connection>
+		<developerConnection>
+			scm:svn:https://reb4j.svn.sourceforge.net/svnroot/reb4j
+		</developerConnection>
+		<tag>HEAD</tag>
+		<url>http://reb4j.svn.sourceforge.net/viewvc/reb4j/</url>
+	</scm>
+
+	<plugins>
+		<plugin>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>maven-bundle-plugin</artifactId>
+			<extensions>true</extensions>
+			<configuration>
+				<manifestLocation>META-INF</manifestLocation>
+				<instructions>
+					<Bundle-SymbolicName>
+						${project.artifactId}
+					</Bundle-SymbolicName>
+					<Export-Package>
+						net.sourceforge.reb4j;version="${project.version}"
+					</Export-Package>
+				</instructions>
+			</configuration>
+		</plugin>
+	</plugins>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.2</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+</project>
