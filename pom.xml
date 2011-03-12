@@ -15,6 +15,17 @@
 	<packaging>bundle</packaging>
 	<name>Regular Expression Builder for Java</name>
 
+	<licenses>
+		<license>
+			<name>GNU Lesser General Public License v3.0</name>
+			<url>http://www.gnu.org/licenses/lgpl-3.0.html</url>
+			<distribution>repo</distribution>
+			<comments>
+				Release under additional licenses available upon request.
+			</comments>
+		</license>
+	</licenses>
+
 	<organization>
 		<name>reb4j Project</name>
 		<url>reb4j.sourceforge.net</url>
