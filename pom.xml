@@ -14,11 +14,6 @@
 	<version>0.3.0-SNAPSHOT</version>
 	<packaging>bundle</packaging>
 	<name>Regular Expression Builder for Java</name>
-	
-	<properties>
-		<!-- This is used in Export-Package statements. -->
-		<api.version>0.3.0</api.version>
-	</properties>
 
 	<licenses>
 		<license>
@@ -68,9 +63,35 @@
 		<tag>HEAD</tag>
 		<url>http://reb4j.svn.sourceforge.net/viewvc/reb4j/</url>
 	</scm>
+	
+	<distributionManagement>
+		<site>
+			<id>reb4j.sourceforge.net</id>
+			<url>scp://shell.sourceforge.net/home/groups/r/re/reb4j/htdocs</url>
+			<name>SourceForge Website</name>
+		</site>
+	</distributionManagement>
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
@@ -82,18 +103,45 @@
 						<Bundle-SymbolicName>
 							${project.artifactId}
 						</Bundle-SymbolicName>
-						<Export-Package>
-							net.sourceforge.reb4j;version="${api.version}"
-						</Export-Package>
 						<Bundle-RequiredExecutionEnvironment>
 							JavaSE-1.6
 						</Bundle-RequiredExecutionEnvironment>
+						<Export-Package>
+							net.sourceforge.reb4j;version="${project.version}"
+						</Export-Package>
 					</instructions>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.0-beta-3</version>
+				<extensions>true</extensions>
 			</plugin>
 		</plugins>
 	</build>
 
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>2.1.1</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.7</version>
+				<configuration>
+					<show>public</show>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+	</reporting>
+	
+	
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
