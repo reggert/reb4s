@@ -14,6 +14,11 @@
 	<version>0.3.0-SNAPSHOT</version>
 	<packaging>bundle</packaging>
 	<name>Regular Expression Builder for Java</name>
+	
+	<properties>
+		<!-- This is used in Export-Package statements. -->
+		<api.version>0.3.0</api.version>
+	</properties>
 
 	<licenses>
 		<license>
@@ -31,6 +36,13 @@
 		<url>reb4j.sourceforge.net</url>
 	</organization>
 
+	<url>http://reb4j.sourceforge.net</url>
+	
+	<issueManagement>
+		<system>Trac</system>
+		<url>http://sourceforge.net/apps/trac/reb4j/</url>
+	</issueManagement>
+	
 	<developers>
 		<developer>
 			<id>reggert</id>
@@ -71,7 +83,7 @@
 							${project.artifactId}
 						</Bundle-SymbolicName>
 						<Export-Package>
-							net.sourceforge.reb4j;version="${project.version}"
+							net.sourceforge.reb4j;version="${api.version}"
 						</Export-Package>
 						<Bundle-RequiredExecutionEnvironment>
 							JavaSE-1.6
