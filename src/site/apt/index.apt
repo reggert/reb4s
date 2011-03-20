@@ -1,4 +1,4 @@
-About
+About reb4j
 
 	The purpose of <<reb4j>> is to provide a pure Java wrapper around
 	the regular expression syntax provided by the JRE's 
@@ -28,7 +28,9 @@ About
 		"double-escape" strings (i.e., escaped once to override how the pattern
 		compiler interprets special characters, and escaped again to fit into
 		Java string literals).
-		
+	
+	[]
+	
 	Of course, this comes at the cost of a modest performance penalty at
 	startup as <<reb4j>> builds strings to pass into the pattern
 	compiler, but the time required for this processing is dwarfed by the
@@ -74,7 +76,7 @@ About
 
 	Aside from the above example, documentation is sparse as of yet.  
 	Feel free to browse through the project's
-	{{{apidocs/index.html}API Javadocs}} to get started.
+	{{{./apidocs/index.html}API Javadocs}} to get started.
 	
 	The compiled library and source code can be downloaded from the
 	{{{https://sourceforge.net/projects/reb4j/}project page}} 

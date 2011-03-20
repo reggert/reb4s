@@ -5,8 +5,8 @@
 	xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache.org/xsd/decoration-1.0.0.xsd"
 	name="Regular Expression Builder for Java"
 >
-	<publishDate position="bottom" />
-	<version position="bottom" />
+	<publishDate position="right" />
+	<version position="right" />
 	<body>
 		<menu ref="reports" />
 	</body>
