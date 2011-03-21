@@ -58,6 +58,7 @@
 				<role>lead</role>
 				<role>developer</role>
 				<role>administrator</role>
+				<role>release-manager</role>
 				<role>imperator</role>
 			</roles>
 			<timezone>-5</timezone>
@@ -78,12 +79,12 @@
 	<distributionManagement>
 		<site>
 			<id>reb4j.sourceforge.net</id>
-			<url>scp://shell.sourceforge.net/home/groups/r/re/reb4j/htdocs</url>
+			<url>scp://shell.sourceforge.net/home/project-web/reb4j/htdocs</url>
 			<name>SourceForge Website</name>
 		</site>
 		<snapshotRepository>
 			<id>reb4j.sourceforge.net</id>
-			<url>scp://shell.sourceforge.net/home/frs/projects/r/re/reb4j/snapshot-repository</url>
+			<url>scpexe://shell.sourceforge.net/home/frs/project/r/re/reb4j/snapshot-repository</url>
 			<name>SourceForge Snapshots Folder</name>
 		</snapshotRepository>
 	</distributionManagement>
@@ -153,6 +154,11 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ssh-external</artifactId>
+				<version>1.0-beta-7</version>
 			</plugin>
 		</plugins>
 	</build>
