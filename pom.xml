@@ -78,14 +78,14 @@
 	
 	<distributionManagement>
 		<site>
-			<id>reb4j.sourceforge.net</id>
+			<id>reb4j.sourceforge.net-site</id>
 			<url>scp://shell.sourceforge.net/home/project-web/reb4j/htdocs</url>
 			<name>SourceForge Website</name>
 		</site>
 		<snapshotRepository>
-			<id>reb4j.sourceforge.net</id>
+			<id>reb4j.sourceforge.net-snapshots</id>
 			<url>scpexe://shell.sourceforge.net/home/frs/project/r/re/reb4j/snapshot-repository</url>
-			<name>SourceForge Snapshots Folder</name>
+			<name>SourceForge Snapshots Repository</name>
 		</snapshotRepository>
 	</distributionManagement>
 
