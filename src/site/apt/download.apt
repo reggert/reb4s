@@ -1,0 +1,47 @@
+Getting reb4j
+
+	There are a number of ways to obtain and use <<reb4j>>.
+	
+*	Using Maven
+
+	Starting with version 0.3.0, <<reb4j>> will be available from the Maven Central 
+	repository, so if you are using Maven to drive your project build, you can
+	build against reb4j just by adding a dependency to your POM:
+	
+------------------------------------------------------------------------------
+<dependency>
+	<groupId>net.sourceforget.reb4j</groupId>
+	<artifactId>net.sourceforget.reb4j</artifactId>
+	<version>0.3.0</version>
+	<scope>compile>
+</dependency>
+------------------------------------------------------------------------------
+
+	The latest snapshot release is already available from SourceForge.
+	It can be obtained by declaring a dependency as above (replacing
+	0.3.0 with 0.3.0-SNAPSHOT) and adding a <<repository>> element to your 
+	<<settings.xml>> file:
+	
+------------------------------------------------------------------------------
+<repositories>
+	<repository>
+		<id>reb4j-snapshots</id>
+		<url>https://sourceforge.net/projects/reb4j/files/snapshot-repository/</url>
+		<releases>
+			<enabled>false</enabled>
+		</releases>
+		<snapshots>
+			<enabled>true</enabled>
+			<updatePolicy>always</updatePolicy>
+			<checksumPolicy>ignore</checksumPolicy>
+		</snapshots>
+	</repository>
+</repositories>
+------------------------------------------------------------------------------
+
+*	Downloading
+
+	In addition to being available via Maven, the latest release of <<reb4j>>
+	can always be downloaded directly from SourceForge from this location:
+	{{https://sourceforge.net/projects/reb4j/files/releases/}}
+
