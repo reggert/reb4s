@@ -1,14 +1,20 @@
 package net.sourceforge.reb4j;
 
-import java.util.regex.Pattern;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
+import java.util.regex.Pattern;
 
 import org.junit.Test;
 
 
-import junit.framework.Assert;
 
-
+/**
+ * Unit test case that demonstrates the IP address example that is posted on the website.
+ * 
+ * @author Richard W. Eggert II
+ *
+ */
 public class IPAddressExampleTest
 {
 	private final Regex oneDigitOctet = 
@@ -41,9 +47,9 @@ public class IPAddressExampleTest
 		for (int i = 0; i < 10; i++)
 		{
 			String s = Integer.toString(i);
-			Assert.assertTrue(s, pattern.matcher(s).matches());
+			assertThat(pattern.matcher(s).matches(), is(true));
 		}
-		Assert.assertFalse("10", pattern.matcher("10").matches());
+		assertThat(pattern.matcher("10").matches(), is(false));
 	}
 	
 	
@@ -54,24 +60,24 @@ public class IPAddressExampleTest
 		for (int i = 10; i < 100; i++)
 		{
 			String s = Integer.toString(i);
-			Assert.assertTrue(s, pattern.matcher(s).matches());
+			assertThat(s, pattern.matcher(s).matches(), is(true));
 		}
-		Assert.assertFalse("100", pattern.matcher("100").matches());
-		Assert.assertFalse("9", pattern.matcher("9").matches());
+		assertThat("100", pattern.matcher("100").matches(), is(false));
+		assertThat("9", pattern.matcher("9").matches(), is(false));
 	}
 	
 	
-	
+	@Test
 	public void testOneHundredsOctet()
 	{
 		final Pattern pattern = oneHundredsOctet.toPattern();
 		for (int i = 100; i < 200; i++)
 		{
 			String s = Integer.toString(i);
-			Assert.assertTrue(s, pattern.matcher(s).matches());
+			assertThat(s, pattern.matcher(s).matches(), is(true));
 		}
-		Assert.assertFalse("200", pattern.matcher("200").matches());
-		Assert.assertFalse("99", pattern.matcher("99").matches());
+		assertThat("200", pattern.matcher("200").matches(), is(false));
+		assertThat("99", pattern.matcher("99").matches(), is(false));
 	}
 	
 	
@@ -82,10 +88,10 @@ public class IPAddressExampleTest
 		for (int i = 200; i < 250; i++)
 		{
 			String s = Integer.toString(i);
-			Assert.assertTrue(s, pattern.matcher(s).matches());
+			assertThat(s, pattern.matcher(s).matches(), is(true));
 		}
-		Assert.assertFalse("250", pattern.matcher("250").matches());
-		Assert.assertFalse("199", pattern.matcher("199").matches());
+		assertThat("250", pattern.matcher("250").matches(), is(false));
+		assertThat("199", pattern.matcher("199").matches(), is(false));
 	}
 	
 	
@@ -96,10 +102,10 @@ public class IPAddressExampleTest
 		for (int i = 250; i < 256; i++)
 		{
 			String s = Integer.toString(i);
-			Assert.assertTrue(s, pattern.matcher(s).matches());
+			assertThat(s, pattern.matcher(s).matches(), is(true));
 		}
-		Assert.assertFalse("256", pattern.matcher("256").matches());
-		Assert.assertFalse("249", pattern.matcher("249").matches());
+		assertThat("256", pattern.matcher("256").matches(), is(false));
+		assertThat("249", pattern.matcher("249").matches(), is(false));
 	}
 	
 	
@@ -110,11 +116,11 @@ public class IPAddressExampleTest
 		for (int i = 0; i < 256; i++)
 		{
 			String s = Integer.toString(i);
-			Assert.assertTrue(s, pattern.matcher(s).matches());
+			assertThat(s, pattern.matcher(s).matches(), is(true));
 		}
-		Assert.assertFalse("256", pattern.matcher("256").matches());
-		Assert.assertFalse("a", pattern.matcher("a").matches());
-		Assert.assertFalse("1111", pattern.matcher("1111").matches());
+		assertThat("256", pattern.matcher("256").matches(), is(false));
+		assertThat("a", pattern.matcher("a").matches(), is(false));
+		assertThat("1111", pattern.matcher("1111").matches(), is(false));
 	}
 	
 	
@@ -122,12 +128,11 @@ public class IPAddressExampleTest
 	@Test
 	public void testDottedDecimalIPAddress()
 	{
-		//System.out.println(dottedDecimalIPAddress);
 		final Pattern pattern =
 			dottedDecimalIPAddress.toPattern();
-		Assert.assertTrue("1.2.3.4", pattern.matcher("1.2.3.4").matches());
-		Assert.assertTrue("123.239.35.254", pattern.matcher("123.239.35.254").matches());
-		Assert.assertFalse("1.256.3.4", pattern.matcher("1.256.3.4").matches());
-		Assert.assertFalse("1.2.a.4", pattern.matcher("1.2.a.4").matches());
+		assertThat("1.2.3.4", pattern.matcher("1.2.3.4").matches(), is(true));
+		assertThat("123.239.35.254", pattern.matcher("123.239.35.254").matches(), is(true));
+		assertThat("1.256.3.4", pattern.matcher("1.256.3.4").matches(), is(false));
+		assertThat("1.2.a.4", pattern.matcher("1.2.a.4").matches(), is(false));
 	}
 }

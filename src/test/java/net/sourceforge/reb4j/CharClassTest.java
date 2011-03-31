@@ -1,114 +1,121 @@
 package net.sourceforge.reb4j;
 
-import static junit.framework.Assert.assertEquals;
-
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
+/**
+ * Unit test case for the {@link CharClass} class.
+ * 
+ * @author Richard W. Eggert II
+ *
+ */
 public class CharClassTest
 {
 
 	@Test
 	public void testCharactersCharSequenceBoolean()
 	{
-		CharClass charClass = CharClass.characters("abc", true);
-		charClass.toPattern();
-		assertEquals("[^abc]", charClass.toString());
+		final CharClass charClass = CharClass.characters("abc", true);
+		charClass.toPattern(); // verify that we don't explode
+		assertThat(charClass.toString(), is(equalTo("[^abc]")));
 	}
 
 
 	@Test
 	public void testCharactersCharSequence()
 	{
-		CharClass charClass = CharClass.characters("abc");
-		charClass.toPattern();
-		assertEquals("[abc]", charClass.toString());
+		final CharClass charClass = CharClass.characters("abc");
+		charClass.toPattern(); // verify that we don't explode
+		assertThat(charClass.toString(), is(equalTo("[abc]")));
 	}
 
 
 	@Test
 	public void testNegate()
 	{
-		CharClass charClassA = CharClass.characters("abc");
-		CharClass charClassFinal = CharClass.negate(charClassA);
-		charClassFinal.toPattern();
-		assertEquals("[^[abc]]", charClassFinal.toString());
+		final CharClass charClassA = CharClass.characters("abc");
+		final CharClass charClassFinal = CharClass.negate(charClassA);
+		charClassFinal.toPattern(); // verify that we don't explode
+		assertThat(charClassFinal.toString(), is(equalTo("[^[abc]]")));
 	}
 
 
 	@Test
 	public void testUnion()
 	{
-		CharClass charClassA = CharClass.characters("abc");
-		CharClass charClassB = CharClass.characters("def");
-		CharClass charClassFinal = CharClass.union(charClassA, charClassB);
-		charClassFinal.toPattern();
-		assertEquals("[[abc][def]]", charClassFinal.toString());
+		final CharClass charClassA = CharClass.characters("abc");
+		final CharClass charClassB = CharClass.characters("def");
+		final CharClass charClassFinal = CharClass.union(charClassA, charClassB);
+		charClassFinal.toPattern(); // verify that we don't explode
+		assertThat(charClassFinal.toString(), is(equalTo("[[abc][def]]")));
 	}
 
 
 	@Test
 	public void testIntersection()
 	{
-		CharClass charClassA = CharClass.characters("abc");
-		CharClass charClassB = CharClass.characters("bcd");
-		CharClass charClassFinal = CharClass.intersection(charClassA, charClassB);
-		charClassFinal.toPattern();
-		assertEquals("[[abc]&&[bcd]]", charClassFinal.toString());
+		final CharClass charClassA = CharClass.characters("abc");
+		final CharClass charClassB = CharClass.characters("bcd");
+		final CharClass charClassFinal = CharClass.intersection(charClassA, charClassB);
+		charClassFinal.toPattern(); // verify that we don't explode
+		assertThat(charClassFinal.toString(), is(equalTo("[[abc]&&[bcd]]")));
 	}
 
 
 	@Test
 	public void testRangeCharCharBoolean()
 	{
-		CharClass charClass = CharClass.range('a', 'z', true);
-		charClass.toPattern();
-		assertEquals("[^a-z]", charClass.toString());
+		final CharClass charClass = CharClass.range('a', 'z', true);
+		charClass.toPattern(); // verify that we don't explode
+		assertThat(charClass.toString(), is(equalTo("[^a-z]")));
 	}
 
 
 	@Test
 	public void testRangeCharChar()
 	{
-		CharClass charClass = CharClass.range('a', 'z');
-		charClass.toPattern();
-		assertEquals("[a-z]", charClass.toString());
+		final CharClass charClass = CharClass.range('a', 'z');
+		charClass.toPattern(); // verify that we don't explode
+		assertThat(charClass.toString(), is(equalTo("[a-z]")));
 	}
 
 
 	@Test
 	public void testUnicodeBlock()
 	{
-		CharClass charClass = CharClass.unicodeBlock("Greek");
-		charClass.toPattern();
-		assertEquals("\\p{InGreek}", charClass.toString());
+		final CharClass charClass = CharClass.unicodeBlock("Greek");
+		charClass.toPattern(); // verify that we don't explode
+		assertThat(charClass.toString(), is(equalTo("\\p{InGreek}")));
 	}
 
 
 	@Test
 	public void testNotUnicodeBlock()
 	{
-		CharClass charClass = CharClass.notUnicodeBlock("Greek");
-		charClass.toPattern();
-		assertEquals("\\P{InGreek}", charClass.toString());
+		final CharClass charClass = CharClass.notUnicodeBlock("Greek");
+		charClass.toPattern(); // verify that we don't explode
+		assertThat(charClass.toString(), is(equalTo("\\P{InGreek}")));
 	}
 
 
 	@Test
 	public void testUnicodeCategory()
 	{
-		CharClass charClass = CharClass.unicodeCategory("Lu");
-		charClass.toPattern();
-		assertEquals("\\p{IsLu}", charClass.toString());
+		final CharClass charClass = CharClass.unicodeCategory("Lu");
+		charClass.toPattern(); // verify that we don't explode
+		assertThat(charClass.toString(), is(equalTo("\\p{IsLu}")));
 	}
 
 
 	@Test
 	public void testNotUnicodeCategory()
 	{
-		CharClass charClass = CharClass.notUnicodeCategory("Lu");
-		charClass.toPattern();
-		assertEquals("\\P{IsLu}", charClass.toString());
+		final CharClass charClass = CharClass.notUnicodeCategory("Lu");
+		charClass.toPattern(); // verify that we don't explode
+		assertThat(charClass.toString(), is(equalTo("\\P{IsLu}")));
 	}
 
 }
