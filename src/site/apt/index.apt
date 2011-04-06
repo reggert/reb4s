@@ -74,16 +74,6 @@ About reb4j
 (?:(?:(?:(?:\p{Digit}|(?:[1-9]\p{Digit})|(?:(?:1)(?:\p{Digit}{2}))|(?:(?:(?:2)[0-4])\p{Digit})|(?:(?:25)[0-5]))(?:\.)){3})(?:\p{Digit}|(?:[1-9]\p{Digit})|(?:(?:1)(?:\p{Digit}{2}))|(?:(?:(?:2)[0-4])\p{Digit})|(?:(?:25)[0-5])))
 -------------------------------------------------------------------------------
 
-	Aside from the above example, documentation is sparse as of yet.  
-	Feel free to browse through the project's
-	{{{./apidocs/index.html}API Javadocs}} to get started.
-	
-	The compiled library and source code can be downloaded from the
-	{{{https://sourceforge.net/projects/reb4j/}project page}} 
-	at SourceForge.
-	
-	Additionally, bug reports can be filed using
-	{{{https://sourceforge.net/apps/trac/reb4j/wiki}Trac}}.
 	
 
 	

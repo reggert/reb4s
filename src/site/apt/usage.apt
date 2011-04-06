@@ -28,20 +28,20 @@ Usage
 	class.  As such, there are many ways to build up regular expressions 
 	from their elemental parts.
 	
-	Literals
+** Literals
 	
-		The simplest type of sub-expression you are likely to need is a 
-		basic string match.  <<reb4j>> makes this easy with the static 
-		{{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/Regex.html#literal(java.lang.CharSequence)}Regex.literal}}
-		method.
+	The simplest type of sub-expression you are likely to need is a 
+	basic string match.  <<reb4j>> makes this easy with the static 
+	{{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/Regex.html#literal(java.lang.CharSequence)}Regex.literal}}
+	method.
 			
 -------------------------------------------------------------------------------
 final Regex aBunchOfBracketsFollowedByAnA = Regex.literal("[[[[[A");
 -------------------------------------------------------------------------------
 
-		Notice that <<reb4j>> handles escaping characters that have special
-		meaning in regular expressions, so you do not need to
-		concern yourself with it.
+	Notice that <<reb4j>> handles escaping characters that have special
+	meaning in regular expressions, so you do not need to
+	concern yourself with it.
 			
 ** Sequences
 		
@@ -200,11 +200,118 @@ if (matcher.matches())
 }
 -------------------------------------------------------------------------------
 			
-** TODO: Character Classes
+** Character Classes
 		
-	TODO: fill this in.
-		
-** TODO: Adopted Patterns
+	It is often necessary to define a sub-expression that will many occurrences
+	of any of a set of characters through the use of "character classes". The
+	{{{http://java.sun.com/javase/6/docs/api/java/util/regex/Pattern.html}Pattern}}
+	class provides a number of predefined character classes, as well as
+	provides a facility to define custom character classes by enclosing
+	characters, ranges of characters, or character classes in square brackets.
+	Since character classes may be composed from other character classes, 
+	<<reb4j>> provides a separate class,
+	{{{./apidocs/net/sourceforge/reb4j/CharClass.html}CharClass}}, which
+	contains static methods for working	with character classes.  Note that 
+	{{{./apidocs/net/sourceforge/reb4j/CharClass.html}CharClass}} extends
+	{{{./apidocs/net/sourceforge/reb4j/Regex.html}Regex}}, so instances may be
+	used in any context in which a 
+	{{{./apidocs/net/sourceforge/reb4j/Regex.html}Regex}} would be valid.
 	
-	TODO: fill this in.
+*** Predefined Classes
+
+	The {{{./apidocs/net/sourceforge/reb4j/CharClass.html}CharClass}} class
+	provides constants that represent the various predefined character classes
+	that the 
+	{{{http://java.sun.com/javase/6/docs/api/java/util/regex/Pattern.html}Pattern}}
+	class supports.  Examples of these include
+	{{{./apidocs/net/sourceforge/reb4j/CharClass.html#PERL_DIGIT}CharClass.PERL_DIGIT}},
+	which corresponds to the Perl-style regular expression <<<"\d">>> (representing 
+	a digit), and 
+	{{{./apidocs/net/sourceforge/reb4j/CharClass.html#POSIX_ALNUM}CharClass.PERL_DIGIT}},
+	which corresponds to the POSIX named character class expression <<<"\p{Alnum}">>>.
+	Consult the {{{./apidocs/net/sourceforge/reb4j/CharClass.html}Javadocs}}
+	for the complete list of available constants.
+	
+*** Lists of Characters
+
+	To define a character class that will match any of a series of characters,
+	simply pass those characters as a 
+	{{{http://java.sun.com/javase/6/docs/api/java/lang/String.html}String}} to 
+	the {{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/CharClass.html#characters(java.lang.CharSequence)}CharClass.characters}}
+	method, which may optionally accept a <<<boolean>>> <negate> parameter to
+	indicate that the character class should include all characters <except>
+	the ones specified. 
+	
+-------------------------------------------------------------------------------
+final CharClass abc = CharClass.characters("abc");
+final CharClass not123 = CharClass.characters("123", true);
+-------------------------------------------------------------------------------
+
+*** Character Ranges
+
+	To define a character class that matches any characters whose ordinal
+	values are between a minimum and maximum character (inclusive), use the
+	{{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/CharClass.html#range(char, char)}CharClass.range}}
+	method, which may also accept an optional <negate> parameter.
+	
+-------------------------------------------------------------------------------
+final CharClass a_thru_m = CharClass.range('a', 'm');
+final CharClass notACapitalLetter = CharClass.range('A', 'Z', true);
+-------------------------------------------------------------------------------
+
+*** Composing Character Classes
+
+	Instances of {{{./apidocs/net/sourceforge/reb4j/CharClass.html}CharClass}}
+	may be built from other instances.
+	
+**** Negation
+
+	To construct a character class that will match any character that is <not>
+	in another character specified character class, use the 
+	{{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/CharClass.html#negate(net.sourceforge.reb4j.CharClass)}CharClass.negate}}
+	method.
+	
+-------------------------------------------------------------------------------
+final CharClass notALetter = CharClass.negate(CharClass.POSIX_ALPHA);
+-------------------------------------------------------------------------------
+	
+**** Union
+
+	To construct a character class that will match any character that would be
+	matched by two or more other character classes, use the
+	{{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/CharClass.html#union(net.sourceforge.reb4j.CharClass...)}CharClass.union}}
+	method.
+	
+-------------------------------------------------------------------------------
+final CharClass oneThruFive = CharClass.range('1, 5');
+final CharClass threeThruEight = CharClass.range('3, '8');
+final CharClass oneThruEight = CharClass.union(oneThruFive, threeThruEight);
+-------------------------------------------------------------------------------
+
+**** Intersection
+
+	To construct a character class that will match only those characters that
+	appear in all of several other character classes, use the
+	{{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/CharClass.html#intersection(net.sourceforge.reb4j.CharClass...)}CharClass.intersection}}
+	method.
+	
+-------------------------------------------------------------------------------
+final CharClass vowels = CharClass.characters("AaEeIiOoUu");
+final CharClass consonants = 
+	CharClass.intersection(CharClass.POSIX_ALPHA, CharClass.negate(vowels));
+-------------------------------------------------------------------------------
 		
+** Adopting Patterns
+	
+	Sometimes it may be useful to include a regular expression that has
+	already been compiled into a
+	{{{http://java.sun.com/javase/6/docs/api/java/util/regex/Pattern.html}Pattern}}
+	object as a sub-expression in an expression constructed by <<reb4j>>.
+	This can be accomplished using the 
+	{{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/Regex.html#fromPattern(java.util.regex.Pattern)}Regex.fromPattern}
+	method, which accepts a
+	{{{http://java.sun.com/javase/6/docs/api/java/util/regex/Pattern.html}Pattern}}
+	as an argument and constructs a new 
+	{{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/Regex.html}Regex}}
+	from it.
+	
