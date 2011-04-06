@@ -2,7 +2,7 @@ Usage
 
 	The general process of using <<reb4j>> consists of building up an
 	expression from sub-expressions, then calling the 
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html#toPattern()}toPattern}}
+	{{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/Regex.html#toPattern()}toPattern}}
 	method of the constructed expression in order to compile the expression.
 	
 	Expressions are represented by the 
@@ -32,7 +32,7 @@ Usage
 	
 		The simplest type of sub-expression you are likely to need is a 
 		basic string match.  <<reb4j>> makes this easy with the static 
-		{{{./apidocs/net/sourceforge/reb4j/Regex.html#literal(java.lang.CharSequence)}Regex.literal}}
+		{{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/Regex.html#literal(java.lang.CharSequence)}Regex.literal}}
 		method.
 			
 -------------------------------------------------------------------------------
@@ -51,7 +51,7 @@ final Regex aBunchOfBracketsFollowedByAnA = Regex.literal("[[[[[A");
 	non-static method for accomplishing this.
 	
 	The non-static 
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html#then(net.sourceforge.reb4j.Regex)}Regex.then}}
+	{{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/Regex.html#then(net.sourceforge.reb4j.Regex)}Regex.then}}
 	method allows you to define a sequence of sub-expressions by chaining.
 
 -------------------------------------------------------------------------------
@@ -61,7 +61,7 @@ final Regex abcd = ab.then(cd);
 -------------------------------------------------------------------------------			
 			
 	However, the static 
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html#sequence(net.sourceforge.reb4j.Regex...)}Regex.sequence}}
+	{{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/Regex.html#sequence(net.sourceforge.reb4j.Regex...)}Regex.sequence}}
 	method is likely to be more convenient when dealing with sequences 
 	consisting of more than two sub-expressions.
 
@@ -80,9 +80,9 @@ final Regex abcd = Regex.sequence(a, b, c, d);
 	OR of the subexpressions.  In regular expressions, this is
 	indicated by the | character.  In <<reb4j>>, it is accomplished
 	using the 
-	{{{.//apidocs/net/sourceforge/reb4j/Regex.html#or(net.sourceforge.reb4j.Regex)}Regex.or}}
+	{{{http://reb4j.sourceforge.net//apidocs/net/sourceforge/reb4j/Regex.html#or(net.sourceforge.reb4j.Regex)}Regex.or}}
 	method, which comes in both
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html#or(net.sourceforge.reb4j.Regex...)}static}}
+	{{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/Regex.html#or(net.sourceforge.reb4j.Regex...)}static}}
 	and non-static forms.
 			
 -------------------------------------------------------------------------------
@@ -106,7 +106,7 @@ final Regex a_or_b_or_c = Regex.or(a, b, c); // using static-version
 	expression languages.  It indicates that the preceding
 	sub-expression may appear zero or more times in a row.
 	<<reb4j>> supports this with the non-static
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html#star()}Regex.star}}
+	{{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/Regex.html#star()}Regex.star}}
 	method.
 
 -------------------------------------------------------------------------------
@@ -121,7 +121,7 @@ final Regex zeroOrMore_a = a.star();
 	appear at least once.  This is typically done with the plus (+)
 	operator.  <<reb4j>> provides support for this with the
 	non-static
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html#atLeastOnce()}Regex.atLeastOnce}}
+	{{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/Regex.html#atLeastOnce()}Regex.atLeastOnce}}
 	method.
 				
 -------------------------------------------------------------------------------
@@ -152,13 +152,13 @@ final Regex toBeOrNotToBe = toBe.optional();
 	omitting either bound.  <<reb4j>> supports all possibilities
 	with a range of non-static methods.
 	
-	The {{{./apidocs/net/sourceforge/reb4j/Regex.html#repeat(int)}Regex.repeat(int)}}
+	The {{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/Regex.html#repeat(int)}Regex.repeat(int)}}
 	method can be used to specify an exact number of repetitions.
 	Its overloaded form,
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html#repeat(int, int)}Regex.repeat(int, int)}}
+	{{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/Regex.html#repeat(int, int)}Regex.repeat(int, int)}}
 	can be used to indicate minimum and maximum numbers of repetitions.
 	
-	The {{{./apidocs/net/sourceforge/reb4j/Regex.html#atLeast(int)}Regex.atLeast(int)}}
+	The {{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/Regex.html#atLeast(int)}Regex.atLeast(int)}}
 	method can be used to specify a minimum number of repetitions with no maximum.
 	
 	Examples of the use of each of these are shown below.
@@ -174,19 +174,19 @@ final Regex a_at_most_twice = a.repeat(0, 2);
 ** Capturing Groups
 
 	The {{{http://java.sun.com/javase/6/docs/api/java/util/regex/Pattern.html}Pattern}}
-	class allows you to indicate (using unqualified paretheses)
+	class allows you to indicate (using unqualified parentheses)
 	sub-expressions that are to be used as "capturing groups".  These
 	groups are implicitly numbered in the order they appear in the
 	regular expression, and, if they match, the segments of the input
 	that matched each group can be independently obtained.
 	To designate a sub-expression as a capturing group with <<reb4j>>,
 	use the non-static
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html#group()}group}} method.
+	{{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/Regex.html#group()}group}} method.
 	Be sure to pay attention to how your final expression is constructed.
 	The groups will be numbered according to the order in which they begin
 	in the final regular expression, which is not necessarily the same as
 	the order you invoke the
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html#group()}group}} method.
+	{{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/Regex.html#group()}group}} method.
 		
 -------------------------------------------------------------------------------
 final Regex ABCs = Regex.literal("ABC").atLeastOnce();
