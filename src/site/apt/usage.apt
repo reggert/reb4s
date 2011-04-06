@@ -312,6 +312,6 @@ final CharClass consonants =
 	method, which accepts a
 	{{{http://java.sun.com/javase/6/docs/api/java/util/regex/Pattern.html}Pattern}}
 	as an argument and constructs a new 
-	{{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/Regex.html}Regex}}
+	{{{./apidocs/net/sourceforge/reb4j/Regex.html}Regex}}
 	from it.
 	
