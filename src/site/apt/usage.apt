@@ -308,7 +308,7 @@ final CharClass consonants =
 	{{{http://java.sun.com/javase/6/docs/api/java/util/regex/Pattern.html}Pattern}}
 	object as a sub-expression in an expression constructed by <<reb4j>>.
 	This can be accomplished using the 
-	{{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/Regex.html#fromPattern(java.util.regex.Pattern)}Regex.fromPattern}
+	{{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/Regex.html#fromPattern(java.util.regex.Pattern)}Regex.fromPattern}}
 	method, which accepts a
 	{{{http://java.sun.com/javase/6/docs/api/java/util/regex/Pattern.html}Pattern}}
 	as an argument and constructs a new 
