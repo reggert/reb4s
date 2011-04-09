@@ -4,6 +4,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
+import java.util.HashSet;
 import java.util.regex.Pattern;
 
 import org.junit.Test;
@@ -51,8 +52,15 @@ public class RegexTest
 		final Regex regexA = Regex.literal("ab");
 		final Regex regexB = Regex.literal("cd");
 		final Regex regexFinal = regexA.then(regexB);
-		regexFinal.toPattern(); // verify that we don't explode
+		regexFinal.toPattern(Pattern.CASE_INSENSITIVE); // verify that we don't explode
 		assertThat(regexFinal.toString(), is(equalTo("(?:(?:ab)(?:cd))")));
+	}
+	
+	@Test(expected=NullPointerException.class)
+	public void testThenNull() 
+	{
+		final Regex regexA = Regex.literal("ab");
+		regexA.then(null);
 	}
 
 	@Test
@@ -74,6 +82,15 @@ public class RegexTest
 		regexFinal.toPattern(); // verify that we don't explode
 		assertThat(regexFinal.toString(), is(equalTo("(?:(?:ab)|(?:cd))")));
 	}
+	
+	
+	@Test(expected=NullPointerException.class)
+	public void testOrNull() 
+	{
+		final Regex regexA = Regex.literal("ab");
+		regexA.or((Regex)null);
+	}
+	
 
 	@Test
 	public void testRepeatIntInt() 
@@ -139,5 +156,22 @@ public class RegexTest
 		assertThat(regexA.equals(regexC), is(false));
 		assertThat(regexA.equals("ab"), is(false));
 	}
+	
+	@Test
+	public void testHashCode()
+	{
+		final HashSet<Regex> hashSet = new HashSet<Regex>();
+		final Regex regexA = Regex.literal("ab");
+		final Regex regexB = Regex.literal("cd");
+		final Regex regexB2 = Regex.literal("cd");
+		final Regex regexC = Regex.literal("ef");
+		hashSet.add(regexA);
+		hashSet.add(regexB);
+		assertThat(hashSet.contains(regexA), is(true));
+		assertThat(hashSet.contains(regexB), is(true));
+		assertThat(hashSet.contains(regexB2), is(true));
+		assertThat(hashSet.contains(regexC), is(false));
+	}
+	
 
 }
