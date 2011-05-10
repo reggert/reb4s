@@ -100,6 +100,60 @@ public class RegexTest
 		regexFinal.toPattern(); // verify that we don't explode
 		assertThat(regexFinal.toString(), is(equalTo("(?:(?:ab){1,3})")));
 	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testRepeatInvalidMin()
+	{
+		final Regex regexA = Regex.literal("ab");
+		regexA.repeat(-10, 3);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testRepeatInvalidMax()
+	{
+		final Regex regexA = Regex.literal("ab");
+		regexA.repeat(10, 3);
+	}
+	
+	@Test(expected=NullPointerException.class)
+	public void testRepeatNullMode()
+	{
+		final Regex regexA = Regex.literal("ab");
+		regexA.repeat(1, 3, null);
+	}
+	
+	@Test
+	public void testRepeatPossessive() 
+	{
+		final Regex regexA = Regex.literal("ab");
+		final Regex regexFinal = regexA.repeat(1, 3, QuantifierMode.POSSESSIVE);
+		regexFinal.toPattern(); // verify that we don't explode
+		assertThat(regexFinal.toString(), is(equalTo("(?:(?:ab){1,3}+)")));
+	}
+	
+	@Test
+	public void testRepeatReluctant() 
+	{
+		final Regex regexA = Regex.literal("ab");
+		final Regex regexFinal = regexA.repeat(1, 3, QuantifierMode.RELUCTANT);
+		regexFinal.toPattern(); // verify that we don't explode
+		assertThat(regexFinal.toString(), is(equalTo("(?:(?:ab){1,3}?)")));
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testRepeatInvalidTimes()
+	{
+		final Regex regexA = Regex.literal("ab");
+		regexA.repeat(-10);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testRepeatInvalidTimesQuantifier()
+	{
+		final Regex regexA = Regex.literal("ab");
+		regexA.repeat(-10, QuantifierMode.POSSESSIVE);
+	}
+	
 
 	@Test
 	public void testAtLeastInt() 
