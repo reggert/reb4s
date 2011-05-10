@@ -10,8 +10,8 @@ Getting reb4j
 	
 ------------------------------------------------------------------------------
 <dependency>
-	<groupId>net.sourceforget.reb4j</groupId>
-	<artifactId>net.sourceforget.reb4j</artifactId>
+	<groupId>net.sourceforge.reb4j</groupId>
+	<artifactId>net.sourceforge.reb4j</artifactId>
 	<version>0.3.0</version>
 	<scope>compile>
 </dependency>
