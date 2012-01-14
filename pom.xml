@@ -84,12 +84,19 @@
 		</site>
 		<snapshotRepository>
 			<id>reb4j.sourceforge.net-snapshots</id>
-			<url>scpexe://shell.sourceforge.net/home/frs/project/r/re/reb4j/snapshot-repository</url>
+			<url>scp://shell.sourceforge.net/home/frs/project/r/re/reb4j/snapshot-repository</url>
 			<name>SourceForge Snapshots Repository</name>
 		</snapshotRepository>
 	</distributionManagement>
 
 	<build>
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ssh</artifactId>
+				<version>2.2</version>
+			</extension>
+		</extensions>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -156,11 +163,6 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>org.apache.maven.wagon</groupId>
-				<artifactId>wagon-ssh-external</artifactId>
-				<version>2.2</version>
-			</plugin>
-			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-eclipse-plugin</artifactId>
 				<version>2.8</version>
@@ -168,6 +170,11 @@
 					<downloadSources>true</downloadSources>
 					<downloadJavadocs>true</downloadJavadocs>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>2.7</version>
 			</plugin>
 		</plugins>
 	</build>
