@@ -4,37 +4,30 @@ Getting reb4j
 	
 *	Using Maven
 
-	Starting with version 0.3.0, <<reb4j>> will be available from the Maven Central 
-	repository, so if you are using Maven to drive your project build, you can
-	build against reb4j just by adding a dependency to your POM:
+	<<reb4j>> is available from the open source software Maven repository 
+	provided by Sonatype, which is periodically synchronized with the Maven 
+	Central repository, so if you are using Maven to drive your project build, 
+	you can build against reb4j just by adding a dependency to your POM:
 	
 ------------------------------------------------------------------------------
 <dependency>
 	<groupId>net.sourceforge.reb4j</groupId>
 	<artifactId>net.sourceforge.reb4j</artifactId>
-	<version>0.3.0</version>
+	<version>1.0.0</version>
 	<scope>compile>
 </dependency>
 ------------------------------------------------------------------------------
 
-	The latest snapshot release is already available from SourceForge.
-	It can be obtained by declaring a dependency as above (replacing
-	0.3.0 with 0.3.0-SNAPSHOT) and adding a <<repository>> element to your 
-	<<settings.xml>> file:
+	If you want to access the latest snapshot release, or if you are too 
+	impatient to wait for Maven Central to sync (which happens hourly), you
+	should add the Sonatype repository to your <<settings.xml>> file:
 	
 ------------------------------------------------------------------------------
 <repositories>
 	<repository>
-		<id>reb4j-snapshots</id>
-		<url>https://sourceforge.net/projects/reb4j/files/snapshot-repository/</url>
-		<releases>
-			<enabled>false</enabled>
-		</releases>
-		<snapshots>
-			<enabled>true</enabled>
-			<updatePolicy>always</updatePolicy>
-			<checksumPolicy>ignore</checksumPolicy>
-		</snapshots>
+		<id>sonatype-nexus-public</id>
+		<name>Sonatype Nexus Releases and Snapshots</name>
+		<url>https://oss.sonatype.org/content/groups/public/</url>
 	</repository>
 </repositories>
 ------------------------------------------------------------------------------
