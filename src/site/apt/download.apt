@@ -18,7 +18,7 @@ Getting reb4j
 </dependency>
 ------------------------------------------------------------------------------
 
-	If you want to access the latest snapshot release, or if you are too 
+	If you want to access the latest snapshot build, or if you are too 
 	impatient to wait for Maven Central to sync (which happens hourly), you
 	should add the Sonatype repository to your <<settings.xml>> file:
 	
