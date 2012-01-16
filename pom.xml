@@ -73,10 +73,10 @@
 
 	<scm>
 		<connection>
-			scm:svn:http://reb4j.svn.sourceforge.net/svnroot/reb4j
+			scm:svn:http://reb4j.svn.sourceforge.net/svnroot/reb4j/trunk
 		</connection>
 		<developerConnection>
-			scm:svn:https://reb4j.svn.sourceforge.net/svnroot/reb4j
+			scm:svn:https://reb4j.svn.sourceforge.net/svnroot/reb4j/trunk
 		</developerConnection>
 		<tag>HEAD</tag>
 		<url>http://reb4j.svn.sourceforge.net/viewvc/reb4j/</url>
