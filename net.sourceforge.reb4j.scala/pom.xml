@@ -10,16 +10,17 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>net.sourceforge.reb4j</groupId>
-	<artifactId>net.sourceforge.reb4j</artifactId>
+	<artifactId>net.sourceforge.reb4j.scala</artifactId>
 	<version>1.1.0-SNAPSHOT</version>
 	<packaging>bundle</packaging>
-	<name>reb4j Java Library</name>
+	<name>reb4j Scala Library</name>
 	<description>
 		The purpose of reb4j is to provide a pure Java wrapper around
 		the regular expression syntax provided by the JRE's 
 		java.util.regex.Pattern class in order to facilitate programmatic
 		construction of regular expressions while taking advantage of
-		compile-time syntax checking.
+		compile-time syntax checking.  This sub-project contains the
+		Scala implementation of reb4j.
 	</description>
 	
 	<parent>
@@ -33,8 +34,8 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
+				<groupId>org.scala-tools</groupId>
+				<artifactId>maven-scala-plugin</artifactId>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.felix</groupId>
@@ -49,7 +50,7 @@
 							JavaSE-1.6
 						</Bundle-RequiredExecutionEnvironment>
 						<Export-Package>
-							net.sourceforge.reb4j;version="${project.version}"
+							net.sourceforge.reb4j.scala;version="${project.version}"
 						</Export-Package>
 					</instructions>
 				</configuration>
@@ -61,6 +62,10 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-library</artifactId>
 		</dependency>
 	</dependencies>
 
