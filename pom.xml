@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project 
+	xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="
+		http://maven.apache.org/POM/4.0.0
+			http://maven.apache.org/xsd/maven-4.0.0.xsd
+		"
+>
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>net.sourceforge.reb4j</groupId>
+	<artifactId>net.sourceforge.reb4j.scala</artifactId>
+	<version>1.1.0-SNAPSHOT</version>
+	<packaging>bundle</packaging>
+	<name>reb4j Scala Library</name>
+	<description>
+		The purpose of reb4j is to provide a pure Java wrapper around
+		the regular expression syntax provided by the JRE's 
+		java.util.regex.Pattern class in order to facilitate programmatic
+		construction of regular expressions while taking advantage of
+		compile-time syntax checking.  This sub-project contains the
+		Scala implementation of reb4j.
+	</description>
+	
+	<parent>
+		<groupId>net.sourceforge.reb4j</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.1.0-SNAPSHOT</version>
+		<relativePath>..</relativePath>
+	</parent>
+	
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.scala-tools</groupId>
+				<artifactId>maven-scala-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<configuration>
+					<manifestLocation>META-INF</manifestLocation>
+					<instructions>
+						<Bundle-SymbolicName>
+							${project.artifactId}
+						</Bundle-SymbolicName>
+						<Bundle-RequiredExecutionEnvironment>
+							JavaSE-1.6
+						</Bundle-RequiredExecutionEnvironment>
+						<Export-Package>
+							net.sourceforge.reb4j.scala;version="${project.version}"
+						</Export-Package>
+					</instructions>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-library</artifactId>
+		</dependency>
+	</dependencies>
+
+</project>
