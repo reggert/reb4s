@@ -19,7 +19,8 @@
 		the regular expression syntax provided by the JRE's 
 		java.util.regex.Pattern class in order to facilitate programmatic
 		construction of regular expressions while taking advantage of
-		compile-time syntax checking.
+		compile-time syntax checking.  This sub-project contains the
+		Java implementation of reb4j.
 	</description>
 	
 	<parent>
