@@ -202,7 +202,7 @@ if (matcher.matches())
 			
 ** Character Classes
 		
-	It is often necessary to define a sub-expression that will many occurrences
+	It is often necessary to define a sub-expression that will match many occurrences
 	of any of a set of characters through the use of "character classes". The
 	{{{http://java.sun.com/javase/6/docs/api/java/util/regex/Pattern.html}Pattern}}
 	class provides a number of predefined character classes, as well as
