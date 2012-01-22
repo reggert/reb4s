@@ -9,7 +9,7 @@ class Regex private[scala] (val expression : String, val atomic : Boolean)
 	override def toString = expression
 	
 	def this(pattern : Pattern) = this(pattern.toString(), false)
-	private[scala] def this(sb : StringBuilder, atomic : Boolean) = 
+	private[scala] def this(sb : Seq[Char], atomic : Boolean) = 
 		this(sb.toString(), atomic)
 	
 	def toPattern = Pattern.compile(expression)
@@ -109,9 +109,10 @@ object Literal
 {
 	def apply(literal : String) = new Regex(escape(literal), true)
 	
-	private val needsEscape = "()[]{}.,-\\|+*?$^&:!<>="
-	private def escapeChar(c : Char) = if (needsEscape.contains(c)) "\\" + c else String.valueOf(c)
-	private def escape(literal : String) = (literal.map(escapeChar) addString (new StringBuilder)).toString
+	private[scala] val needsEscape = "()[]{}.,-\\|+*?$^&:!<>="
+	private[scala] def escapeChar(c : Char) = if (needsEscape.contains(c)) "\\" + c else String.valueOf(c)
+	private[scala] def escape(literal : Seq[Char]) = 
+		(literal.map(escapeChar) addString (new StringBuilder)).toString
 }
 
 
