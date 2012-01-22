@@ -36,6 +36,14 @@ class Regex protected[scala] (val expression : String)
 	def ##> (n : Int) = new Regex(delimit + "{" + n + ",}")
 	def ##>? (n : Int) = new Regex(delimit + "{" + n + ",}?")
 	def ##>+ (n : Int) = new Regex(delimit + "{" + n + ",}+")
+	def repeat (n : Int) = ## (n)
+	def repeat (min : Int, max : Int) = ## (min, max)
+	def atLeast (n : Int) = ##> (n)
+	
+	def ? = new Regex(delimit + "?")
+	def ?? = new Regex(delimit + "??")
+	def ?+ = new Regex(delimit + "?+")
+	def optional = ?
 	
 	def backReference (group : Int) = 
 		if (group > 0) "\\" + group
