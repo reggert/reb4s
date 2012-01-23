@@ -6,6 +6,6 @@ final class Sequence private[experimental] (val components : List[Atomic])
 	lazy val expression = (components addString new StringBuilder).toString
 	override def toString = expression
 	
-	def + (right : Sequence) = new Sequence(components ++ right.components)
+	override def + (right : Sequence) = new Sequence(components ++ right.components)
 	def + (right : Atomic) = new Sequence(components :+ right)
 }
