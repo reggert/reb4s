@@ -838,6 +838,11 @@ public class Regex implements Serializable
 	}
 	
 
+	/**
+	 * Matches any single character, except line terminators 
+	 * (unless {@link Flag#DOTALL} is set).
+	 */
+	public static final Regex ANY = new Regex(".");
 	
 	
 	/**
