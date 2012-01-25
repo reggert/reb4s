@@ -9,6 +9,7 @@ case class Literal(val literal : String) extends Expression
 	override def + (right : Alternative) = right match
 	{
 		case Literal(rhs) => new Literal(literal + rhs)
+		case Raw(rhs) => new Raw(escaped + rhs)
 		case _ => super.+(right)
 	}
 	def + (right : Literal) = new Literal(literal + right.literal)
