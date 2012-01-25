@@ -1,7 +1,7 @@
 package net.sourceforge.reb4j.scala.experimental
 
 final class Group private (val nested : Expression, private val opening : String) 
-	extends Expression with Atomic with Quantifiable 
+	extends Expression with Alternative with Quantifiable 
 {
 	lazy val expression = opening + nested + ")"
 	override def toString = expression

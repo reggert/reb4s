@@ -1,7 +1,7 @@
 package net.sourceforge.reb4j.scala.experimental
 
 @SerialVersionUID(1L)
-class Literal(val literal : String) extends Expression with Atomic with Quantifiable
+class Literal(val literal : String) extends Expression with Alternative with Quantifiable
 {
 	lazy val escaped = Literal.escape(literal)
 	override def toString = escaped

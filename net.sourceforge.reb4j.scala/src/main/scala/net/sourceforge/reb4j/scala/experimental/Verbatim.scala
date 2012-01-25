@@ -1,7 +1,7 @@
 package net.sourceforge.reb4j.scala.experimental
 
 class Verbatim private[experimental] (val expression : String) 
-	extends Expression with Atomic with Quantifiable
+	extends Expression with Alternative with Quantifiable
 {
 	override def toString = expression
 	def + (right : Verbatim) = new Verbatim(expression + right.expression)
