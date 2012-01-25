@@ -9,4 +9,5 @@ trait Alternative extends Expression
 		case Sequence(rhs) => new Sequence(this::rhs)
 		case _ => new Sequence(List(this, right))
 	}
+	def + (right : Sequence) = new Sequence(this::right.components)
 }
