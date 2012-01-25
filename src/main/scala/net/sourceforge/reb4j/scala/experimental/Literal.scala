@@ -1,11 +1,15 @@
 package net.sourceforge.reb4j.scala.experimental
 
 @SerialVersionUID(1L)
-class Literal(val literal : String) extends Expression with Alternative with Quantifiable
+case class Literal(val literal : String) extends Expression with Alternative with Quantifiable
 {
 	lazy val escaped = Literal.escape(literal)
 	override def toString = escaped
-	def + (right : Literal) = new Literal(literal + right.literal)
+	override def + (right : Alternative) = right match
+	{
+		case Literal(rhs) => new Literal(literal + rhs)
+		case _ => super.+(right)
+	}
 }
 
 
