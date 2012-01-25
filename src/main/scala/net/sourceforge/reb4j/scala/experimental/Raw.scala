@@ -8,6 +8,7 @@ case class Raw private[experimental] (val expression : String)
 	{
 		case Raw(rhs) => new Raw(expression + rhs)
 		case right : Literal => new Raw(expression + right.escaped)
+		case _ => super.+(right)
 	}
 	def + (right : Raw) = new Raw(expression + right.expression)
 	def + (right : Literal) = new Raw(expression + right.escaped)
