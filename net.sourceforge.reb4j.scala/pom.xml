@@ -9,9 +9,7 @@
 >
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>net.sourceforge.reb4j</groupId>
 	<artifactId>net.sourceforge.reb4j.scala</artifactId>
-	<version>1.1.0-SNAPSHOT</version>
 	<packaging>bundle</packaging>
 	<name>reb4j Scala Library</name>
 	<description>

@@ -11,4 +11,6 @@ final case class Sequence private[experimental] (val components : List[Alternati
 		case Sequence(rhs) => new Sequence(components ++ rhs)
 		case _ => new Sequence(components :+ right)
 	}
+	override def + (right : Sequence) = 
+		new Sequence(components ++ right.components)
 }
