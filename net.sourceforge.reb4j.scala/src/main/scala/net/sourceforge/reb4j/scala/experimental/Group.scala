@@ -1,5 +1,6 @@
 package net.sourceforge.reb4j.scala.experimental
 
+@SerialVersionUID(1L)
 final class Group private (val nested : Expression, private val opening : String) 
 	extends Expression with Alternative with Quantifiable 
 {
