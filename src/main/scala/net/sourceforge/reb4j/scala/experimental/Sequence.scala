@@ -1,5 +1,6 @@
 package net.sourceforge.reb4j.scala.experimental
 
+@SerialVersionUID(1L)
 final case class Sequence private[experimental] (val components : List[Alternative]) 
 	extends Expression with Alternative
 {

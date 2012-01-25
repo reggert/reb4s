@@ -1,5 +1,6 @@
 package net.sourceforge.reb4j.scala.experimental
 
+@SerialVersionUID(1L)
 case class Raw private[experimental] (val expression : String) 
 	extends Expression with Alternative with Quantifiable
 {
