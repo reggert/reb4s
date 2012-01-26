@@ -13,6 +13,8 @@ case class Raw private[experimental] (val expression : String)
 	}
 	def + (right : Raw) = new Raw(expression + right.expression)
 	def + (right : Literal) = new Raw(expression + right.escaped)
+	def then (right : Raw) = this + right
+	def then (right : Literal) = this + right
 }
 
 

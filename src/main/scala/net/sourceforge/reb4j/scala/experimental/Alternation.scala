@@ -8,4 +8,6 @@ final class Alternation(val alternatives : List[Alternative]) extends Expression
 	
 	def || (right : Alternation) = new Alternation(alternatives ++ right.alternatives)
 	def || (right : Alternative) = new Alternation(alternatives :+ right)
+	def or (right : Alternation) = this || right
+	def or (right : Alternative) = this || right
 }

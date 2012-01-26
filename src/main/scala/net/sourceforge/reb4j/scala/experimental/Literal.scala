@@ -13,6 +13,7 @@ case class Literal(val unescaped : String) extends Expression
 		case _ => super.+(right)
 	}
 	def + (right : Literal) = new Literal(unescaped + right.unescaped)
+	def then (right : Literal) = this + right
 }
 
 
