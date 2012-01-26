@@ -3,7 +3,7 @@ import java.util.regex.Pattern
 import scala.util.matching.Regex
 
 @SerialVersionUID(1L)
-class Adopted (val expression : String) extends Expression 
+class Adopted private[experimental] (val expression : String) extends Expression 
 {
 	override def toString = expression
 }

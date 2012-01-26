@@ -4,12 +4,19 @@ trait CharClass extends Expression with Alternative with Quantifiable
 {
 	def ^ : CharClass
 	def negate = ^
-	def & (right : CharClass) = right match
+	
+	/* 
+	 * We could do an override def || (right : Alternative) here, but it's
+	 * unlikely to be useful.
+	 */
+	def || (right : CharClass) = right match
 	{
 		case Union(rhs, negated) if (!negated) => new Union(this::rhs, false)
 		case _ => new Union(List(this, right), false)
 	}
-	def & (right : Union) = new Union(List(this, right), false)
+	def || (right : Union) = new Union(List(this, right), false)
+	def union (right : CharClass) = this || right
+	def union (right : Union) = this || right
 }
 
 
