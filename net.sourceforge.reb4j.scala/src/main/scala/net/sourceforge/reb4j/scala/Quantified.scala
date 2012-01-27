@@ -1,7 +1,7 @@
-package net.sourceforge.reb4j.scala.experimental
+package net.sourceforge.reb4j.scala
 
 @SerialVersionUID(1L)
-class Quantified private[experimental] (val base : Quantifiable, val quantifier : String) 
+class Quantified private[scala] (val base : Quantifiable, val quantifier : String) 
 	extends Expression with Alternative
 {
 	lazy val expression = base.toString() + quantifier

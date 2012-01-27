@@ -1,4 +1,4 @@
-package net.sourceforge.reb4j.scala.experimental
+package net.sourceforge.reb4j.scala
 
 trait Alternative extends Expression
 {

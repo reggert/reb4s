@@ -1,4 +1,4 @@
-package net.sourceforge.reb4j.scala.experimental
+package net.sourceforge.reb4j.scala
 
 @SerialVersionUID(1L)
 case class Literal (val unescaped : String) extends Expression 

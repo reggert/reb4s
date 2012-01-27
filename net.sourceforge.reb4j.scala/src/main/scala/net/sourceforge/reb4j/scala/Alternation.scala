@@ -1,4 +1,4 @@
-package net.sourceforge.reb4j.scala.experimental
+package net.sourceforge.reb4j.scala
 
 @SerialVersionUID(1L)
 final class Alternation(val alternatives : List[Alternative]) extends Expression

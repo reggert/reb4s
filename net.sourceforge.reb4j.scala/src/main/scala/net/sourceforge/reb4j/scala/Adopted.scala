@@ -1,9 +1,9 @@
-package net.sourceforge.reb4j.scala.experimental
+package net.sourceforge.reb4j.scala
 import java.util.regex.Pattern
 import scala.util.matching.Regex
 
 @SerialVersionUID(1L)
-class Adopted private[experimental] (val expression : String) extends Expression 
+class Adopted private[scala] (val expression : String) extends Expression 
 {
 	override def toString = expression
 }
