@@ -49,80 +49,132 @@ object CharClass
 		override def toString = "\\" + nameChar
 	}
 
-	private[CharClass] class ParameterizedPredefinedClass (
+	private[CharClass] class NamedPredefinedClass (
 			nameChar : Char, 
 			val className : String
-		) extends PredefinedClass(nameChar)
+		) extends PredefinedClass(nameChar : Char)
 	{
-		override def ^ = new ParameterizedPredefinedClass(invertedNameChar, className)
+		def this (className : String) = this('p', className)
+		override def ^ = new NamedPredefinedClass(invertedNameChar, className)
 		override def toString = super.toString() + "{" + className + "}"
 	}
-
 	
-	def unicodeBlock(unicodeBlock : UnicodeBlock) = 
-		new ParameterizedPredefinedClass('p', "In" + unicodeBlock.toString())
-
-	
-	// TODO: Unicode categories
-	/*
-	 * "C",
-						"Cc",
-						"Cf",
-						"Cn",
-						"Co", 
-						"Cs",
-						"L",
-						"Ll", 
-						"Lm",
-						"Lo", 
-						"Lt",
-						"Lu",
-						"M",
-						"Mc",
-						"Me",
-						"Mn",
-						"N",
-						"Nd",
-						"Nl",
-						"No",
-						"P",
-						"Pc",
-						"Pd",
-						"Pe",
-						"Pf",
-						"Pi",
-						"Po",
-						"Ps",
-						"S",
-						"Sc",
-						"Sk",
-						"Sm",
-						"So",
-						"Z",
-						"Zl",
-						"Zp",
-						"Zs"
-	 */
-
 	val perlDigit = new PredefinedClass('d')
 	val perlSpace = new PredefinedClass('s')
 	val perlWord = new PredefinedClass('w')
-	val posixLower = new ParameterizedPredefinedClass('p', "Lower")
-	val posixUpper = new ParameterizedPredefinedClass('p', "Upper")
-	val posixAlpha = new ParameterizedPredefinedClass('p', "Alpha")
-	val posixDigit = new ParameterizedPredefinedClass('p', "Digit")
-	val posixAlnum = new ParameterizedPredefinedClass('p', "Alnum")
-	val posixPunct = new ParameterizedPredefinedClass('p', "Punct")
-	val posixGraph = new ParameterizedPredefinedClass('p', "Graph")
-	val posixPrint = new ParameterizedPredefinedClass('p', "Print")
-	val posixBlank = new ParameterizedPredefinedClass('p', "Blank")
-	val posixControl = new ParameterizedPredefinedClass('p', "Cntrl")
-	val posixHexDigit = new ParameterizedPredefinedClass('p', "XDigit")
-	val posixSpace = new ParameterizedPredefinedClass('p', "Space")
-	val lowerCase = new ParameterizedPredefinedClass('p', "javaLowerCase")
-	val upperCase = new ParameterizedPredefinedClass('p', "javaUpperCase")
-	val whitespace = new ParameterizedPredefinedClass('p', "javaWhitespace")
-	val mirrored = new ParameterizedPredefinedClass('p', "javaMirrored")
+	val posixLower = new NamedPredefinedClass("Lower")
+	val posixUpper = new NamedPredefinedClass("Upper")
+	val posixAlpha = new NamedPredefinedClass("Alpha")
+	val posixDigit = new NamedPredefinedClass("Digit")
+	val posixAlnum = new NamedPredefinedClass("Alnum")
+	val posixPunct = new NamedPredefinedClass("Punct")
+	val posixGraph = new NamedPredefinedClass("Graph")
+	val posixPrint = new NamedPredefinedClass("Print")
+	val posixBlank = new NamedPredefinedClass("Blank")
+	val posixControl = new NamedPredefinedClass("Cntrl")
+	val posixHexDigit = new NamedPredefinedClass("XDigit")
+	val posixSpace = new NamedPredefinedClass( "Space")
+	val lowerCase = new NamedPredefinedClass("javaLowerCase")
+	val upperCase = new NamedPredefinedClass("javaUpperCase")
+	val whitespace = new NamedPredefinedClass("javaWhitespace")
+	val mirrored = new NamedPredefinedClass("javaMirrored")
+	
+	object Unicode
+	{
+		private def $ (className : String) = new NamedPredefinedClass(className)
+		def block(unicodeBlock : UnicodeBlock) = $("In" + unicodeBlock.toString())
+		/*
+			From the Unicode Specification, version 4.0.0, the Unicode categories are:
+				Lu = Letter, uppercase
+				Ll = Letter, lowercase
+				Lt = Letter, titlecase
+				Lm = Letter, modifier
+				Lo = Letter, other
+				Mn = Mark, nonspacing
+				Mc = Mark, spacing combining
+				Me = Mark, enclosing
+				Nd = Number, decimal digit
+				Nl = Number, letter
+				No = Number, other
+				Zs = Separator, space
+				Zl = Separator, line
+				Zp = Separator, paragraph
+				Cc = Other, control
+				Cf = Other, format
+				Cs = Other, surrogate
+				Co = Other, private use
+				Cn = Other, not assigned (including noncharacters)
+				Pc = Punctuation, connector
+				Pd = Punctuation, dash
+				Ps = Punctuation, open
+				Pe = Punctuation, close
+				Pi = Punctuation, initial quote (may behave like Ps or Pe depending on usage)
+				Pf = Punctuation, final quote (may behave like Ps or Pe depending on usage)
+				Po = Punctuation, other
+				Sm = Symbol, math
+				Sc = Symbol, currency
+				Sk = Symbol, modifier
+				So = Symbol, other
+		 */
+		object Letter
+		{
+			val uppercase = $("Lu")
+			val lowercase = $("Ll")
+			val titlecase = $("Lt")
+			val modifier = $("Lm")
+			val other = $("Lo")
+		}
+		
+		object Mark
+		{
+			val nonspacing = $("Mn")
+			val spacingCombining = $("Mc")
+			val enclosing = $("Me")
+		}
+		
+		object Number
+		{
+			val decimalDigit = $("Nd")
+			val letter = $("Nl")
+			val other = $("No")
+		}
+		
+		object Separator
+		{
+			val space = $("Zs")
+			val line = $("Zl")
+			val paragraph = $("Zp")
+		}
+		
+		object Other
+		{
+			val control = $("Cc")
+			val format = $("Cf")
+			val surrogate = $("Cs")
+			val privateUse = $("Co")
+			val notAssigned = $("Cn")
+		}
+		
+		object Punctuation
+		{
+			val connector = $("Pc")
+			val dash = $("Pd")
+			val open = $("Po")
+			val close = $("Pe")
+			val initialQuote = $("Pi")
+			val finalQuote = $("Pf")
+			val other = $("Po")
+		}
+		
+		object Symbol
+		{
+			val math = $("Sm")
+			val currency = $("Sc")
+			val modifier = $("Sk")
+			val other = $("So")
+		}
+	}
+
 
 }
 
