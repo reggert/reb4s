@@ -59,25 +59,36 @@ object CharClass
 		override def toString = super.toString() + "{" + className + "}"
 	}
 	
-	val perlDigit = new PredefinedClass('d')
-	val perlSpace = new PredefinedClass('s')
-	val perlWord = new PredefinedClass('w')
-	val posixLower = new NamedPredefinedClass("Lower")
-	val posixUpper = new NamedPredefinedClass("Upper")
-	val posixAlpha = new NamedPredefinedClass("Alpha")
-	val posixDigit = new NamedPredefinedClass("Digit")
-	val posixAlnum = new NamedPredefinedClass("Alnum")
-	val posixPunct = new NamedPredefinedClass("Punct")
-	val posixGraph = new NamedPredefinedClass("Graph")
-	val posixPrint = new NamedPredefinedClass("Print")
-	val posixBlank = new NamedPredefinedClass("Blank")
-	val posixControl = new NamedPredefinedClass("Cntrl")
-	val posixHexDigit = new NamedPredefinedClass("XDigit")
-	val posixSpace = new NamedPredefinedClass( "Space")
-	val lowerCase = new NamedPredefinedClass("javaLowerCase")
-	val upperCase = new NamedPredefinedClass("javaUpperCase")
-	val whitespace = new NamedPredefinedClass("javaWhitespace")
-	val mirrored = new NamedPredefinedClass("javaMirrored")
+	object Perl
+	{
+		val digit = new PredefinedClass('d')
+		val space = new PredefinedClass('s')
+		val word = new PredefinedClass('w')
+	}
+	
+	object Posix
+	{
+		val lower = new NamedPredefinedClass("Lower")
+		val upper = new NamedPredefinedClass("Upper")
+		val alpha = new NamedPredefinedClass("Alpha")
+		val digit = new NamedPredefinedClass("Digit")
+		val alnum = new NamedPredefinedClass("Alnum")
+		val punct = new NamedPredefinedClass("Punct")
+		val graph = new NamedPredefinedClass("Graph")
+		val print = new NamedPredefinedClass("Print")
+		val blank = new NamedPredefinedClass("Blank")
+		val control = new NamedPredefinedClass("Cntrl")
+		val hexDigit = new NamedPredefinedClass("XDigit")
+		val space = new NamedPredefinedClass("Space")
+	}
+	
+	object Java
+	{
+		val lowerCase = new NamedPredefinedClass("javaLowerCase")
+		val upperCase = new NamedPredefinedClass("javaUpperCase")
+		val whitespace = new NamedPredefinedClass("javaWhitespace")
+		val mirrored = new NamedPredefinedClass("javaMirrored")
+	}
 	
 	object Unicode
 	{

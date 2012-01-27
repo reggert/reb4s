@@ -7,7 +7,7 @@ final case class Sequence private[experimental] (val components : List[Alternati
 	lazy val expression = (components addString new StringBuilder).toString
 	override def toString = expression
 	
-	override def + (right : Alternative) = right match
+	override def + (right : Alternative) : Sequence = right match
 	{
 		case Sequence(rhs) => new Sequence(components ++ rhs)
 		case _ => new Sequence(components :+ right)
