@@ -1,7 +1,7 @@
-package net.sourceforge.reb4j.scala.experimental
+package net.sourceforge.reb4j.scala
 
 @SerialVersionUID(1L)
-case class Raw private[experimental] (val expression : String) 
+case class Raw private[scala] (val expression : String) 
 	extends Expression with Alternative 
 {
 	override def toString = expression

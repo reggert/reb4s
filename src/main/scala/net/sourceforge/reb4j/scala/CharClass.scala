@@ -1,4 +1,4 @@
-package net.sourceforge.reb4j.scala.experimental
+package net.sourceforge.reb4j.scala
 import java.lang.Character.UnicodeBlock
 
 trait CharClass extends Expression with Alternative with Quantifiable

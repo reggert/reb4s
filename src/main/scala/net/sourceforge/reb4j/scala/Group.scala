@@ -1,4 +1,4 @@
-package net.sourceforge.reb4j.scala.experimental
+package net.sourceforge.reb4j.scala
 
 @SerialVersionUID(1L)
 final class Group private (val nested : Expression, private val opening : String) 
@@ -6,7 +6,7 @@ final class Group private (val nested : Expression, private val opening : String
 {
 	lazy val expression = opening + nested + ")"
 	override def toString = expression
-	private[experimental] def this(nested : Expression, opening : Seq[Char]) =
+	private[scala] def this(nested : Expression, opening : Seq[Char]) =
 		this(nested, opening.toString())
 }
 
