@@ -1,8 +1,8 @@
 package net.sourceforge.reb4j.scala.experimental
 
 @SerialVersionUID(1L)
-case class Literal(val unescaped : String) extends Expression 
-	with Alternative with Quantifiable
+case class Literal (val unescaped : String) extends Expression 
+	with Alternative
 {
 	lazy val escaped = Literal.escape(unescaped)
 	override def toString = escaped
@@ -19,6 +19,7 @@ case class Literal(val unescaped : String) extends Expression
 
 object Literal
 {
+	def char(unescaped : Char) = new Literal(unescaped.toString()) with Quantifiable
 	val needsEscape = "()[]{}.,-\\|+*?$^&:!<>="
 	def escapeChar(c : Char) = if (needsEscape.contains(c)) "\\" + c else String.valueOf(c)
 	def escape(unescaped : Seq[Char]) = 
