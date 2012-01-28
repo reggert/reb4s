@@ -1,7 +1,8 @@
 package net.sourceforge.reb4j.scala
 
 @SerialVersionUID(1L)
-final class Alternation(val alternatives : List[Alternative]) extends Expression
+final class Alternation private[scala] (val alternatives : List[Alternative]) 
+	extends Expression
 {
 	lazy val expression = (alternatives addString new StringBuilder).toString
 	override def toString = expression

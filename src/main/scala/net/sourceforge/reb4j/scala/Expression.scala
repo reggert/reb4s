@@ -3,7 +3,7 @@ import java.util.regex.Pattern
 import scala.util.matching.Regex
 
 
-trait Expression extends Serializable
+trait Expression extends Serializable with NotNull
 {
 	def toPattern : Pattern = Pattern.compile(toString)
 	def toRegex(groupNames : String*) : Regex = 
