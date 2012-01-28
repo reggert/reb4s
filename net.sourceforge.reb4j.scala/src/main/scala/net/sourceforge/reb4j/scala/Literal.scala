@@ -4,6 +4,7 @@ package net.sourceforge.reb4j.scala
 case class Literal (val unescaped : String) extends Expression 
 	with Alternative
 {
+	require (unescaped != null, "unescaped is null")
 	lazy val escaped = Literal.escape(unescaped)
 	override def toString = escaped
 	override def + (right : Alternative) = right match

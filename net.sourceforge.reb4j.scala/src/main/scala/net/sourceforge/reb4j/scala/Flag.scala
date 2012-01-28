@@ -1,7 +1,7 @@
 package net.sourceforge.reb4j.scala
 
 @SerialVersionUID(1L)
-final class Flag private (val c : Char) extends Serializable
+final class Flag private (val c : Char) extends Serializable with NotNull
 {
 	override def toString = String.valueOf(c)
 }

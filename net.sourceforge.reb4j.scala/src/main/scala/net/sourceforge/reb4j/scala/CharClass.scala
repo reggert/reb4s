@@ -25,7 +25,11 @@ trait CharClass extends Expression with Alternative with Quantifiable
 		) extends CharClass
 	{
 		override def toString = 
-			(subclasses addString new StringBuilder("[") append "]").toString()
+			(
+				subclasses addString 
+				new StringBuilder(if (negated) "[^" else "[") 
+				append "]"
+			).toString()
 		override def ^ = new Union(subclasses, !negated)
 	}
 }
@@ -34,9 +38,10 @@ trait CharClass extends Expression with Alternative with Quantifiable
 
 
 
-
 object CharClass
 {
+	// TODO: handle explicit character lists and character ranges
+	
 
 	private[CharClass] class PredefinedClass (val nameChar : Char) extends CharClass
 	{
