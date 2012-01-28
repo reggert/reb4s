@@ -46,10 +46,10 @@ object CharClass
 	private[CharClass] class PredefinedClass (val nameChar : Char) extends CharClass
 	{
 		protected def invertedNameChar = 
-			if (nameChar.isUpperCase) 
-				nameChar.toLowerCase
+			if (nameChar.isUpper) 
+				nameChar.toLower
 			else
-				nameChar.toUpperCase
+				nameChar.toUpper
 		override def ^ = new PredefinedClass(invertedNameChar)
 		override def toString = "\\" + nameChar
 	}
@@ -190,7 +190,5 @@ object CharClass
 			val other = $("So")
 		}
 	}
-
-
 }
 
