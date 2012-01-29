@@ -1,17 +1,42 @@
 package net.sourceforge.reb4j.scala.charclass
 
-final case class Union(val subsets : Set[CharClass]) 
-	extends BracketsRequired with WrappedNegation
+final class Union private[charclass] (val subsets : List[Union.Subset]) 
+	extends CharClass 
+	with BracketsRequired 
+	with WrappedNegation
+	with Intersection.Superset
+	with Union.Ops
 {
+	type Subset = Union.Subset
 	override def unitableForm() = (
 			subsets.foldLeft(new StringBuilder)
-				((builder : StringBuilder, subset : CharClass) => {builder append subset.unitableForm()})
+				((builder : StringBuilder, subset : Subset) => {builder append subset.unitableForm()})
 		).toString()
+		
 	override def || (right : Union) = new Union(subsets ++ right.subsets)
-	override def union (right : Union) = this || right
-	override def || (right : CharClass) = right match
+	override def || (right : Subset) = new Union(subsets :+ right)
+}
+
+
+object Union
+{
+	trait Ops
 	{
-		case rhs : Union => this || rhs
-		case _ => super.|| (right)
+		def || (right : Union) : Union
+		def || (right : Subset) : Union
+		final def union (right : Union) : Union = this || right
+		final def union (right : Subset) : CharClass = this || right
+	}
+	
+	trait Subset extends CharClass with Ops
+	{
+		/* 
+		 * We could do an override def || (right : Alternative) here, but it's
+		 * unlikely to be useful.
+		 */
+		final override def || (right : Union) : Union = 
+			new Union(this::right.subsets)
+		final override def || (right : Subset) : Union = 
+			new Union(List(this, right))
 	}
 }

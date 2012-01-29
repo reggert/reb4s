@@ -1,19 +1,17 @@
 package net.sourceforge.reb4j.scala.charclass
 import net.sourceforge.reb4j.scala.Alternative
+import net.sourceforge.reb4j.scala.Literal
 
 
-final case class MultiChar(val chars : Set[Char]) 
-	extends BracketsRequired with WrappedNegation
+final class MultiChar private[charclass] (val chars : Set[Char]) 
+	extends CharClass
+	with BracketsRequired 
+	with WrappedNegation
+	with Union.Subset
+	with Intersection.Superset
 {
 	override def unitableForm() = 
-		chars.addString(new StringBuilder).toString()
+		Literal.escape(chars.toSeq)
 	def || (right : SingleChar) = new MultiChar(chars + right.char)
 	def || (right : MultiChar) = new MultiChar(chars ++ right.chars)
-	
-	override def || (right : Alternative) = right match
-	{
-		case rhs : SingleChar => this || rhs
-		case rhs : MultiChar => this || rhs
-		case _ => super.|| (right)
-	}
 }

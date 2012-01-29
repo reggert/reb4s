@@ -1,7 +1,10 @@
 package net.sourceforge.reb4j.scala.charclass
 
-final case class Negated[T <: WrappedNegation](val positive : T) 
-	extends CharClass with SelfContained
+final class Negated[T <: WrappedNegation] private[charclass] (val positive : T) 
+	extends CharClass 
+	with SelfContained
+	with Union.Subset
+	with Intersection.Superset
 {
 	override def ^ = positive
 	override def unitableForm() = "[^" + positive.unitableForm() + "]"
