@@ -11,10 +11,19 @@ trait CharClass extends Expression with Alternative with Quantifiable
 	 * We could do an override def || (right : Alternative) here, but it's
 	 * unlikely to be useful.
 	 */
-	def || (right : CharClass) = new Union(this, right)
-	def union (right : CharClass) = this || right
+	def || (right : Union) : Union = new Union(right.subsets + right)
+	def union (right : Union) : Union = this || right
 	
-	protected def withoutBrackets = toString
+	def || (right : CharClass) : CharClass = right match
+	{
+		case rhs : Union => this || rhs
+		case _ => new Union(Set(this, right))
+	}
+	def union (right : CharClass) : CharClass = this || right
+	
+	protected[charclass] def unitableForm() : String
+	protected[charclass] def independentForm() : String
+	final override def toString() = independentForm()
 }
 
 

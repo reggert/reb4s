@@ -1,13 +1,8 @@
 package net.sourceforge.reb4j.scala.charclass
 
-case class Negated[T <: WrappedNegation](val positive : T) 
-	extends CharClass
+final case class Negated[T <: WrappedNegation](val positive : T) 
+	extends CharClass with SelfContained
 {
 	override def ^ = positive
-	private def positiveWithoutBrackets = positive match
-	{
-		case x : BracketsRequired => x.withoutBrackets
-		case _ => positive.toString()
-	}
-	override def toString = "[^" + positiveWithoutBrackets + "]"
+	override def unitableForm() = "[^" + positive.unitableForm() + "]"
 }

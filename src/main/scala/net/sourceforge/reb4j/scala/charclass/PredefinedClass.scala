@@ -1,6 +1,7 @@
 package net.sourceforge.reb4j.scala.charclass
 
 private[charclass] class PredefinedClass(val nameChar : Char) extends CharClass
+	with SelfContained
 {
 	protected def invertedNameChar = 
 		if (nameChar.isUpper) 
@@ -8,30 +9,23 @@ private[charclass] class PredefinedClass(val nameChar : Char) extends CharClass
 		else
 			nameChar.toUpper
 	override def ^ = new PredefinedClass(invertedNameChar)
-	override def toString = "\\" + nameChar
+	override def unitableForm = "\\" + nameChar
 }
 
 
-private[charclass] class NamedPredefinedClass(
-		val nameChar : Char, 
+private[charclass] final class NamedPredefinedClass(
+		nameChar : Char, 
 		val className : String
 	) extends PredefinedClass(nameChar)
 {
 	def this (className : String) = this('p', className)
 	override def ^ = new NamedPredefinedClass(invertedNameChar, className)
-	override def toString = super.toString() + "{" + className + "}"
+	override def unitableForm = super.unitableForm() + "{" + className + "}"
 }
 
 
 object PredefinedClass
 {
-	object Perl
-	{
-		val digit = new PredefinedClass('d')
-		val space = new PredefinedClass('s')
-		val word = new PredefinedClass('w')
-	}
-	
 	object Perl
 	{
 		val digit = new PredefinedClass('d')
@@ -65,6 +59,7 @@ object PredefinedClass
 	
 	object Unicode
 	{
+		private type UnicodeBlock = java.lang.Character.UnicodeBlock
 		private def $ (className : String) = new NamedPredefinedClass(className)
 		def block(unicodeBlock : UnicodeBlock) = $("In" + unicodeBlock.toString())
 		/*

@@ -2,10 +2,10 @@ package net.sourceforge.reb4j.scala.charclass
 import net.sourceforge.reb4j.scala.Alternative
 
 
-case class MultiChar(val chars : Set[Char]) 
+final case class MultiChar(val chars : Set[Char]) 
 	extends BracketsRequired with WrappedNegation
 {
-	override def withoutBrackets = 
+	override def unitableForm() = 
 		chars.addString(new StringBuilder).toString()
 	def || (right : SingleChar) = new MultiChar(chars + right.char)
 	def || (right : MultiChar) = new MultiChar(chars ++ right.chars)
