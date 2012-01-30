@@ -1,8 +1,11 @@
 package net.sourceforge.reb4j.scala
 
 @SerialVersionUID(1L)
-final class Group private (val nested : Expression, private val opening : String) 
-	extends Expression with Alternative with Quantifiable 
+final class Group private[scala] (val nested : Expression, private val opening : String) 
+	extends Expression 
+	with Alternation.Alternative
+	with Sequence.Sequenceable
+	with Quantifiable
 {
 	lazy val expression = opening + nested + ")"
 	override def toString = expression

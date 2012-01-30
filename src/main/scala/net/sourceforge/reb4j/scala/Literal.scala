@@ -1,26 +1,24 @@
 package net.sourceforge.reb4j.scala
 
 @SerialVersionUID(1L)
-case class Literal (val unescaped : String) extends Expression 
-	with Alternative
+class Literal private[scala] (val unescaped : String) extends Expression 
+	with Alternation.Alternative
+	with Sequence.Sequenceable
 {
 	require (unescaped != null, "unescaped is null")
 	lazy val escaped = Literal.escape(unescaped)
-	override def toString = escaped
-	override def + (right : Alternative) = right match
-	{
-		case Literal(rhs) => new Literal(unescaped + rhs)
-		case Raw(rhs) => new Raw(escaped + rhs)
-		case _ => super.+(right)
-	}
-	def + (right : Literal) = new Literal(unescaped + right.unescaped)
-	def then (right : Literal) = this + right
+	final override def toString = escaped
+	final def + (right : Literal) = new Literal(unescaped + right.unescaped)
+	final def then (right : Literal) = this + right
 }
 
 
 object Literal
 {
-	def char(unescaped : Char) = new Literal(unescaped.toString()) with Quantifiable
+	def apply(unescaped : Char) =
+		new Literal(unescaped.toString()) with Quantifiable
+	def apply(unescaped : String) = 
+		new Literal(unescaped.toString())
 	val needsEscape = "()[]{}.,-\\|+*?$^&:!<>="
 	def escapeChar(c : Char) = if (needsEscape.contains(c)) "\\" + c else String.valueOf(c)
 	def escape(unescaped : Seq[Char]) = 

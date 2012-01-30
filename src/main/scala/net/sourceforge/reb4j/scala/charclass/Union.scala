@@ -26,6 +26,8 @@ object Union
 		def || (right : Subset) : Union
 		final def union (right : Union) : Union = this || right
 		final def union (right : Subset) : CharClass = this || right
+		final def or (right : Union) : Union = this || right
+		final def or (right : Subset) : CharClass = this || right
 	}
 	
 	trait Subset extends CharClass with Ops

@@ -2,19 +2,15 @@ package net.sourceforge.reb4j.scala
 
 @SerialVersionUID(1L)
 case class Raw private[scala] (val expression : String) 
-	extends Expression with Alternative 
+	extends Expression 
+	with Alternation.Alternative 
+	with Sequence.Sequenceable
 {
-	override def toString = expression
-	override def + (right : Alternative) = right match
-	{
-		case Raw(rhs) => new Raw(expression + rhs)
-		case right : Literal => new Raw(expression + right.escaped)
-		case _ => super.+(right)
-	}
-	def + (right : Raw) = new Raw(expression + right.expression)
-	def + (right : Literal) = new Raw(expression + right.escaped)
-	def then (right : Raw) = this + right
-	def then (right : Literal) = this + right
+	final override def toString = expression
+	final def + (right : Raw) = new Raw(expression + right.expression)
+	final def + (right : Literal) = new Raw(expression + right.escaped)
+	final def then (right : Raw) = this + right
+	final def then (right : Literal) = this + right
 }
 
 object AnyChar extends Raw(".") with Quantifiable

@@ -1,8 +1,11 @@
 package net.sourceforge.reb4j.scala.charclass
 import java.lang.Character.UnicodeBlock
-import net.sourceforge.reb4j.scala.{Expression, Alternative, Quantifiable}
+import net.sourceforge.reb4j.scala.{Expression, Alternation, Quantifiable, Sequence}
 
-trait CharClass extends Expression with Alternative with Quantifiable
+trait CharClass extends Expression 
+	with Alternation.Alternative
+	with Sequence.Sequenceable
+	with Quantifiable
 {
 	def ^ : CharClass
 	def negate = ^
