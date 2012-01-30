@@ -6,7 +6,7 @@ final class Alternation private[scala] (val alternatives : List[Alternation.Alte
 	with Alternation.Ops
 {
 	type Alternative = Alternation.Alternative
-	lazy val expression = (alternatives addString new StringBuilder).toString
+	lazy val expression = (alternatives addString (new StringBuilder, "|")).toString
 	override def toString = expression
 	
 	override def || (right : Alternation) = new Alternation(alternatives ++ right.alternatives)
