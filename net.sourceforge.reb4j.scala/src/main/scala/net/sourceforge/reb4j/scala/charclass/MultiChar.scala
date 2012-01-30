@@ -1,5 +1,4 @@
 package net.sourceforge.reb4j.scala.charclass
-import net.sourceforge.reb4j.scala.Alternative
 import net.sourceforge.reb4j.scala.Literal
 
 
@@ -14,4 +13,8 @@ final class MultiChar private[charclass] (val chars : Set[Char])
 		Literal.escape(chars.toSeq)
 	def || (right : SingleChar) = new MultiChar(chars + right.char)
 	def || (right : MultiChar) = new MultiChar(chars ++ right.chars)
+	def union (right : SingleChar) = this || right
+	def union (right : MultiChar) = this || right
+	def or (right : SingleChar) = this || right
+	def or (right : MultiChar) = this || right
 }

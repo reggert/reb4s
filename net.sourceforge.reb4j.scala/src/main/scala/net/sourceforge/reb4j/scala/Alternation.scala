@@ -1,14 +1,34 @@
 package net.sourceforge.reb4j.scala
 
 @SerialVersionUID(1L)
-final class Alternation private[scala] (val alternatives : List[Alternative]) 
+final class Alternation private[scala] (val alternatives : List[Alternation.Alternative]) 
 	extends Expression
+	with Alternation.Ops
 {
+	type Alternative = Alternation.Alternative
 	lazy val expression = (alternatives addString new StringBuilder).toString
 	override def toString = expression
 	
-	def || (right : Alternation) = new Alternation(alternatives ++ right.alternatives)
-	def || (right : Alternative) = new Alternation(alternatives :+ right)
-	def or (right : Alternation) = this || right
-	def or (right : Alternative) = this || right
+	override def || (right : Alternation) = new Alternation(alternatives ++ right.alternatives)
+	override def || (right : Alternative) = new Alternation(alternatives :+ right)
+}
+
+
+object Alternation
+{
+	trait Ops
+	{
+		def || (right : Alternation) : Alternation
+		def || (right : Alternative) : Alternation
+		final def or (right : Alternation) = this || right
+		final def or (right : Alternative) = this || right
+	}
+	
+	trait Alternative extends Expression with Alternation.Ops
+	{
+		override final def || (right : Alternation) = 
+				new Alternation(this +: right.alternatives)
+		override final def || (right : Alternative) = 
+			new Alternation(List(this, right))
+	}
 }
