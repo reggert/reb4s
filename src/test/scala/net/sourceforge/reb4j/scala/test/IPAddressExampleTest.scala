@@ -13,11 +13,11 @@ class IPAddressExampleTest extends Suite with ShouldMatchers
 {
 	val oneDigitOctet = CharClass.Posix.digit
 	val twoDigitOctet = CharClass.range('1', '9') + CharClass.Posix.digit
-	val oneHundredsOctet = Literal('1') + (CharClass.Posix.digit ## 2)
+	val oneHundredsOctet = Literal('1') + (CharClass.Posix.digit repeat 2)
 	val lowTwoHundredsOctet = Literal('2') + CharClass.range('0', '4') + CharClass.Posix.digit
 	val highTwoHundredsOctet = Literal("25") + CharClass.range('0', '5')
 	val octet = Group(oneDigitOctet||twoDigitOctet||oneHundredsOctet||lowTwoHundredsOctet||highTwoHundredsOctet)
-	val dottedDecimalIPAddress = octet + (Group(Literal('.') + octet) ## 3)
+	val dottedDecimalIPAddress = octet + (Group(Literal('.') + octet) repeat 3)
 	
 	def testOneDigitOctet()
 	{
