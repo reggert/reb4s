@@ -2,46 +2,36 @@ package net.sourceforge.reb4j.scala
 
 trait Quantifiable extends Expression
 {
-	def #* = new Quantified(this, "*")
-	def #*? = new Quantified(this, "*?")
-	def #*+ = new Quantified(this, "*+")
-	def anyTimes = #*
-	def anyTimesReluctantly = #*?
-	def anyTimesPossessively = #*+
+	final def anyTimes = new Quantified(this, "*")
+	final def anyTimesReluctantly = new Quantified(this, "*?")
+	final def anyTimesPossessively = new Quantified(this, "*+")
+	final def * = anyTimes
+	final def *? = anyTimesReluctantly
+	final def *+ = anyTimesPossessively
 	
-	def #+ = new Quantified(this, "+")
-	def #+? = new Quantified(this, "+?")
-	def #++ = new Quantified(this, "++")
-	def atLeastOnce = this #+
-	def atLeastOnceReluctantly = #+?
-	def atLeastOncePossessively = #++
+	final def atLeastOnce = new Quantified(this, "+")
+	final def atLeastOnceReluctantly = new Quantified(this, "+?")
+	final def atLeastOncePossessively = new Quantified(this, "++")
+	final def + = atLeastOnce
+	final def +? = atLeastOnceReluctantly
+	final def ++ = atLeastOncePossessively
 	
-	def #? = new Quantified(this, "?")
-	def #?? = new Quantified(this, "??")
-	def #?+ = new Quantified(this, "?+")
-	def optional = #?
-	def optionalReluctantly = #??
-	def optionalPossessively = #?+
+	final def optional = new Quantified(this, "?")
+	final def optionalReluctantly = new Quantified(this, "??")
+	final def optionalPossessively = new Quantified(this, "?+")
+	final def ? = optional
+	final def ?? = optionalReluctantly
+	final def ?+ = optionalPossessively
 	
-	def ## (n : Int) = new Quantified(this, "{" + n + "}")
-	def ##? (n : Int) = new Quantified(this, "{" + n + "}?")
-	def ##+ (n : Int) = new Quantified(this, "{" + n + "}+")
-	def repeat (n : Int) = ## (n)
-	def repeatReluctantly (n : Int) = ##? (n)
-	def repeatPossessively (n : Int) = ##+ (n)
+	final def repeat (n : Int) = new Quantified(this, "{" + n + "}")
+	final def repeatReluctantly (n : Int) = new Quantified(this, "{" + n + "}?")
+	final def repeatPossessively (n : Int) = new Quantified(this, "{" + n + "}+")
 	
-	def ## (min : Int, max : Int) = new Quantified(this, "{" + min + "," + max + "}")
-	def ##? (min : Int, max : Int) = new Quantified(this, "{" + min + "," + max + "}?")
-	def ##+ (min : Int, max : Int) = new Quantified(this, "{" + min + "," + max + "}+")
-	def repeat (min : Int, max : Int) = ## (min, max)
-	def repeatReluctantly (min : Int, max : Int) = ##? (min, max)
-	def repeatPossessively (min : Int, max : Int) = ##+ (min, max)
+	final def repeat (min : Int, max : Int) = new Quantified(this, "{" + min + "," + max + "}")
+	final def repeatReluctantly (min : Int, max : Int) = new Quantified(this, "{" + min + "," + max + "}?")
+	final def repeatPossessively (min : Int, max : Int) = new Quantified(this, "{" + min + "," + max + "}+")
 	
-	def ##> (n : Int) = new Quantified(this, "{" + n + ",}")
-	def ##>? (n : Int) = new Quantified(this, "{" + n + ",}?")
-	def ##>+ (n : Int) = new Quantified(this, "{" + n + ",}+")
-	def atLeast (n : Int) = ##> (n)
-	def atLeastReluctantly (n : Int) = ##>? (n)
-	def atLeastPossessively (n : Int) = ##>+ (n)
-	
+	final def atLeast (n : Int) = new Quantified(this, "{" + n + ",}")
+	final def atLeastReluctantly (n : Int) = new Quantified(this, "{" + n + ",}?")
+	final def atLeastPossessively (n : Int) = new Quantified(this, "{" + n + ",}+")
 }
