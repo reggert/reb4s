@@ -8,7 +8,7 @@ trait CharClass extends Expression
 	with Quantifiable
 {
 	def ^ : CharClass
-	def negate = ^
+	final def negate = ^
 	
 	protected[charclass] def unitableForm() : String
 	protected[charclass] def independentForm() : String
@@ -25,40 +25,40 @@ object CharClass
 	
 	object Perl
 	{
-		val digit = new PredefinedClass('d')
-		val space = new PredefinedClass('s')
-		val word = new PredefinedClass('w')
+		val Digit = new PredefinedClass('d')
+		val Space = new PredefinedClass('s')
+		val Word = new PredefinedClass('w')
 	}
 	
 	object Posix
 	{
-		val lower = new NamedPredefinedClass("Lower")
-		val upper = new NamedPredefinedClass("Upper")
-		val alpha = new NamedPredefinedClass("Alpha")
-		val digit = new NamedPredefinedClass("Digit")
-		val alnum = new NamedPredefinedClass("Alnum")
-		val punct = new NamedPredefinedClass("Punct")
-		val graph = new NamedPredefinedClass("Graph")
-		val print = new NamedPredefinedClass("Print")
-		val blank = new NamedPredefinedClass("Blank")
-		val control = new NamedPredefinedClass("Cntrl")
-		val hexDigit = new NamedPredefinedClass("XDigit")
-		val space = new NamedPredefinedClass("Space")
+		val Lower = new NamedPredefinedClass("Lower")
+		val Upper = new NamedPredefinedClass("Upper")
+		val Alpha = new NamedPredefinedClass("Alpha")
+		val Digit = new NamedPredefinedClass("Digit")
+		val Alnum = new NamedPredefinedClass("Alnum")
+		val Punct = new NamedPredefinedClass("Punct")
+		val Graph = new NamedPredefinedClass("Graph")
+		val Print = new NamedPredefinedClass("Print")
+		val Blank = new NamedPredefinedClass("Blank")
+		val Control = new NamedPredefinedClass("Cntrl")
+		val HexDigit = new NamedPredefinedClass("XDigit")
+		val Space = new NamedPredefinedClass("Space")
 	}
 	
 	object Java
 	{
-		val lowerCase = new NamedPredefinedClass("javaLowerCase")
-		val upperCase = new NamedPredefinedClass("javaUpperCase")
-		val whitespace = new NamedPredefinedClass("javaWhitespace")
-		val mirrored = new NamedPredefinedClass("javaMirrored")
+		val LowerCase = new NamedPredefinedClass("javaLowerCase")
+		val UpperCase = new NamedPredefinedClass("javaUpperCase")
+		val Whitespace = new NamedPredefinedClass("javaWhitespace")
+		val Mirrored = new NamedPredefinedClass("javaMirrored")
 	}
 	
 	object Unicode
 	{
 		private type UnicodeBlock = java.lang.Character.UnicodeBlock
-		private def $ (className : String) = new NamedPredefinedClass(className)
-		def block(unicodeBlock : UnicodeBlock) = $("In" + unicodeBlock.toString())
+		private def % (className : String) = new NamedPredefinedClass(className)
+		def block(unicodeBlock : UnicodeBlock) = %("In" + unicodeBlock.toString())
 		/*
 			From the Unicode Specification, version 4.0.0, the Unicode categories are:
 				Lu = Letter, uppercase
@@ -94,60 +94,60 @@ object CharClass
 		 */
 		object Letter
 		{
-			val uppercase = $("Lu")
-			val lowercase = $("Ll")
-			val titlecase = $("Lt")
-			val modifier = $("Lm")
-			val other = $("Lo")
+			val Uppercase = %("Lu")
+			val Lowercase = %("Ll")
+			val Titlecase = %("Lt")
+			val Modifier = %("Lm")
+			val Other = %("Lo")
 		}
 		
 		object Mark
 		{
-			val nonspacing = $("Mn")
-			val spacingCombining = $("Mc")
-			val enclosing = $("Me")
+			val Nonspacing = %("Mn")
+			val SpacingCombining = %("Mc")
+			val Enclosing = %("Me")
 		}
 		
 		object Number
 		{
-			val decimalDigit = $("Nd")
-			val letter = $("Nl")
-			val other = $("No")
+			val DecimalDigit = %("Nd")
+			val Letter = %("Nl")
+			val Other = %("No")
 		}
 		
 		object Separator
 		{
-			val space = $("Zs")
-			val line = $("Zl")
-			val paragraph = $("Zp")
+			val Space = %("Zs")
+			val Line = %("Zl")
+			val Paragraph = %("Zp")
 		}
 		
 		object Other
 		{
-			val control = $("Cc")
-			val format = $("Cf")
-			val surrogate = $("Cs")
-			val privateUse = $("Co")
-			val notAssigned = $("Cn")
+			val Control = %("Cc")
+			val Format = %("Cf")
+			val Surrogate = %("Cs")
+			val PrivateUse = %("Co")
+			val NotAssigned = %("Cn")
 		}
 		
 		object Punctuation
 		{
-			val connector = $("Pc")
-			val dash = $("Pd")
-			val open = $("Po")
-			val close = $("Pe")
-			val initialQuote = $("Pi")
-			val finalQuote = $("Pf")
-			val other = $("Po")
+			val Connector = %("Pc")
+			val Dash = %("Pd")
+			val Open = %("Po")
+			val Close = %("Pe")
+			val InitialQuote = %("Pi")
+			val FinalQuote = %("Pf")
+			val Other = %("Po")
 		}
 		
 		object Symbol
 		{
-			val math = $("Sm")
-			val currency = $("Sc")
-			val modifier = $("Sk")
-			val other = $("So")
+			val Math = %("Sm")
+			val Currency = %("Sc")
+			val Modifier = %("Sk")
+			val Other = %("So")
 		}
 	}
 }

@@ -11,6 +11,15 @@ final class Group private[scala] (val nested : Expression, private val opening :
 	override def toString = expression
 	private[scala] def this(nested : Expression, opening : Seq[Char]) =
 		this(nested, opening.toString())
+	override def equals (other : Any) = other match
+	{
+		case that : Group => 
+			this.opening == that.opening &&
+			this.nested == that.nested
+		case _ => false
+	}
+	override def hashCode () = 
+		31 * opening.hashCode() + nested.hashCode()
 }
 
 

@@ -11,10 +11,10 @@ import net.sourceforge.reb4j.scala.Group
 @RunWith(classOf[JUnitRunner])
 class IPAddressExampleTest extends Suite with ShouldMatchers
 {
-	val oneDigitOctet = CharClass.Posix.digit
-	val twoDigitOctet = CharClass.range('1', '9') + CharClass.Posix.digit
-	val oneHundredsOctet = Literal('1') + (CharClass.Posix.digit repeat 2)
-	val lowTwoHundredsOctet = Literal('2') + CharClass.range('0', '4') + CharClass.Posix.digit
+	val oneDigitOctet = CharClass.Posix.Digit
+	val twoDigitOctet = CharClass.range('1', '9') + CharClass.Posix.Digit
+	val oneHundredsOctet = Literal('1') + (CharClass.Posix.Digit repeat 2)
+	val lowTwoHundredsOctet = Literal('2') + CharClass.range('0', '4') + CharClass.Posix.Digit
 	val highTwoHundredsOctet = Literal("25") + CharClass.range('0', '5')
 	val octet = Group(oneDigitOctet||twoDigitOctet||oneHundredsOctet||lowTwoHundredsOctet||highTwoHundredsOctet)
 	val dottedDecimalIPAddress = octet + (Group(Literal('.') + octet) repeat 3)

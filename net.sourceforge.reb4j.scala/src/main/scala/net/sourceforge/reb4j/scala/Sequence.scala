@@ -13,6 +13,13 @@ final class Sequence private[scala] (val components : List[Sequence.Sequenceable
 	override def + (right : Sequenceable) : Sequence = new Sequence(components :+ right)
 	override def + (right : Sequence) = 
 		new Sequence(components ++ right.components)
+	
+	override def equals (other : Any) = other match
+	{
+		case that : Sequence => this.components == that.components
+		case _ => false
+	}
+	override def hashCode() = 31 * components.hashCode()
 }
 
 

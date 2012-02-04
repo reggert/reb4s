@@ -5,7 +5,7 @@ import scala.util.matching.Regex
 
 trait Expression extends Serializable with NotNull
 {
-	def toPattern : Pattern = Pattern.compile(toString)
-	def toRegex(groupNames : String*) : Regex = 
+	final def toPattern : Pattern = Pattern.compile(toString)
+	final def toRegex(groupNames : String*) : Regex = 
 		new Regex(toString, groupNames.toList : _*)
 }
