@@ -15,6 +15,12 @@ final class Union private[charclass] (val subsets : List[Union.Subset])
 		
 	override def || (right : Union) = new Union(subsets ++ right.subsets)
 	override def || (right : Subset) = new Union(subsets :+ right)
+	override def equals (other : Any) = other match
+	{
+		case that : Union => this.subsets == that.subsets
+		case _ => false
+	}
+	override def hashCode() = 31 + subsets.hashCode()
 }
 
 

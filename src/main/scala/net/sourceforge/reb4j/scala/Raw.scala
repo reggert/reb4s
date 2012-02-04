@@ -1,7 +1,7 @@
 package net.sourceforge.reb4j.scala
 
 @SerialVersionUID(1L)
-case class Raw private[scala] (val expression : String) 
+sealed class Raw private[scala] (val expression : String) 
 	extends Expression 
 	with Alternation.Alternative 
 	with Sequence.Sequenceable
@@ -11,6 +11,12 @@ case class Raw private[scala] (val expression : String)
 	final def + (right : Literal) = new Raw(expression + right.escaped)
 	final def then (right : Raw) = this + right
 	final def then (right : Literal) = this + right
+	final override def equals(other : Any) = other match
+	{
+		case that : Raw => this.expression == that.expression
+		case _ => false
+	}
+	final override def hashCode() = 31 * expression.hashCode()
 }
 
 object AnyChar extends Raw(".") with Quantifiable

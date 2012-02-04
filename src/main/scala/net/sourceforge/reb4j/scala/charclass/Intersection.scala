@@ -15,6 +15,13 @@ final class Intersection private[charclass] (val supersets : List[Intersection.S
 		new Intersection(supersets ++ right.supersets)
 	override def && (right : Superset) =
 		new Intersection(supersets :+ right)
+	override def equals (other : Any) = other match
+	{
+		case that : Intersection =>
+			this.supersets == that.supersets
+		case _ => false
+	}
+	override def hashCode() = 31 * supersets.hashCode()
 }
 
 

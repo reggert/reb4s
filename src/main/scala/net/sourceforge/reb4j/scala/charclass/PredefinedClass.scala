@@ -1,6 +1,6 @@
 package net.sourceforge.reb4j.scala.charclass
 
-sealed class PredefinedClass private[charclass] (val nameChar : Char) 
+class PredefinedClass private[charclass] (val nameChar : Char) 
 	extends CharClass
 	with SelfContained
 	with Union.Subset
@@ -13,6 +13,13 @@ sealed class PredefinedClass private[charclass] (val nameChar : Char)
 			nameChar.toUpper
 	override def ^ = new PredefinedClass(invertedNameChar)
 	override def unitableForm = "\\" + nameChar
+	override def equals(other : Any) = other match
+	{
+		case that : NamedPredefinedClass => false
+		case that : PredefinedClass => this.nameChar == that.nameChar
+		case _ => false
+	}
+	override def hashCode() = 31 * nameChar.hashCode()
 }
 
 
@@ -24,6 +31,15 @@ final class NamedPredefinedClass private[charclass] (
 	def this (className : String) = this('p', className)
 	override def ^ = new NamedPredefinedClass(invertedNameChar, className)
 	override def unitableForm = super.unitableForm() + "{" + className + "}"
+	override def equals(other : Any) = other match
+	{
+		case that : NamedPredefinedClass =>
+			this.nameChar == that.nameChar &&
+			this.className == that.className
+		case _ => false
+	}
+	override def hashCode() = 
+		31 * nameChar.hashCode() + className.hashCode()
 }
 
 

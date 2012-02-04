@@ -11,6 +11,14 @@ final class Alternation private[scala] (val alternatives : List[Alternation.Alte
 	
 	override def || (right : Alternation) = new Alternation(alternatives ++ right.alternatives)
 	override def || (right : Alternative) = new Alternation(alternatives :+ right)
+	
+	override def equals (other : Any) = other match
+	{
+		case that : Alternation => this.alternatives == that.alternatives
+		case _ => false
+	}
+	
+	override def hashCode() = 31 * alternatives.hashCode()
 }
 
 

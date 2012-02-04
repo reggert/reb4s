@@ -15,4 +15,10 @@ final class SingleChar private[charclass] (val char : Char)
 	def union (right : MultiChar) = this || right
 	def or (right : SingleChar) = this || right
 	def or (right : MultiChar) = this || right
+	override def equals (other : Any) = other match
+	{
+		case that : SingleChar => this.char == that.char
+		case _ => false
+	}
+	override def hashCode() = 31 * char.hashCode()
 }
