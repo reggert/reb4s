@@ -1,5 +1,10 @@
 package net.sourceforge.reb4j.scala
 
+/**
+ * An expression to which a quantifier has been attached.
+ * No further quantifier may be attached without first wrapping this expression
+ * in a [[net.sourceforge.reb4j.scala.Group]] or other container.
+ */
 @SerialVersionUID(1L)
 final class Quantified private[scala] (val base : Quantifiable, val quantifier : String) 
 	extends Expression 

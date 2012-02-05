@@ -1,5 +1,8 @@
 package net.sourceforge.reb4j.scala
 
+/**
+ * Expression representing a set of alternatives that may be matched.
+ */
 @SerialVersionUID(1L)
 final class Alternation private[scala] (val alternatives : List[Alternation.Alternative]) 
 	extends Expression
@@ -22,16 +25,48 @@ final class Alternation private[scala] (val alternatives : List[Alternation.Alte
 }
 
 
+/**
+ * Module providing the implementation of alternation.
+ */
 object Alternation
 {
+	/**
+	 * Interface providing the operations that relate to alternation.
+	 */
 	trait Ops
 	{
+		/**
+		 * Constructs an expression matching either the receiver or the 
+		 * any of the alternatives contained within the specified argument 
+		 * expression.
+		 */
 		def || (right : Alternation) : Alternation
+		
+		/**
+		 * Constructs an expression matching either the receiver or the 
+		 * specified argument expression.
+		 */
 		def || (right : Alternative) : Alternation
+		
+		/**
+		 * Constructs an expression matching either the receiver or the 
+		 * any of the alternatives contained within the specified argument 
+		 * expression.
+		 */
 		final def or (right : Alternation) = this || right
+		
+		/**
+		 * Constructs an expression matching either the receiver or the 
+		 * specified argument expression.
+		 */
 		final def or (right : Alternative) = this || right
 	}
 	
+	
+	/**
+	 * Interface representing an expression that can be used as an alternative
+	 * in an alternation expression.
+	 */
 	trait Alternative extends Expression with Alternation.Ops
 	{
 		override final def || (right : Alternation) = 

@@ -2,6 +2,10 @@ package net.sourceforge.reb4j.scala
 import java.util.regex.Pattern
 import scala.util.matching.Regex
 
+/**
+ * An expression that has been precompiled by the [[java.util.regex.Pattern]]
+ * class and adopted for use by '''reb4j'''.
+ */
 @SerialVersionUID(1L)
 final class Adopted private[scala] (override val expression : String) extends Expression
 {
@@ -15,6 +19,10 @@ final class Adopted private[scala] (override val expression : String) extends Ex
 }
 
 
+/**
+ * Function that adopts the regular expression represented by the specified
+ * [[java.util.regex.Pattern]] or [[scala.util.matching.Regex]].
+ */
 object Adopt
 {
 	def apply(pattern : Pattern) = new Adopted(pattern.pattern)
