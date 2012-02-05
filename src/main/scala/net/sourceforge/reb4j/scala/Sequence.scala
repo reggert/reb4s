@@ -34,7 +34,7 @@ object Sequence
 	/**
 	 * Operations related to sequences.
 	 */
-	trait Ops
+	trait Ops extends Expression
 	{
 		/**
 		 * Concatenates this expression with the argument.

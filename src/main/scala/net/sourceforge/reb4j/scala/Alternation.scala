@@ -33,7 +33,7 @@ object Alternation
 	/**
 	 * Interface providing the operations that relate to alternation.
 	 */
-	trait Ops
+	trait Ops extends Expression
 	{
 		/**
 		 * Constructs an expression matching either the receiver or the 
