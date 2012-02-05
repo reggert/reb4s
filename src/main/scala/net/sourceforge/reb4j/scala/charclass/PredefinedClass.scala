@@ -1,12 +1,15 @@
 package net.sourceforge.reb4j.scala.charclass
 
+/**
+ * Class representing a predefined character class.
+ */
 class PredefinedClass private[charclass] (val nameChar : Char) 
 	extends CharClass
 	with SelfContained
 	with Union.Subset
 	with Intersection.Superset
 {
-	protected def invertedNameChar = 
+	protected final def invertedNameChar = 
 		if (nameChar.isUpper) 
 			nameChar.toLower
 		else
@@ -23,6 +26,9 @@ class PredefinedClass private[charclass] (val nameChar : Char)
 }
 
 
+/**
+ * Class representing a predefined character class referenced by name.
+ */
 final class NamedPredefinedClass private[charclass] (
 		nameChar : Char, 
 		val className : String

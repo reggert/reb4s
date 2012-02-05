@@ -1,5 +1,8 @@
 package net.sourceforge.reb4j.scala.charclass
 
+/**
+ * Character class matching any character between a range of characters.
+ */
 final class CharRange private[charclass] (val first : Char, val last : Char) 
 	extends CharClass 
 	with WrappedNegation 
