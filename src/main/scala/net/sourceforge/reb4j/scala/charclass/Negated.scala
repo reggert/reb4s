@@ -9,7 +9,7 @@ final class Negated[T <: WrappedNegation] private[charclass] (val positive : T)
 	with Union.Subset
 	with Intersection.Superset
 {
-	override def ^ = positive
+	override def negated = positive
 	override lazy val unitableForm = "[^" + positive.unitableForm + "]"
 	override def equals (other : Any) = other match
 	{

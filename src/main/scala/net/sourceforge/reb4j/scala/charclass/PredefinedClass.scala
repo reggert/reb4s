@@ -14,7 +14,7 @@ class PredefinedClass private[charclass] (val nameChar : Char)
 			nameChar.toLower
 		else
 			nameChar.toUpper
-	override def ^ = new PredefinedClass(invertedNameChar)
+	override def negated = new PredefinedClass(invertedNameChar)
 	override def unitableForm = "\\" + nameChar
 	override def equals(other : Any) = other match
 	{
@@ -35,7 +35,7 @@ final class NamedPredefinedClass private[charclass] (
 	) extends PredefinedClass(nameChar)
 {
 	def this (className : String) = this('p', className)
-	override def ^ = new NamedPredefinedClass(invertedNameChar, className)
+	override def negated = new NamedPredefinedClass(invertedNameChar, className)
 	override lazy val unitableForm = super.unitableForm + "{" + className + "}"
 	override def equals(other : Any) = other match
 	{

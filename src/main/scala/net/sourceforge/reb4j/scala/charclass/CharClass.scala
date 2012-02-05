@@ -16,13 +16,13 @@ abstract class CharClass extends Expression
 	 * Returns an expressing matching a single character that is not within
 	 * the class of characters matched by this expression.
 	 */
-	def ^ : CharClass
+	final def unary_~ = negated
 	
 	/**
 	 * Returns an expressing matching a single character that is not within
 	 * the class of characters matched by this expression.
 	 */
-	final def negate = ^
+	def negated : CharClass
 	
 	/**
 	 * The regular expression string that can be used within square brackets
