@@ -5,7 +5,8 @@ package net.sourceforge.reb4j.scala
  * regular expression engine.
  */
 @SerialVersionUID(1L)
-final class Flag private (val c : Char) extends Serializable with NotNull
+final class Flag private (val c : Char) extends Serializable 
+	with NotNull with Immutable
 {
 	override def toString = String.valueOf(c)
 	override def equals (other : Any) = other match
