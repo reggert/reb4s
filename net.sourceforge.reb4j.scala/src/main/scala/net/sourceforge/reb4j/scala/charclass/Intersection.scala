@@ -9,7 +9,7 @@ final class Intersection private[charclass] (val supersets : List[Intersection.S
 {
 	type Superset = Intersection.Superset
 	override def unitableForm() = 
-		(supersets map ((superset : Superset) => superset.independentForm())).addString(new StringBuilder, "&&").toString()
+		(supersets map ((superset : Superset) => superset.independentForm)).addString(new StringBuilder, "&&").toString
 	
 	override def && (right : Intersection) = 
 		new Intersection(supersets ++ right.supersets)
@@ -21,7 +21,7 @@ final class Intersection private[charclass] (val supersets : List[Intersection.S
 			this.supersets == that.supersets
 		case _ => false
 	}
-	override def hashCode() = 31 * supersets.hashCode()
+	override lazy val hashCode = 31 * supersets.hashCode
 }
 
 

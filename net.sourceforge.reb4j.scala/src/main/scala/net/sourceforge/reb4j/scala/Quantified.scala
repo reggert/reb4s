@@ -6,8 +6,7 @@ final class Quantified private[scala] (val base : Quantifiable, val quantifier :
 	with Alternation.Alternative
 	with Sequence.Sequenceable
 {
-	lazy val expression = base.toString() + quantifier
-	override def toString = expression
+	override lazy val expression = base.expression + quantifier
 	override def equals (other : Any) = other match
 	{
 		case that : Quantified => 
@@ -15,6 +14,6 @@ final class Quantified private[scala] (val base : Quantifiable, val quantifier :
 			this.base == that.base
 		case _ => false
 	}
-	override def hashCode() = 
-		31 * quantifier.hashCode() + base.hashCode();
+	override lazy val hashCode = 
+		31 * quantifier.hashCode + base.hashCode;
 }

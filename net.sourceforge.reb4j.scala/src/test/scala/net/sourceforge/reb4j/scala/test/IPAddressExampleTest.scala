@@ -23,66 +23,66 @@ class IPAddressExampleTest extends Suite with ShouldMatchers
 	{
 		val pattern = oneDigitOctet.toPattern
 		for (i <- 0 to 9)
-			withClue(pattern + " matching " + i.toString() + ":")
-			{pattern.matcher(i.toString()).matches() should be (true)}
+			withClue(pattern + " matching " + i.toString + ":")
+			{pattern.matcher(i.toString).matches() should be (true)}
 		for (i <- 10 to 1000)
-			withClue(pattern + " matching " + i.toString() + ":")
-			{pattern.matcher(i.toString()).matches() should be (false)}
+			withClue(pattern + " matching " + i.toString + ":")
+			{pattern.matcher(i.toString).matches() should be (false)}
 	}
 	
 	def testTwoDigitOctet()
 	{
 		val pattern = twoDigitOctet.toPattern
 		for (i <- 0 to 9)
-			withClue(pattern + " matching " + i.toString() + ":")
-			{pattern.matcher(i.toString()).matches() should be (false)}
+			withClue(pattern + " matching " + i.toString + ":")
+			{pattern.matcher(i.toString).matches() should be (false)}
 		for (i <- 10 to 99)
-			withClue(pattern + " matching " + i.toString() + ":")
-			{pattern.matcher(i.toString()).matches() should be (true)}
+			withClue(pattern + " matching " + i.toString + ":")
+			{pattern.matcher(i.toString).matches() should be (true)}
 		for (i <- 100 to 1000)
-			withClue(pattern + " matching " + i.toString() + ":")
-			{pattern.matcher(i.toString()).matches() should be (false)}
+			withClue(pattern + " matching " + i.toString + ":")
+			{pattern.matcher(i.toString).matches() should be (false)}
 	}
 	
 	def testOneHundredsOctet()
 	{
 		val pattern = oneHundredsOctet.toPattern
 		for (i <- 0 to 99)
-			withClue(pattern + " matching " + i.toString() + ":")
-			{pattern.matcher(i.toString()).matches() should be (false)}
+			withClue(pattern + " matching " + i.toString + ":")
+			{pattern.matcher(i.toString).matches() should be (false)}
 		for (i <- 100 to 199)
-			withClue(pattern + " matching " + i.toString() + ":")
-			{pattern.matcher(i.toString()).matches() should be (true)}
+			withClue(pattern + " matching " + i.toString + ":")
+			{pattern.matcher(i.toString).matches() should be (true)}
 		for (i <- 200 to 1000)
-			withClue(pattern + " matching " + i.toString() + ":")
-			{pattern.matcher(i.toString()).matches() should be (false)}
+			withClue(pattern + " matching " + i.toString + ":")
+			{pattern.matcher(i.toString).matches() should be (false)}
 	}
 	
 	def testLowTwoHundredsOctet()
 	{
 		val pattern = lowTwoHundredsOctet.toPattern
 		for (i <- 0 to 199)
-			withClue(pattern + " matching " + i.toString() + ":")
-			{pattern.matcher(i.toString()).matches() should be (false)}
+			withClue(pattern + " matching " + i.toString + ":")
+			{pattern.matcher(i.toString).matches() should be (false)}
 		for (i <- 200 to 249)
-			withClue(pattern + " matching " + i.toString() + ":")
-			{pattern.matcher(i.toString()).matches() should be (true)}
+			withClue(pattern + " matching " + i.toString + ":")
+			{pattern.matcher(i.toString).matches() should be (true)}
 		for (i <- 250 to 1000)
-			withClue(pattern + " matching " + i.toString() + ":")
-			{pattern.matcher(i.toString()).matches() should be (false)}
+			withClue(pattern + " matching " + i.toString + ":")
+			{pattern.matcher(i.toString).matches() should be (false)}
 	}
 	
 	def testHighTwoHundredsOctet()
 	{
 		val pattern = highTwoHundredsOctet.toPattern
 		for (i <- 0 to 249)
-			withClue(pattern + " matching " + i.toString() + ":")
+			withClue(pattern + " matching " + i.toString + ":")
 			{pattern.matcher(i.toString()).matches() should be (false)}
 		for (i <- 250 to 255)
-			withClue(pattern + " matching " + i.toString() + ":")
+			withClue(pattern + " matching " + i.toString + ":")
 			{pattern.matcher(i.toString()).matches() should be (true)}
 		for (i <- 256 to 1000)
-			withClue(pattern + " matching " + i.toString() + ":")
+			withClue(pattern + " matching " + i.toString + ":")
 			{pattern.matcher(i.toString()).matches() should be (false)}
 	}
 	
@@ -90,13 +90,13 @@ class IPAddressExampleTest extends Suite with ShouldMatchers
 	{
 		val pattern = octet.toPattern
 		for (i <- 0 to 255)
-			withClue(pattern + " matching " + i.toString() + ":")
+			withClue(pattern + " matching " + i.toString + ":")
 			{pattern.matcher(i.toString()).matches() should be (true)}
 		for (i <- 256 to 1000)
-			withClue(pattern + " matching " + i.toString() + ":")
+			withClue(pattern + " matching " + i.toString + ":")
 			{pattern.matcher(i.toString()).matches() should be (false)}
 		for (i <- 'a' to 'z')
-			withClue(pattern + " matching " + i.toString() + ":")
+			withClue(pattern + " matching " + i.toString + ":")
 			{pattern.matcher(i.toString()).matches() should be (false)}
 	}
 	
