@@ -9,7 +9,7 @@ final class Flag private (val c : Char) extends Serializable with NotNull
 		case that : Flag => this.c == that.c
 		case _ => false
 	}
-	override def hashCode() = 31 * c.hashCode()
+	override lazy val hashCode = 31 * c.hashCode
 }
 
 

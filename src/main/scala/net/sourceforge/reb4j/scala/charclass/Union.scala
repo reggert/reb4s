@@ -8,10 +8,10 @@ final class Union private[charclass] (val subsets : List[Union.Subset])
 	with Union.Ops
 {
 	type Subset = Union.Subset
-	override def unitableForm() = (
+	override lazy val unitableForm = (
 			subsets.foldLeft(new StringBuilder)
-				((builder : StringBuilder, subset : Subset) => {builder append subset.unitableForm()})
-		).toString()
+				((builder : StringBuilder, subset : Subset) => {builder append subset.unitableForm})
+		).toString
 		
 	override def || (right : Union) = new Union(subsets ++ right.subsets)
 	override def || (right : Subset) = new Union(subsets :+ right)
@@ -20,7 +20,7 @@ final class Union private[charclass] (val subsets : List[Union.Subset])
 		case that : Union => this.subsets == that.subsets
 		case _ => false
 	}
-	override def hashCode() = 31 + subsets.hashCode()
+	override lazy val hashCode = 31 + subsets.hashCode
 }
 
 

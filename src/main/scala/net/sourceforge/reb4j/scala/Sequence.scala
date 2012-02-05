@@ -8,7 +8,6 @@ final class Sequence private[scala] (val components : List[Sequence.Sequenceable
 {
 	type Sequenceable = Sequence.Sequenceable
 	lazy val expression = (components addString new StringBuilder).toString
-	override def toString = expression
 	
 	override def + (right : Sequenceable) : Sequence = new Sequence(components :+ right)
 	override def + (right : Sequence) = 
@@ -19,7 +18,7 @@ final class Sequence private[scala] (val components : List[Sequence.Sequenceable
 		case that : Sequence => this.components == that.components
 		case _ => false
 	}
-	override def hashCode() = 31 * components.hashCode()
+	override lazy val hashCode = 31 * components.hashCode
 }
 
 

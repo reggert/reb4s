@@ -23,5 +23,5 @@ final class MultiChar private[charclass] (val chars : Set[Char])
 		case that : MultiChar => this.chars == that.chars
 		case _ => false
 	}
-	override def hashCode() = 31 * chars.hashCode()
+	override lazy val hashCode = 31 * chars.hashCode
 }

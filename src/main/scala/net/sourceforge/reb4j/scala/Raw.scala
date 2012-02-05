@@ -6,7 +6,6 @@ sealed class Raw private[scala] (val expression : String)
 	with Alternation.Alternative 
 	with Sequence.Sequenceable
 {
-	final override def toString = expression
 	final def + (right : Raw) = new Raw(expression + right.expression)
 	final def + (right : Literal) = new Raw(expression + right.escaped)
 	final def then (right : Raw) = this + right
@@ -16,7 +15,7 @@ sealed class Raw private[scala] (val expression : String)
 		case that : Raw => this.expression == that.expression
 		case _ => false
 	}
-	final override def hashCode() = 31 * expression.hashCode()
+	override lazy val hashCode = 31 * expression.hashCode
 }
 
 object AnyChar extends Raw(".") with Quantifiable

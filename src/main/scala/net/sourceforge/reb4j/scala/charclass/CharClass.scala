@@ -10,9 +10,9 @@ trait CharClass extends Expression
 	def ^ : CharClass
 	final def negate = ^
 	
-	protected[charclass] def unitableForm() : String
-	protected[charclass] def independentForm() : String
-	final override def toString() = independentForm()
+	protected[charclass] def unitableForm : String
+	protected[charclass] def independentForm : String
+	final override def expression = independentForm
 }
 
 
@@ -58,7 +58,7 @@ object CharClass
 	{
 		private type UnicodeBlock = java.lang.Character.UnicodeBlock
 		private def % (className : String) = new NamedPredefinedClass(className)
-		def block(unicodeBlock : UnicodeBlock) = %("In" + unicodeBlock.toString())
+		def block(unicodeBlock : UnicodeBlock) = %("In" + unicodeBlock.toString)
 		/*
 			From the Unicode Specification, version 4.0.0, the Unicode categories are:
 				Lu = Letter, uppercase

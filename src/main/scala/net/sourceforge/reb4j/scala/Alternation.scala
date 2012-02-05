@@ -6,8 +6,8 @@ final class Alternation private[scala] (val alternatives : List[Alternation.Alte
 	with Alternation.Ops
 {
 	type Alternative = Alternation.Alternative
-	lazy val expression = (alternatives addString (new StringBuilder, "|")).toString
-	override def toString = expression
+	override lazy val expression = 
+		(alternatives addString (new StringBuilder, "|")).toString
 	
 	override def || (right : Alternation) = new Alternation(alternatives ++ right.alternatives)
 	override def || (right : Alternative) = new Alternation(alternatives :+ right)
@@ -18,7 +18,7 @@ final class Alternation private[scala] (val alternatives : List[Alternation.Alte
 		case _ => false
 	}
 	
-	override def hashCode() = 31 * alternatives.hashCode()
+	override lazy val hashCode = 31 * alternatives.hashCode
 }
 
 

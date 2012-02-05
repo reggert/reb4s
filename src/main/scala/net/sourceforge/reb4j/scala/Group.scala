@@ -7,10 +7,9 @@ final class Group private[scala] (val nested : Expression, private val opening :
 	with Sequence.Sequenceable
 	with Quantifiable
 {
-	lazy val expression = opening + nested + ")"
-	override def toString = expression
+	override lazy val expression = opening + nested + ")"
 	private[scala] def this(nested : Expression, opening : Seq[Char]) =
-		this(nested, opening.toString())
+		this(nested, opening.toString)
 	override def equals (other : Any) = other match
 	{
 		case that : Group => 
@@ -18,8 +17,8 @@ final class Group private[scala] (val nested : Expression, private val opening :
 			this.nested == that.nested
 		case _ => false
 	}
-	override def hashCode () = 
-		31 * opening.hashCode() + nested.hashCode()
+	override lazy val hashCode = 
+		31 * opening.hashCode + nested.hashCode
 }
 
 

@@ -19,7 +19,7 @@ class PredefinedClass private[charclass] (val nameChar : Char)
 		case that : PredefinedClass => this.nameChar == that.nameChar
 		case _ => false
 	}
-	override def hashCode() = 31 * nameChar.hashCode()
+	override lazy val hashCode = 31 * nameChar.hashCode
 }
 
 
@@ -30,7 +30,7 @@ final class NamedPredefinedClass private[charclass] (
 {
 	def this (className : String) = this('p', className)
 	override def ^ = new NamedPredefinedClass(invertedNameChar, className)
-	override def unitableForm = super.unitableForm() + "{" + className + "}"
+	override lazy val unitableForm = super.unitableForm + "{" + className + "}"
 	override def equals(other : Any) = other match
 	{
 		case that : NamedPredefinedClass =>
@@ -38,8 +38,8 @@ final class NamedPredefinedClass private[charclass] (
 			this.className == that.className
 		case _ => false
 	}
-	override def hashCode() = 
-		31 * nameChar.hashCode() + className.hashCode()
+	override lazy val hashCode = 
+		31 * nameChar.hashCode + className.hashCode
 }
 
 

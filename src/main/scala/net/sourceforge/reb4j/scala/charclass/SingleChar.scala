@@ -20,5 +20,5 @@ final class SingleChar private[charclass] (val char : Char)
 		case that : SingleChar => this.char == that.char
 		case _ => false
 	}
-	override def hashCode() = 31 * char.hashCode()
+	override lazy val hashCode = 31 * char.hashCode
 }

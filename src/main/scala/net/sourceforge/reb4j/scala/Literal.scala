@@ -7,7 +7,7 @@ sealed class Literal private[scala] (val unescaped : String) extends Expression
 {
 	require (unescaped != null, "unescaped is null")
 	lazy val escaped = Literal.escape(unescaped)
-	final override def toString = escaped
+	override def expression = escaped
 	final def + (right : Literal) = new Literal(unescaped + right.unescaped)
 	final def then (right : Literal) = this + right
 	override def equals(other : Any) = other match
@@ -15,7 +15,7 @@ sealed class Literal private[scala] (val unescaped : String) extends Expression
 		case that : Literal => this.unescaped == that.unescaped
 		case _ => false
 	}
-	override def hashCode() = 31 * unescaped.hashCode()
+	override lazy val hashCode = 31 * unescaped.hashCode
 }
 
 
