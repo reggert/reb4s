@@ -111,7 +111,7 @@
 				<plugin>
 					<groupId>org.scala-tools</groupId>
 					<artifactId>maven-scala-plugin</artifactId>
-					<version>2.14.1</version>
+					<version>2.15.2</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.felix</groupId>
@@ -201,7 +201,7 @@
 			<plugin>
 				<groupId>org.scala-tools</groupId>
 				<artifactId>maven-scala-plugin</artifactId>
-				<version>2.14.1</version>
+				<version>2.15.2</version>
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
