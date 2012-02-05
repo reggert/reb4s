@@ -3,21 +3,21 @@ import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 import org.scalatest.FunSuite
 import org.scalatest.Suite
-import net.sourceforge.reb4j.scala.charclass.CharClass
+import net.sourceforge.reb4j.scala.charclass.CharClass._
 import org.scalatest.matchers.ShouldMatchers
 import net.sourceforge.reb4j.scala.Literal
-import net.sourceforge.reb4j.scala.Group
+import net.sourceforge.reb4j.scala.Group._
 
 @RunWith(classOf[JUnitRunner])
 class IPAddressExampleTest extends Suite with ShouldMatchers
 {
-	val oneDigitOctet = CharClass.Posix.Digit
-	val twoDigitOctet = CharClass.range('1', '9') + CharClass.Posix.Digit
-	val oneHundredsOctet = Literal('1') + (CharClass.Posix.Digit repeat 2)
-	val lowTwoHundredsOctet = Literal('2') + CharClass.range('0', '4') + CharClass.Posix.Digit
-	val highTwoHundredsOctet = Literal("25") + CharClass.range('0', '5')
-	val octet = Group(oneDigitOctet||twoDigitOctet||oneHundredsOctet||lowTwoHundredsOctet||highTwoHundredsOctet)
-	val dottedDecimalIPAddress = octet + (Group(Literal('.') + octet) repeat 3)
+	val oneDigitOctet = Posix.Digit
+	val twoDigitOctet = range('1', '9') + Posix.Digit
+	val oneHundredsOctet = Literal('1') + (Posix.Digit repeat 2)
+	val lowTwoHundredsOctet = Literal('2') + range('0', '4') + Posix.Digit
+	val highTwoHundredsOctet = Literal("25") + range('0', '5')
+	val octet = oneDigitOctet||twoDigitOctet||oneHundredsOctet||lowTwoHundredsOctet||highTwoHundredsOctet
+	val dottedDecimalIPAddress = octet + ((Literal('.') + octet) repeat 3)
 	
 	def testOneDigitOctet()
 	{
