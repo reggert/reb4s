@@ -3,9 +3,10 @@ import java.util.regex.Pattern
 import scala.util.matching.Regex
 
 /**
- * Base interface implemented by all '''reb4j''' expression builders.
+ * Base class extended by all '''reb4j''' expression builders.
  */
-trait Expression extends Serializable with NotNull
+@SerialVersionUID(1L)
+abstract class Expression extends Serializable with NotNull
 {
 	/**
 	 * Returns the regular expression represented by this object, in a form 
