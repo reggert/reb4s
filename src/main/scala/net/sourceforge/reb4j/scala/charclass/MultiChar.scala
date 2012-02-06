@@ -8,7 +8,7 @@ import net.sourceforge.reb4j.scala.Literal
 final class MultiChar private[charclass] (val chars : Set[Char]) 
 	extends CharClass
 	with BracketsRequired 
-	with WrappedNegation
+	with WrappedNegation[MultiChar]
 	with Union.Subset
 	with Intersection.Superset
 {

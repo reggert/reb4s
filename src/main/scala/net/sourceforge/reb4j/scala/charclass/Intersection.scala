@@ -7,7 +7,7 @@ package net.sourceforge.reb4j.scala.charclass
 final class Intersection private[charclass] (val supersets : List[Intersection.Superset]) 
 	extends CharClass 
 	with BracketsRequired 
-	with WrappedNegation 
+	with WrappedNegation[Intersection]
 	with Intersection.Ops
 	with Union.Subset
 {

@@ -24,6 +24,10 @@ final class Group private[scala] (val nested : Expression, private val opening :
 		31 * opening.hashCode + nested.hashCode
 }
 
+/**
+ * Factory object for groups.  Import the members of this object to
+ * enable automatic grouping.
+ */
 object Group
 {
 	/**
