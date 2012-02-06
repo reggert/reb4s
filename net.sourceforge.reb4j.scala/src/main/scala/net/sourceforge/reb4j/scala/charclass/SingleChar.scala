@@ -3,7 +3,7 @@ import net.sourceforge.reb4j.scala.Literal
 
 final class SingleChar private[charclass] (val char : Char) 
 	extends CharClass 
-	with WrappedNegation 
+	with WrappedNegation[SingleChar]
 	with SelfContained
 	with Union.Subset
 	with Intersection.Superset

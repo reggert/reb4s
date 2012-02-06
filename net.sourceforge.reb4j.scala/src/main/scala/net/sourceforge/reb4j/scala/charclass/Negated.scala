@@ -3,7 +3,7 @@ package net.sourceforge.reb4j.scala.charclass
 /**
  * Character class representing the negation of another character class.
  */
-final class Negated[T <: WrappedNegation] private[charclass] (val positive : T) 
+final class Negated[T <: WrappedNegation[T]] private[charclass] (val positive : T) 
 	extends CharClass 
 	with SelfContained
 	with Union.Subset

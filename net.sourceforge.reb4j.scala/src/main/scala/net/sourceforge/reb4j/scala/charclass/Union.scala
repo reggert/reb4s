@@ -3,7 +3,7 @@ package net.sourceforge.reb4j.scala.charclass
 final class Union private[charclass] (val subsets : List[Union.Subset]) 
 	extends CharClass 
 	with BracketsRequired 
-	with WrappedNegation
+	with WrappedNegation[Union]
 	with Intersection.Superset
 	with Union.Ops
 {
