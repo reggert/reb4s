@@ -8,9 +8,8 @@ final class Alternation private[scala] (val alternatives : List[Alternation.Alte
 	extends Expression
 	with Alternation.Ops
 {
-	type Alternative = Alternation.Alternative
-	override lazy val expression = 
-		(alternatives addString (new StringBuilder, "|")).toString
+	import Alternation.Alternative
+	override lazy val expression = alternatives.mkString("|")
 	
 	override def || (right : Alternation) = new Alternation(alternatives ++ right.alternatives)
 	override def || (right : Alternative) = new Alternation(alternatives :+ right)

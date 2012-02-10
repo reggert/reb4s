@@ -11,9 +11,9 @@ final class Intersection private[charclass] (val supersets : List[Intersection.S
 	with Intersection.Ops
 	with Union.Subset
 {
-	type Superset = Intersection.Superset
+	import Intersection.Superset
 	override def unitableForm() = 
-		(supersets map ((superset : Superset) => superset.independentForm)).addString(new StringBuilder, "&&").toString
+		(supersets map ((superset : Superset) => superset.independentForm)).mkString("&&")
 	
 	override def && (right : Intersection) = 
 		new Intersection(supersets ++ right.supersets)

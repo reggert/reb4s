@@ -7,11 +7,8 @@ final class Union private[charclass] (val subsets : List[Union.Subset])
 	with Intersection.Superset
 	with Union.Ops
 {
-	type Subset = Union.Subset
-	override lazy val unitableForm = (
-			subsets.foldLeft(new StringBuilder)
-				((builder : StringBuilder, subset : Subset) => {builder append subset.unitableForm})
-		).toString
+	import Union.Subset
+	override lazy val unitableForm = subsets map (_.unitableForm) mkString 
 		
 	override def || (right : Union) = new Union(subsets ++ right.subsets)
 	override def || (right : Subset) = new Union(subsets :+ right)
