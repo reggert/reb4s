@@ -10,8 +10,8 @@ final class Sequence private[scala] (val components : List[Sequence.Sequenceable
 	with Alternation.Alternative
 	with Sequence.Ops
 {
-	type Sequenceable = Sequence.Sequenceable
-	lazy val expression = (components addString new StringBuilder).toString
+	import Sequence.Sequenceable
+	lazy val expression = components.mkString
 	
 	override def + (right : Sequenceable) : Sequence = new Sequence(components :+ right)
 	override def + (right : Sequence) = 

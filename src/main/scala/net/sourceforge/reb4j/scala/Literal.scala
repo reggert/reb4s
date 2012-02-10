@@ -59,6 +59,5 @@ object Literal
 			new Literal(unescaped)
 	val needsEscape = "()[]{}.,-\\|+*?$^&:!<>="
 	def escapeChar(c : Char) = if (needsEscape.contains(c)) "\\" + c else String.valueOf(c)
-	def escape(unescaped : Seq[Char]) = 
-		(unescaped.map(escapeChar) addString (new StringBuilder)).toString
+	def escape(unescaped : Seq[Char]) = unescaped map escapeChar toString
 }

@@ -31,14 +31,14 @@ object Flag
 	 * Wraps the specified expression in a group that enables the specified 
 	 * matcher flags.
 	 */
-	def enable(nested : Expression, flags : Flag*) =
-		new Group(nested, flags addString new StringBuilder("(?") append ':')
+	def enable(nested : Expression, flags : Flag*) = 
+		new Group(nested, flags.mkString("(?", "", ":"))
 	
 	/**
 	 * Wraps the specified expression in a group that disables the specified
 	 * matcher flags.
 	 */
 	def disable(nested : Expression, flags : Flag*) =
-		new Group(nested, flags addString new StringBuilder("(?-") append ':')
+		new Group(nested, flags.mkString("(?-", "", ":"))
 }
 
