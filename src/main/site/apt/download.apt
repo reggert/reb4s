@@ -12,8 +12,8 @@ Getting reb4j
 ------------------------------------------------------------------------------
 <dependency>
 	<groupId>net.sourceforge.reb4j</groupId>
-	<artifactId>net.sourceforge.reb4j</artifactId>
-	<version>1.0.0</version>
+	<artifactId>net.sourceforge.reb4j.scala</artifactId>
+	<version>1.1.0</version>
 	<scope>compile>
 </dependency>
 ------------------------------------------------------------------------------
