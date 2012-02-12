@@ -70,6 +70,15 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<resources>
+			<resource>
+				<directory>${basedir}</directory>
+				<includes>
+					<include>COPYING</include>
+					<include>COPYING.LESSER</include>
+				</includes>
+			</resource>
+		</resources>
 	</build>
 	
 	<dependencies>
