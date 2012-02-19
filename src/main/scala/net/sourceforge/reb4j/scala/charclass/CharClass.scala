@@ -60,7 +60,7 @@ object CharClass
 	 * Creates an expression that matches a single occurrence of any of the 
 	 * specified characters.
 	 */
-	def chars(cs : Seq[Char]) = new MultiChar(Set.empty ++ cs)
+	def chars(cs : Traversable[Char]) = new MultiChar(Set.empty ++ cs)
 	
 	/**
 	 * Creates an expression that matches a single occurence of any character
