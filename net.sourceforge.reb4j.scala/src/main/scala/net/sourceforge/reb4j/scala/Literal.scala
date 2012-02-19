@@ -4,11 +4,13 @@ package net.sourceforge.reb4j.scala
  * Expression that matches a specific string.
  */
 @SerialVersionUID(1L)
-sealed class Literal private[scala] (val unescaped : String) extends Expression 
+sealed abstract class Literal private[scala] extends Expression 
 	with Alternation.Alternative
 	with Sequence.Sequenceable
 {
-	require (unescaped != null, "unescaped is null")
+	import Literal.StringLiteral
+	
+	val unescaped : String
 	
 	/**
 	 * The string in escaped form.
@@ -19,7 +21,7 @@ sealed class Literal private[scala] (val unescaped : String) extends Expression
 	/**
 	 * Concatenates this literal with the argument.
 	 */
-	final def + (right : Literal) = new Literal(unescaped + right.unescaped)
+	final def + (right : Literal) = StringLiteral(unescaped + right.unescaped)
 	
 	/**
 	 * Concatenates this literal with the argument.
@@ -29,19 +31,17 @@ sealed class Literal private[scala] (val unescaped : String) extends Expression
 	/**
 	 * Concatenates this literal with the specified raw expression.
 	 */
-	final def + (right : Raw) = new Raw(escaped + right.expression)
+	final def + (right : Raw) = EscapedLiteral(this) + right
+	
+	/**
+	 * Concatenates this literal with the specified raw expression.
+	 */
+	final def + (right : CompoundRaw) = EscapedLiteral(this) + right
 	
 	/**
 	 * Concatenates this literal with the specified raw expression.
 	 */
 	final def then (right : Raw) = this + right
-	
-	override def equals(other : Any) = other match
-	{
-		case that : Literal => this.unescaped == that.unescaped
-		case _ => false
-	}
-	override lazy val hashCode = 31 * unescaped.hashCode
 }
 
 
@@ -50,13 +50,23 @@ sealed class Literal private[scala] (val unescaped : String) extends Expression
  */
 object Literal
 {
-	def apply(unescaped : Char) =
-		new Literal(unescaped.toString()) with Quantifiable
+	final case class StringLiteral(unescaped : String) extends Literal
+	{
+		require (unescaped != null, "unescaped is null")
+	}
+	
+	final case class CharLiteral(unescapedChar : Char) extends Literal 
+		with Quantifiable
+	{
+		override val unescaped = unescapedChar.toString
+	}
+	
+	
+	def apply(unescaped : Char) = CharLiteral(unescaped)
 	def apply(unescaped : String) = 
-		if (unescaped.length() == 1)
-			new Literal(unescaped) with Quantifiable
-		else
-			new Literal(unescaped)
+		if (unescaped.length() == 1) CharLiteral(unescaped(0))
+		else StringLiteral(unescaped)
+		
 	val needsEscape = "()[]{}.,-\\|+*?$^&:!<>="
 	def escapeChar(c : Char) = if (needsEscape.contains(c)) "\\" + c else String.valueOf(c)
 	def escape(unescaped : Seq[Char]) = unescaped map escapeChar mkString

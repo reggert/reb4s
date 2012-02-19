@@ -5,8 +5,7 @@ import org.scalatest.FunSuite
 import org.scalatest.Suite
 import net.sourceforge.reb4j.scala.charclass.CharClass._
 import org.scalatest.matchers.ShouldMatchers
-import net.sourceforge.reb4j.scala.Literal
-import net.sourceforge.reb4j.scala.Group._
+import net.sourceforge.reb4j.scala._
 
 @RunWith(classOf[JUnitRunner])
 class IPAddressExampleTest extends Suite with ShouldMatchers
