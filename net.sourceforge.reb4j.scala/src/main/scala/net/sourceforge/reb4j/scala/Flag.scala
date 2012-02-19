@@ -5,27 +5,21 @@ package net.sourceforge.reb4j.scala
  * regular expression engine.
  */
 @SerialVersionUID(1L)
-final class Flag private (val c : Char) extends Serializable 
+sealed class Flag private (val c : Char) extends Serializable 
 	with NotNull with Immutable
 {
-	override def toString = String.valueOf(c)
-	override def equals (other : Any) = other match
-	{
-		case that : Flag => this.c == that.c
-		case _ => false
-	}
-	override lazy val hashCode = 31 * c.hashCode
+	override final def toString = String.valueOf(c)
 }
 
 
 object Flag
 {
-	val CaseInsensitive = new Flag('i')
-	val UnixLines = new Flag('d')
-	val Multiline = new Flag('m')
-	val DotAll = new Flag('s')
-	val UnicodeCase = new Flag('u') 
-	val Comments = new Flag('x')
+	case object CaseInsensitive extends Flag('i')
+	case object UnixLines extends Flag('d')
+	case object Multiline extends Flag('m')
+	case object DotAll extends Flag('s')
+	case object UnicodeCase extends Flag('u') 
+	case object Comments extends Flag('x')
 	
 	/**
 	 * Wraps the specified expression in a group that enables the specified 
@@ -40,5 +34,7 @@ object Flag
 	 */
 	def disable(nested : Expression, flags : Flag*) =
 		new Group(nested, flags.mkString("(?-", "", ":"))
+	
+	def unapply(flag : Flag) = Some(flag.c)
 }
 
