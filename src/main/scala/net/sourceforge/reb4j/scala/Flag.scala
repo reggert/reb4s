@@ -25,16 +25,13 @@ object Flag
 	 * Wraps the specified expression in a group that enables the specified 
 	 * matcher flags.
 	 */
-	def enable(nested : Expression, flags : Flag*) = 
-		new Group(nested, flags.mkString("(?", "", ":"))
+	def enable(nested : Expression, flags : Flag*) = Group.EnableFlags(nested, flags : _*) 
 	
 	/**
 	 * Wraps the specified expression in a group that disables the specified
 	 * matcher flags.
 	 */
-	def disable(nested : Expression, flags : Flag*) =
-		new Group(nested, flags.mkString("(?-", "", ":"))
+	def disable(nested : Expression, flags : Flag*) = Group.DisableFlags(nested, flags : _*)
 	
-	def unapply(flag : Flag) = Some(flag.c)
 }
 

@@ -32,3 +32,4 @@ abstract class Expression extends Serializable with NotNull with Immutable
 	final def toRegex(groupNames : String*) : Regex = 
 		new Regex(toString, groupNames.toList : _*)
 }
+
