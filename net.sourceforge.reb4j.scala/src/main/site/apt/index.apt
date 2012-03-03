@@ -41,37 +41,23 @@ About reb4j
 	each octet is a decimal value between 0 and 255):
 	
 -------------------------------------------------------------------------------
-	final Regex oneDigitOctet = 
-		CharClass.POSIX_DIGIT;
-	final Regex twoDigitOctet = 
-		CharClass.range('1', '9').then(CharClass.POSIX_DIGIT);
-	final Regex oneHundredsOctet =
-		Regex.literal("1").then(CharClass.POSIX_DIGIT.repeat(2));
-	final Regex lowTwoHundredsOctet =
-		Regex.literal("2").then(CharClass.range('0', '4')).then(CharClass.POSIX_DIGIT);
-	final Regex highTwoHundredsOctet =
-		Regex.literal("25").then(CharClass.range('0', '5'));
-	final Regex octet =
-		Regex.or(
-				oneDigitOctet, 
-				twoDigitOctet, 
-				oneHundredsOctet, 
-				lowTwoHundredsOctet, 
-				highTwoHundredsOctet
-			);
-	final Regex dottedDecimalIPAddress =
-		octet.then(Regex.literal(".")).repeat(3).then(octet);
+	val oneDigitOctet = Posix.Digit
+	val twoDigitOctet = range('1', '9') ~~ Posix.Digit
+	val oneHundredsOctet = Literal('1') ~~ (Posix.Digit repeat 2)
+	val lowTwoHundredsOctet = Literal('2') ~~ range('0', '4') ~~ Posix.Digit
+	val highTwoHundredsOctet = Literal("25") ~~ range('0', '5')
+	val octet = oneDigitOctet||twoDigitOctet||oneHundredsOctet||lowTwoHundredsOctet||highTwoHundredsOctet
+	val dottedDecimalIPAddress = octet ~~ ((Literal('.') ~~ octet) repeat 3)
 		
-	final Pattern pattern = dottedDecimalIPAddress.toPattern();
-	String input = "10.10.1.204";
-	boolean valid = pattern.matcher(input).matches();
+	val pattern = dottedDecimalIPAddress.toPattern
+	val input = "10.10.1.204"
+	val valid = pattern.matcher(input).matches()
 -------------------------------------------------------------------------------
 
-	For reference, the generated regular expression looks like this
-	(note that <<reb4j>> makes liberal use of "non-capturing groups"):
+	For reference, the generated regular expression looks like this:
 	
 -------------------------------------------------------------------------------
-(?:(?:(?:(?:\p{Digit}|(?:[1-9]\p{Digit})|(?:(?:1)(?:\p{Digit}{2}))|(?:(?:(?:2)[0-4])\p{Digit})|(?:(?:25)[0-5]))(?:\.)){3})(?:\p{Digit}|(?:[1-9]\p{Digit})|(?:(?:1)(?:\p{Digit}{2}))|(?:(?:(?:2)[0-4])\p{Digit})|(?:(?:25)[0-5])))
+(?:\p{Digit}|[1-9]\p{Digit}|1\p{Digit}{2}|2[0-4]\p{Digit}|25[0-5])(?:\.(?:\p{Digit}|[1-9]\p{Digit}|1\p{Digit}{2}|2[0-4]\p{Digit}|25[0-5])){3}
 -------------------------------------------------------------------------------
 
 	
