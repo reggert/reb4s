@@ -13,8 +13,8 @@ final class Sequence private[scala] (val components : List[Sequence.Sequenceable
 	import Sequence.Sequenceable
 	lazy val expression = components.mkString
 	
-	override def + (right : Sequenceable) : Sequence = new Sequence(components :+ right)
-	override def + (right : Sequence) = 
+	override def ~~ (right : Sequenceable) : Sequence = new Sequence(components :+ right)
+	override def ~~ (right : Sequence) = 
 		new Sequence(components ++ right.components)
 	
 	override def equals (other : Any) = other match
@@ -39,22 +39,22 @@ object Sequence
 		/**
 		 * Concatenates this expression with the argument.
 		 */
-		def + (right : Sequenceable) : Sequence
+		def ~~ (right : Sequenceable) : Sequence
 		
 		/**
 		 * Concatenates this expression with the argument.
 		 */
-		def + (right : Sequence) : Sequence
+		def ~~ (right : Sequence) : Sequence
 		
 		/**
 		 * Concatenates this expression with the argument.
 		 */
-		final def then (right : Sequenceable) = this + right
+		final def then (right : Sequenceable) = this ~~ right
 		
 		/**
 		 * Concatenates this expression with the argument.
 		 */
-		final def then (right : Sequence) = this + right
+		final def then (right : Sequence) = this ~~ right
 	}
 	
 	/**
@@ -63,7 +63,7 @@ object Sequence
 	 */
 	trait Sequenceable extends Expression with Ops
 	{
-		final override def + (right : Sequenceable) = new Sequence(List(this, right))
-		final override def + (right : Sequence) = new Sequence(this::right.components)
+		final override def ~~ (right : Sequenceable) = new Sequence(List(this, right))
+		final override def ~~ (right : Sequence) = new Sequence(this::right.components)
 	}
 }
