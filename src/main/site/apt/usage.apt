@@ -31,12 +31,12 @@ Usage
 ** Literals
 	
 	The simplest type of sub-expression you are likely to need is a 
-	basic string match.  <<reb4j>> makes this easy with the static 
-	{{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/Regex.html#literal(java.lang.CharSequence)}Regex.literal}}
-	method.
+	basic string match.  <<reb4j>> makes this easy with the Literal
+	function object. 
 			
 -------------------------------------------------------------------------------
-final Regex aBunchOfBracketsFollowedByAnA = Regex.literal("[[[[[A");
+val aBunchOfBracketsFollowedByAnA = Literal("[[[[[A")
+val justA = Literal('a') // single-character literals have special semantics
 -------------------------------------------------------------------------------
 
 	Notice that <<reb4j>> handles escaping characters that have special
@@ -47,31 +47,14 @@ final Regex aBunchOfBracketsFollowedByAnA = Regex.literal("[[[[[A");
 		
 	A common way to compose two or more expressions to is to define
 	a sequence of expressions that are to appear in a particular
-	order in the input.  <<reb4j>> provides both a static and a 
-	non-static method for accomplishing this.
-	
-	The non-static 
-	{{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/Regex.html#then(net.sourceforge.reb4j.Regex)}Regex.then}}
-	method allows you to define a sequence of sub-expressions by chaining.
+	order in the input.  <<reb4j>> provides both an operator and a named 
+	method for accomplishing this, which you can use according to your
+	preference of style.
 
 -------------------------------------------------------------------------------
-final Regex ab = Regex.literal("ab");
-final Regex cd = Regex.literal("cd");
-final Regex abcd = ab.then(cd);
+val abcd = Literal("ab") ~~ Literal("cd")
+val efgh = Literal("ef") then Literal("gh")
 -------------------------------------------------------------------------------			
-			
-	However, the static 
-	{{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/Regex.html#sequence(net.sourceforge.reb4j.Regex...)}Regex.sequence}}
-	method is likely to be more convenient when dealing with sequences 
-	consisting of more than two sub-expressions.
-
--------------------------------------------------------------------------------
-final Regex a = Regex.literal("a");
-final Regex b = Regex.literal("b");
-final Regex c = Regex.literal("c");
-final Regex d = Regex.literal("d");
-final Regex abcd = Regex.sequence(a, b, c, d);
--------------------------------------------------------------------------------
 			
 ** Alternation
 		
@@ -79,18 +62,11 @@ final Regex abcd = Regex.sequence(a, b, c, d);
 	alternates, with the composed expression representing the logical
 	OR of the subexpressions.  In regular expressions, this is
 	indicated by the | character.  In <<reb4j>>, it is accomplished
-	using the 
-	{{{http://reb4j.sourceforge.net//apidocs/net/sourceforge/reb4j/Regex.html#or(net.sourceforge.reb4j.Regex)}Regex.or}}
-	method, which comes in both
-	{{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/Regex.html#or(net.sourceforge.reb4j.Regex...)}static}}
-	and non-static forms.
+	using the either the || operator or the named "or" method.
 			
 -------------------------------------------------------------------------------
-final Regex a = Regex.literal("a");
-final Regex b = Regex.literal("b");
-final Regex c = Regex.literal("c");
-final Regex a_or_b = a.or(b); // using non-static version
-final Regex a_or_b_or_c = Regex.or(a, b, c); // using static-version
+val a_or_b = Literal("a") || Literal("b")
+val c_or_d = Literal("c") or Literal("d")
 -------------------------------------------------------------------------------
 			
 ** Quantifiers
@@ -105,13 +81,12 @@ final Regex a_or_b_or_c = Regex.or(a, b, c); // using static-version
 	which is indicated by an asterisk (*) in most regular
 	expression languages.  It indicates that the preceding
 	sub-expression may appear zero or more times in a row.
-	<<reb4j>> supports this with the non-static
-	{{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/Regex.html#star()}Regex.star}}
-	method.
+	<<reb4j>> supports this with your choice of either a postfix
+	operator or a named method.
 
 -------------------------------------------------------------------------------
-final Regex a = Regex.literal("a");
-final Regex zeroOrMore_a = a.star();
+val zeroOrMore_a = Literal('a') *
+val zeroOrMore_b = Literal('b').anyTimes
 -------------------------------------------------------------------------------
 			
 *** One or More
@@ -119,27 +94,23 @@ final Regex zeroOrMore_a = a.star();
 	As an extension to the Kleene Star, most regular expression
 	languages support a means to indicate that an expression must
 	appear at least once.  This is typically done with the plus (+)
-	operator.  <<reb4j>> provides support for this with the
-	non-static
-	{{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/Regex.html#atLeastOnce()}Regex.atLeastOnce}}
-	method.
+	operator.  <<reb4j>> provides support for this both an operator
+	and a named method.
 				
 -------------------------------------------------------------------------------
-final Regex a = Regex.literal("a");
-final Regex a_repeating = a.atLeastOnce();
+val a_repeating = Literal('a') +
+val b_repeating = Literal('b').atLeastOnce
 -------------------------------------------------------------------------------
 			
 *** Optional
 
 	It is also possible to indicate that a sub-expression may
 	appear exactly once or not at all, using the ? operator.
-	<<reb4j>> provides for this with the 
-	{{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/Regex.html#optional()}Regex.optional}}
-	method.
+	<<reb4j>> provides for this as well.
 				
 -------------------------------------------------------------------------------
-final Regex toBe = Regex.literal("to be");
-final Regex toBeOrNotToBe = toBe.optional();
+val bOrNotB = Literal('b') ?
+val cOrNotC = Literal('c').optional
 -------------------------------------------------------------------------------
 
 *** Bounded Repetition
@@ -150,25 +121,14 @@ final Regex toBeOrNotToBe = toBe.optional();
 	braces ({}), and in the case of a range of values, separating 
 	the minimum and maximum counts with a comma (,), possibly
 	omitting either bound.  <<reb4j>> supports all possibilities
-	with a range of non-static methods.
-	
-	The {{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/Regex.html#repeat(int)}Regex.repeat(int)}}
-	method can be used to specify an exact number of repetitions.
-	Its overloaded form,
-	{{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/Regex.html#repeat(int, int)}Regex.repeat(int, int)}}
-	can be used to indicate minimum and maximum numbers of repetitions.
-	
-	The {{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/Regex.html#atLeast(int)}Regex.atLeast(int)}}
-	method can be used to specify a minimum number of repetitions with no maximum.
-	
-	Examples of the use of each of these are shown below.
+	with a range of named methods.
 				
 -------------------------------------------------------------------------------
-final Regex a = Regex.literal("a");
-final Regex a_4_times = a.repeat(4);
-final Regex a_between_3_and_6_times = a.repeat(3, 6);
-final Regex a_at_least_5_times = a.atLeast(5);
-final Regex a_at_most_twice = a.repeat(0, 2);
+val a = Literal('a')
+val a_4_times = a.repeat(4) // exactly 4 times
+val a_between_3_and_6_times = a.repeat(3, 6) // betwen 3 and 6 repetitions
+val a_at_least_5_times = a.atLeast(5) // at least 5 repetitions
+val a_at_most_twice = a.repeat(0, 2) // no more than 2 repetitions
 -------------------------------------------------------------------------------
 
 ** Capturing Groups
@@ -180,24 +140,22 @@ final Regex a_at_most_twice = a.repeat(0, 2);
 	regular expression, and, if they match, the segments of the input
 	that matched each group can be independently obtained.
 	To designate a sub-expression as a capturing group with <<reb4j>>,
-	use the non-static
-	{{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/Regex.html#group()}group}} method.
+	use the Capture class within the Group module.
 	Be sure to pay attention to how your final expression is constructed.
 	The groups will be numbered according to the order in which they begin
 	in the final regular expression, which is not necessarily the same as
-	the order you invoke the
-	{{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/Regex.html#group()}group}} method.
+	the order you invoke the Capture class.
 		
 -------------------------------------------------------------------------------
-final Regex ABCs = Regex.literal("ABC").atLeastOnce();
-final Regex oneTwoThrees = Regex.literal("123").atLeastOnce();
-final Regex ABCsAndOneTwoThrees = ABCs.group().then(oneTwoThrees);
-final Pattern pattern = ABCsAndOneTwoThrees.toPattern();
-final Matcher matcher = pattern.matcher("ABCABCABC123123123");
+val ABCs = Group.NonCapturing(Literal("ABC")).atLeastOnce
+val oneTwoThrees = Group.NonCapturing(Literal("123")).atLeastOnce
+val ABCsAndOneTwoThrees = Group.Capture(ABCs) + oneTwoThrees
+val pattern = ABCsAndOneTwoThrees.toPattern
+val matcher = pattern.matcher("ABCABCABC123123123")
 if (matcher.matches())
-{
-	final String matchedABCs = matcher.group(1);
-}
+	Some(matcher.group(1))
+else
+	None
 -------------------------------------------------------------------------------
 			
 ** Character Classes
