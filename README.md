@@ -17,8 +17,10 @@ the regular expression syntax provided by the JRE's
 	
 
 Of course, this comes at the cost of a modest performance penalty at startup as **reb4j** builds strings to pass into the pattern compiler, but the time required for this processing is dwarfed by the time spent by the compiler itself and should not be noticeable.
+
+**reb4j** currently provides two API's: one in Java and one in Scala.  The Java API is older and better tested, but it is not nearly as clean or efficient as the Scala API.  In the near future, the Java API will be refactored to take advantage of the lessons learned during the development of the Scala API.
 	
-As a quick example, here's one way to use **reb4j** to describe a pattern that validates the format of a dotted decimal IP address (ensuring that each octet is a decimal value between 0 and 255):
+As a quick example, here's one way to use **reb4j** to describe a pattern that validates the format of a dotted decimal IP address (ensuring that each octet is a decimal value between 0 and 255).  First, using the (soon-to-be-deprecated) Java API:
 	
 	final Regex oneDigitOctet = 
 		CharClass.POSIX_DIGIT;
@@ -49,7 +51,25 @@ For reference, the generated regular expression looks like this (note that **reb
 	
 	(?:(?:(?:(?:\p{Digit}|(?:[1-9]\p{Digit})|(?:(?:1)(?:\p{Digit}{2}))|(?:(?:(?:2)[0-4])\p{Digit})|(?:(?:25)[0-5]))(?:\.)){3})(?:\p{Digit}|(?:[1-9]\p{Digit})|(?:(?:1)(?:\p{Digit}{2}))|(?:(?:(?:2)[0-4])\p{Digit})|(?:(?:25)[0-5])))
 
-	
+
+Here's the same example again in Scala:
+
+	val oneDigitOctet = Posix.Digit
+	val twoDigitOctet = range('1', '9') ~~ Posix.Digit
+	val oneHundredsOctet = Literal('1') ~~ (Posix.Digit repeat 2)
+	val lowTwoHundredsOctet = Literal('2') ~~ range('0', '4') ~~ Posix.Digit
+	val highTwoHundredsOctet = Literal("25") ~~ range('0', '5')
+	val octet = oneDigitOctet||twoDigitOctet||oneHundredsOctet||lowTwoHundredsOctet||highTwoHundredsOctet
+	val dottedDecimalIPAddress = octet ~~ ((Literal('.') ~~ octet) repeat 3)
+		
+	val pattern = dottedDecimalIPAddress.toPattern
+	val input = "10.10.1.204"
+	val valid = pattern.matcher(input).matches()
+
+And here's the (noticeably shorter) generated expression:
+
+	(?:\p{Digit}|[1-9]\p{Digit}|1\p{Digit}{2}|2[0-4]\p{Digit}|25[0-5])(?:\.(?:\p{Digit}|[1-9]\p{Digit}|1\p{Digit}{2}|2[0-4]\p{Digit}|25[0-5])){3}
+
 
 	
 	
