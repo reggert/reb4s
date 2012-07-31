@@ -8,15 +8,15 @@ import org.scalatest.matchers.ShouldMatchers
 import net.sourceforge.reb4j.scala._
 
 @RunWith(classOf[JUnitRunner])
-class IPAddressExampleTest extends Suite with ShouldMatchers
+class IPAddressExampleTest extends Suite with ShouldMatchers with Implicits
 {
 	val oneDigitOctet = Posix.Digit
 	val twoDigitOctet = range('1', '9') ~~ Posix.Digit
-	val oneHundredsOctet = Literal('1') ~~ (Posix.Digit repeat 2)
-	val lowTwoHundredsOctet = Literal('2') ~~ range('0', '4') ~~ Posix.Digit
-	val highTwoHundredsOctet = Literal("25") ~~ range('0', '5')
+	val oneHundredsOctet = '1' ~~ (Posix.Digit repeat 2)
+	val lowTwoHundredsOctet = '2' ~~ range('0', '4') ~~ Posix.Digit
+	val highTwoHundredsOctet = "25" ~~ range('0', '5')
 	val octet = oneDigitOctet||twoDigitOctet||oneHundredsOctet||lowTwoHundredsOctet||highTwoHundredsOctet
-	val dottedDecimalIPAddress = octet ~~ ((Literal('.') ~~ octet) repeat 3)
+	val dottedDecimalIPAddress = octet ~~ (('.' ~~ octet) repeat 3)
 	
 	def testOneDigitOctet()
 	{
