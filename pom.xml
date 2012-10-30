@@ -73,12 +73,12 @@
 
 	<scm>
 		<connection>
-			scm:svn:http://reb4j.svn.sourceforge.net/svnroot/reb4j/trunk
+			scm:git:git://github.com/reggert/reb4j.git
 		</connection>
 		<developerConnection>
-			scm:svn:https://reb4j.svn.sourceforge.net/svnroot/reb4j/trunk
+			scm:git:https://github.com/reggert/reb4j.git
 		</developerConnection>
-		<url>http://reb4j.svn.sourceforge.net/viewvc/reb4j/</url>
+		<url>https://github.com/reggert/reb4j</url>
 	</scm>
 	
 	<distributionManagement>
