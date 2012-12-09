@@ -90,9 +90,17 @@
 	<build>
 		<extensions>
 			<extension>
-				<groupId>org.kathrynhuxtable.maven.wagon</groupId>
+				<!-- 
+					Kathryn Huxtable's (original) version is woefully out of 
+					date and does not support multi-module projects.
+
+					We'll use Stephen Connolly's more recent release instead.
+				-->
+				<!-- groupId>org.kathrynhuxtable.maven.wagon</groupId -->
+				<groupId>com.github.stephenc.wagon</groupId>
 				<artifactId>wagon-gitsite</artifactId>
-				<version>0.3.1</version>
+				<!-- version>0.3.1</version -->
+				<version>0.4.1</version>
 			</extension>
 		</extensions>
 		<pluginManagement>
