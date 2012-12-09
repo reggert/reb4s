@@ -12,6 +12,7 @@
 			<item name="Introduction" href="index.html" />
 			<item name="Usage" href="usage.html" />
 			<item name="Download" href="download.html" />
+			<item name="GitHub Project" href="https://github.com/reggert/reb4j/" />
 			<item name="SourceForge Project" href="https://sourceforge.net/projects/reb4j/" />
 		</menu>
 		<menu ref="reports" />
