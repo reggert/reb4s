@@ -83,7 +83,6 @@
 	
 	<distributionManagement>
 		<site>
-			<id>reb4j.sourceforge.net-site</id>
 			<id>github-project-site</id>
 			<url>gitsite:git@github.com/reggert/reb4j.git</url>
 		</site>
