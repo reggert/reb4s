@@ -49,8 +49,6 @@
 		<url>http://reb4j.sourceforge.net</url>
 	</organization>
 
-	<url>http://reggert.github.com/reb4j</url>
-	
 	<issueManagement>
 		<system>GitHub</system>
 		<url>https://github.com/reggert/reb4j/issues</url>
