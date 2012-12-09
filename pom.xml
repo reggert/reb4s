@@ -48,7 +48,7 @@
 		<url>http://reb4j.sourceforge.net</url>
 	</organization>
 
-	<url>http://reb4j.sourceforge.net</url>
+	<url>http://reggert.github.com/reb4j</url>
 	
 	<issueManagement>
 		<system>GitHub</system>
@@ -76,7 +76,7 @@
 			scm:git:git://github.com/reggert/reb4j.git
 		</connection>
 		<developerConnection>
-			scm:git:https://github.com/reggert/reb4j.git
+			scm:git:git@github.com:reggert/reb4j.git
 		</developerConnection>
 		<url>https://github.com/reggert/reb4j</url>
 	</scm>
@@ -84,17 +84,17 @@
 	<distributionManagement>
 		<site>
 			<id>reb4j.sourceforge.net-site</id>
-			<url>scp://shell.sourceforge.net/home/project-web/reb4j/htdocs</url>
-			<name>SourceForge Website</name>
+			<id>github-project-site</id>
+			<url>gitsite:git@github.com/reggert/reb4j.git</url>
 		</site>
 	</distributionManagement>
 
 	<build>
 		<extensions>
 			<extension>
-				<groupId>org.apache.maven.wagon</groupId>
-				<artifactId>wagon-ssh</artifactId>
-				<version>2.2</version>
+				<groupId>org.kathrynhuxtable.maven.wagon</groupId>
+				<artifactId>wagon-gitsite</artifactId>
+				<version>0.3.1</version>
 			</extension>
 		</extensions>
 		<pluginManagement>
