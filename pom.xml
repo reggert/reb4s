@@ -102,11 +102,6 @@
 				<!-- version>0.3.1</version -->
 				<version>0.4.1</version>
 			</extension>
-			<extension>
-				<groupId>org.apache.maven.scm</groupId>
-				<artifactId>maven-scm-provider-gitexe</artifactId>
-				<version>1.8.1</version>
-			</extension>
 		</extensions>
 		<pluginManagement>
 			<plugins>
@@ -123,7 +118,6 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-scm-plugin</artifactId>
 					<version>1.8.1</version>
-					<extensions>true</extensions>
 				</plugin>
 				<plugin>
 					<groupId>org.scala-tools</groupId>
