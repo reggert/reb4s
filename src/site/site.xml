@@ -10,6 +10,7 @@
 	<body>
 		<menu name="Overview">
 			<item name="Usage" href="usage.html" />
+			<item name="Parent Project" href="../index.html" />
 		</menu>
 		<menu ref="reports" />
 	</body>
