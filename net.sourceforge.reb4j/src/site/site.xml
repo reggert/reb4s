@@ -9,7 +9,7 @@
 	<version position="right" />
 	<body>
 		<menu name="Overview">
-			<item name="Usage" href="usage.html" />
+			<item name="Usage" href="index.html" />
 			<item name="Parent Project" href="../index.html" />
 		</menu>
 		<menu ref="reports" />
