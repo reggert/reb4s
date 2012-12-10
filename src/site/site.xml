@@ -15,6 +15,7 @@
 			<item name="Wiki" href="https://github.com/reggert/reb4j/wiki" />
 			<item name="SourceForge Project" href="https://sourceforge.net/projects/reb4j/" />
 		</menu>
+		<menu ref="modules" />
 		<menu ref="reports" />
 	</body>
 </project>
