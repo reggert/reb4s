@@ -2,20 +2,20 @@ Usage
 
 	The general process of using <<reb4j>> consists of building up an
 	expression from sub-expressions, then calling the 
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html#toPattern()}toPattern}}
+	{{{./scaladocs/net/sourceforge/reb4j/scala/Expression.html#toRegex()}toRegex}}
 	method of the constructed expression in order to compile the expression.
 	
 	Expressions are represented by the 
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html}Regex}} class, instances of
+	{{{./scaladocs/net/sourceforge/reb4j/scala/Expression.html}Expression}} class, instances of
 	which are immutable after being constructed, which allows a single
 	instance to be re-used as a sub-expression in many different expressions.
 	
 	There is one sub-class, 
-	{{{./apidocs/net/sourceforge/reb4j/CharClass.html}CharClass}}, which
+	{{{./scaladocs/net/sourceforge/reb4j/scala/charclass/CharClass.html}CharClass}}, which
 	represents the specialized case of character classes (usually represented 
 	in regular expressions as ranges of characters surrounded by square
 	brackets.  Character classes (instances of 
-	{{{./apidocs/net/sourceforge/reb4j/CharClass.html}CharClass}}) may be 
+	{{{./scaladocs/net/sourceforge/reb4j/scala/charclass/CharClass.html}CharClass}}) may be 
 	composed from other character classes, and larger expressions may be
 	composed from character classes, but character classes cannot be
 	composed from non-character class expressions (hence the need for a
