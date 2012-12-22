@@ -168,26 +168,26 @@ else
 	characters, ranges of characters, or character classes in square brackets.
 	Since character classes may be composed from other character classes, 
 	<<reb4j>> provides a separate class,
-	{{{./apidocs/net/sourceforge/reb4j/CharClass.html}CharClass}}, which
+	{{{./scaladocs/net/sourceforge/reb4j/scala/charclass/CharClass.html}CharClass}}, which
 	contains static methods for working	with character classes.  Note that 
-	{{{./apidocs/net/sourceforge/reb4j/CharClass.html}CharClass}} extends
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html}Regex}}, so instances may be
+	{{{./scaladocs/net/sourceforge/reb4j/scala/charclass/CharClass.html}CharClass}} extends
+	{{{./scaladocs/net/sourceforge/reb4j/scala/Expression.html}Expression}}, so instances may be
 	used in any context in which a 
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html}Regex}} would be valid.
+	{{{./scaladocs/net/sourceforge/reb4j/scala/Expression.html}Expression}} would be valid.
 	
 *** Predefined Classes
 
-	The {{{./apidocs/net/sourceforge/reb4j/CharClass.html}CharClass}} class
+	The {{{./scaladocs/net/sourceforge/reb4j/scala/charclass/CharClass.html}CharClass}} class
 	provides constants that represent the various predefined character classes
 	that the 
 	{{{http://java.sun.com/javase/6/docs/api/java/util/regex/Pattern.html}Pattern}}
 	class supports.  Examples of these include
-	{{{./apidocs/net/sourceforge/reb4j/CharClass.html#PERL_DIGIT}CharClass.PERL_DIGIT}},
+	{{{./scaladocs/net/sourceforge/reb4j/scala/charclass/CharClass$$Perl$.html#Digit}CharClass.Perl.Digit}},
 	which corresponds to the Perl-style regular expression <<<"\d">>> (representing 
 	a digit), and 
-	{{{./apidocs/net/sourceforge/reb4j/CharClass.html#POSIX_ALNUM}CharClass.PERL_DIGIT}},
+	{{{./scaladocs/net/sourceforge/reb4j/scala/charclass/CharClass$$Posix$.html#Alnum}CharClass.Posix.Alnum}},
 	which corresponds to the POSIX named character class expression <<<"\p{Alnum}">>>.
-	Consult the {{{./apidocs/net/sourceforge/reb4j/CharClass.html}Javadocs}}
+	Consult the {{{./scaladocs/net/sourceforge/reb4j/charclass/CharClass.html}Javadocs}}
 	for the complete list of available constants.
 	
 *** Lists of Characters
@@ -195,68 +195,66 @@ else
 	To define a character class that will match any of a series of characters,
 	simply pass those characters as a 
 	{{{http://java.sun.com/javase/6/docs/api/java/lang/String.html}String}} to 
-	the {{{./apidocs/net/sourceforge/reb4j/CharClass.html#characters(java.lang.CharSequence)}CharClass.characters}}
-	method, which may optionally accept a <<<boolean>>> <negate> parameter to
-	indicate that the character class should include all characters <except>
-	the ones specified. 
+	the {{{./scaladocs/net/sourceforge/reb4j/scala/charclass/CharClass.html#chars(Traversable[Char]):MultiChar}CharClass.characters}}
+	method. 
 	
 -------------------------------------------------------------------------------
-final CharClass abc = CharClass.characters("abc");
-final CharClass not123 = CharClass.characters("123", true);
+val abc = CharClass.chars("abc")
 -------------------------------------------------------------------------------
 
 *** Character Ranges
 
 	To define a character class that matches any characters whose ordinal
 	values are between a minimum and maximum character (inclusive), use the
-	{{{./apidocs/net/sourceforge/reb4j/CharClass.html#range(char, char)}CharClass.range}}
-	method, which may also accept an optional <negate> parameter.
+	{{{./scaladocs/net/sourceforge/reb4j/scala/charclass/CharClass.html#range(Char,Char):CharRange}CharClass.range}}
+	method.
 	
 -------------------------------------------------------------------------------
-final CharClass a_thru_m = CharClass.range('a', 'm');
-final CharClass notACapitalLetter = CharClass.range('A', 'Z', true);
+val a_thru_m = CharClass.range('a', 'm')
 -------------------------------------------------------------------------------
 
 *** Composing Character Classes
 
-	Instances of {{{./apidocs/net/sourceforge/reb4j/CharClass.html}CharClass}}
+	Instances of {{{./scaladocs/net/sourceforge/reb4j/scala/charclassCharClass.html}CharClass}}
 	may be built from other instances.
 	
 **** Negation
 
 	To construct a character class that will match any character that is <not>
-	in another character specified character class, use the 
-	{{{./apidocs/net/sourceforge/reb4j/CharClass.html#negate(net.sourceforge.reb4j.CharClass)}CharClass.negate}}
-	method.
+	in another character specified character class, use either the 
+	{{{./scaladocs/net/sourceforge/reb4j/scala/charclass/CharClass.html#negated:CharClass}CharClass.negated}}
+	method or the {{{./scaladocs/net/sourceforge/reb4j/scala/charclass/CharClass.html#unary_~:CharClass}unary ~ operator}}.
 	
 -------------------------------------------------------------------------------
-final CharClass notALetter = CharClass.negate(CharClass.POSIX_ALPHA);
+val notALetter = CharClass.Posix.Alpha.negated
+val notANumber = ~CharClass.Posix.Digit
 -------------------------------------------------------------------------------
 	
 **** Union
 
 	To construct a character class that will match any character that would be
 	matched by two or more other character classes, use the
-	{{{./apidocs/net/sourceforge/reb4j/CharClass.html#union(net.sourceforge.reb4j.CharClass...)}CharClass.union}}
-	method.
+	{{{./scaladocs/net/sourceforge/reb4j/charclass/Union$$Ops.html#union(Subset):CharClass}Union.Ops.union}}
+	method or the {{{./scaladocs/net/sourceforge/reb4j/charclass/Union$$Ops.html#||(Subset):Union} || operator}}.
 	
 -------------------------------------------------------------------------------
-final CharClass oneThruFive = CharClass.range('1, 5');
-final CharClass threeThruEight = CharClass.range('3, '8');
-final CharClass oneThruEight = CharClass.union(oneThruFive, threeThruEight);
+val oneThruFive = CharClass.range('1, 5')
+val threeThruEight = CharClass.range('3, '8')
+val oneThruEight = oneThruFive || threeThruEight
+val oneThruEightAgain = oneThruFive union threeThruEight
 -------------------------------------------------------------------------------
 
 **** Intersection
 
 	To construct a character class that will match only those characters that
 	appear in all of several other character classes, use the
-	{{{./apidocs/net/sourceforge/reb4j/CharClass.html#intersection(net.sourceforge.reb4j.CharClass...)}CharClass.intersection}}
-	method.
+	{{{./scaladocs/net/sourceforge/reb4j/scala/charclass/Intersection$$Ops.html#intersect(Superset):Intersection}Intersection.Ops.intersect}}
+	method or the {{{./scaladocs/net/sourceforge/reb4j/scala/charclass/Intersection$$Ops.html#||(Superset):Intersection} && operator}}.
 	
 -------------------------------------------------------------------------------
-final CharClass vowels = CharClass.characters("AaEeIiOoUu");
-final CharClass consonants = 
-	CharClass.intersection(CharClass.POSIX_ALPHA, CharClass.negate(vowels));
+val vowels = CharClass.chars("AaEeIiOoUu")
+val consonants = CharClass.Posix.Alpha intersect (~vowels)
+val consonantsAgain = CharClass.Posix.Alpha && ~vowels
 -------------------------------------------------------------------------------
 		
 ** Adopting Patterns
@@ -266,10 +264,10 @@ final CharClass consonants =
 	{{{http://java.sun.com/javase/6/docs/api/java/util/regex/Pattern.html}Pattern}}
 	object as a sub-expression in an expression constructed by <<reb4j>>.
 	This can be accomplished using the 
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html#fromPattern(java.util.regex.Pattern)}Regex.fromPattern}}
-	method, which accepts a
+	{{{./scaladocs/net/sourceforge/reb4j/scala/Adopt$.html}Adopt}}
+	function, which accepts a
 	{{{http://java.sun.com/javase/6/docs/api/java/util/regex/Pattern.html}Pattern}}
 	as an argument and constructs a new 
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html}Regex}}
+	{{{./scaladocs/net/sourceforge/reb4j/scala/Expression.html}Expression}}
 	from it.
 	
