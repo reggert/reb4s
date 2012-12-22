@@ -54,7 +54,7 @@
 							JavaSE-1.6
 						</Bundle-RequiredExecutionEnvironment>
 						<Export-Package>
-							net.sourceforge.reb4j.scala;version="${project.version}"
+							net.sourceforge.reb4j.scala;version="${project.version}",
 							net.sourceforge.reb4j.scala.charclass;version="${project.version}"
 						</Export-Package>
 					</instructions>

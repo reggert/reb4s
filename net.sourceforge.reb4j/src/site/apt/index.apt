@@ -227,7 +227,7 @@ if (matcher.matches())
 	{{{./apidocs/net/sourceforge/reb4j/CharClass.html#PERL_DIGIT}CharClass.PERL_DIGIT}},
 	which corresponds to the Perl-style regular expression <<<"\d">>> (representing 
 	a digit), and 
-	{{{./apidocs/net/sourceforge/reb4j/CharClass.html#POSIX_ALNUM}CharClass.PERL_DIGIT}},
+	{{{./apidocs/net/sourceforge/reb4j/CharClass.html#POSIX_ALNUM}CharClass.PERL_ALNUM}},
 	which corresponds to the POSIX named character class expression <<<"\p{Alnum}">>>.
 	Consult the {{{./apidocs/net/sourceforge/reb4j/CharClass.html}Javadocs}}
 	for the complete list of available constants.
