@@ -107,6 +107,8 @@ public final class Alternation extends AbstractExpression
 	
 	/**
 	 * Interface indicating that an expression can be used as an alternative in an alternation.
+	 * 
+	 * This interface is not intended to be implemented by clients.
 	 */
 	public static interface Alternative extends Expression, AlternationOps
 	{}
@@ -115,6 +117,8 @@ public final class Alternation extends AbstractExpression
 
 /**
  * Operations that can be performed to create alternations.
+ * 
+ * This interface is not intended to be implemented by clients.
  */
 interface AlternationOps
 {
