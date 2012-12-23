@@ -8,7 +8,7 @@ public final class Sequence extends AbstractExpression
 	implements Alternation.Alternative, SequenceOps
 {
 	private static final long serialVersionUID = 1L;
-	private final List<Sequenceable> components;
+	public final List<Sequenceable> components;
 	
 	public Sequence(final Sequence left, final Sequence right)
 	{

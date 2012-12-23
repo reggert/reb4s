@@ -10,7 +10,7 @@ public final class Alternation extends AbstractExpression
 	implements AlternationOps
 {
 	private static final long serialVersionUID = 1L;
-	private final List<Alternative> alternatives;
+	public final List<Alternative> alternatives;
 	
 	/**
 	 * Constructs a new alternation representing the union of two existing

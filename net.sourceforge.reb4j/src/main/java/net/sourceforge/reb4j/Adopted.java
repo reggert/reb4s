@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 public final class Adopted extends AbstractExpression 
 {
 	private static final long serialVersionUID = 1L;
-	private final String expression;
+	public final String expression;
 	
 	private Adopted(final String expression)
 	{this.expression = expression;}
