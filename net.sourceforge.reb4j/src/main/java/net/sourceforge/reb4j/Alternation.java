@@ -9,11 +9,32 @@ public final class Alternation extends AbstractExpression
 	private static final long serialVersionUID = 1L;
 	private final List<Alternative> alternatives;
 	
-	
-	private Alternation(final List<Alternative> alternatives)
+	public Alternation(final Alternation left, final Alternation right)
 	{
-		assert alternatives != null;
-		this.alternatives = alternatives;
+		if (left == null) throw new NullPointerException("left");
+		if (right == null) throw new NullPointerException("right");
+		this.alternatives = left.alternatives.append(right.alternatives);
+	}
+	
+	public Alternation(final Alternation left, final Alternative right)
+	{
+		if (left == null) throw new NullPointerException("left");
+		if (right == null) throw new NullPointerException("right");
+		this.alternatives = left.alternatives.append(List.single(right));
+	}
+	
+	public Alternation(final Alternative left, final Alternation right)
+	{
+		if (left == null) throw new NullPointerException("left");
+		if (right == null) throw new NullPointerException("right");
+		this.alternatives = right.alternatives.cons(left);
+	}
+	
+	public Alternation(final Alternative left, final Alternative right)
+	{
+		if (left == null) throw new NullPointerException("left");
+		if (right == null) throw new NullPointerException("right");
+		this.alternatives = List.list(left, right);
 	}
 	
 	@Override
@@ -30,26 +51,16 @@ public final class Alternation extends AbstractExpression
 			).toString();
 	}
 
-
 	@Override
 	public Alternation or(final Alternation right) 
-	{
-		return new Alternation(this.alternatives.append(right.alternatives));
-	}
-
+	{return new Alternation(this, right);}
 
 	@Override
 	public Alternation or(final Alternative right) 
-	{
-		return new Alternation(this.alternatives.append(List.single(right)));
-	}
-	
+	{return new Alternation(this, right);}
 	
 	public static interface Alternative extends Expression, AlternationOps
-	{
-		
-		
-	}
+	{}
 }
 
 
