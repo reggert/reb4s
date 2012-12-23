@@ -29,4 +29,26 @@ public final class Adopted extends AbstractExpression
 			throw new NullPointerException("pattern");
 		return new Adopted(pattern.pattern());
 	}
+
+	@Override
+	public int hashCode()
+	{
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (expression.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(final Object obj)
+	{
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		final Adopted other = (Adopted) obj;
+		return expression.equals(other.expression);
+	}
 }

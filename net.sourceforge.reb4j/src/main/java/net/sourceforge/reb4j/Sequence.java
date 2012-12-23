@@ -67,6 +67,28 @@ public final class Sequence extends AbstractExpression
 	@Override
 	public Sequence then(final Sequence right)
 	{return new Sequence(this, right);}
+	
+	@Override
+	public int hashCode()
+	{
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + components.hashCode();
+		return result;
+	}
+
+	@Override
+	public boolean equals(final Object obj)
+	{
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		final Sequence other = (Sequence) obj;
+		return components.equals(other.components);
+	}
 
 	public static interface Sequenceable extends Expression, SequenceOps
 	{}

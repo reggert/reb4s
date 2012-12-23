@@ -105,6 +105,28 @@ public final class Alternation extends AbstractExpression
 	public Alternation or(final Alternative right) 
 	{return new Alternation(this, right);}
 	
+	@Override
+	public int hashCode()
+	{
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + alternatives.hashCode();
+		return result;
+	}
+
+	@Override
+	public boolean equals(final Object obj)
+	{
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		final Alternation other = (Alternation) obj;
+		return alternatives.equals(other.alternatives);
+	}
+	
 	/**
 	 * Interface indicating that an expression can be used as an alternative in an alternation.
 	 * 
