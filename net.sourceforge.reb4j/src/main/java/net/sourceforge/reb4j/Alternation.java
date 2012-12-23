@@ -3,12 +3,26 @@ package net.sourceforge.reb4j;
 import fj.F2;
 import fj.data.List;
 
+/**
+ * Expression representing a set of alternatives that may be matched.
+ */
 public final class Alternation extends AbstractExpression
 	implements AlternationOps
 {
 	private static final long serialVersionUID = 1L;
 	private final List<Alternative> alternatives;
 	
+	/**
+	 * Constructs a new alternation representing the union of two existing
+	 * alternations.
+	 * 
+	 * @param left
+	 * 	an alternation; must not be <code>null</code>.
+	 * @param right
+	 *  an alternation; must not be <code>null</code>.
+	 * @throws NullPointerException
+	 * 	if either argument is null.
+	 */
 	public Alternation(final Alternation left, final Alternation right)
 	{
 		if (left == null) throw new NullPointerException("left");
@@ -16,6 +30,17 @@ public final class Alternation extends AbstractExpression
 		this.alternatives = left.alternatives.append(right.alternatives);
 	}
 	
+	/**
+	 * Constructs a new alternation representing the union of an existing
+	 * alternation and an alternative to be appended to the end.
+	 * 
+	 * @param left
+	 * 	an alternation; must not be <code>null</code>.
+	 * @param right
+	 *  an alternative to be appended; must not be <code>null</code>.
+	 * @throws NullPointerException
+	 * 	if either argument is null.
+	 */
 	public Alternation(final Alternation left, final Alternative right)
 	{
 		if (left == null) throw new NullPointerException("left");
@@ -23,6 +48,17 @@ public final class Alternation extends AbstractExpression
 		this.alternatives = left.alternatives.append(List.single(right));
 	}
 	
+	/**
+	 * Constructs a new alternation representing the union of an existing
+	 * alternation and an alternative to be prepended to the beginning.
+	 * 
+	 * @param left
+	 * 	an alternative to be prepended; must not be <code>null</code>.
+	 * @param right
+	 *  an alternation; must not be <code>null</code>.
+	 * @throws NullPointerException
+	 * 	if either argument is null.
+	 */
 	public Alternation(final Alternative left, final Alternation right)
 	{
 		if (left == null) throw new NullPointerException("left");
@@ -30,6 +66,16 @@ public final class Alternation extends AbstractExpression
 		this.alternatives = right.alternatives.cons(left);
 	}
 	
+	/**
+	 * Constructs a new alternation that may match either of two alternatives.
+	 * 
+	 * @param left
+	 * 	the first alternative; must not be <code>null</code>.
+	 * @param right
+	 *  the second alternative; must not be <code>null</code>.
+	 * @throws NullPointerException
+	 * 	if either argument is null.
+	 */
 	public Alternation(final Alternative left, final Alternative right)
 	{
 		if (left == null) throw new NullPointerException("left");
@@ -59,11 +105,17 @@ public final class Alternation extends AbstractExpression
 	public Alternation or(final Alternative right) 
 	{return new Alternation(this, right);}
 	
+	/**
+	 * Interface indicating that an expression can be used as an alternative in an alternation.
+	 */
 	public static interface Alternative extends Expression, AlternationOps
 	{}
 }
 
 
+/**
+ * Operations that can be performed to create alternations.
+ */
 interface AlternationOps
 {
 	/**
