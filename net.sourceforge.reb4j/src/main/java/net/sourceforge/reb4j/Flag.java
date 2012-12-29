@@ -23,4 +23,14 @@ public enum Flag
 			builder.append(flag.c);
 		return builder.toString();
 	}
+	
+	public Group enable(final Expression nested)
+	{
+		return Group.enableFlags(nested, this);
+	}
+	
+	public Group disable(final Expression nested)
+	{
+		return Group.disableFlags(nested, this);
+	}
 }
