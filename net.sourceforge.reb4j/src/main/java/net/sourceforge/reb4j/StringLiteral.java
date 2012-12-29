@@ -5,7 +5,7 @@ public final class StringLiteral extends Literal
 	private static final long serialVersionUID = 1L;
 	private final String unescaped;
 	
-	public StringLiteral(final String unescaped)
+	StringLiteral(final String unescaped)
 	{
 		if (unescaped == null) throw new NullPointerException("unescaped");
 		this.unescaped = unescaped;

@@ -5,7 +5,7 @@ public final class CharLiteral extends Literal implements Quantifiable
 	private static final long serialVersionUID = 1L;
 	public final char unescapedChar;
 	
-	public CharLiteral(final char unescapedChar)
+	CharLiteral(final char unescapedChar)
 	{this.unescapedChar = unescapedChar;}
 
 	@Override
