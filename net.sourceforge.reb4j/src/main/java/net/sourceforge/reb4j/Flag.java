@@ -1,5 +1,9 @@
 package net.sourceforge.reb4j;
 
+/**
+ * Flag that can be passed to the {@link java.util.regex.Pattern} 
+ * regular expression engine.
+ */
 public enum Flag
 {
 	CASE_INSENSITIVE('i'),
@@ -9,6 +13,9 @@ public enum Flag
 	UNICODE_CASE('u'), 
 	COMMENTS('x');
 	
+	/**
+	 * The character that represents this flag in the expression.
+	 */
 	public final char c;
 	
 	private Flag(final char c)
@@ -24,11 +31,29 @@ public enum Flag
 		return builder.toString();
 	}
 	
+	/**
+	 * Wraps the specified expression in a group that enables this flag.
+	 * 
+	 * @param nested
+	 * 	the expression to wrap; must not be <code>null</code>.
+	 * @return a new Group.
+	 * @throws NullPointerException
+	 * 	if <var>nested</var> is <code>null</code>.
+	 */
 	public Group enable(final Expression nested)
 	{
 		return Group.enableFlags(nested, this);
 	}
 	
+	/**
+	 * Wraps the specified expression in a group that disables this flag.
+	 * 
+	 * @param nested
+	 * 	the expression to wrap; must not be <code>null</code>.
+	 * @return a new Group.
+	 * @throws NullPointerException
+	 * 	if <var>nested</var> is <code>null</code>.
+	 */
 	public Group disable(final Expression nested)
 	{
 		return Group.disableFlags(nested, this);
