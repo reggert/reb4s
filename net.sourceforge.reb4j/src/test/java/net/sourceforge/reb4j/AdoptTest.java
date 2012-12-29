@@ -13,6 +13,6 @@ public class AdoptTest
 	{
 		final Pattern pattern = Pattern.compile("abc");
 		final Adopted expression = Adopted.adopt(pattern);
-		assertEquals("abc", expression.expression());
+		assertEquals("abc", expression.expression().toString());
 	}
 }
