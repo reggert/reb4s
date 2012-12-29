@@ -19,6 +19,21 @@ public class Raw extends AbstractSequenceableAlternative
 	public final String expression()
 	{return rawExpression;}
 	
+	public Compound then(final Raw right)
+	{
+		return new Compound(List.list(this, right));
+	}
+
+	public Compound then(final Compound right)
+	{
+		return new Compound(right.components.cons(this));
+	}
+
+	public Compound then(final Literal right)
+	{
+		return this.then(new EscapedLiteral(right));
+	}
+
 	public static final class Compound extends Raw
 	{
 		private static final long serialVersionUID = 1L;
@@ -71,23 +86,6 @@ public class Raw extends AbstractSequenceableAlternative
 		}
 	}
 	
-	
-	public Compound then(final Raw right)
-	{
-		return new Compound(List.list(this, right));
-	}
-	
-	
-	public Compound then(final Compound right)
-	{
-		return new Compound(right.components.cons(this));
-	}
-	
-	
-	public Compound then(final Literal right)
-	{
-		return this.then(new EscapedLiteral(right));
-	}
 }
 
 
