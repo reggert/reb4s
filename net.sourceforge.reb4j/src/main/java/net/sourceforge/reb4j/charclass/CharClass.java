@@ -1,5 +1,6 @@
 package net.sourceforge.reb4j.charclass;
 
+import fj.data.LazyString;
 import net.sourceforge.reb4j.AbstractQuantifiableSequenceableAlternative;
 
 /**
@@ -7,29 +8,11 @@ import net.sourceforge.reb4j.AbstractQuantifiableSequenceableAlternative;
  * within a class of characters.
  */
 public abstract class CharClass extends AbstractQuantifiableSequenceableAlternative
+	implements CharacterClass
 {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Returns an expressing matching a single character that is not within
-	 * the class of characters matched by this expression.
-	 */
-	public abstract CharClass negated();
-	
-	/**
-	 * The regular expression string that can be used within square brackets
-	 * to merge with other character classes.
-	 */
-	protected abstract String unitableForm();
-	
-	/**
-	 * The regular expression string that can be used independently of square 
-	 * brackets.
-	 */
-	protected abstract String independentForm();
-
-	
 	@Override
-	public final String expression()
+	public final LazyString expression()
 	{return independentForm();}
 }
