@@ -11,11 +11,11 @@ public abstract class AbstractExpression implements Expression
 	 */
 	@Override
 	public final String toString()
-	{return expression();}
+	{return expression().toString();}
 
 	@Override
 	public final Pattern toPattern()
-	{return Pattern.compile(expression());}
+	{return Pattern.compile(expression().toString());}
 	
 
 }

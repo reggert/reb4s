@@ -1,6 +1,7 @@
 package net.sourceforge.reb4j;
 
 import fj.F2;
+import fj.data.LazyString;
 import fj.data.List;
 import net.sourceforge.reb4j.Alternation.Alternative;
 
@@ -39,17 +40,17 @@ public final class Sequence extends AbstractExpression
 	}
 
 	@Override
-	public String expression()
+	public LazyString expression()
 	{
-		return components.tail().foldLeft(
-				new F2<StringBuilder, Sequenceable, StringBuilder>() 
+		return components.foldLeft(
+				new F2<LazyString, Sequenceable, LazyString>() 
 				{
 					@Override
-					public StringBuilder f(final StringBuilder a, final Sequenceable b)
+					public LazyString f(final LazyString a, final Sequenceable b)
 					{return a.append(b.expression());}
 				}, 
-				new StringBuilder(components.head().expression())
-			).toString();
+				LazyString.empty
+			);
 	}
 
 	@Override

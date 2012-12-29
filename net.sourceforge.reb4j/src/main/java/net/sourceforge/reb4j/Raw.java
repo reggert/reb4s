@@ -1,22 +1,23 @@
 package net.sourceforge.reb4j;
 
 import fj.F2;
+import fj.data.LazyString;
 import fj.data.List;
 
 
 public class Raw extends AbstractSequenceableAlternative
 {
 	private static final long serialVersionUID = 1L;
-	private final String rawExpression;
+	private final LazyString rawExpression;
 	
-	Raw(final String rawExpression)
+	Raw(final LazyString rawExpression)
 	{
 		assert rawExpression != null;
 		this.rawExpression = rawExpression;
 	}
 
 	@Override
-	public final String expression()
+	public final LazyString expression()
 	{return rawExpression;}
 	
 	public Compound then(final Raw right)
@@ -45,18 +46,17 @@ public class Raw extends AbstractSequenceableAlternative
 			this.components = components;
 		}
 		
-		private static String compoundExpression(final List<Raw> components)
+		private static LazyString compoundExpression(final List<Raw> components)
 		{
 			return components.foldLeft(
-						new F2<StringBuilder, Raw, StringBuilder>()
-						{
-							@Override
-							public StringBuilder f(final StringBuilder a, final Raw b)
-							{return a.append(b);}
-						},
-						new StringBuilder()
-					)
-				.toString();
+					new F2<LazyString, Raw, LazyString>()
+					{
+						@Override
+						public LazyString f(final LazyString a, final Raw b)
+						{return a.append(b.rawExpression);}
+					},
+					LazyString.empty
+				);
 		}
 		
 		@Override

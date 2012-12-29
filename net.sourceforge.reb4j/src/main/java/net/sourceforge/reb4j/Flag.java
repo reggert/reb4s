@@ -1,5 +1,9 @@
 package net.sourceforge.reb4j;
 
+import fj.F2;
+import fj.data.Array;
+import fj.data.LazyString;
+
 /**
  * Flag that can be passed to the {@link java.util.regex.Pattern} 
  * regular expression engine.
@@ -23,12 +27,17 @@ public enum Flag
 		this.c = c;
 	}
 	
-	static String toString(final Flag... flags)
+	static LazyString toString(final Flag... flags)
 	{
-		final StringBuilder builder = new StringBuilder();
-		for (final Flag flag : flags)
-			builder.append(flag.c);
-		return builder.toString();
+		return Array.array(flags).foldLeft(
+				new F2<LazyString, Flag, LazyString>()
+				{
+					@Override
+					public LazyString f(final LazyString a, final Flag b)
+					{return a.append(Character.toString(b.c));}
+				},
+				LazyString.empty
+			);
 	}
 	
 	/**

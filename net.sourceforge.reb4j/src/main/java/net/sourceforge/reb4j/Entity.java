@@ -1,11 +1,13 @@
 package net.sourceforge.reb4j;
 
+import fj.data.LazyString;
+
 public final class Entity extends Raw implements Quantifiable
 {
 	private static final long serialVersionUID = 1L;
 
 	private Entity(final String rawExpression)
-	{super(rawExpression);}
+	{super(LazyString.str(rawExpression));}
 	
 	@Override
 	public Quantified anyTimes()

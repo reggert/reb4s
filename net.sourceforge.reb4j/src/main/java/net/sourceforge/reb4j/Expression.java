@@ -3,6 +3,8 @@ package net.sourceforge.reb4j;
 import java.io.Serializable;
 import java.util.regex.Pattern;
 
+import fj.data.LazyString;
+
 /**
  * Basic abstraction of a regular expression.
  * 
@@ -18,7 +20,7 @@ public interface Expression extends Serializable
 	 * Returns the regular expression represented by this object, in a form 
 	 * suitable to passing to the {@link java.util.regex.Pattern} class.
 	 */
-	String expression();
+	LazyString expression();
 	
 	/**
 	 * Passes the regular expression represented by this object to 

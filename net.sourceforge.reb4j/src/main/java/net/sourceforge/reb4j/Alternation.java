@@ -1,6 +1,7 @@
 package net.sourceforge.reb4j;
 
 import fj.F2;
+import fj.data.LazyString;
 import fj.data.List;
 
 /**
@@ -84,17 +85,17 @@ public final class Alternation extends AbstractExpression
 	}
 	
 	@Override
-	public String expression() 
+	public LazyString expression() 
 	{
 		return alternatives.tail().foldLeft(
-				new F2<StringBuilder, Alternative, StringBuilder>() 
+				new F2<LazyString, Alternative, LazyString>() 
 				{
 					@Override
-					public StringBuilder f(final StringBuilder a, final Alternative b)
-					{return a.append('|').append(b.expression());}
+					public LazyString f(final LazyString a, final Alternative b)
+					{return a.append("|").append(b.expression());}
 				}, 
-				new StringBuilder(alternatives.head().expression())
-			).toString();
+				alternatives.head().expression()
+			);
 	}
 
 	@Override

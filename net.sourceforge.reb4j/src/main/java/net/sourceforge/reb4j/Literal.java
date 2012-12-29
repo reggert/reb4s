@@ -1,6 +1,8 @@
 package net.sourceforge.reb4j;
 
+import fj.F2;
 import fj.Ord;
+import fj.data.LazyString;
 import fj.data.List;
 import fj.data.Set;
 
@@ -15,15 +17,20 @@ public abstract class Literal extends AbstractSequenceableAlternative
 				List.fromString("()[]{}.,-\\|+*?$^&:!<>=").array(Character[].class)
 			);
 	
-	public static String escapeChar(final char c)
-	{return NEEDS_ESCAPE.member(c) ? "\\" + c : String.valueOf(c);}
+	public static LazyString escapeChar(final Character c)
+	{return (NEEDS_ESCAPE.member(c) ? LazyString.str("\\") : LazyString.empty).append(c.toString());}
 	
-	public static String escape(final String unescaped)
+	public static LazyString escape(final LazyString unescaped)
 	{
-		final StringBuilder builder = new StringBuilder();
-		for (int i = 0; i < unescaped.length(); i++)
-			builder.append(escapeChar(unescaped.charAt(i)));
-		return builder.toString();
+		return unescaped.toStream().foldLeft(
+				new F2<LazyString, Character, LazyString>()
+				{
+					@Override
+					public LazyString f(final LazyString a, final Character b)
+					{return a.append(escapeChar(b));}
+				},
+				LazyString.empty
+			);
 	}
 	
 	public static StringLiteral string(final String unescaped)
@@ -37,13 +44,13 @@ public abstract class Literal extends AbstractSequenceableAlternative
 	
 	public abstract String unescaped();
 	
-	public final String escaped()
+	public final LazyString escaped()
 	{
-		return escape(unescaped());
+		return escape(LazyString.str(unescaped()));
 	}
 	
 	@Override
-	public final String expression()
+	public final LazyString expression()
 	{
 		return escaped();
 	}

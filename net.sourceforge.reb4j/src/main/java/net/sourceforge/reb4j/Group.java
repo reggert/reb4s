@@ -1,5 +1,7 @@
 package net.sourceforge.reb4j;
 
+import fj.data.LazyString;
+
 /**
  * Expression that has been grouped in parentheses.
  */
@@ -13,18 +15,18 @@ public final class Group extends AbstractQuantifiableSequenceableAlternative
 	 */
 	public final Expression nested;
 	
-	private final String expression;
+	private final LazyString expression;
 
-	private Group(final Expression nested, final String opening)
+	private Group(final Expression nested, final LazyString opening)
 	{
 		if (nested == null) throw new NullPointerException("nested");
 		assert opening != null;
 		this.nested = nested;
-		this.expression = opening + nested.expression() + ")";
+		this.expression = opening.append(nested.expression()).append(")");
 	}
 	
 	@Override
-	public String expression()
+	public LazyString expression()
 	{
 		return expression;
 	}
@@ -40,7 +42,7 @@ public final class Group extends AbstractQuantifiableSequenceableAlternative
 	 */
 	public static Group capture(final Expression nested)
 	{
-		return new Group(nested, "(");
+		return new Group(nested, LazyString.str("("));
 	}
 	
 	/**
@@ -54,7 +56,7 @@ public final class Group extends AbstractQuantifiableSequenceableAlternative
 	 */
 	public static Group nonCapturing(final Expression nested)
 	{
-		return new Group(nested, "(?:");
+		return new Group(nested, LazyString.str("(?:"));
 	}
 	
 	/**
@@ -68,7 +70,7 @@ public final class Group extends AbstractQuantifiableSequenceableAlternative
 	 */
 	public static Group independent(final Expression nested) 
 	{
-		return new Group(nested, "(?>");
+		return new Group(nested, LazyString.str("(?>"));
 	}
 	
 	/**
@@ -82,7 +84,7 @@ public final class Group extends AbstractQuantifiableSequenceableAlternative
 	 */
 	public static Group positiveLookAhead(final Expression nested) 
 	{
-		return new Group(nested, "(?=");
+		return new Group(nested, LazyString.str("(?="));
 	}
 	
 	/**
@@ -96,7 +98,7 @@ public final class Group extends AbstractQuantifiableSequenceableAlternative
 	 */
 	public static Group negativeLookAhead(final Expression nested) 
 	{
-		return new Group(nested, "(?!");
+		return new Group(nested, LazyString.str("(?!"));
 	}
 	
 	/**
@@ -110,7 +112,7 @@ public final class Group extends AbstractQuantifiableSequenceableAlternative
 	 */
 	public static Group positiveLookBehind(final Expression nested) 
 	{
-		return new Group(nested, "(?<=");
+		return new Group(nested, LazyString.str("(?<="));
 	}
 	
 	/**
@@ -124,7 +126,7 @@ public final class Group extends AbstractQuantifiableSequenceableAlternative
 	 */
 	public static Group negativeLookBehind(final Expression nested) 
 	{
-		return new Group(nested, "(?<!");
+		return new Group(nested, LazyString.str("(?<!"));
 	}
 	
 	/**
@@ -140,7 +142,7 @@ public final class Group extends AbstractQuantifiableSequenceableAlternative
 	 */
 	public static Group enableFlags(final Expression nested, final Flag... flags) 
 	{
-		return new Group(nested, "(?" + Flag.toString(flags) + ":");
+		return new Group(nested, LazyString.str("(?").append(Flag.toString(flags)).append(":"));
 	}
 	
 	/**
@@ -156,7 +158,7 @@ public final class Group extends AbstractQuantifiableSequenceableAlternative
 	 */
 	public static Group disableFlags(final Expression nested, final Flag... flags) 
 	{
-		return new Group(nested, "(?-" + Flag.toString(flags) + ":");
+		return new Group(nested, LazyString.str("(?-").append(Flag.toString(flags)).append(":"));
 	}
 
 	@Override

@@ -2,16 +2,18 @@ package net.sourceforge.reb4j;
 
 import java.util.regex.Pattern;
 
+import fj.data.LazyString;
+
 public final class Adopted extends AbstractExpression 
 {
 	private static final long serialVersionUID = 1L;
-	public final String expression;
+	public final LazyString expression;
 	
 	private Adopted(final String expression)
-	{this.expression = expression;}
+	{this.expression = LazyString.str(expression);}
 	
 	@Override
-	public String expression() 
+	public LazyString expression() 
 	{return expression;}
 	
 	/**
