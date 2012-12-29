@@ -28,4 +28,7 @@ public abstract class CharClass extends AbstractQuantifiableSequenceableAlternat
 			set = set.insert(c);
 		return new MultiChar(set);
 	}
+	
+	public static CharRange range(final char first, final char last)
+	{return new CharRange(first, last);}
 }
