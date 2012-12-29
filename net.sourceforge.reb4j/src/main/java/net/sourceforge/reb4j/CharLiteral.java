@@ -1,5 +1,6 @@
 package net.sourceforge.reb4j;
 
+// TODO: should this be superseded by SingleChar?
 public final class CharLiteral extends Literal implements Quantifiable
 {
 	private static final long serialVersionUID = 1L;
