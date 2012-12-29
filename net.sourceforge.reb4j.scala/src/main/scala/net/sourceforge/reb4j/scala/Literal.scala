@@ -55,6 +55,7 @@ object Literal
 		require (unescaped != null, "unescaped is null")
 	}
 	
+	// TODO: should this be superceded by SingleChar?
 	final case class CharLiteral(unescapedChar : Char) extends Literal 
 		with Quantifiable
 	{
