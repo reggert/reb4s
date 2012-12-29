@@ -159,4 +159,27 @@ public final class Group extends AbstractQuantifiableSequenceableAlternative
 		return new Group(nested, "(?-" + Flag.toString(flags) + ":");
 	}
 
+	@Override
+	public int hashCode()
+	{
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + expression.hashCode();
+		result = prime * result + nested.hashCode();
+		return result;
+	}
+
+	@Override
+	public boolean equals(final Object obj)
+	{
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		final Group other = (Group) obj;
+		return expression.equals(other.expression) && nested.equals(other.nested);
+	}
+
 }
