@@ -5,11 +5,9 @@ import fj.data.List;
 import fj.data.Set;
 
 
-public class Literal extends AbstractSequenceableAlternative
+public abstract class Literal extends AbstractSequenceableAlternative
 {
 	private static final long serialVersionUID = 1L;
-	public final String unescaped;
-	public final String escaped;
 
 	public static final Set<Character> NEEDS_ESCAPE = 
 		Set.set(
@@ -28,17 +26,25 @@ public class Literal extends AbstractSequenceableAlternative
 		return builder.toString();
 	}
 	
-	public Literal(final String unescaped)
+	public static StringLiteral string(final String unescaped)
+	{return new StringLiteral(unescaped);}
+	
+	public static CharLiteral character(final char unescapedChar)
+	{return new CharLiteral(unescapedChar);}
+	
+	Literal()
+	{}
+	
+	public abstract String unescaped();
+	
+	public final String escaped()
 	{
-		if (unescaped == null) throw new NullPointerException("unescaped");
-		this.unescaped = unescaped;
-		this.escaped = escape(unescaped);
+		return escape(unescaped());
 	}
 	
 	@Override
-	public String expression()
+	public final String expression()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return escaped();
 	}
 }
