@@ -1,7 +1,7 @@
 package net.sourceforge.reb4j.scala
 
 /**
- * Flag that can be passed to the {@link java.util.regex.Pattern} 
+ * Flag that can be passed to the [[java.util.regex.Pattern]] 
  * regular expression engine.
  */
 @SerialVersionUID(1L)
@@ -9,6 +9,16 @@ sealed class Flag private (val c : Char) extends Serializable
 	with NotNull with Immutable
 {
 	override final def toString = String.valueOf(c)
+	
+	/**
+	 * Wraps the specified expression in a group that enables this flag.
+	 */
+	final def enable(nested : Expression) = Group.EnableFlags(nested, this)
+	
+	/**
+	 * Wraps the specified expression in a group that disables this flag.
+	 */
+	final def disable(nested : Expression) = Group.DisableFlags(nested, this)
 }
 
 
