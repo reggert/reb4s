@@ -5,8 +5,7 @@ import fj.data.LazyString;
 /**
  * Character class representing the negation of another character class.
  */
-public final class Negated<T extends CharClass> extends CharClass
-	implements Unitable, Intersectable
+public final class Negated<T extends CharClass> extends AbstractUnitableIntersectable
 {
 	private static final long serialVersionUID = 1L;
 	public final T positive;
@@ -56,21 +55,4 @@ public final class Negated<T extends CharClass> extends CharClass
 		final Negated<?> other = (Negated<?>) obj;
 		return positive.equals(other.positive);
 	}
-
-	@Override
-	public Union union(final Union right)
-	{return Union.union(this, right);}
-
-	@Override
-	public Union union(final Unitable right)
-	{return Union.union(this, right);}
-
-	@Override
-	public Intersection intersect(final Intersectable right)
-	{return Intersection.intersect(this, right);}
-
-	@Override
-	public Intersection intersect(final Intersection right)
-	{return Intersection.intersect(this, right);}
-
 }
