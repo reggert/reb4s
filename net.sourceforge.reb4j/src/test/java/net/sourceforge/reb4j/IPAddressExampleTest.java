@@ -3,6 +3,7 @@ package net.sourceforge.reb4j;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import net.sourceforge.reb4j.Alternation.Alternative;
@@ -12,7 +13,10 @@ import net.sourceforge.reb4j.charclass.CharClass.Perl;
 import org.junit.Test;
 
 import fj.Effect;
+import fj.F;
+import fj.F2;
 import fj.Show;
+import fj.data.LazyString;
 import fj.data.List;
 
 public class IPAddressExampleTest
@@ -28,9 +32,16 @@ public class IPAddressExampleTest
 	public final Alternative highTwoHundredsOctet = 
 		Literal.string("25").then(CharClass.range('0', '5'));
 	public final Alternation octet = 
-		oneDigitOctet.or(twoDigitOctet.or(lowTwoHundredsOctet.or(highTwoHundredsOctet)));
+		oneDigitOctet.or(twoDigitOctet.or(oneHundredsOctet.or(lowTwoHundredsOctet.or(highTwoHundredsOctet))));
+	public final CharLiteral dot = Literal.character('.');
 	public final Sequence dottedDecimalIPAddress = 
-		Group.capture(octet).then(Group.capture(octet).then(Group.capture(octet).then(Group.capture(octet))));
+		Group.capture(octet)
+		.then(dot)
+		.then(Group.capture(octet))
+		.then(dot)
+		.then(Group.capture(octet))
+		.then(dot)
+		.then(Group.capture(octet));
 
 	
 	private void validateAgainst(final String name, final Pattern pattern, final List<String> validInputs)
@@ -167,6 +178,79 @@ public class IPAddressExampleTest
 				highTwoHundredsOctet.toPattern(),
 				List.list("020", "0250", "200", "256", "249")
 			);
+	}
+	
+	@Test
+	public void testOctetValid()
+	{
+		validateAgainst(
+				"octet", 
+				octet.toPattern(), 
+				List.range(0, 255).map(Show.intShow.showS_())
+			);
+	}
+	
+	@Test
+	public void testOctetInvalid()
+	{
+		invalidateAgainst(
+				"octet",
+				octet.toPattern(),
+				List.list("020", "0250", "a", "256", "249 ")
+			);
+	}
+	
+	@Test
+	public void testDottedDecimalIPAddressValid()
+	{
+		final List<LazyString> inputOctets = 
+			List.list(0, 1, 9, 10, 59, 100, 123, 210, 251)
+			.map(new F<Integer, LazyString>()
+				{
+					@Override
+					public LazyString f(final Integer a)
+					{return LazyString.str(a.toString());}
+				});
+		final F2<LazyString, LazyString, LazyString> concatOctets =
+			new F2<LazyString, LazyString, LazyString>()
+			{
+				@Override
+				public LazyString f(final LazyString a, final LazyString b)
+				{return a.append(".").append(b);}
+				
+			};
+		final List<String> inputs = inputOctets
+				.zipWith(inputOctets, concatOctets)
+				.zipWith(inputOctets, concatOctets)
+				.zipWith(inputOctets, concatOctets)
+				.map(Show.<LazyString>anyShow().showS_());
+		validateAgainst(
+				"dottedDecimalIPAddress", 
+				dottedDecimalIPAddress.toPattern(), 
+				inputs
+			);
+	}
+	
+	@Test
+	public void testDottedDecimalIPAddressInvalid()
+	{
+		invalidateAgainst(
+				"dottedDecimalIPAddress",
+				dottedDecimalIPAddress.toPattern(),
+				List.list("1", "1.2", "1.2.3", "1.2.3.300", "1.2.3.4 ")
+			);
+	}
+	
+	@Test
+	public void testCapture()
+	{
+		final Pattern pattern = dottedDecimalIPAddress.toPattern();
+		final Matcher matcher = pattern.matcher("5.99.123.251");
+		assertThat(matcher.matches(), is(true));
+		assertThat(matcher.group(1), is("5"));
+		assertThat(matcher.group(2), is("99"));
+		assertThat(matcher.group(3), is("123"));
+		assertThat(matcher.group(4), is("251"));
 	}
 
 }
