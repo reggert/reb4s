@@ -244,6 +244,7 @@ public class IPAddressExampleTest
 	@Test
 	public void testCapture()
 	{
+		//System.out.println(dottedDecimalIPAddress);
 		final Pattern pattern = dottedDecimalIPAddress.toPattern();
 		final Matcher matcher = pattern.matcher("5.99.123.251");
 		assertThat(matcher.matches(), is(true));

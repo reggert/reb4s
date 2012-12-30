@@ -20,36 +20,48 @@ Of course, this comes at the cost of a modest performance penalty at startup as 
 
 **reb4j** currently provides two API's: one in Java and one in Scala.  The Java API is older and better tested, but it is not nearly as clean or efficient as the Scala API.  In the near future, the Java API will be refactored to take advantage of the lessons learned during the development of the Scala API.
 	
-As a quick example, here's one way to use **reb4j** to describe a pattern that validates the format of a dotted decimal IP address (ensuring that each octet is a decimal value between 0 and 255).  First, using the (soon-to-be-deprecated) Java API:
+As a quick example, here's one way to use **reb4j** to describe a pattern that validates the format of a dotted decimal IP address (ensuring that each octet is a decimal value between 0 and 255) and extracts the octets.  First, using the Java API:
 	
-	final Regex oneDigitOctet = 
-		CharClass.POSIX_DIGIT;
-	final Regex twoDigitOctet = 
-		CharClass.range('1', '9').then(CharClass.POSIX_DIGIT);
-	final Regex oneHundredsOctet =
-		Regex.literal("1").then(CharClass.POSIX_DIGIT.repeat(2));
-	final Regex lowTwoHundredsOctet =
-		Regex.literal("2").then(CharClass.range('0', '4')).then(CharClass.POSIX_DIGIT);
-	final Regex highTwoHundredsOctet =
-		Regex.literal("25").then(CharClass.range('0', '5'));
-	final Regex octet =
-		Regex.or(
-				oneDigitOctet, 
-				twoDigitOctet, 
-				oneHundredsOctet, 
-				lowTwoHundredsOctet, 
-				highTwoHundredsOctet
-			);
-	final Regex dottedDecimalIPAddress =
-		octet.then(Regex.literal(".")).repeat(3).then(octet);
-		
 	final Pattern pattern = dottedDecimalIPAddress.toPattern();
 	String input = "10.10.1.204";
 	boolean valid = pattern.matcher(input).matches();
-
-For reference, the generated regular expression looks like this (note that **reb4j** makes liberal use of "non-capturing groups"):
 	
-	(?:(?:(?:(?:\p{Digit}|(?:[1-9]\p{Digit})|(?:(?:1)(?:\p{Digit}{2}))|(?:(?:(?:2)[0-4])\p{Digit})|(?:(?:25)[0-5]))(?:\.)){3})(?:\p{Digit}|(?:[1-9]\p{Digit})|(?:(?:1)(?:\p{Digit}{2}))|(?:(?:(?:2)[0-4])\p{Digit})|(?:(?:25)[0-5])))
+	final Alternative oneDigitOctet = 
+		Perl.DIGIT;
+	final Alternative twoDigitOctet = 
+		CharClass.range('1', '9').then(Perl.DIGIT);
+	final Alternative oneHundredsOctet = 
+		Literal.character('1').then(Perl.DIGIT.repeat(2));
+	final Alternative lowTwoHundredsOctet = 
+		Literal.character('2').then(CharClass.range('0', '4')).then(Perl.DIGIT);
+	final Alternative highTwoHundredsOctet = 
+		Literal.string("25").then(CharClass.range('0', '5'));
+	final Alternation octet = 
+		oneDigitOctet.or(twoDigitOctet.or(oneHundredsOctet.or(lowTwoHundredsOctet.or(highTwoHundredsOctet))));
+	final CharLiteral dot = Literal.character('.');
+	final Sequence dottedDecimalIPAddress = 
+		Group.capture(octet)
+		.then(dot)
+		.then(Group.capture(octet))
+		.then(dot)
+		.then(Group.capture(octet))
+		.then(dot)
+		.then(Group.capture(octet));
+		
+	final Pattern pattern = dottedDecimalIPAddress.toPattern();
+	final String input = "1.2.3.4";
+	final Matcher matcher = pattern.matcher(input);
+	if (matcher.matches())
+	{
+		final int[] octets = new int[4];
+		for (int i = 0; i < 4; i++)
+			octets[i] = Integer.parseInt(matcher.group(i+1));
+		// octets = {1, 2, 3, 4}
+	} 
+
+For reference, the generated regular expression looks like this:
+	
+	(\d|[1-9]\d|1\d{2}|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d{2}|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d{2}|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d{2}|2[0-4]\d|25[0-5])
 
 
 Here's the same example again in Scala:
@@ -66,7 +78,7 @@ Here's the same example again in Scala:
 	val input = "10.10.1.204"
 	val valid = pattern.matcher(input).matches()
 
-And here's the (noticeably shorter) generated expression:
+And here's the generated expression:
 
 	(?:\p{Digit}|[1-9]\p{Digit}|1\p{Digit}{2}|2[0-4]\p{Digit}|25[0-5])(?:\.(?:\p{Digit}|[1-9]\p{Digit}|1\p{Digit}{2}|2[0-4]\p{Digit}|25[0-5])){3}
 
