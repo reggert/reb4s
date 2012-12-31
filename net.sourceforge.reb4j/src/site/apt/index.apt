@@ -10,12 +10,12 @@ Usage
 	which are immutable after being constructed, which allows a single
 	instance to be re-used as a sub-expression in many different expressions.
 	
-	There is one sub-interface, 
-	{{{./apidocs/net/sourceforge/reb4j/CharacterClass.html}CharacterClass}}, which
+	There is one implementing class, 
+	{{{./apidocs/net/sourceforge/reb4j/charclass/CharClass.html}CharClass}}, which
 	represents the specialized case of character classes (usually represented 
 	in regular expressions as ranges of characters surrounded by square
 	brackets.  Character classes (instances of 
-	{{{./apidocs/net/sourceforge/reb4j/CharacterClass.html}CharacterClass}}) may be 
+	{{{./apidocs/net/sourceforge/reb4j/charclass/CharClass.html}CharClass}}) may be 
 	composed from other character classes, and larger expressions may be
 	composed from character classes, but character classes cannot be
 	composed from non-character class expressions (hence the need for a
@@ -230,10 +230,8 @@ if (matcher.matches())
 	contains static methods for working	with character classes.  Note that 
 	{{{./apidocs/net/sourceforge/reb4j/charclass/CharClass.html}CharClass}}
 	implements 
-	{{{./apidocs/net/sourceforge/reb4j/charclass/CharacterClass.html}CharacterClass}},
-	which defines how character classes behave and itself extends 
-	{{{./apidocs/net/sourceforge/reb4j/Expression.html}Expression}}, so instances may be
-	used in any context in which an 
+	{{{./apidocs/net/sourceforge/reb4j/Expression.html}Expression}} and its 
+	sub-interfaces, so instances may be used in any context in which an 
 	{{{./apidocs/net/sourceforge/reb4j/Expression.html}Expression}} would be valid.
 	
 *** Predefined Classes
@@ -262,60 +260,57 @@ if (matcher.matches())
 final MultiChar abc = CharClass.characters('a', 'b', 'c');
 -------------------------------------------------------------------------------
 
-TODO: continue editing
-
 *** Character Ranges
 
 	To define a character class that matches any characters whose ordinal
 	values are between a minimum and maximum character (inclusive), use the
-	{{{./apidocs/net/sourceforge/reb4j/CharClass.html#range(char, char)}CharClass.range}}
+	{{{./apidocs/net/sourceforge/reb4j/charclass/CharClass.html#range(char, char)}CharClass.range}}
 	method, which may also accept an optional <negate> parameter.
 	
 -------------------------------------------------------------------------------
-final CharClass a_thru_m = CharClass.range('a', 'm');
-final CharClass notACapitalLetter = CharClass.range('A', 'Z', true);
+final CharRange a_thru_m = CharClass.range('a', 'm');
 -------------------------------------------------------------------------------
 
 *** Composing Character Classes
 
-	Instances of {{{./apidocs/net/sourceforge/reb4j/CharClass.html}CharClass}}
+	Instances of {{{./apidocs/net/sourceforge/reb4j/charclass/CharClass.html}CharClass}}
 	may be built from other instances.
 	
 **** Negation
 
 	To construct a character class that will match any character that is <not>
 	in another character specified character class, use the 
-	{{{./apidocs/net/sourceforge/reb4j/CharClass.html#negate(net.sourceforge.reb4j.CharClass)}CharClass.negate}}
+	{{{./apidocs/net/sourceforge/reb4j/charclass/CharClass.html#negated()}CharClass.negated}}
 	method.
 	
 -------------------------------------------------------------------------------
-final CharClass notALetter = CharClass.negate(CharClass.POSIX_ALPHA);
+final PredefinedClass notALetter = CharClass.Posix.ALPHA.negated();
 -------------------------------------------------------------------------------
 	
 **** Union
 
 	To construct a character class that will match any character that would be
 	matched by two or more other character classes, use the
-	{{{./apidocs/net/sourceforge/reb4j/CharClass.html#union(net.sourceforge.reb4j.CharClass...)}CharClass.union}}
+	{{{./apidocs/net/sourceforge/reb4j/charclass/CharClass.html#union(net.sourceforge.reb4j.CharClass)}CharClass.union}}
 	method.
 	
 -------------------------------------------------------------------------------
 final CharClass oneThruFive = CharClass.range('1, 5');
 final CharClass threeThruEight = CharClass.range('3, '8');
-final CharClass oneThruEight = CharClass.union(oneThruFive, threeThruEight);
+final CharClass oneThruEight = oneThruFive.union(threeThruEight);
 -------------------------------------------------------------------------------
 
 **** Intersection
 
 	To construct a character class that will match only those characters that
 	appear in all of several other character classes, use the
-	{{{./apidocs/net/sourceforge/reb4j/CharClass.html#intersection(net.sourceforge.reb4j.CharClass...)}CharClass.intersection}}
+	{{{./apidocs/net/sourceforge/reb4j/CharClass.html#intersect(net.sourceforge.reb4j.CharClass)}CharClass.intersect}}
 	method.
 	
 -------------------------------------------------------------------------------
-final CharClass vowels = CharClass.characters("AaEeIiOoUu");
-final CharClass consonants = 
-	CharClass.intersection(CharClass.POSIX_ALPHA, CharClass.negate(vowels));
+final CharClass vowels = 
+	CharClass.characters('A', 'a', 'E', 'e', 'I', 'i', 'O', 'o', 'U', 'u');
+final CharClass consonants = CharClass.Posix.ALPHA.intersect(vowels.negated);
 -------------------------------------------------------------------------------
 		
 ** Adopting Patterns
@@ -325,10 +320,10 @@ final CharClass consonants =
 	{{{http://java.sun.com/javase/6/docs/api/java/util/regex/Pattern.html}Pattern}}
 	object as a sub-expression in an expression constructed by <<reb4j>>.
 	This can be accomplished using the 
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html#fromPattern(java.util.regex.Pattern)}Regex.fromPattern}}
+	{{{./apidocs/net/sourceforge/reb4j/Adopted.html#fromPattern(java.util.regex.Pattern)}Adopted.fromPattern}}
 	method, which accepts a
 	{{{http://java.sun.com/javase/6/docs/api/java/util/regex/Pattern.html}Pattern}}
 	as an argument and constructs a new 
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html}Regex}}
+	{{{./apidocs/net/sourceforge/reb4j/Expression.html}Expression}}
 	from it.
 	
