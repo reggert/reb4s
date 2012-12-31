@@ -11,33 +11,46 @@ public final class Sequence extends AbstractExpression
 	private static final long serialVersionUID = 1L;
 	public final List<Sequenceable> components;
 	
-	public Sequence(final Sequence left, final Sequence right)
+	private Sequence(final List<Sequenceable> components)
+	{
+		if (components == null) throw new NullPointerException("components");
+		this.components = components;
+	}
+	
+	Sequence(final Sequence left, final Sequence right)
 	{
 		if (left == null) throw new NullPointerException("left");
 		if (right == null) throw new NullPointerException("right");
 		this.components = left.components.append(right.components);
 	}
 	
-	public Sequence(final Sequence left, final Sequenceable right)
+	Sequence(final Sequence left, final Sequenceable right)
 	{
 		if (left == null) throw new NullPointerException("left");
 		if (right == null) throw new NullPointerException("right");
 		this.components = left.components.append(List.single(right));
 	}
 	
-	public Sequence(final Sequenceable left, final Sequence right)
+	Sequence(final Sequenceable left, final Sequence right)
 	{
 		if (left == null) throw new NullPointerException("left");
 		if (right == null) throw new NullPointerException("right");
 		this.components = right.components.cons(left);
 	}
 	
-	public Sequence(final Sequenceable left, final Sequenceable right)
+	Sequence(final Sequenceable left, final Sequenceable right)
 	{
 		if (left == null) throw new NullPointerException("left");
 		if (right == null) throw new NullPointerException("right");
 		this.components = List.list(left, right);
 	}
+	
+	public static Sequence sequence(final Sequenceable... components)
+	{
+		if (components == null) throw new NullPointerException("components");
+		return new Sequence(List.list(components));
+	}
+	
 
 	@Override
 	public LazyString expression()

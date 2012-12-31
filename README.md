@@ -32,21 +32,30 @@ As a quick example, here's one way to use **reb4j** to describe a pattern that v
 		CharClass.range('1', '9').then(Perl.DIGIT);
 	final Alternative oneHundredsOctet = 
 		Literal.character('1').then(Perl.DIGIT.repeat(2));
-	final Alternative lowTwoHundredsOctet = 
-		Literal.character('2').then(CharClass.range('0', '4')).then(Perl.DIGIT);
-	final Alternative highTwoHundredsOctet = 
+	public final Alternative lowTwoHundredsOctet = Sequence.sequence(
+			Literal.character('2'),
+			CharClass.range('0', '4'),
+			Perl.DIGIT
+		);
+	public final Alternative highTwoHundredsOctet = 
 		Literal.string("25").then(CharClass.range('0', '5'));
-	final Alternation octet = 
-		oneDigitOctet.or(twoDigitOctet.or(oneHundredsOctet.or(lowTwoHundredsOctet.or(highTwoHundredsOctet))));
-	final CharLiteral dot = Literal.character('.');
-	final Sequence dottedDecimalIPAddress = 
-		Group.capture(octet)
-		.then(dot)
-		.then(Group.capture(octet))
-		.then(dot)
-		.then(Group.capture(octet))
-		.then(dot)
-		.then(Group.capture(octet));
+	public final Alternation octet = Alternation.alternatives(
+			oneDigitOctet, 
+			twoDigitOctet, 
+			oneHundredsOctet, 
+			lowTwoHundredsOctet,
+			highTwoHundredsOctet
+		);
+	public final CharLiteral dot = Literal.character('.');
+	public final Sequence dottedDecimalIPAddress = Sequence.sequence(
+			Group.capture(octet), 
+			dot, 
+			Group.capture(octet), 
+			dot, 
+			Group.capture(octet), 
+			dot, 
+			Group.capture(octet)
+		);
 		
 	final Pattern pattern = dottedDecimalIPAddress.toPattern();
 	final String input = "1.2.3.4";

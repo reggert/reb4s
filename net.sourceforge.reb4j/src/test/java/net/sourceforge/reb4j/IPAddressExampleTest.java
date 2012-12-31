@@ -27,21 +27,30 @@ public class IPAddressExampleTest
 		CharClass.range('1', '9').then(Perl.DIGIT);
 	public final Alternative oneHundredsOctet = 
 		Literal.character('1').then(Perl.DIGIT.repeat(2));
-	public final Alternative lowTwoHundredsOctet = 
-		Literal.character('2').then(CharClass.range('0', '4')).then(Perl.DIGIT);
+	public final Alternative lowTwoHundredsOctet = Sequence.sequence(
+			Literal.character('2'),
+			CharClass.range('0', '4'),
+			Perl.DIGIT
+		);
 	public final Alternative highTwoHundredsOctet = 
 		Literal.string("25").then(CharClass.range('0', '5'));
-	public final Alternation octet = 
-		oneDigitOctet.or(twoDigitOctet.or(oneHundredsOctet.or(lowTwoHundredsOctet.or(highTwoHundredsOctet))));
+	public final Alternation octet = Alternation.alternatives(
+			oneDigitOctet, 
+			twoDigitOctet, 
+			oneHundredsOctet, 
+			lowTwoHundredsOctet,
+			highTwoHundredsOctet
+		);
 	public final CharLiteral dot = Literal.character('.');
-	public final Sequence dottedDecimalIPAddress = 
-		Group.capture(octet)
-		.then(dot)
-		.then(Group.capture(octet))
-		.then(dot)
-		.then(Group.capture(octet))
-		.then(dot)
-		.then(Group.capture(octet));
+	public final Sequence dottedDecimalIPAddress = Sequence.sequence(
+			Group.capture(octet), 
+			dot, 
+			Group.capture(octet), 
+			dot, 
+			Group.capture(octet), 
+			dot, 
+			Group.capture(octet)
+		);
 
 	
 	private void validateAgainst(final String name, final Pattern pattern, final List<String> validInputs)

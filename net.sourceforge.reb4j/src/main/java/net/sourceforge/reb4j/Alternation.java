@@ -13,6 +13,12 @@ public final class Alternation extends AbstractExpression
 	private static final long serialVersionUID = 1L;
 	public final List<Alternative> alternatives;
 	
+	private Alternation(final List<Alternative> alternatives)
+	{
+		if (alternatives == null) throw new NullPointerException("alternatives");
+		this.alternatives = alternatives;
+	}
+	
 	/**
 	 * Constructs a new alternation representing the union of two existing
 	 * alternations.
@@ -24,7 +30,7 @@ public final class Alternation extends AbstractExpression
 	 * @throws NullPointerException
 	 * 	if either argument is null.
 	 */
-	public Alternation(final Alternation left, final Alternation right)
+	Alternation(final Alternation left, final Alternation right)
 	{
 		if (left == null) throw new NullPointerException("left");
 		if (right == null) throw new NullPointerException("right");
@@ -42,7 +48,7 @@ public final class Alternation extends AbstractExpression
 	 * @throws NullPointerException
 	 * 	if either argument is null.
 	 */
-	public Alternation(final Alternation left, final Alternative right)
+	Alternation(final Alternation left, final Alternative right)
 	{
 		if (left == null) throw new NullPointerException("left");
 		if (right == null) throw new NullPointerException("right");
@@ -60,7 +66,7 @@ public final class Alternation extends AbstractExpression
 	 * @throws NullPointerException
 	 * 	if either argument is null.
 	 */
-	public Alternation(final Alternative left, final Alternation right)
+	Alternation(final Alternative left, final Alternation right)
 	{
 		if (left == null) throw new NullPointerException("left");
 		if (right == null) throw new NullPointerException("right");
@@ -77,11 +83,17 @@ public final class Alternation extends AbstractExpression
 	 * @throws NullPointerException
 	 * 	if either argument is null.
 	 */
-	public Alternation(final Alternative left, final Alternative right)
+	Alternation(final Alternative left, final Alternative right)
 	{
 		if (left == null) throw new NullPointerException("left");
 		if (right == null) throw new NullPointerException("right");
 		this.alternatives = List.list(left, right);
+	}
+	
+	public static Alternation alternatives(final Alternative... alternatives)
+	{
+		if (alternatives == null) throw new NullPointerException("alternatives");
+		return new Alternation(List.list(alternatives));
 	}
 	
 	@Override
