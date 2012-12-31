@@ -5,6 +5,10 @@ import static fj.Ord.charOrd;
 import java.lang.Character.UnicodeBlock;
 
 import net.sourceforge.reb4j.AbstractQuantifiableSequenceableAlternative;
+import net.sourceforge.reb4j.Expression;
+import net.sourceforge.reb4j.Quantifiable;
+import net.sourceforge.reb4j.Alternation.Alternative;
+import net.sourceforge.reb4j.Sequence.Sequenceable;
 import fj.data.LazyString;
 import fj.data.Set;
 
@@ -13,27 +17,57 @@ import fj.data.Set;
  * within a class of characters.
  */
 public abstract class CharClass extends AbstractQuantifiableSequenceableAlternative
-	implements CharacterClass
+	implements Expression, Quantifiable, Sequenceable, Alternative
 {
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * The regular expression string that can be used within square brackets
+	 * to merge with other character classes.
+	 */
+	protected abstract LazyString unitableForm();
+	
+	/**
+	 * The regular expression string that can be used independently of square 
+	 * brackets.
+	 */
+	protected abstract LazyString independentForm();
+	
 	@Override
 	public final LazyString expression()
 	{return independentForm();}
+
+	/**
+	 * Returns an expressing matching a single character that is not within
+	 * the class of characters matched by this expression.
+	 */
+	public abstract CharClass negated();
 	
-	@Override
+	/**
+	 * Returns the union of this character class with the specified
+	 * character classes.
+	 */
 	public Union union(final Union right)
 	{return Union.union(this, right);}
 
-	@Override
-	public Union union(final CharacterClass right)
+	/**
+	 * Returns the union of this character class with the specified
+	 * character class.
+	 */
+	public Union union(final CharClass right)
 	{return Union.union(this, right);}
 	
-	@Override
-	public Intersection intersect(final CharacterClass right)
+	/**
+	 * Returns the intersection of this character class with the 
+	 * specified character class.
+	 */
+	public Intersection intersect(final CharClass right)
 	{return Intersection.intersect(this, right);}
 
-	@Override
+	/**
+	 * Returns the intersection of this character class with the 
+	 * specified character classes.
+	 */
 	public Intersection intersect(final Intersection right)
 	{return Intersection.intersect(this, right);}
 	

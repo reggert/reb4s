@@ -8,9 +8,9 @@ public final class Intersection extends CharClass
 {
 	private static final long serialVersionUID = 1L;
 	
-	public final List<CharacterClass> supersets;
+	public final List<CharClass> supersets;
 	
-	private Intersection(final List<CharacterClass> supersets)
+	private Intersection(final List<CharClass> supersets)
 	{
 		if (supersets == null) throw new NullPointerException("supersets");
 		this.supersets = supersets;
@@ -26,10 +26,10 @@ public final class Intersection extends CharClass
 	public LazyString unitableForm()
 	{
 		return supersets.tail().foldLeft(
-				new F2<LazyString, CharacterClass, LazyString>()
+				new F2<LazyString, CharClass, LazyString>()
 				{
 					@Override
-					public LazyString f(final LazyString a, final CharacterClass b)
+					public LazyString f(final LazyString a, final CharClass b)
 					{return a.append("&&").append(b.independentForm());}
 				},
 				supersets.head().independentForm()
@@ -43,7 +43,7 @@ public final class Intersection extends CharClass
 	}
 	
 	@Override
-	public Intersection intersect(final CharacterClass right)
+	public Intersection intersect(final CharClass right)
 	{
 		return new Intersection(supersets.append(List.single(right))); 
 	}
@@ -54,12 +54,12 @@ public final class Intersection extends CharClass
 		return new Intersection(supersets.append(right.supersets));
 	}
 	
-	static Intersection intersect(final CharacterClass left, final CharacterClass right)
+	static Intersection intersect(final CharClass left, final CharClass right)
 	{
 		return new Intersection(List.list(left, right));
 	}
 	
-	static Intersection intersect(final CharacterClass left, final Intersection right)
+	static Intersection intersect(final CharClass left, final Intersection right)
 	{
 		return new Intersection(right.supersets.cons(left));
 	}

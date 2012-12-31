@@ -7,9 +7,9 @@ import fj.data.List;
 public final class Union extends CharClass
 {
 	private static final long serialVersionUID = 1L;
-	public final List<CharacterClass> subsets;
+	public final List<CharClass> subsets;
 	
-	Union(final List<CharacterClass> subsets)
+	Union(final List<CharClass> subsets)
 	{
 		if (subsets == null) throw new NullPointerException("subsets");
 		this.subsets = subsets;
@@ -25,10 +25,10 @@ public final class Union extends CharClass
 	public LazyString unitableForm()
 	{
 		return subsets.foldLeft(
-				new F2<LazyString, CharacterClass, LazyString>()
+				new F2<LazyString, CharClass, LazyString>()
 				{
 					@Override
-					public LazyString f(final LazyString a, final CharacterClass b)
+					public LazyString f(final LazyString a, final CharClass b)
 					{return a.append(b.unitableForm());}
 				},
 				LazyString.empty
@@ -48,17 +48,17 @@ public final class Union extends CharClass
 	}
 
 	@Override
-	public Union union(final CharacterClass right)
+	public Union union(final CharClass right)
 	{
 		return new Union(subsets.append(List.single(right)));
 	}
 	
-	static Union union(final CharacterClass left, final Union right)
+	static Union union(final CharClass left, final Union right)
 	{
 		return new Union(right.subsets.cons(left));
 	}
 	
-	static Union union(final CharacterClass left, final CharacterClass right)
+	static Union union(final CharClass left, final CharClass right)
 	{
 		return new Union(List.list(left, right));
 	}
