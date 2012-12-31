@@ -12,7 +12,7 @@ public class AdoptTest
 	public void testAdopt()
 	{
 		final Pattern pattern = Pattern.compile("abc");
-		final Adopted expression = Adopted.adopt(pattern);
+		final Adopted expression = Adopted.fromPattern(pattern);
 		assertEquals("abc", expression.expression().toString());
 	}
 }

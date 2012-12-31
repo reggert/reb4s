@@ -25,7 +25,7 @@ public final class Adopted extends AbstractExpression
 	 * @throws NullPointerException
 	 * 	if <var>pattern</var> is <code>null</code>.
 	 */
-	public static Adopted adopt(final Pattern pattern)
+	public static Adopted fromPattern(final Pattern pattern)
 	{
 		if (pattern == null)
 			throw new NullPointerException("pattern");
