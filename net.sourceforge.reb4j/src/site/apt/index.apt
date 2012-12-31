@@ -2,20 +2,20 @@ Usage
 
 	The general process of using <<reb4j>> consists of building up an
 	expression from sub-expressions, then calling the 
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html#toPattern()}toPattern}}
+	{{{./apidocs/net/sourceforge/reb4j/Expression.html#toPattern()}toPattern}}
 	method of the constructed expression in order to compile the expression.
 	
 	Expressions are represented by the 
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html}Regex}} class, instances of
+	{{{./apidocs/net/sourceforge/reb4j/Expression.html}Expression}} interface, instances of
 	which are immutable after being constructed, which allows a single
 	instance to be re-used as a sub-expression in many different expressions.
 	
-	There is one sub-class, 
-	{{{./apidocs/net/sourceforge/reb4j/CharClass.html}CharClass}}, which
+	There is one sub-interface, 
+	{{{./apidocs/net/sourceforge/reb4j/CharacterClass.html}CharacterClass}}, which
 	represents the specialized case of character classes (usually represented 
 	in regular expressions as ranges of characters surrounded by square
 	brackets.  Character classes (instances of 
-	{{{./apidocs/net/sourceforge/reb4j/CharClass.html}CharClass}}) may be 
+	{{{./apidocs/net/sourceforge/reb4j/CharacterClass.html}CharacterClass}}) may be 
 	composed from other character classes, and larger expressions may be
 	composed from character classes, but character classes cannot be
 	composed from non-character class expressions (hence the need for a
@@ -31,12 +31,15 @@ Usage
 ** Literals
 	
 	The simplest type of sub-expression you are likely to need is a 
-	basic string match.  <<reb4j>> makes this easy with the static 
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html#literal(java.lang.CharSequence)}Regex.literal}}
-	method.
+	basic string or a single character match.  <<reb4j>> makes this easy with the static 
+	{{{./apidocs/net/sourceforge/reb4j/Literal.html#literal(java.lang.String)}Literal.literal(String)}}
+	and
+	{{{./apidocs/net/sourceforge/reb4j/Literal.html#literal(char)}Literal.literal(char)}}
+	methods.
 			
 -------------------------------------------------------------------------------
-final Regex aBunchOfBracketsFollowedByAnA = Regex.literal("[[[[[A");
+final StringLiteral aBunchOfBracketsFollowedByAnA = Literal.literal("[[[[[A");
+final CharLiteral theNumberFive = Literal.literal('5');
 -------------------------------------------------------------------------------
 
 	Notice that <<reb4j>> handles escaping characters that have special
@@ -51,26 +54,26 @@ final Regex aBunchOfBracketsFollowedByAnA = Regex.literal("[[[[[A");
 	non-static method for accomplishing this.
 	
 	The non-static 
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html#then(net.sourceforge.reb4j.Regex)}Regex.then}}
+	{{{./apidocs/net/sourceforge/reb4j/Sequenceable.html#then(net.sourceforge.reb4j.Sequenceable)}Sequenceable.then}}
 	method allows you to define a sequence of sub-expressions by chaining.
 
 -------------------------------------------------------------------------------
-final Regex ab = Regex.literal("ab");
-final Regex cd = Regex.literal("cd");
-final Regex abcd = ab.then(cd);
+final Literal ab = Literal.literal("ab");
+final Literal cd = Literal.literal("cd");
+final Sequence abcd = ab.then(cd);
 -------------------------------------------------------------------------------			
 			
 	However, the static 
-	{{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/Regex.html#sequence(net.sourceforge.reb4j.Regex...)}Regex.sequence}}
+	{{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/Sequence.html#sequence(net.sourceforge.reb4j.Sequenceable, net.sourceforge.reb4j.Sequenceable, net.sourceforge.reb4j.Sequenceable...)}Sequence.sequence}}
 	method is likely to be more convenient when dealing with sequences 
 	consisting of more than two sub-expressions.
 
 -------------------------------------------------------------------------------
-final Regex a = Regex.literal("a");
-final Regex b = Regex.literal("b");
-final Regex c = Regex.literal("c");
-final Regex d = Regex.literal("d");
-final Regex abcd = Regex.sequence(a, b, c, d);
+final Literal a = Literal.literal("a");
+final Literal b = Literal.literal("b");
+final Literal c = Literal.literal("c");
+final Literal d = Literal.literal("d");
+final Sequence abcd = Sequence.sequence(a, b, c, d);
 -------------------------------------------------------------------------------
 			
 ** Alternation
@@ -80,19 +83,20 @@ final Regex abcd = Regex.sequence(a, b, c, d);
 	OR of the subexpressions.  In regular expressions, this is
 	indicated by the | character.  In <<reb4j>>, it is accomplished
 	using the 
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html#or(net.sourceforge.reb4j.Regex)}Regex.or}}
-	method, which comes in both
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html#or(net.sourceforge.reb4j.Regex...)}static}}
-	and non-static forms.
+	{{{./apidocs/net/sourceforge/reb4j/Alternative.html#or(net.sourceforge.reb4j.Alternative)}Alternative.or}}
+	method or the static
+	{{{./apidocs/net/sourceforge/reb4j/Alternation.html#alternatives(net.sourceforge.reb4j.Alternative, net.sourceforge.reb4j.Alternative net.sourceforge.reb4j.Alternative...)}Alternation.alternatives}}
+	method.
 			
 -------------------------------------------------------------------------------
-final Regex a = Regex.literal("a");
-final Regex b = Regex.literal("b");
-final Regex c = Regex.literal("c");
-final Regex a_or_b = a.or(b); // using non-static version
-final Regex a_or_b_or_c = Regex.or(a, b, c); // using static-version
+final Literal a = Literal.string("a");
+final Literal b = Literal.string("b");
+final Literal c = Literal.string("c");
+final Alternation a_or_b = a.or(b); // using non-static method
+final Alternation a_or_b_or_c = Alternation.alternatives(a, b, c); // using static method
 -------------------------------------------------------------------------------
-			
+
+TODO: resume editing here			
 ** Quantifiers
 		
 	One of the most important features of regular expressions is the
