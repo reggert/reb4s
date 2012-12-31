@@ -5,7 +5,6 @@ import fj.data.LazyString;
 import fj.data.List;
 
 public final class Union extends CharClass
-	implements Intersectable
 {
 	private static final long serialVersionUID = 1L;
 	public final List<CharacterClass> subsets;
@@ -53,14 +52,6 @@ public final class Union extends CharClass
 	{
 		return new Union(subsets.append(List.single(right)));
 	}
-	
-	@Override
-	public Intersection intersect(final Intersectable right)
-	{return Intersection.intersect(this, right);}
-
-	@Override
-	public Intersection intersect(final Intersection right)
-	{return Intersection.intersect(this, right);}
 	
 	static Union union(final CharacterClass left, final Union right)
 	{

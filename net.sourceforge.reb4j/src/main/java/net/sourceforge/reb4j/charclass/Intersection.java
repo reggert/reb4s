@@ -5,13 +5,12 @@ import fj.data.LazyString;
 import fj.data.List;
 
 public final class Intersection extends CharClass
-	implements Intersectable
 {
 	private static final long serialVersionUID = 1L;
 	
-	public final List<Intersectable> supersets;
+	public final List<CharacterClass> supersets;
 	
-	private Intersection(final List<Intersectable> supersets)
+	private Intersection(final List<CharacterClass> supersets)
 	{
 		if (supersets == null) throw new NullPointerException("supersets");
 		this.supersets = supersets;
@@ -27,10 +26,10 @@ public final class Intersection extends CharClass
 	public LazyString unitableForm()
 	{
 		return supersets.tail().foldLeft(
-				new F2<LazyString, Intersectable, LazyString>()
+				new F2<LazyString, CharacterClass, LazyString>()
 				{
 					@Override
-					public LazyString f(final LazyString a, final Intersectable b)
+					public LazyString f(final LazyString a, final CharacterClass b)
 					{return a.append("&&").append(b.independentForm());}
 				},
 				supersets.head().independentForm()
@@ -42,17 +41,9 @@ public final class Intersection extends CharClass
 	{
 		return LazyString.str("[").append(unitableForm()).append("]");
 	}
-
-	@Override
-	public Union union(final Union right)
-	{return Union.union(this, right);}
-
-	@Override
-	public Union union(final CharacterClass right)
-	{return Union.union(this, right);}
 	
 	@Override
-	public Intersection intersect(final Intersectable right)
+	public Intersection intersect(final CharacterClass right)
 	{
 		return new Intersection(supersets.append(List.single(right))); 
 	}
@@ -63,12 +54,12 @@ public final class Intersection extends CharClass
 		return new Intersection(supersets.append(right.supersets));
 	}
 	
-	static Intersection intersect(final Intersectable left, final Intersectable right)
+	static Intersection intersect(final CharacterClass left, final CharacterClass right)
 	{
 		return new Intersection(List.list(left, right));
 	}
 	
-	static Intersection intersect(final Intersectable left, final Intersection right)
+	static Intersection intersect(final CharacterClass left, final Intersection right)
 	{
 		return new Intersection(right.supersets.cons(left));
 	}

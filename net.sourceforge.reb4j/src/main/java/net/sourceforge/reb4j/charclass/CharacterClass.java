@@ -27,6 +27,27 @@ public interface CharacterClass
 	 */
 	LazyString independentForm();
 	
+	/**
+	 * Returns the union of this character class with the specified
+	 * character classes.
+	 */
 	Union union(Union right);
+	
+	/**
+	 * Returns the union of this character class with the specified
+	 * character class.
+	 */
 	Union union(CharacterClass right);
+	
+	/**
+	 * Returns the intersection of this character class with the 
+	 * specified character class.
+	 */
+	Intersection intersect(CharacterClass right);
+	
+	/**
+	 * Returns the intersection of this character class with the 
+	 * specified character classes.
+	 */
+	Intersection intersect(Intersection right);
 }

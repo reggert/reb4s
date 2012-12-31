@@ -5,7 +5,7 @@ import net.sourceforge.reb4j.Literal;
 import fj.data.LazyString;
 import fj.data.Set;
 
-public final class SingleChar extends AbstractUnitableIntersectable
+public final class SingleChar extends CharClass
 {
 	private static final long serialVersionUID = 1L;
 	public final char character;

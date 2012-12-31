@@ -5,7 +5,7 @@ import fj.data.LazyString;
 /**
  * Character class representing the negation of another character class.
  */
-public final class Negated<T extends CharClass> extends AbstractUnitableIntersectable
+public final class Negated<T extends CharClass> extends CharClass
 {
 	private static final long serialVersionUID = 1L;
 	public final T positive;

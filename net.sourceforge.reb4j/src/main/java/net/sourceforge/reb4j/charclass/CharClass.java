@@ -29,6 +29,14 @@ public abstract class CharClass extends AbstractQuantifiableSequenceableAlternat
 	public Union union(final CharacterClass right)
 	{return Union.union(this, right);}
 	
+	@Override
+	public Intersection intersect(final CharacterClass right)
+	{return Intersection.intersect(this, right);}
+
+	@Override
+	public Intersection intersect(final Intersection right)
+	{return Intersection.intersect(this, right);}
+	
 	
 	public static SingleChar character(final char c)
 	{return new SingleChar(c);}

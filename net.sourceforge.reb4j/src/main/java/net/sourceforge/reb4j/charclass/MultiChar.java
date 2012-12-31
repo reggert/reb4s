@@ -5,7 +5,7 @@ import fj.F2;
 import fj.data.LazyString;
 import fj.data.Set;
 
-public final class MultiChar extends AbstractUnitableIntersectable
+public final class MultiChar extends CharClass
 {
 	private static final long serialVersionUID = 1L;
 	public final Set<Character> characters;

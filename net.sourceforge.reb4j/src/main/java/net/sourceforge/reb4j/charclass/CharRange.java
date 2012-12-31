@@ -2,7 +2,7 @@ package net.sourceforge.reb4j.charclass;
 
 import fj.data.LazyString;
 
-public final class CharRange extends AbstractUnitableIntersectable
+public final class CharRange extends CharClass
 {
 	private static final long serialVersionUID = 1L;
 	public final char first, last;
