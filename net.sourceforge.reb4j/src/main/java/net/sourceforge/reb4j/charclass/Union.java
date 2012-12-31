@@ -5,12 +5,12 @@ import fj.data.LazyString;
 import fj.data.List;
 
 public final class Union extends CharClass
-	implements Unitable, Intersectable
+	implements Intersectable
 {
 	private static final long serialVersionUID = 1L;
-	public final List<Unitable> subsets;
+	public final List<CharacterClass> subsets;
 	
-	Union(final List<Unitable> subsets)
+	Union(final List<CharacterClass> subsets)
 	{
 		if (subsets == null) throw new NullPointerException("subsets");
 		this.subsets = subsets;
@@ -26,10 +26,10 @@ public final class Union extends CharClass
 	public LazyString unitableForm()
 	{
 		return subsets.foldLeft(
-				new F2<LazyString, Unitable, LazyString>()
+				new F2<LazyString, CharacterClass, LazyString>()
 				{
 					@Override
-					public LazyString f(final LazyString a, final Unitable b)
+					public LazyString f(final LazyString a, final CharacterClass b)
 					{return a.append(b.unitableForm());}
 				},
 				LazyString.empty
@@ -49,7 +49,7 @@ public final class Union extends CharClass
 	}
 
 	@Override
-	public Union union(final Unitable right)
+	public Union union(final CharacterClass right)
 	{
 		return new Union(subsets.append(List.single(right)));
 	}
@@ -62,12 +62,12 @@ public final class Union extends CharClass
 	public Intersection intersect(final Intersection right)
 	{return Intersection.intersect(this, right);}
 	
-	static Union union(final Unitable left, final Union right)
+	static Union union(final CharacterClass left, final Union right)
 	{
 		return new Union(right.subsets.cons(left));
 	}
 	
-	static Union union(final Unitable left, final Unitable right)
+	static Union union(final CharacterClass left, final CharacterClass right)
 	{
 		return new Union(List.list(left, right));
 	}

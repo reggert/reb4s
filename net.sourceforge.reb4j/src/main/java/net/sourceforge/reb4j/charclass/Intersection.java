@@ -5,7 +5,7 @@ import fj.data.LazyString;
 import fj.data.List;
 
 public final class Intersection extends CharClass
-	implements Unitable, Intersectable
+	implements Intersectable
 {
 	private static final long serialVersionUID = 1L;
 	
@@ -48,7 +48,7 @@ public final class Intersection extends CharClass
 	{return Union.union(this, right);}
 
 	@Override
-	public Union union(final Unitable right)
+	public Union union(final CharacterClass right)
 	{return Union.union(this, right);}
 	
 	@Override

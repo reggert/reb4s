@@ -26,4 +26,7 @@ public interface CharacterClass
 	 * brackets.
 	 */
 	LazyString independentForm();
+	
+	Union union(Union right);
+	Union union(CharacterClass right);
 }

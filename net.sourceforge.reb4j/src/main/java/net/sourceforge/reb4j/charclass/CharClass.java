@@ -21,6 +21,15 @@ public abstract class CharClass extends AbstractQuantifiableSequenceableAlternat
 	public final LazyString expression()
 	{return independentForm();}
 	
+	@Override
+	public Union union(final Union right)
+	{return Union.union(this, right);}
+
+	@Override
+	public Union union(final CharacterClass right)
+	{return Union.union(this, right);}
+	
+	
 	public static SingleChar character(final char c)
 	{return new SingleChar(c);}
 	
