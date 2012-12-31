@@ -24,9 +24,9 @@ public abstract class CharClass extends AbstractQuantifiableSequenceableAlternat
 	public static SingleChar character(final char c)
 	{return new SingleChar(c);}
 	
-	public static MultiChar characters(final char... cs)
+	public static MultiChar characters(final char c1, final char c2, final char... cs)
 	{
-		Set<Character> set = Set.empty(charOrd);
+		Set<Character> set = Set.set(charOrd, c1, c2);
 		for (final char c : cs)
 			set = set.insert(c);
 		return new MultiChar(set);
