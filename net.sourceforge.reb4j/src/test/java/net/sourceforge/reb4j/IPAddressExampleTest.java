@@ -26,14 +26,14 @@ public class IPAddressExampleTest
 	public final Alternative twoDigitOctet = 
 		CharClass.range('1', '9').then(Perl.DIGIT);
 	public final Alternative oneHundredsOctet = 
-		Literal.character('1').then(Perl.DIGIT.repeat(2));
+		Literal.literal('1').then(Perl.DIGIT.repeat(2));
 	public final Alternative lowTwoHundredsOctet = Sequence.sequence(
-			Literal.character('2'),
+			Literal.literal('2'),
 			CharClass.range('0', '4'),
 			Perl.DIGIT
 		);
 	public final Alternative highTwoHundredsOctet = 
-		Literal.string("25").then(CharClass.range('0', '5'));
+		Literal.literal("25").then(CharClass.range('0', '5'));
 	public final Alternation octet = Alternation.alternatives(
 			oneDigitOctet, 
 			twoDigitOctet, 
@@ -41,7 +41,7 @@ public class IPAddressExampleTest
 			lowTwoHundredsOctet,
 			highTwoHundredsOctet
 		);
-	public final CharLiteral dot = Literal.character('.');
+	public final CharLiteral dot = Literal.literal('.');
 	public final Sequence dottedDecimalIPAddress = Sequence.sequence(
 			Group.capture(octet), 
 			dot, 

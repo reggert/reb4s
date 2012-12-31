@@ -33,10 +33,10 @@ public abstract class Literal extends AbstractSequenceableAlternative
 			);
 	}
 	
-	public static StringLiteral string(final String unescaped)
+	public static StringLiteral literal(final String unescaped)
 	{return new StringLiteral(unescaped);}
 	
-	public static CharLiteral character(final char unescapedChar)
+	public static CharLiteral literal(final char unescapedChar)
 	{return new CharLiteral(unescapedChar);}
 	
 	Literal()

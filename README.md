@@ -31,14 +31,14 @@ As a quick example, here's one way to use **reb4j** to describe a pattern that v
 	final Alternative twoDigitOctet = 
 		CharClass.range('1', '9').then(Perl.DIGIT);
 	final Alternative oneHundredsOctet = 
-		Literal.character('1').then(Perl.DIGIT.repeat(2));
+		Literal.literal('1').then(Perl.DIGIT.repeat(2));
 	public final Alternative lowTwoHundredsOctet = Sequence.sequence(
-			Literal.character('2'),
+			Literal.literal('2'),
 			CharClass.range('0', '4'),
 			Perl.DIGIT
 		);
 	public final Alternative highTwoHundredsOctet = 
-		Literal.string("25").then(CharClass.range('0', '5'));
+		Literal.literal("25").then(CharClass.range('0', '5'));
 	public final Alternation octet = Alternation.alternatives(
 			oneDigitOctet, 
 			twoDigitOctet, 
@@ -46,7 +46,7 @@ As a quick example, here's one way to use **reb4j** to describe a pattern that v
 			lowTwoHundredsOctet,
 			highTwoHundredsOctet
 		);
-	public final CharLiteral dot = Literal.character('.');
+	public final CharLiteral dot = Literal.literal('.');
 	public final Sequence dottedDecimalIPAddress = Sequence.sequence(
 			Group.capture(octet), 
 			dot, 
