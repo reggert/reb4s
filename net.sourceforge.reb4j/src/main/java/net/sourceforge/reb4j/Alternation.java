@@ -90,10 +90,16 @@ public final class Alternation extends AbstractExpression
 		this.alternatives = List.list(left, right);
 	}
 	
-	public static Alternation alternatives(final Alternative... alternatives)
+	public static Alternation alternatives(
+			final Alternative first, 
+			final Alternative second, 
+			final Alternative... rest
+		)
 	{
-		if (alternatives == null) throw new NullPointerException("alternatives");
-		return new Alternation(List.list(alternatives));
+		if (first == null) throw new NullPointerException("first");
+		if (second == null) throw new NullPointerException("second");
+		if (rest == null) throw new NullPointerException("rest");
+		return new Alternation(List.list(rest).cons(second).cons(first));
 	}
 	
 	@Override

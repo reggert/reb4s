@@ -45,10 +45,16 @@ public final class Sequence extends AbstractExpression
 		this.components = List.list(left, right);
 	}
 	
-	public static Sequence sequence(final Sequenceable... components)
+	public static Sequence sequence(
+			final Sequenceable first, 
+			final Sequenceable second, 
+			final Sequenceable... rest
+		)
 	{
-		if (components == null) throw new NullPointerException("components");
-		return new Sequence(List.list(components));
+		if (first == null) throw new NullPointerException("first");
+		if (second == null) throw new NullPointerException("second");
+		if (rest == null) throw new NullPointerException("rest");
+		return new Sequence(List.list(rest).cons(second).cons(first));
 	}
 	
 
