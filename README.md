@@ -18,8 +18,8 @@ the regular expression syntax provided by the JRE's
 
 Of course, this comes at the cost of a modest performance penalty at startup as **reb4j** builds strings to pass into the pattern compiler, but the time required for this processing is dwarfed by the time spent by the compiler itself and should not be noticeable.
 
-**reb4j** currently provides two API's: one in Java and one in Scala.  The Java API is older and better tested, but it is not nearly as clean or efficient as the Scala API.  In the near future, the Java API will be refactored to take advantage of the lessons learned during the development of the Scala API.
-	
+**reb4j** currently provides two API's: one in Java and one in Scala.  They each function in roughly the same way.  However, the Scala API takes advantage of several language features of Scala to make its use easier and more readable when invoked from Scala code.  The Scala API depends only upon the standard Scala library.  The Java API depends upon the [Functional Java](http://functionaljava.org) library in order to achieve some performance optimizations and make use of functional idioms.
+
 As a quick example, here's one way to use **reb4j** to describe a pattern that validates the format of a dotted decimal IP address (ensuring that each octet is a decimal value between 0 and 255) and extracts the octets.  First, using the Java API:
 	
 	final Pattern pattern = dottedDecimalIPAddress.toPattern();
