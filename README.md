@@ -2,13 +2,13 @@
 
 The purpose of **reb4j** is to provide a pure Java wrapper around
 the regular expression syntax provided by the JRE's 
-[java.util.Pattern](http://java.sun.com/javase/6/docs/api/java/util/regex/Pattern.html}java.util.regex.Pattern) class.
+[java.util.regex.Pattern](http://java.sun.com/javase/6/docs/api/java/util/regex/Pattern.html) class.
 
 **reb4j** provides the following benefits over writing regular expressions directly:
 
 *	The **reb4j** API guarantees proper expression syntax.
 	If the Java code compiles, the regular expression will compile at runtime.  
-	In other words, it is not necessary to deal with [PatternSyntaxException](http://java.sun.com/javase/6/docs/api/java/util/regex/PatternSyntaxException.html}PatternSyntaxException)s.
+	In other words, it is not necessary to deal with [PatternSyntaxException](http://java.sun.com/javase/6/docs/api/java/util/regex/PatternSyntaxException.html)s.
 	You will know right away if there is a syntax error in your regular expression, rather than having to wait until runtime to find out. 
 *	The **reb4j** API enables composition of subexpressions.  Complex expressions can be broken into manageable pieces, each of which can be independently tested and reused.
 *	Patterns built using **reb4j** are inherently self-documenting (at least, moreso than regular expression syntax).
