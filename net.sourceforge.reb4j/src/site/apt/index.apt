@@ -2,20 +2,20 @@ Usage
 
 	The general process of using <<reb4j>> consists of building up an
 	expression from sub-expressions, then calling the 
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html#toPattern()}toPattern}}
+	{{{./apidocs/net/sourceforge/reb4j/Expression.html#toPattern()}toPattern}}
 	method of the constructed expression in order to compile the expression.
 	
 	Expressions are represented by the 
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html}Regex}} class, instances of
+	{{{./apidocs/net/sourceforge/reb4j/Expression.html}Expression}} interface, instances of
 	which are immutable after being constructed, which allows a single
 	instance to be re-used as a sub-expression in many different expressions.
 	
-	There is one sub-class, 
-	{{{./apidocs/net/sourceforge/reb4j/CharClass.html}CharClass}}, which
+	There is one implementing class, 
+	{{{./apidocs/net/sourceforge/reb4j/charclass/CharClass.html}CharClass}}, which
 	represents the specialized case of character classes (usually represented 
 	in regular expressions as ranges of characters surrounded by square
 	brackets.  Character classes (instances of 
-	{{{./apidocs/net/sourceforge/reb4j/CharClass.html}CharClass}}) may be 
+	{{{./apidocs/net/sourceforge/reb4j/charclass/CharClass.html}CharClass}}) may be 
 	composed from other character classes, and larger expressions may be
 	composed from character classes, but character classes cannot be
 	composed from non-character class expressions (hence the need for a
@@ -31,12 +31,15 @@ Usage
 ** Literals
 	
 	The simplest type of sub-expression you are likely to need is a 
-	basic string match.  <<reb4j>> makes this easy with the static 
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html#literal(java.lang.CharSequence)}Regex.literal}}
-	method.
+	basic string or a single character match.  <<reb4j>> makes this easy with the static 
+	{{{./apidocs/net/sourceforge/reb4j/Literal.html#literal(java.lang.String)}Literal.literal(String)}}
+	and
+	{{{./apidocs/net/sourceforge/reb4j/Literal.html#literal(char)}Literal.literal(char)}}
+	methods.
 			
 -------------------------------------------------------------------------------
-final Regex aBunchOfBracketsFollowedByAnA = Regex.literal("[[[[[A");
+final StringLiteral aBunchOfBracketsFollowedByAnA = Literal.literal("[[[[[A");
+final CharLiteral theNumberFive = Literal.literal('5');
 -------------------------------------------------------------------------------
 
 	Notice that <<reb4j>> handles escaping characters that have special
@@ -51,26 +54,26 @@ final Regex aBunchOfBracketsFollowedByAnA = Regex.literal("[[[[[A");
 	non-static method for accomplishing this.
 	
 	The non-static 
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html#then(net.sourceforge.reb4j.Regex)}Regex.then}}
+	{{{./apidocs/net/sourceforge/reb4j/Sequenceable.html#then(net.sourceforge.reb4j.Sequenceable)}Sequenceable.then}}
 	method allows you to define a sequence of sub-expressions by chaining.
 
 -------------------------------------------------------------------------------
-final Regex ab = Regex.literal("ab");
-final Regex cd = Regex.literal("cd");
-final Regex abcd = ab.then(cd);
+final Literal ab = Literal.literal("ab");
+final Literal cd = Literal.literal("cd");
+final Sequence abcd = ab.then(cd);
 -------------------------------------------------------------------------------			
 			
 	However, the static 
-	{{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/Regex.html#sequence(net.sourceforge.reb4j.Regex...)}Regex.sequence}}
+	{{{http://reb4j.sourceforge.net/apidocs/net/sourceforge/reb4j/Sequence.html#sequence(net.sourceforge.reb4j.Sequenceable, net.sourceforge.reb4j.Sequenceable, net.sourceforge.reb4j.Sequenceable...)}Sequence.sequence}}
 	method is likely to be more convenient when dealing with sequences 
 	consisting of more than two sub-expressions.
 
 -------------------------------------------------------------------------------
-final Regex a = Regex.literal("a");
-final Regex b = Regex.literal("b");
-final Regex c = Regex.literal("c");
-final Regex d = Regex.literal("d");
-final Regex abcd = Regex.sequence(a, b, c, d);
+final Literal a = Literal.literal("a");
+final Literal b = Literal.literal("b");
+final Literal c = Literal.literal("c");
+final Literal d = Literal.literal("d");
+final Sequence abcd = Sequence.sequence(a, b, c, d);
 -------------------------------------------------------------------------------
 			
 ** Alternation
@@ -80,19 +83,19 @@ final Regex abcd = Regex.sequence(a, b, c, d);
 	OR of the subexpressions.  In regular expressions, this is
 	indicated by the | character.  In <<reb4j>>, it is accomplished
 	using the 
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html#or(net.sourceforge.reb4j.Regex)}Regex.or}}
-	method, which comes in both
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html#or(net.sourceforge.reb4j.Regex...)}static}}
-	and non-static forms.
+	{{{./apidocs/net/sourceforge/reb4j/Alternative.html#or(net.sourceforge.reb4j.Alternative)}Alternative.or}}
+	method or the static
+	{{{./apidocs/net/sourceforge/reb4j/Alternation.html#alternatives(net.sourceforge.reb4j.Alternative, net.sourceforge.reb4j.Alternative net.sourceforge.reb4j.Alternative...)}Alternation.alternatives}}
+	method.
 			
 -------------------------------------------------------------------------------
-final Regex a = Regex.literal("a");
-final Regex b = Regex.literal("b");
-final Regex c = Regex.literal("c");
-final Regex a_or_b = a.or(b); // using non-static version
-final Regex a_or_b_or_c = Regex.or(a, b, c); // using static-version
+final Literal a = Literal.string("a");
+final Literal b = Literal.string("b");
+final Literal c = Literal.string("c");
+final Alternation a_or_b = a.or(b); // using non-static method
+final Alternation a_or_b_or_c = Alternation.alternatives(a, b, c); // using static method
 -------------------------------------------------------------------------------
-			
+
 ** Quantifiers
 		
 	One of the most important features of regular expressions is the
@@ -105,13 +108,27 @@ final Regex a_or_b_or_c = Regex.or(a, b, c); // using static-version
 	which is indicated by an asterisk (*) in most regular
 	expression languages.  It indicates that the preceding
 	sub-expression may appear zero or more times in a row.
-	<<reb4j>> supports this with the non-static
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html#star()}Regex.star}}
-	method.
+	<<reb4j>> supports this with the 
+	{{{./apidocs/net/sourceforge/reb4j/Quantifiable.html#anyTimes()}Quantifiable.anyTimes}}
+	methods.
 
 -------------------------------------------------------------------------------
-final Regex a = Regex.literal("a");
-final Regex zeroOrMore_a = a.star();
+final CharLiteral a = Literal.literal('a');
+final Quantified zeroOrMore_a = a.anyTimes();
+-------------------------------------------------------------------------------
+
+	Note that not all expression types can be quantified, and therefore not all
+	implementations of
+	{{{./apidocs/net/sourceforge/reb4j/Expression.html}Expressions}}
+	implement
+	{{{./apidocs/net/sourceforge/reb4j/Quantifiable.html}Quantifiable}}.
+	However, any expression that is not quantifiable on its own can be quantified 
+	by first wrapping it in a grouping using one of the various static methods of 
+	the {{{./apidocs/net/sourceforge/reb4j/Group.html}Group}} class.
+	
+-------------------------------------------------------------------------------
+final StringLiteral abc = Literal.literal("abc");
+final Quantified zeroOrMore_abc = Group.nonCapturing(abc).anyTimes();
 -------------------------------------------------------------------------------
 			
 *** One or More
@@ -120,13 +137,12 @@ final Regex zeroOrMore_a = a.star();
 	languages support a means to indicate that an expression must
 	appear at least once.  This is typically done with the plus (+)
 	operator.  <<reb4j>> provides support for this with the
-	non-static
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html#atLeastOnce()}Regex.atLeastOnce}}
+	{{{./apidocs/net/sourceforge/reb4j/Quantifiable.html#atLeastOnce()}Quantifiable.atLeastOnce}}
 	method.
 				
 -------------------------------------------------------------------------------
-final Regex a = Regex.literal("a");
-final Regex a_repeating = a.atLeastOnce();
+final CharLiteral a = Regex.literal('a');
+final Quantified a_repeating = a.atLeastOnce();
 -------------------------------------------------------------------------------
 			
 *** Optional
@@ -134,12 +150,12 @@ final Regex a_repeating = a.atLeastOnce();
 	It is also possible to indicate that a sub-expression may
 	appear exactly once or not at all, using the ? operator.
 	<<reb4j>> provides for this with the 
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html#optional()}Regex.optional}}
+	{{{./apidocs/net/sourceforge/reb4j/Quantifiable.html#optional()}Quantifiable.optional}}
 	method.
 				
 -------------------------------------------------------------------------------
-final Regex toBe = Regex.literal("to be");
-final Regex toBeOrNotToBe = toBe.optional();
+final StringLiteral toBe = Quantifiable.literal("to be");
+final Quantified toBeOrNotToBe = Group.nonCapturing(toBe).optional();
 -------------------------------------------------------------------------------
 
 *** Bounded Repetition
@@ -152,23 +168,23 @@ final Regex toBeOrNotToBe = toBe.optional();
 	omitting either bound.  <<reb4j>> supports all possibilities
 	with a range of non-static methods.
 	
-	The {{{./apidocs/net/sourceforge/reb4j/Regex.html#repeat(int)}Regex.repeat(int)}}
+	The {{{./apidocs/net/sourceforge/reb4j/Quantifiable.html#repeat(int)}Quantifiable.repeat(int)}}
 	method can be used to specify an exact number of repetitions.
 	Its overloaded form,
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html#repeat(int, int)}Regex.repeat(int, int)}}
+	{{{./apidocs/net/sourceforge/reb4j/Quantifiable.html#repeat(int, int)}Quantifiable.repeat(int, int)}}
 	can be used to indicate minimum and maximum numbers of repetitions.
 	
-	The {{{./apidocs/net/sourceforge/reb4j/Regex.html#atLeast(int)}Regex.atLeast(int)}}
+	The {{{./apidocs/net/sourceforge/reb4j/Quantifiable.html#atLeast(int)}Quantifiable.atLeast(int)}}
 	method can be used to specify a minimum number of repetitions with no maximum.
 	
 	Examples of the use of each of these are shown below.
 				
 -------------------------------------------------------------------------------
-final Regex a = Regex.literal("a");
-final Regex a_4_times = a.repeat(4);
-final Regex a_between_3_and_6_times = a.repeat(3, 6);
-final Regex a_at_least_5_times = a.atLeast(5);
-final Regex a_at_most_twice = a.repeat(0, 2);
+final CharLiteral a = Literal.literal('a');
+final Quantified a_4_times = a.repeat(4);
+final Quantified a_between_3_and_6_times = a.repeat(3, 6);
+final Quantified a_at_least_5_times = a.atLeast(5);
+final Quantified a_at_most_twice = a.repeat(0, 2);
 -------------------------------------------------------------------------------
 
 ** Capturing Groups
@@ -180,18 +196,18 @@ final Regex a_at_most_twice = a.repeat(0, 2);
 	regular expression, and, if they match, the segments of the input
 	that matched each group can be independently obtained.
 	To designate a sub-expression as a capturing group with <<reb4j>>,
-	use the non-static
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html#group()}group}} method.
+	use the static
+	{{{./apidocs/net/sourceforge/reb4j/Group.html#capture()}Group.capture}} method.
 	Be sure to pay attention to how your final expression is constructed.
 	The groups will be numbered according to the order in which they begin
 	in the final regular expression, which is not necessarily the same as
 	the order you invoke the
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html#group()}group}} method.
+	{{{./apidocs/net/sourceforge/reb4j/Group.html#capture()}Group.capture}} method.
 		
 -------------------------------------------------------------------------------
-final Regex ABCs = Regex.literal("ABC").atLeastOnce();
-final Regex oneTwoThrees = Regex.literal("123").atLeastOnce();
-final Regex ABCsAndOneTwoThrees = ABCs.group().then(oneTwoThrees);
+final Quantified ABCs = Group.nonCapturing(Literal.literal("ABC")).atLeastOnce();
+final Quantified oneTwoThrees = Regex.literal("123").atLeastOnce();
+final Sequence ABCsAndOneTwoThrees = Group.capture(ABCs).then(oneTwoThrees);
 final Pattern pattern = ABCsAndOneTwoThrees.toPattern();
 final Matcher matcher = pattern.matcher("ABCABCABC123123123");
 if (matcher.matches())
@@ -210,95 +226,91 @@ if (matcher.matches())
 	characters, ranges of characters, or character classes in square brackets.
 	Since character classes may be composed from other character classes, 
 	<<reb4j>> provides a separate class,
-	{{{./apidocs/net/sourceforge/reb4j/CharClass.html}CharClass}}, which
+	{{{./apidocs/net/sourceforge/reb4j/charclass/CharClass.html}CharClass}}, which
 	contains static methods for working	with character classes.  Note that 
-	{{{./apidocs/net/sourceforge/reb4j/CharClass.html}CharClass}} extends
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html}Regex}}, so instances may be
-	used in any context in which a 
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html}Regex}} would be valid.
+	{{{./apidocs/net/sourceforge/reb4j/charclass/CharClass.html}CharClass}}
+	implements 
+	{{{./apidocs/net/sourceforge/reb4j/Expression.html}Expression}} and its 
+	sub-interfaces, so instances may be used in any context in which an 
+	{{{./apidocs/net/sourceforge/reb4j/Expression.html}Expression}} would be valid.
 	
 *** Predefined Classes
 
-	The {{{./apidocs/net/sourceforge/reb4j/CharClass.html}CharClass}} class
+	The {{{./apidocs/net/sourceforge/reb4j/charclass/CharClass.html}CharClass}} class
 	provides constants that represent the various predefined character classes
 	that the 
 	{{{http://java.sun.com/javase/6/docs/api/java/util/regex/Pattern.html}Pattern}}
 	class supports.  Examples of these include
-	{{{./apidocs/net/sourceforge/reb4j/CharClass.html#PERL_DIGIT}CharClass.PERL_DIGIT}},
+	{{{./apidocs/net/sourceforge/reb4j/charclass/CharClass.Perl.html#DIGIT}CharClass.Perl.DIGIT}},
 	which corresponds to the Perl-style regular expression <<<"\d">>> (representing 
 	a digit), and 
-	{{{./apidocs/net/sourceforge/reb4j/CharClass.html#POSIX_ALNUM}CharClass.PERL_ALNUM}},
+	{{{./apidocs/net/sourceforge/reb4j/charclass/CharClass.Posix.html#ALNUM}CharClass.Posix.ALNUM}},
 	which corresponds to the POSIX named character class expression <<<"\p{Alnum}">>>.
-	Consult the {{{./apidocs/net/sourceforge/reb4j/CharClass.html}Javadocs}}
+	Consult the {{{./apidocs/net/sourceforge/reb4j/charclass/CharClass.html}Javadocs}}
 	for the complete list of available constants.
 	
 *** Lists of Characters
 
 	To define a character class that will match any of a series of characters,
-	simply pass those characters as a 
-	{{{http://java.sun.com/javase/6/docs/api/java/lang/String.html}String}} to 
-	the {{{./apidocs/net/sourceforge/reb4j/CharClass.html#characters(java.lang.CharSequence)}CharClass.characters}}
-	method, which may optionally accept a <<<boolean>>> <negate> parameter to
-	indicate that the character class should include all characters <except>
-	the ones specified. 
+	simply pass those characters to the 
+	the {{{./apidocs/net/sourceforge/reb4j/charclass/CharClass.html#characters(char, char, char...)}CharClass.characters}}
+	method. 
 	
 -------------------------------------------------------------------------------
-final CharClass abc = CharClass.characters("abc");
-final CharClass not123 = CharClass.characters("123", true);
+final MultiChar abc = CharClass.characters('a', 'b', 'c');
 -------------------------------------------------------------------------------
 
 *** Character Ranges
 
 	To define a character class that matches any characters whose ordinal
 	values are between a minimum and maximum character (inclusive), use the
-	{{{./apidocs/net/sourceforge/reb4j/CharClass.html#range(char, char)}CharClass.range}}
+	{{{./apidocs/net/sourceforge/reb4j/charclass/CharClass.html#range(char, char)}CharClass.range}}
 	method, which may also accept an optional <negate> parameter.
 	
 -------------------------------------------------------------------------------
-final CharClass a_thru_m = CharClass.range('a', 'm');
-final CharClass notACapitalLetter = CharClass.range('A', 'Z', true);
+final CharRange a_thru_m = CharClass.range('a', 'm');
 -------------------------------------------------------------------------------
 
 *** Composing Character Classes
 
-	Instances of {{{./apidocs/net/sourceforge/reb4j/CharClass.html}CharClass}}
+	Instances of {{{./apidocs/net/sourceforge/reb4j/charclass/CharClass.html}CharClass}}
 	may be built from other instances.
 	
 **** Negation
 
 	To construct a character class that will match any character that is <not>
 	in another character specified character class, use the 
-	{{{./apidocs/net/sourceforge/reb4j/CharClass.html#negate(net.sourceforge.reb4j.CharClass)}CharClass.negate}}
+	{{{./apidocs/net/sourceforge/reb4j/charclass/CharClass.html#negated()}CharClass.negated}}
 	method.
 	
 -------------------------------------------------------------------------------
-final CharClass notALetter = CharClass.negate(CharClass.POSIX_ALPHA);
+final PredefinedClass notALetter = CharClass.Posix.ALPHA.negated();
 -------------------------------------------------------------------------------
 	
 **** Union
 
 	To construct a character class that will match any character that would be
 	matched by two or more other character classes, use the
-	{{{./apidocs/net/sourceforge/reb4j/CharClass.html#union(net.sourceforge.reb4j.CharClass...)}CharClass.union}}
+	{{{./apidocs/net/sourceforge/reb4j/charclass/CharClass.html#union(net.sourceforge.reb4j.CharClass)}CharClass.union}}
 	method.
 	
 -------------------------------------------------------------------------------
 final CharClass oneThruFive = CharClass.range('1, 5');
 final CharClass threeThruEight = CharClass.range('3, '8');
-final CharClass oneThruEight = CharClass.union(oneThruFive, threeThruEight);
+final CharClass oneThruEight = oneThruFive.union(threeThruEight);
 -------------------------------------------------------------------------------
 
 **** Intersection
 
 	To construct a character class that will match only those characters that
 	appear in all of several other character classes, use the
-	{{{./apidocs/net/sourceforge/reb4j/CharClass.html#intersection(net.sourceforge.reb4j.CharClass...)}CharClass.intersection}}
+	{{{./apidocs/net/sourceforge/reb4j/CharClass.html#intersect(net.sourceforge.reb4j.CharClass)}CharClass.intersect}}
 	method.
 	
 -------------------------------------------------------------------------------
-final CharClass vowels = CharClass.characters("AaEeIiOoUu");
-final CharClass consonants = 
-	CharClass.intersection(CharClass.POSIX_ALPHA, CharClass.negate(vowels));
+final CharClass vowels = 
+	CharClass.characters('A', 'a', 'E', 'e', 'I', 'i', 'O', 'o', 'U', 'u');
+final CharClass consonants = CharClass.Posix.ALPHA.intersect(vowels.negated);
 -------------------------------------------------------------------------------
 		
 ** Adopting Patterns
@@ -308,10 +320,10 @@ final CharClass consonants =
 	{{{http://java.sun.com/javase/6/docs/api/java/util/regex/Pattern.html}Pattern}}
 	object as a sub-expression in an expression constructed by <<reb4j>>.
 	This can be accomplished using the 
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html#fromPattern(java.util.regex.Pattern)}Regex.fromPattern}}
+	{{{./apidocs/net/sourceforge/reb4j/Adopted.html#fromPattern(java.util.regex.Pattern)}Adopted.fromPattern}}
 	method, which accepts a
 	{{{http://java.sun.com/javase/6/docs/api/java/util/regex/Pattern.html}Pattern}}
 	as an argument and constructs a new 
-	{{{./apidocs/net/sourceforge/reb4j/Regex.html}Regex}}
+	{{{./apidocs/net/sourceforge/reb4j/Expression.html}Expression}}
 	from it.
 	

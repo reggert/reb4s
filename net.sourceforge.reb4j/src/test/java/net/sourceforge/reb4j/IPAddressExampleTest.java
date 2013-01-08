@@ -3,136 +3,264 @@ package net.sourceforge.reb4j;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import net.sourceforge.reb4j.Alternation.Alternative;
+import net.sourceforge.reb4j.charclass.CharClass;
+import net.sourceforge.reb4j.charclass.CharClass.Perl;
 
 import org.junit.Test;
 
+import fj.Effect;
+import fj.F;
+import fj.F2;
+import fj.Show;
+import fj.data.LazyString;
+import fj.data.List;
 
-
-/**
- * Unit test case that demonstrates the IP address example that is posted on the website.
- * 
- * @author Richard W. Eggert II
- *
- */
 public class IPAddressExampleTest
 {
-	private final Regex oneDigitOctet = 
-		CharClass.POSIX_DIGIT;
-	private final Regex twoDigitOctet = 
-		CharClass.range('1', '9').then(CharClass.POSIX_DIGIT);
-	private final Regex oneHundredsOctet =
-		Regex.literal("1").then(CharClass.POSIX_DIGIT.repeat(2));
-	private final Regex lowTwoHundredsOctet =
-		Regex.literal("2").then(CharClass.range('0', '4')).then(CharClass.POSIX_DIGIT);
-	private final Regex highTwoHundredsOctet =
-		Regex.literal("25").then(CharClass.range('0', '5'));
-	private final Regex octet =
-		Regex.or(
-				oneDigitOctet, 
-				twoDigitOctet, 
-				oneHundredsOctet, 
-				lowTwoHundredsOctet, 
-				highTwoHundredsOctet
+	public final Alternative oneDigitOctet = 
+		Perl.DIGIT;
+	public final Alternative twoDigitOctet = 
+		CharClass.range('1', '9').then(Perl.DIGIT);
+	public final Alternative oneHundredsOctet = 
+		Literal.literal('1').then(Perl.DIGIT.repeat(2));
+	public final Alternative lowTwoHundredsOctet = Sequence.sequence(
+			Literal.literal('2'),
+			CharClass.range('0', '4'),
+			Perl.DIGIT
+		);
+	public final Alternative highTwoHundredsOctet = 
+		Literal.literal("25").then(CharClass.range('0', '5'));
+	public final Alternation octet = Alternation.alternatives(
+			oneDigitOctet, 
+			twoDigitOctet, 
+			oneHundredsOctet, 
+			lowTwoHundredsOctet,
+			highTwoHundredsOctet
+		);
+	public final CharLiteral dot = Literal.literal('.');
+	public final Sequence dottedDecimalIPAddress = Sequence.sequence(
+			Group.capture(octet), 
+			dot, 
+			Group.capture(octet), 
+			dot, 
+			Group.capture(octet), 
+			dot, 
+			Group.capture(octet)
+		);
+
+	
+	private void validateAgainst(final String name, final Pattern pattern, final List<String> validInputs)
+	{
+		validInputs.foreach(
+				new Effect<String>()
+				{
+					@Override
+					public void e(final String a)
+					{
+						assertThat(
+								name + " does not match valid string: " + a,
+								pattern.matcher(a).matches(),
+								is(true)
+							);
+					}
+				}
 			);
-	private final Regex dottedDecimalIPAddress =
-		octet.then(Regex.literal(".")).repeat(3).then(octet);
-	
-	
-	
-	@Test
-	public void testOneDigitOctet()
-	{
-		final Pattern pattern = oneDigitOctet.toPattern();
-		for (int i = 0; i < 10; i++)
-		{
-			String s = Integer.toString(i);
-			assertThat(pattern.matcher(s).matches(), is(true));
-		}
-		assertThat(pattern.matcher("10").matches(), is(false));
 	}
 	
-	
-	@Test
-	public void testTwoDigitOctet()
+	private void invalidateAgainst(final String name, final Pattern pattern, final List<String> invalidInputs)
 	{
-		final Pattern pattern = twoDigitOctet.toPattern();
-		for (int i = 10; i < 100; i++)
-		{
-			String s = Integer.toString(i);
-			assertThat(s, pattern.matcher(s).matches(), is(true));
-		}
-		assertThat("100", pattern.matcher("100").matches(), is(false));
-		assertThat("9", pattern.matcher("9").matches(), is(false));
+		invalidInputs.foreach(
+				new Effect<String>()
+				{
+					@Override
+					public void e(final String a)
+					{
+						assertThat(
+								name + " matches invalid string: " + a,
+								pattern.matcher(a).matches(),
+								is(false)
+							);
+					}
+				}
+			);
 	}
 	
-	
 	@Test
-	public void testOneHundredsOctet()
+	public void testOneDigitOctetValid()
 	{
-		final Pattern pattern = oneHundredsOctet.toPattern();
-		for (int i = 100; i < 200; i++)
-		{
-			String s = Integer.toString(i);
-			assertThat(s, pattern.matcher(s).matches(), is(true));
-		}
-		assertThat("200", pattern.matcher("200").matches(), is(false));
-		assertThat("99", pattern.matcher("99").matches(), is(false));
+		validateAgainst(
+				"oneDigitOctet", 
+				oneDigitOctet.toPattern(), 
+				List.range(0, 10).map(Show.intShow.showS_())
+			);
 	}
 	
-	
 	@Test
-	public void testLowTwoHundredsOctet()
+	public void testOneDigitOctetInvalid()
 	{
-		final Pattern pattern = lowTwoHundredsOctet.toPattern();
-		for (int i = 200; i < 250; i++)
-		{
-			String s = Integer.toString(i);
-			assertThat(s, pattern.matcher(s).matches(), is(true));
-		}
-		assertThat("250", pattern.matcher("250").matches(), is(false));
-		assertThat("199", pattern.matcher("199").matches(), is(false));
+		invalidateAgainst(
+				"oneDigitOctet",
+				oneDigitOctet.toPattern(),
+				List.list("-1", "a", " 1", "11", "2z")
+			);
 	}
 	
-	
 	@Test
-	public void testHighTwoHundredsOctet()
+	public void testTwoDigitOctetValid()
 	{
-		final Pattern pattern = highTwoHundredsOctet.toPattern();
-		for (int i = 250; i < 256; i++)
-		{
-			String s = Integer.toString(i);
-			assertThat(s, pattern.matcher(s).matches(), is(true));
-		}
-		assertThat("256", pattern.matcher("256").matches(), is(false));
-		assertThat("249", pattern.matcher("249").matches(), is(false));
+		validateAgainst(
+				"twoDigitOctet", 
+				twoDigitOctet.toPattern(), 
+				List.range(10, 100).map(Show.intShow.showS_())
+			);
 	}
 	
-	
 	@Test
-	public void testOctet()
+	public void testTwoDigitOctetInvalid()
 	{
-		final Pattern pattern = octet.toPattern();
-		for (int i = 0; i < 256; i++)
-		{
-			String s = Integer.toString(i);
-			assertThat(s, pattern.matcher(s).matches(), is(true));
-		}
-		assertThat("256", pattern.matcher("256").matches(), is(false));
-		assertThat("a", pattern.matcher("a").matches(), is(false));
-		assertThat("1111", pattern.matcher("1111").matches(), is(false));
+		invalidateAgainst(
+				"twoDigitOctet",
+				twoDigitOctet.toPattern(),
+				List.list("00", "01", "9", "111", "1a")
+			);
 	}
 	
-	
+	@Test
+	public void testOneHundredsOctetValid()
+	{
+		validateAgainst(
+				"oneHundredsOctet", 
+				oneHundredsOctet.toPattern(), 
+				List.range(100, 200).map(Show.intShow.showS_())
+			);
+	}
 	
 	@Test
-	public void testDottedDecimalIPAddress()
+	public void testOneHundredsOctetInvalid()
 	{
-		final Pattern pattern =
-			dottedDecimalIPAddress.toPattern();
-		assertThat("1.2.3.4", pattern.matcher("1.2.3.4").matches(), is(true));
-		assertThat("123.239.35.254", pattern.matcher("123.239.35.254").matches(), is(true));
-		assertThat("1.256.3.4", pattern.matcher("1.256.3.4").matches(), is(false));
-		assertThat("1.2.a.4", pattern.matcher("1.2.a.4").matches(), is(false));
+		invalidateAgainst(
+				"oneHundredsOctet",
+				oneHundredsOctet.toPattern(),
+				List.list("000", "011", "1000", "200", "1a1")
+			);
 	}
+	
+	@Test
+	public void testLowTwoHundredsOctetValid()
+	{
+		validateAgainst(
+				"lowTwoHundredsOctet", 
+				lowTwoHundredsOctet.toPattern(), 
+				List.range(200, 250).map(Show.intShow.showS_())
+			);
+	}
+	
+	@Test
+	public void testLowTwoHundredsOctetInvalid()
+	{
+		invalidateAgainst(
+				"lowTwoHundredsOctet",
+				lowTwoHundredsOctet.toPattern(),
+				List.list("020", "0200", "1000", "190", "251")
+			);
+	}
+	
+	@Test
+	public void testHighTwoHundredsOctetValid()
+	{
+		validateAgainst(
+				"highTwoHundredsOctet", 
+				highTwoHundredsOctet.toPattern(), 
+				List.range(250, 256).map(Show.intShow.showS_())
+			);
+	}
+	
+	@Test
+	public void testHighTwoHundredsOctetInvalid()
+	{
+		invalidateAgainst(
+				"highTwoHundredsOctet",
+				highTwoHundredsOctet.toPattern(),
+				List.list("020", "0250", "200", "256", "249")
+			);
+	}
+	
+	@Test
+	public void testOctetValid()
+	{
+		validateAgainst(
+				"octet", 
+				octet.toPattern(), 
+				List.range(0, 255).map(Show.intShow.showS_())
+			);
+	}
+	
+	@Test
+	public void testOctetInvalid()
+	{
+		invalidateAgainst(
+				"octet",
+				octet.toPattern(),
+				List.list("020", "0250", "a", "256", "249 ")
+			);
+	}
+	
+	@Test
+	public void testDottedDecimalIPAddressValid()
+	{
+		final List<LazyString> inputOctets = 
+			List.list(0, 1, 9, 10, 59, 100, 123, 210, 251)
+			.map(new F<Integer, LazyString>()
+				{
+					@Override
+					public LazyString f(final Integer a)
+					{return LazyString.str(a.toString());}
+				});
+		final F2<LazyString, LazyString, LazyString> concatOctets =
+			new F2<LazyString, LazyString, LazyString>()
+			{
+				@Override
+				public LazyString f(final LazyString a, final LazyString b)
+				{return a.append(".").append(b);}
+				
+			};
+		final List<String> inputs = inputOctets
+				.zipWith(inputOctets, concatOctets)
+				.zipWith(inputOctets, concatOctets)
+				.zipWith(inputOctets, concatOctets)
+				.map(Show.<LazyString>anyShow().showS_());
+		validateAgainst(
+				"dottedDecimalIPAddress", 
+				dottedDecimalIPAddress.toPattern(), 
+				inputs
+			);
+	}
+	
+	@Test
+	public void testDottedDecimalIPAddressInvalid()
+	{
+		invalidateAgainst(
+				"dottedDecimalIPAddress",
+				dottedDecimalIPAddress.toPattern(),
+				List.list("1", "1.2", "1.2.3", "1.2.3.300", "1.2.3.4 ")
+			);
+	}
+	
+	@Test
+	public void testCapture()
+	{
+		//System.out.println(dottedDecimalIPAddress);
+		final Pattern pattern = dottedDecimalIPAddress.toPattern();
+		final Matcher matcher = pattern.matcher("5.99.123.251");
+		assertThat(matcher.matches(), is(true));
+		assertThat(matcher.group(1), is("5"));
+		assertThat(matcher.group(2), is("99"));
+		assertThat(matcher.group(3), is("123"));
+		assertThat(matcher.group(4), is("251"));
+	}
+
 }

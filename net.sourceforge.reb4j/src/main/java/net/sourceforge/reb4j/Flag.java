@@ -1,40 +1,70 @@
-/*
-	Copyright 2012 by Richard W. Eggert II.
- 
-	This file is part of the reb4j library.
-  
-	reb4j is free software: you can redistribute it and/or modify
-	it under the terms of the GNU Lesser General Public License as published by
-	the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
-	
-	reb4j is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-	
-	You should have received a copy of the GNU Lesser General Public License
-	along with reb4j.  If not, see <http://www.gnu.org/licenses/>.
- */
 package net.sourceforge.reb4j;
 
+import fj.F2;
+import fj.data.Array;
+import fj.data.LazyString;
+
 /**
- * This enumeration represents flags that may be embedded into regular 
- * expressions.
- * 
- * @author Richard W. Eggert II
- * @see Regex#enable(Flag...)
- * @see Regex#disable(Flag...)
- * @see Regex#enableDirective(Flag...)
- * @see Regex#disableDirective(Flag...)
- *
+ * Flag that can be passed to the {@link java.util.regex.Pattern} 
+ * regular expression engine.
  */
 public enum Flag
 {
-	CASE_INSENSITIVE, // 'i'
-	UNIX_LINES, // 'd'
-	MULTILINE, // 'm'
-	DOTALL, // 's'
-	UNICODE_CASE, // 'u' 
-	COMMENTS // 'x'
+	CASE_INSENSITIVE('i'),
+	UNIX_LINES('d'),
+	MULTILINE('m'),
+	DOT_ALL('s'),
+	UNICODE_CASE('u'), 
+	COMMENTS('x');
+	
+	/**
+	 * The character that represents this flag in the expression.
+	 */
+	public final char c;
+	
+	private Flag(final char c)
+	{
+		this.c = c;
+	}
+	
+	static LazyString toString(final Flag... flags)
+	{
+		return Array.array(flags).foldLeft(
+				new F2<LazyString, Flag, LazyString>()
+				{
+					@Override
+					public LazyString f(final LazyString a, final Flag b)
+					{return a.append(Character.toString(b.c));}
+				},
+				LazyString.empty
+			);
+	}
+	
+	/**
+	 * Wraps the specified expression in a group that enables this flag.
+	 * 
+	 * @param nested
+	 * 	the expression to wrap; must not be <code>null</code>.
+	 * @return a new Group.
+	 * @throws NullPointerException
+	 * 	if <var>nested</var> is <code>null</code>.
+	 */
+	public Group enable(final Expression nested)
+	{
+		return Group.enableFlags(nested, this);
+	}
+	
+	/**
+	 * Wraps the specified expression in a group that disables this flag.
+	 * 
+	 * @param nested
+	 * 	the expression to wrap; must not be <code>null</code>.
+	 * @return a new Group.
+	 * @throws NullPointerException
+	 * 	if <var>nested</var> is <code>null</code>.
+	 */
+	public Group disable(final Expression nested)
+	{
+		return Group.disableFlags(nested, this);
+	}
 }
