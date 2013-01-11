@@ -20,7 +20,7 @@ Of course, this comes at the cost of a modest performance penalty at startup as 
 
 **reb4j** currently provides two API's: one in Java and one in Scala.  They each function in roughly the same way.  However, the Scala API takes advantage of several language features of Scala to make its use easier and more readable when invoked from Scala code.  The Scala API depends only upon the standard Scala library.  The Java API depends upon the [Functional Java](http://functionaljava.org) library in order to achieve some performance optimizations and make use of functional idioms.
 
-As a quick example, here's one way to use **reb4j** to describe a pattern that validates the format of a dotted decimal IP address (ensuring that each octet is a decimal value between 0 and 255) and extracts the octets.  First, using the Java API:
+As a quick example, here's one way to use **reb4j** to describe a pattern that validates the format of a dotted decimal IP address (ensuring that each octet is a decimal value between 0 and 255) and extracts the octets.  First, using the Java API (imports omitted for clarity):
 	
 	final Pattern pattern = dottedDecimalIPAddress.toPattern();
 	String input = "10.10.1.204";
@@ -60,37 +60,38 @@ As a quick example, here's one way to use **reb4j** to describe a pattern that v
 	final Pattern pattern = dottedDecimalIPAddress.toPattern();
 	final String input = "1.2.3.4";
 	final Matcher matcher = pattern.matcher(input);
+	final int[] octets;
 	if (matcher.matches())
 	{
-		final int[] octets = new int[4];
+		octets = new int[4];
 		for (int i = 0; i < 4; i++)
 			octets[i] = Integer.parseInt(matcher.group(i+1));
 		// octets = {1, 2, 3, 4}
-	} 
+	}
+	else
+		octets = null;
 
 For reference, the generated regular expression looks like this:
 	
 	(\d|[1-9]\d|1\d{2}|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d{2}|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d{2}|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d{2}|2[0-4]\d|25[0-5])
 
+Here's the same example again in Scala (imports again omitted):
 
-Here's the same example again in Scala:
-
-	val oneDigitOctet = Posix.Digit
-	val twoDigitOctet = range('1', '9') ~~ Posix.Digit
-	val oneHundredsOctet = '1' ~~ (Posix.Digit repeat 2)
-	val lowTwoHundredsOctet = '2' ~~ range('0', '4') ~~ Posix.Digit
+	val oneDigitOctet = Perl.Digit
+	val twoDigitOctet = range('1', '9') ~~ Perl.Digit
+	val oneHundredsOctet = '1' ~~ (Perl.Digit repeat 2)
+	val lowTwoHundredsOctet = '2' ~~ range('0', '4') ~~ Perl.Digit
 	val highTwoHundredsOctet = "25" ~~ range('0', '5')
 	val octet = oneDigitOctet||twoDigitOctet||oneHundredsOctet||lowTwoHundredsOctet||highTwoHundredsOctet
-	val dottedDecimalIPAddress = octet ~~ (('.' ~~ octet) repeat 3)
-		
-	val pattern = dottedDecimalIPAddress.toPattern
-	val input = "10.10.1.204"
-	val valid = pattern.matcher(input).matches()
-
-And here's the generated expression:
-
-	(?:\p{Digit}|[1-9]\p{Digit}|1\p{Digit}{2}|2[0-4]\p{Digit}|25[0-5])(?:\.(?:\p{Digit}|[1-9]\p{Digit}|1\p{Digit}{2}|2[0-4]\p{Digit}|25[0-5])){3}
-
-
+	val dottedDecimalIPAddress = Capture(octet) ~~ '.' ~~ Capture(octet) ~~ '.' ~~ Capture(octet) ~~ '.' ~~ Capture(octet)
 	
+	val regex = dottedDecimalIPAddress.toRegex()
+	val input = "10.10.1.204"
+	val octets = input match {
+		case regex(first, second, third, fourth) => 
+			Some(Array(first.toInt, second.toInt, third.toInt, fourth.toInt))
+		case _ => None
+	}
+
+The generated expression is identical.
 	
