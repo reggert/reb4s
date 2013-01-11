@@ -10,13 +10,14 @@ import net.sourceforge.reb4j.scala._
 @RunWith(classOf[JUnitRunner])
 class IPAddressExampleTest extends Suite with ShouldMatchers with Implicits
 {
-	val oneDigitOctet = Posix.Digit
-	val twoDigitOctet = range('1', '9') ~~ Posix.Digit
-	val oneHundredsOctet = '1' ~~ (Posix.Digit repeat 2)
-	val lowTwoHundredsOctet = '2' ~~ range('0', '4') ~~ Posix.Digit
+	import Group.Capture
+	val oneDigitOctet = Perl.Digit
+	val twoDigitOctet = range('1', '9') ~~ Perl.Digit
+	val oneHundredsOctet = '1' ~~ (Perl.Digit repeat 2)
+	val lowTwoHundredsOctet = '2' ~~ range('0', '4') ~~ Perl.Digit
 	val highTwoHundredsOctet = "25" ~~ range('0', '5')
 	val octet = oneDigitOctet||twoDigitOctet||oneHundredsOctet||lowTwoHundredsOctet||highTwoHundredsOctet
-	val dottedDecimalIPAddress = octet ~~ (('.' ~~ octet) repeat 3)
+	val dottedDecimalIPAddress = Capture(octet) ~~ '.' ~~ Capture(octet) ~~ '.' ~~ Capture(octet) ~~ '.' ~~ Capture(octet)
 	
 	def testOneDigitOctet()
 	{
@@ -113,5 +114,17 @@ class IPAddressExampleTest extends Suite with ShouldMatchers with Implicits
 			{pattern.matcher("1.2.a.4").matches() should be (false)}
 	}
 	
+	def testCapture()
+	{
+		val regex = dottedDecimalIPAddress.toRegex()
+		val regex(first, second, third, fourth) = "5.99.123.251"
+		withClue(regex + " capturing the octets of 5.99.123.251:")
+		{
+			first should be ("5")
+			second should be ("99")
+			third should be ("123")
+			fourth should be ("251")
+		}
+	}
 	
 }
