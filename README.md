@@ -83,7 +83,11 @@ Here's the same example again in Scala (imports again omitted):
 	val lowTwoHundredsOctet = '2' ~~ range('0', '4') ~~ Perl.Digit
 	val highTwoHundredsOctet = "25" ~~ range('0', '5')
 	val octet = oneDigitOctet||twoDigitOctet||oneHundredsOctet||lowTwoHundredsOctet||highTwoHundredsOctet
-	val dottedDecimalIPAddress = Capture(octet) ~~ '.' ~~ Capture(octet) ~~ '.' ~~ Capture(octet) ~~ '.' ~~ Capture(octet)
+	val dottedDecimalIPAddress = 
+		Capture(octet) ~~ '.' ~~ 
+		Capture(octet) ~~ '.' ~~ 
+		Capture(octet) ~~ '.' ~~ 
+		Capture(octet)
 	
 	val regex = dottedDecimalIPAddress.toRegex()
 	val input = "10.10.1.204"
