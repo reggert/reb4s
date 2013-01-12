@@ -10,6 +10,9 @@ sealed abstract class Literal private[scala] extends Expression
 {
 	import Literal.StringLiteral
 	
+	/**
+	 * The literal string to be matched.
+	 */
 	val unescaped : String
 	
 	/**
@@ -50,25 +53,47 @@ sealed abstract class Literal private[scala] extends Expression
  */
 object Literal
 {
+	/**
+	 * Expression that matches a specific string.
+	 */
 	final case class StringLiteral(unescaped : String) extends Literal
 	{
 		require (unescaped != null, "unescaped is null")
 	}
 	
-	// TODO: should this be superceded by SingleChar?
+	/**
+	 * Expression that matches a specific character.
+	 */
 	final case class CharLiteral(unescapedChar : Char) extends Literal 
 		with Quantifiable
 	{
 		override val unescaped = unescapedChar.toString
 	}
 	
-	
+	/**
+	 * Constructs a literal from a character.
+	 */
 	def apply(unescaped : Char) = CharLiteral(unescaped)
+	
+	/**
+	 * Constructs a literal from a string.
+	 */
 	def apply(unescaped : String) = 
 		if (unescaped.length() == 1) CharLiteral(unescaped(0))
 		else StringLiteral(unescaped)
-		
+	
+	/**
+	 * Characters that need to be escaped in expressions.
+	 */
 	val needsEscape = "()[]{}.,-\\|+*?$^&:!<>="
+		
+	/**
+	 * Helper function to escape the specified character (if necessary).
+	 */
 	def escapeChar(c : Char) = if (needsEscape.contains(c)) "\\" + c else String.valueOf(c)
+	
+	/**
+	 * Helper function to escape the specified string (if necessary).
+	 */
 	def escape(unescaped : Seq[Char]) = unescaped map escapeChar mkString
 }
