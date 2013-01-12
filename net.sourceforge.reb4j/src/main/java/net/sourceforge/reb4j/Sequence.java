@@ -5,10 +5,18 @@ import fj.data.LazyString;
 import fj.data.List;
 import net.sourceforge.reb4j.Alternation.Alternative;
 
+/**
+ * Expression consisting of several sub-expressions that must be matched
+ * in series.
+ */
 public final class Sequence extends AbstractExpression
 	implements Alternation.Alternative, SequenceOps
 {
 	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * The sub-expressions that make up the sequence.
+	 */
 	public final List<Sequenceable> components;
 	
 	private Sequence(final List<Sequenceable> components)
@@ -45,6 +53,18 @@ public final class Sequence extends AbstractExpression
 		this.components = List.list(left, right);
 	}
 	
+	/**
+	 * Factory method to create a sequence from many sub-expressions.
+	 * @param first
+	 * 	the first sub-expression; must not be <code>null</code>.
+	 * @param second
+	 * 	the second sub-expression; must not be <code>null</code>.
+	 * @param rest
+	 * 	the remaining sub-expressions; must not be <code>null</code>.
+	 * @return a new sequence.
+	 * @throws NullPointerException
+	 * 	if any argument is <code>null</code>.
+	 */
 	public static Sequence sequence(
 			final Sequenceable first, 
 			final Sequenceable second, 
@@ -115,9 +135,34 @@ public final class Sequence extends AbstractExpression
 }
 
 
-
+/**
+ * Operations that may be performed on {@link Sequence}s and {@link Sequence.Sequenceable}s.
+ */
 interface SequenceOps
 {
+	/**
+	 * Constructs a sequence consisting of the receiver followed by the 
+	 * specified sub-expression.
+	 * 
+	 * @param right
+	 * 	the sub-expression that must appear after the receiver in order to match;
+	 * 	must not be <code>null</code>.
+	 * @return a new sequence.
+	 * @throws NullPointerException
+	 * 	if <var>right</var> is <code>null</code>
+	 */
 	Sequence then(Sequence.Sequenceable right);
+	
+	/**
+	 * Constructs a sequence consisting of the receiver followed by the 
+	 * specified sub-expression.
+	 * 
+	 * @param right
+	 * 	the sub-expression that must appear after the receiver in order to match;
+	 * 	must not be <code>null</code>.
+	 * @return a new sequence.
+	 * @throws NullPointerException
+	 * 	if <var>right</var> is <code>null</code>
+	 */
 	Sequence then(Sequence right);
 }

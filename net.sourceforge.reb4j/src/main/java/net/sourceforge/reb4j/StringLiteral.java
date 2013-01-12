@@ -1,5 +1,8 @@
 package net.sourceforge.reb4j;
 
+/**
+ * Expression that exactly matches a specific string.
+ */
 public final class StringLiteral extends Literal
 {
 	private static final long serialVersionUID = 1L;

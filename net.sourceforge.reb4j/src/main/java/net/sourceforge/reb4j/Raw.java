@@ -5,6 +5,14 @@ import fj.data.LazyString;
 import fj.data.List;
 
 
+/**
+ * Base class for expressions that are readily combined with other similar expressions.
+ * 
+ * This encompasses special predefined expressions, processed literals, 
+ * and combinations thereof. 
+ * This class mainly exists so that long sequences of such expressions can be flattened rather
+ * than causing the construction of deep trees.
+ */
 public class Raw extends AbstractSequenceableAlternative
 {
 	private static final long serialVersionUID = 1L;
@@ -20,21 +28,56 @@ public class Raw extends AbstractSequenceableAlternative
 	public final LazyString expression()
 	{return rawExpression;}
 	
+	/**
+	 * Overloaded version of {@link Sequence.Sequenceable#then(net.sourceforge.reb4j.Sequence.Sequenceable)} 
+	 * for when the argument is an instance of {@link Raw}.
+	 * 
+	 * @param right an instance of {@link Raw}; must not be <code>null</code>.
+	 * @return an instance of {@link Compound}.
+	 * @throws NullPointerException
+	 * 	if <var>right</var> is <code>null</code>.
+	 */
 	public Compound then(final Raw right)
 	{
+		if (right == null) throw new NullPointerException("right");
 		return new Compound(List.list(this, right));
 	}
 
+	/**
+	 * Overloaded version of {@link Sequence.Sequenceable#then(net.sourceforge.reb4j.Sequence.Sequenceable)} 
+	 * for when the argument is an instance of {@link Compound}.
+	 * 
+	 * @param right an instance of {@link Compound}; must not be <code>null</code>.
+	 * @return an instance of {@link Compound}.
+	 * @throws NullPointerException
+	 * 	if <var>right</var> is <code>null</code>.
+	 */
 	public Compound then(final Compound right)
 	{
+		if (right == null) throw new NullPointerException("right");
 		return new Compound(right.components.cons(this));
 	}
 
+	/**
+	 * Overloaded version of {@link Sequence.Sequenceable#then(net.sourceforge.reb4j.Sequence.Sequenceable)} 
+	 * for when the argument is an instance of {@link Literal}.
+	 * 
+	 * @param right an instance of {@link Literal}; must not be <code>null</code>.
+	 * @return an instance of {@link Compound}.
+	 * @throws NullPointerException
+	 * 	if <var>right</var> is <code>null</code>.
+	 */
 	public Compound then(final Literal right)
 	{
+		if (right == null) throw new NullPointerException("right");
 		return this.then(new EscapedLiteral(right));
 	}
 
+	/**
+	 * Expression consisting of multiple 
+	 * @author Rich
+	 *
+	 */
 	public static final class Compound extends Raw
 	{
 		private static final long serialVersionUID = 1L;
@@ -74,6 +117,10 @@ public class Raw extends AbstractSequenceableAlternative
 	}
 	
 	
+	/**
+	 * Adapter from {@link Literal} to {@link Raw} to facilitate
+	 * merging literals.
+	 */
 	public static final class EscapedLiteral extends Raw
 	{
 		private static final long serialVersionUID = 1L;
