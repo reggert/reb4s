@@ -2,6 +2,12 @@ package net.sourceforge.reb4j;
 
 import java.util.regex.Pattern;
 
+/**
+ * Base implementation of {@link Expression}.
+ *
+ * This class provides the canonical implementations of {@link #toString()}
+ * and {@link #toPattern()}.
+ */
 public abstract class AbstractExpression implements Expression 
 {
 	private static final long serialVersionUID = 1L;
@@ -16,6 +22,5 @@ public abstract class AbstractExpression implements Expression
 	@Override
 	public final Pattern toPattern()
 	{return Pattern.compile(expression().toString());}
-	
 
 }

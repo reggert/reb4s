@@ -2,6 +2,10 @@ package net.sourceforge.reb4j;
 
 import net.sourceforge.reb4j.Sequence.Sequenceable;
 
+/**
+ * Extension to {@link AbstractAlternative} adding the
+ * canonical implementation of {@link Sequenceable}.
+ */
 public abstract class AbstractSequenceableAlternative 
 	extends AbstractAlternative
 	implements Sequenceable

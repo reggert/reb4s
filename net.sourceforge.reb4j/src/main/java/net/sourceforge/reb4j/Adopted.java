@@ -4,6 +4,14 @@ import java.util.regex.Pattern;
 
 import fj.data.LazyString;
 
+/**
+ * Expression constructed by "adopting" the expression string from
+ * an instance of {@link Pattern}.
+ *
+ * Note that adopted expressions must be constructed from instances of
+ * {@link Pattern} and not raw {@link String}s, because the
+ * {@link Pattern} class ensures that the expressions parse properly.
+ */
 public final class Adopted extends AbstractExpression 
 {
 	private static final long serialVersionUID = 1L;

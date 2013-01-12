@@ -1,5 +1,11 @@
 package net.sourceforge.reb4j;
 
+/**
+ * Extension to {@link AbstractSequenceableAlternative} providing
+ * the canonical implementation of {@link Quantifiable}. 
+ * 
+ * Note that it delegates to static methods of {@link Quantified}.
+ */
 public abstract class AbstractQuantifiableSequenceableAlternative 
 	extends AbstractSequenceableAlternative implements Quantifiable
 {

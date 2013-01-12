@@ -2,6 +2,9 @@ package net.sourceforge.reb4j;
 
 import net.sourceforge.reb4j.Alternation.Alternative;
 
+/**
+ * Abstract class providing the canonical implementation of {@link Alternative}.
+ */
 public abstract class AbstractAlternative extends AbstractExpression 
 	implements Alternative
 {
