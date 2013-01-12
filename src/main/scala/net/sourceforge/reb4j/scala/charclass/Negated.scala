@@ -6,7 +6,6 @@ package net.sourceforge.reb4j.scala.charclass
 final class Negated[T <: WrappedNegation[T]] private[charclass] (val positive : T) 
 	extends CharClass 
 	with SelfContained
-	with Union.Subset
 {
 	override def negated = positive
 	override lazy val unitableForm = "[^" + positive.unitableForm + "]"

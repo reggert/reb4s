@@ -8,7 +8,6 @@ final class Intersection private[charclass] (val supersets : List[CharClass])
 	extends CharClass 
 	with BracketsRequired 
 	with WrappedNegation[Intersection]
-	with Union.Subset
 {
 	override def unitableForm() = 
 		(supersets map ((superset : CharClass) => superset.independentForm)).mkString("&&")
