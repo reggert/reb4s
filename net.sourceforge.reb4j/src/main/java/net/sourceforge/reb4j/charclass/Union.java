@@ -4,6 +4,9 @@ import fj.F2;
 import fj.data.LazyString;
 import fj.data.List;
 
+/**
+ * Character class composed of the union of two other character classes.
+ */
 public final class Union extends CharClass
 {
 	private static final long serialVersionUID = 1L;

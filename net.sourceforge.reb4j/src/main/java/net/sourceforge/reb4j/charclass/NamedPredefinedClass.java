@@ -2,6 +2,9 @@ package net.sourceforge.reb4j.charclass;
 
 import fj.data.LazyString;
 
+/**
+ * Predefined character class that is accepted by name using \p{..} or \P{..}.
+ */
 public final class NamedPredefinedClass extends PredefinedClass
 {
 	private static final long serialVersionUID = 1L;

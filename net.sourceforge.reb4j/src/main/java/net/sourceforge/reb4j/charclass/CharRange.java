@@ -2,6 +2,9 @@ package net.sourceforge.reb4j.charclass;
 
 import fj.data.LazyString;
 
+/**
+ * Character class consisting of a range of characters.
+ */
 public final class CharRange extends CharClass
 {
 	private static final long serialVersionUID = 1L;

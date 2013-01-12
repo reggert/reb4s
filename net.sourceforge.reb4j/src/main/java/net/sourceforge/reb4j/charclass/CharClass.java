@@ -71,10 +71,15 @@ public abstract class CharClass extends AbstractQuantifiableSequenceableAlternat
 	public Intersection intersect(final Intersection right)
 	{return Intersection.intersect(this, right);}
 	
-	
+	/**
+	 * Constructs a character class consisting of a single character.
+	 */
 	public static SingleChar character(final char c)
 	{return new SingleChar(c);}
 	
+	/**
+	 * Constructs a character class consisting of several characters.
+	 */
 	public static MultiChar characters(final char c1, final char c2, final char... cs)
 	{
 		Set<Character> set = Set.set(charOrd, c1, c2);
@@ -83,6 +88,17 @@ public abstract class CharClass extends AbstractQuantifiableSequenceableAlternat
 		return new MultiChar(set);
 	}
 	
+	/**
+	 * Constructs a character class consisting of all characters in
+	 * a range.
+	 * 
+	 * @param first
+	 * 	the minimum bound for the range.
+	 * @param last
+	 * 	the maximum bound for the range; must be greater than <var>first</var>.
+	 * @throws IllegalArgumentException
+	 * 	if <var>last</var> &lt;= <var>first</var>.
+	 */
 	public static CharRange range(final char first, final char last)
 	{return new CharRange(first, last);}
 	

@@ -4,6 +4,9 @@ import fj.F2;
 import fj.data.LazyString;
 import fj.data.List;
 
+/**
+ * Character class consisting of the intersection of two other character classes.
+ */
 public final class Intersection extends CharClass
 {
 	private static final long serialVersionUID = 1L;

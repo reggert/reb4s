@@ -5,6 +5,9 @@ import net.sourceforge.reb4j.Literal;
 import fj.data.LazyString;
 import fj.data.Set;
 
+/**
+ * Character class consisting of a single character.
+ */
 public final class SingleChar extends CharClass
 {
 	private static final long serialVersionUID = 1L;
@@ -55,11 +58,31 @@ public final class SingleChar extends CharClass
 		return character == other.character;
 	}
 	
+	/**
+	 * Overloaded version of {@link CharClass#union(CharClass)} for arguments 
+	 * of type {@link SingleChar} that simply merges the two objects into
+	 * a single instance of {@link MultiChar}.
+	 * 
+	 * @param right another instance of {@link MultiChar}; must not be <code>null</code>.
+	 * @return a new instance of {@link MultiChar}.
+	 * @throws NullPointerException
+	 * 	if the argument is <code>null</code>.
+	 */
 	public MultiChar union(final SingleChar right)
 	{
 		return new MultiChar(Set.set(charOrd, character, right.character));
 	}
 	
+	/**
+	 * Overloaded version of {@link CharClass#union(CharClass)} for arguments 
+	 * of type {@link MultiChar} that simply merges the two objects into
+	 * a single instance of {@link MultiChar}.
+	 * 
+	 * @param right another instance of {@link MultiChar}; must not be <code>null</code>.
+	 * @return a new instance of {@link MultiChar}.
+	 * @throws NullPointerException
+	 * 	if the argument is <code>null</code>.
+	 */
 	public MultiChar union(final MultiChar right)
 	{
 		return new MultiChar(right.characters.insert(character));

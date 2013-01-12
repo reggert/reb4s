@@ -2,6 +2,9 @@ package net.sourceforge.reb4j.charclass;
 
 import fj.data.LazyString;
 
+/**
+ * Predefined character class referenced using an escape sequence.
+ */
 public class PredefinedClass extends CharClass
 {
 	private static final long serialVersionUID = 1L;
