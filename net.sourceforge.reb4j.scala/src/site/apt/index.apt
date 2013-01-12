@@ -263,11 +263,15 @@ val consonantsAgain = CharClass.Posix.Alpha && ~vowels
 	already been compiled into a
 	{{{http://java.sun.com/javase/6/docs/api/java/util/regex/Pattern.html}Pattern}}
 	object as a sub-expression in an expression constructed by <<reb4j>>.
-	This can be accomplished using the 
-	{{{./scaladocs/net/sourceforge/reb4j/scala/Adopt$.html}Adopt}}
-	function, which accepts a
+	This can be accomplished using the factory methods in the
+	{{{./scaladocs/net/sourceforge/reb4j/scala/Adopted$.html}Adopted}}
+	singleton, which accept a
 	{{{http://java.sun.com/javase/6/docs/api/java/util/regex/Pattern.html}Pattern}}
-	as an argument and constructs a new 
+	or Regex as an argument and constructs a new 
 	{{{./scaladocs/net/sourceforge/reb4j/scala/Expression.html}Expression}}
 	from it.
 	
+-------------------------------------------------------------------------------
+val regex = "abc".r
+val adopted = Adopted.fromRegex(regex)
+-------------------------------------------------------------------------------
