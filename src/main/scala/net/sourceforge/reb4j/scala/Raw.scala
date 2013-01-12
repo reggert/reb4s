@@ -44,6 +44,9 @@ sealed abstract class Raw private[scala] (rawExpression : => String)
 }
 
 
+/**
+ * Expression consisting of a sequence of raw expressions.
+ */
 final case class CompoundRaw(components : List[Raw]) extends Raw(components mkString)
 {
 	override def + (right : Raw) = CompoundRaw(components :+ right)
@@ -52,6 +55,9 @@ final case class CompoundRaw(components : List[Raw]) extends Raw(components mkSt
 }
 
 
+/**
+ * Adapter from [[Literal]] to [[Raw].
+ */
 final case class EscapedLiteral(literal : Literal) extends Raw(literal.escaped)
 
 /**
