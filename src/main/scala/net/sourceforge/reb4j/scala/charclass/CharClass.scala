@@ -64,15 +64,42 @@ abstract class CharClass extends Expression
 	 */
 	final def intersect (right : Intersection) = this && right
 	
+	/**
+	 * Returns the union of this character class with the 
+	 * specified character class.
+	 */
 	def || (right : Union) : Union =
 		new Union(this::right.subsets)
 	
+	/**
+	 * Returns the union of this character class with the 
+	 * specified character classes.
+	 */
 	def || (right : CharClass) : Union =
 		new Union(List(this, right))
 	
+	/**
+	 * Returns the union of this character class with the 
+	 * specified character classes.
+	 */
 	final def union (right : Union) : Union = this || right
+	
+	/**
+	 * Returns the union of this character class with the 
+	 * specified character class.
+	 */
 	final def union (right : CharClass) : Union = this || right
+	
+	/**
+	 * Returns the union of this character class with the 
+	 * specified character classes.
+	 */
 	final def or (right : Union) : Union = this || right
+	
+	/**
+	 * Returns the union of this character class with the 
+	 * specified character class.
+	 */
 	final def or (right : CharClass) : Union = this || right
 }
 
