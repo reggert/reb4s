@@ -20,12 +20,12 @@ final class Adopted private[scala] (override val expression : String) extends Ex
 
 
 /**
- * Function that adopts the regular expression represented by the specified
+ * Factory methods that adopt the regular expression represented by the specified
  * [[java.util.regex.Pattern]] or [[scala.util.matching.Regex]].
  */
-object Adopt
+object Adopted
 {
-	def apply(pattern : Pattern) = new Adopted(pattern.pattern)
-	def apply(regex : Regex) = new Adopted(regex.toString)
+	def fromPattern(pattern : Pattern) = new Adopted(pattern.pattern)
+	def fromRegex(regex : Regex) = new Adopted(regex.toString)
 }
 
