@@ -7,7 +7,6 @@ final class Negated[T <: WrappedNegation[T]] private[charclass] (val positive : 
 	extends CharClass 
 	with SelfContained
 	with Union.Subset
-	with Intersection.Superset
 {
 	override def negated = positive
 	override lazy val unitableForm = "[^" + positive.unitableForm + "]"

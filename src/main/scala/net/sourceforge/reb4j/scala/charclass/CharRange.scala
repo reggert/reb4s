@@ -8,7 +8,6 @@ final class CharRange private[charclass] (val first : Char, val last : Char)
 	with WrappedNegation[CharRange] 
 	with BracketsRequired 
 	with Union.Subset 
-	with Intersection.Superset
 {
 	require (first < last, "first must be < last")
 	

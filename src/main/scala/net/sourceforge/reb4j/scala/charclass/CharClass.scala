@@ -37,6 +37,32 @@ abstract class CharClass extends Expression
 	protected[charclass] def independentForm : String
 	
 	final override def expression = independentForm
+	
+	/**
+	 * Returns the intersection of this character class with the 
+	 * specified character class.
+	 */
+	def && (right : CharClass) : Intersection =
+		new Intersection(List(this, right))
+		
+	/**
+	 * Returns the intersection of this character class with the 
+	 * specified character classes.
+	 */
+	def && (right : Intersection) : Intersection =
+		new Intersection(this::right.supersets)
+		
+	/**
+	 * Returns the intersection of this character class with the 
+	 * specified character class.
+	 */
+	final def intersect (right : CharClass) = this && right
+		
+	/**
+	 * Returns the intersection of this character class with the 
+	 * specified character classes.
+	 */
+	final def intersect (right : Intersection) = this && right
 }
 
 

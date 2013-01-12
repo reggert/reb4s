@@ -10,7 +10,6 @@ final class MultiChar private[charclass] (val chars : Set[Char])
 	with BracketsRequired 
 	with WrappedNegation[MultiChar]
 	with Union.Subset
-	with Intersection.Superset
 {
 	override def unitableForm() = 
 		Literal.escape(chars.toSeq)

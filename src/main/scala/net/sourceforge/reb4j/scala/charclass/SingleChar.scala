@@ -6,7 +6,6 @@ final class SingleChar private[charclass] (val char : Char)
 	with WrappedNegation[SingleChar]
 	with SelfContained
 	with Union.Subset
-	with Intersection.Superset
 {
 	override def unitableForm() = Literal.escapeChar(char)
 	def || (right : SingleChar) = new MultiChar(Set(char, right.char))
