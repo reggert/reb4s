@@ -1,6 +1,10 @@
 package net.sourceforge.reb4j;
 
-// TODO: should this be superseded by SingleChar?
+/**
+ * Expression that matches a single specific character. 
+ * 
+ * @see Literal#literal(char)
+ */
 public final class CharLiteral extends Literal implements Quantifiable
 {
 	private static final long serialVersionUID = 1L;

@@ -2,6 +2,9 @@ package net.sourceforge.reb4j;
 
 import fj.data.LazyString;
 
+/**
+ * Class representing special pre-defined expressions.
+ */
 public final class Entity extends Raw implements Quantifiable
 {
 	private static final long serialVersionUID = 1L;

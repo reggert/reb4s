@@ -28,7 +28,7 @@ public final class Alternation extends AbstractExpression
 	 * @param right
 	 *  an alternation; must not be <code>null</code>.
 	 * @throws NullPointerException
-	 * 	if either argument is null.
+	 * 	if either argument is <code>null</code>.
 	 */
 	Alternation(final Alternation left, final Alternation right)
 	{
@@ -46,7 +46,7 @@ public final class Alternation extends AbstractExpression
 	 * @param right
 	 *  an alternative to be appended; must not be <code>null</code>.
 	 * @throws NullPointerException
-	 * 	if either argument is null.
+	 * 	if either argument is <code>null</code>.
 	 */
 	Alternation(final Alternation left, final Alternative right)
 	{
@@ -64,7 +64,7 @@ public final class Alternation extends AbstractExpression
 	 * @param right
 	 *  an alternation; must not be <code>null</code>.
 	 * @throws NullPointerException
-	 * 	if either argument is null.
+	 * 	if either argument is <code>null</code>.
 	 */
 	Alternation(final Alternative left, final Alternation right)
 	{
@@ -81,7 +81,7 @@ public final class Alternation extends AbstractExpression
 	 * @param right
 	 *  the second alternative; must not be <code>null</code>.
 	 * @throws NullPointerException
-	 * 	if either argument is null.
+	 * 	if either argument is <code>null</code>.
 	 */
 	Alternation(final Alternative left, final Alternative right)
 	{
@@ -90,6 +90,19 @@ public final class Alternation extends AbstractExpression
 		this.alternatives = List.list(left, right);
 	}
 	
+	/**
+	 * Constructs a new alternation that may match any of several alternatives.
+	 * 
+	 * @param first
+	 * 	the first alternative; must not <code>null</code>.
+	 * @param second
+	 * 	the second alternative; must not <code>null</code>.
+	 * @param rest
+	 * 	the remaining alternatives; must not <code>null</code>.
+	 * @return a new Alternation.
+	 * @throws NullPointerException
+	 * 	if any argument is <code>null</code>.
+	 */
 	public static Alternation alternatives(
 			final Alternative first, 
 			final Alternative second, 
