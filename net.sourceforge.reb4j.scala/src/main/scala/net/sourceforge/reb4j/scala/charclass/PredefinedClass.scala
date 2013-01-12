@@ -7,7 +7,6 @@ class PredefinedClass private[charclass] (val nameChar : Char)
 	extends CharClass
 	with SelfContained
 	with Union.Subset
-	with Intersection.Superset
 {
 	protected final def invertedNameChar = 
 		if (nameChar.isUpper) 
