@@ -5,7 +5,6 @@ final class SingleChar private[charclass] (val char : Char)
 	extends CharClass 
 	with WrappedNegation[SingleChar]
 	with SelfContained
-	with Union.Subset
 {
 	override def unitableForm() = Literal.escapeChar(char)
 	def || (right : SingleChar) = new MultiChar(Set(char, right.char))

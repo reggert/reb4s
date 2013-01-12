@@ -6,7 +6,6 @@ package net.sourceforge.reb4j.scala.charclass
 class PredefinedClass private[charclass] (val nameChar : Char) 
 	extends CharClass
 	with SelfContained
-	with Union.Subset
 {
 	protected final def invertedNameChar = 
 		if (nameChar.isUpper) 
