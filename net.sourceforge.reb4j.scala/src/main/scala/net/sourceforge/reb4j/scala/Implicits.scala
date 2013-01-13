@@ -19,18 +19,18 @@ trait Implicits
 	implicit def wrapInParens(e : Expression) = Group.NonCapturing(e)
 	
 	/**
-	 * Implicit function that converts a character to a [[Literal]].
+	 * Implicit function that converts a character to a [[net.sourceforge.reb4j.scala.Literal]].
 	 */
 	implicit def char2Literal(c : Char) = Literal(c)
 	
 	/**
-	 * Implicit function that converts a string to a [[Literal]].
+	 * Implicit function that converts a string to a [[net.sourceforge.reb4j.scala.Literal]].
 	 */
 	implicit def string2Literal(s : String) = Literal(s)
 }
 
 /**
- * Companion object to {@link Implicits} that allows the implicit
+ * Companion object to [[Implicits]] that allows the implicit
  * functions to be selectively imported. 
  */
 object Implicits extends Implicits
