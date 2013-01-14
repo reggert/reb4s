@@ -23,11 +23,11 @@ public class AlternationTest
 		final Alternation dOrEOrF = d.or(eOrF);
 		final Alternation aOrBOrCOrDOrEOrF = aOrBOrC.or(dOrEOrF);
 		
-		assertThat(aOrB.toString(), is("a|b"));
-		assertThat(aOrBOrC.toString(), is("a|b|c"));
-		assertThat(eOrF.toString(), is("e|f"));
-		assertThat(dOrEOrF.toString(), is("d|e|f"));
-		assertThat(aOrBOrCOrDOrEOrF.toString(), is("a|b|c|d|e|f"));
+		assertThat(aOrB.toPattern().pattern(), is("a|b"));
+		assertThat(aOrBOrC.toPattern().pattern(), is("a|b|c"));
+		assertThat(eOrF.toPattern().pattern(), is("e|f"));
+		assertThat(dOrEOrF.toPattern().pattern(), is("d|e|f"));
+		assertThat(aOrBOrCOrDOrEOrF.toPattern().pattern(), is("a|b|c|d|e|f"));
 	}
 
 }
