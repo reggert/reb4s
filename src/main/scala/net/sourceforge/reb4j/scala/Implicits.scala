@@ -1,6 +1,5 @@
 package net.sourceforge.reb4j.scala
 
-import scala.language.implicitConversions
 
 /**
  * Implicit functions to simply the construction of expressions.
