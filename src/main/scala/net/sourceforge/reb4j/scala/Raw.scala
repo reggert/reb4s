@@ -11,35 +11,37 @@ sealed abstract class Raw private[scala] (rawExpression : => String)
 {
 	override lazy val expression = rawExpression
 	
+	@deprecated(message="Not consistent with API of Sequence; use ~~ instead", since="2.1.0")
+	final def + (right : Raw) = CompoundRaw(List(this, right))
+	
+	@deprecated(message="Not consistent with API of Sequence; use ~~ instead", since="2.1.0")
+	final def + (right : Literal) : CompoundRaw = this + EscapedLiteral(right)
+	
+	@deprecated(message="Not consistent with API of Sequence; use ~~ instead", since="2.1.0")
+	final def + (right : CompoundRaw) = CompoundRaw(this::right.components)
+	
+	
 	/**
 	 * Concatenates this expression with the argument.
 	 */
-	def + (right : Raw) = CompoundRaw(List(this, right))
+	def ~~ (right : Raw) = CompoundRaw(List(this, right))
 	
 	/**
 	 * Concatenates this expression with the escaped form of the argument.
 	 */
-	def + (right : Literal) : CompoundRaw = this + EscapedLiteral(right)
-	
-	def + (right : CompoundRaw) = CompoundRaw(this::right.components)
+	def ~~ (right : Literal) : CompoundRaw = this ~~ EscapedLiteral(right)
 	
 	/**
-	 * Concatenates this expression with the argument.
+	 * Concatenates this expression with the escaped form of the argument.
 	 */
+	def ~~ (right : CompoundRaw) = CompoundRaw(this::right.components)
+	
 	@deprecated(message="then is now a reserved word in Scala 2.10; use + instead", since="2.1.0")
 	final def then (right : Raw) = this + right
 	
-	
-	/**
-	 * Concatenates this expression with the argument.
-	 */
 	@deprecated(message="then is now a reserved word in Scala 2.10; use + instead", since="2.1.0")
 	final def then (right : CompoundRaw) = this + right
 	
-	
-	/**
-	 * Concatenates this expression with the escaped form of the argument.
-	 */
 	@deprecated(message="then is now a reserved word in Scala 2.10; use + instead", since="2.1.0")
 	final def then (right : Literal) = this + right
 	
@@ -52,9 +54,9 @@ sealed abstract class Raw private[scala] (rawExpression : => String)
  */
 final case class CompoundRaw(components : List[Raw]) extends Raw(components mkString)
 {
-	override def + (right : Raw) = CompoundRaw(components :+ right)
-	override def + (right : Literal) = this + EscapedLiteral(right)
-	override def + (right : CompoundRaw) = CompoundRaw(this.components ++ right.components)
+	override def ~~ (right : Raw) = CompoundRaw(components :+ right)
+	override def ~~ (right : Literal) = this + EscapedLiteral(right)
+	override def ~~ (right : CompoundRaw) = CompoundRaw(this.components ++ right.components)
 }
 
 

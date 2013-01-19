@@ -24,6 +24,23 @@ sealed abstract class Literal private[scala] extends Expression
 	/**
 	 * Concatenates this literal with the argument.
 	 */
+	final def ~~ (right : Literal) = StringLiteral(unescaped + right.unescaped)
+	
+	/**
+	 * Concatenates this literal with the specified raw expression.
+	 */
+	final def ~~ (right : Raw) = EscapedLiteral(this) ~~ right
+	
+	/**
+	 * Concatenates this literal with the specified raw expression.
+	 */
+	final def ~~ (right : CompoundRaw) = EscapedLiteral(this) ~~ right
+	
+	
+	/**
+	 * Concatenates this literal with the argument.
+	 */
+	@deprecated(message="Not consistent with API of Sequence; use ~~ instead", since="2.1.0")
 	final def + (right : Literal) = StringLiteral(unescaped + right.unescaped)
 	
 	/**
@@ -35,11 +52,13 @@ sealed abstract class Literal private[scala] extends Expression
 	/**
 	 * Concatenates this literal with the specified raw expression.
 	 */
+	@deprecated(message="Not consistent with API of Sequence; use ~~ instead", since="2.1.0")
 	final def + (right : Raw) = EscapedLiteral(this) + right
 	
 	/**
 	 * Concatenates this literal with the specified raw expression.
 	 */
+	@deprecated(message="Not consistent with API of Sequence; use ~~ instead", since="2.1.0")
 	final def + (right : CompoundRaw) = EscapedLiteral(this) + right
 	
 	/**
