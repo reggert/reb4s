@@ -49,11 +49,13 @@ object Sequence
 		/**
 		 * Concatenates this expression with the argument.
 		 */
+		@deprecated(message="then is now a reserved word in Scala 2.10; use + instead", since="2.1.0")
 		final def then (right : Sequenceable) = this ~~ right
 		
 		/**
 		 * Concatenates this expression with the argument.
 		 */
+		@deprecated(message="then is now a reserved word in Scala 2.10; use + instead", since="2.1.0")
 		final def then (right : Sequence) = this ~~ right
 	}
 	
