@@ -44,6 +44,8 @@
 					<args>
 						<arg>-deprecation</arg>
 						<arg>-feature</arg>
+						<arg>-language:implicitConversions</arg>
+						<arg>-language:postfixOps</arg>
 					</args>
 				</configuration>
 			</plugin>
