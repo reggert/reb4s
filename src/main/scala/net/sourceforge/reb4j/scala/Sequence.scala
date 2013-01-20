@@ -8,7 +8,7 @@ package net.sourceforge.reb4j.scala
 final class Sequence private[scala] (val components : List[Sequence.Sequenceable]) 
 	extends Expression 
 	with Alternation.Alternative
-	with Sequence.Ops
+	with Sequence.Sequenceable
 {
 	import Sequence.Sequenceable
 	lazy val expression = components.mkString
@@ -32,19 +32,20 @@ final class Sequence private[scala] (val components : List[Sequence.Sequenceable
 object Sequence
 {
 	/**
-	 * Operations related to sequences.
+	 * Interface implemented by expressions that may be used as 
+	 * sub-expressions in sequences.
 	 */
-	trait Ops extends Expression
+	trait Sequenceable extends Expression
 	{
 		/**
 		 * Concatenates this expression with the argument.
 		 */
-		def ~~ (right : Sequenceable) : Sequence
+		def ~~ (right : Sequenceable) = new Sequence(List(this, right))
 		
 		/**
 		 * Concatenates this expression with the argument.
 		 */
-		def ~~ (right : Sequence) : Sequence
+		def ~~ (right : Sequence) = new Sequence(this::right.components)
 		
 		/**
 		 * Concatenates this expression with the argument.
@@ -67,15 +68,5 @@ object Sequence
 		 */
 		@deprecated(message="then is now a reserved word in Scala 2.10; use andThen instead", since="2.1.0")
 		final def then (right : Sequence) = this andThen right
-	}
-	
-	/**
-	 * Interface implemented by expressions that may be used as 
-	 * sub-expressions in sequences.
-	 */
-	trait Sequenceable extends Expression with Ops
-	{
-		final override def ~~ (right : Sequenceable) = new Sequence(List(this, right))
-		final override def ~~ (right : Sequence) = new Sequence(this::right.components)
 	}
 }
