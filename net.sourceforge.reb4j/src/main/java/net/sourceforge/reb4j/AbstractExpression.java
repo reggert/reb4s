@@ -21,6 +21,6 @@ public abstract class AbstractExpression implements Expression
 
 	@Override
 	public final Pattern toPattern()
-	{return Pattern.compile(expression().toString());}
+	{return Pattern.compile(toString());}
 
 }
