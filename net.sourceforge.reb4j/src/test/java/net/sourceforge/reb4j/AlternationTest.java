@@ -3,7 +3,10 @@ package net.sourceforge.reb4j;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
+import java.util.HashSet;
+
 import org.junit.Test;
+
 
 public class AlternationTest
 {
@@ -30,4 +33,29 @@ public class AlternationTest
 		assertThat(aOrBOrCOrDOrEOrF.toPattern().pattern(), is("a|b|c|d|e|f"));
 	}
 
+	@Test
+	public void testAlternationHashcodeEquals()
+	{
+		final CharLiteral a = Literal.literal('a');
+		final CharLiteral b = Literal.literal('b');
+		final CharLiteral c = Literal.literal('c');
+		
+		final Alternation aOrB = a.or(b);
+		final Alternation aOrBOrC1 = aOrB.or(c);
+		final Alternation aOrBOrC2 = Alternation.alternatives(a, b, c);
+		final HashSet<Expression> expressions = new HashSet<Expression>();
+		expressions.add(a);
+		expressions.add(b);
+		expressions.add(c);
+		expressions.add(aOrBOrC1);
+		assertThat(expressions.size(), is(4));
+		assertThat(expressions.contains(aOrBOrC1), is(true));
+		assertThat(expressions.contains(aOrBOrC2), is(true));
+		assertThat(expressions.contains(aOrB), is(false));
+		assertThat(aOrBOrC1.equals(aOrBOrC1), is(true));
+		assertThat(aOrBOrC1.equals(aOrBOrC2), is(true));
+		assertThat(aOrBOrC1.equals(a), is(false));
+		assertThat(aOrBOrC1.equals(null), is(false));
+	}
+	
 }
