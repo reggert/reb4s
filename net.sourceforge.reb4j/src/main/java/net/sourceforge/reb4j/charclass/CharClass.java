@@ -5,9 +5,9 @@ import static fj.Ord.charOrd;
 import java.lang.Character.UnicodeBlock;
 
 import net.sourceforge.reb4j.AbstractQuantifiableSequenceableAlternative;
+import net.sourceforge.reb4j.Alternative;
 import net.sourceforge.reb4j.Expression;
 import net.sourceforge.reb4j.Quantifiable;
-import net.sourceforge.reb4j.Alternation.Alternative;
 import net.sourceforge.reb4j.Sequenceable;
 import fj.data.LazyString;
 import fj.data.Set;

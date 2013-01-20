@@ -1,6 +1,5 @@
 package net.sourceforge.reb4j;
 
-import net.sourceforge.reb4j.Alternation.Alternative;
 
 /**
  * Abstract class providing the canonical implementation of {@link Alternative}.

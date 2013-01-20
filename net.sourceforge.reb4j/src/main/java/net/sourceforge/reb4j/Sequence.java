@@ -3,14 +3,13 @@ package net.sourceforge.reb4j;
 import fj.F2;
 import fj.data.LazyString;
 import fj.data.List;
-import net.sourceforge.reb4j.Alternation.Alternative;
 
 /**
  * Expression consisting of several sub-expressions that must be matched
  * in series.
  */
 public final class Sequence extends AbstractExpression
-	implements Alternation.Alternative, Sequenceable
+	implements Alternative, Sequenceable
 {
 	private static final long serialVersionUID = 1L;
 	

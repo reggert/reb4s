@@ -158,14 +158,6 @@ public final class Alternation extends AbstractExpression
 		final Alternation other = (Alternation) obj;
 		return alternatives.equals(other.alternatives);
 	}
-	
-	/**
-	 * Interface indicating that an expression can be used as an alternative in an alternation.
-	 * 
-	 * This interface is not intended to be implemented by clients.
-	 */
-	public static interface Alternative extends Expression, AlternationOps
-	{}
 }
 
 
@@ -187,5 +179,5 @@ interface AlternationOps
 	 * Constructs an expression matching either the receiver or the 
 	 * specified argument expression.
 	 */
-	Alternation or(Alternation.Alternative right);
+	Alternation or(Alternative right);
 }

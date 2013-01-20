@@ -6,7 +6,6 @@ import static org.junit.Assert.assertThat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import net.sourceforge.reb4j.Alternation.Alternative;
 import net.sourceforge.reb4j.charclass.CharClass;
 import net.sourceforge.reb4j.charclass.CharClass.Perl;
 
