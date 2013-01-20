@@ -8,7 +8,7 @@ import fj.data.List;
  * Expression representing a set of alternatives that may be matched.
  */
 public final class Alternation extends AbstractExpression
-	implements AlternationOps
+	implements Alternative
 {
 	private static final long serialVersionUID = 1L;
 	public final List<Alternative> alternatives;
@@ -160,24 +160,3 @@ public final class Alternation extends AbstractExpression
 	}
 }
 
-
-/**
- * Operations that can be performed to create alternations.
- * 
- * This interface is not intended to be implemented by clients.
- */
-interface AlternationOps
-{
-	/**
-	 * Constructs an expression matching either the receiver or the 
-	 * any of the alternatives contained within the specified argument 
-	 * expression.
-	 */
-	Alternation or(Alternation right);
-	
-	/**
-	 * Constructs an expression matching either the receiver or the 
-	 * specified argument expression.
-	 */
-	Alternation or(Alternative right);
-}
