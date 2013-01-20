@@ -45,7 +45,7 @@ public final class Adopted extends AbstractExpression
 	{
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (expression.hashCode());
+		result = prime * result + (expression.toString().hashCode());
 		return result;
 	}
 
@@ -59,6 +59,6 @@ public final class Adopted extends AbstractExpression
 		if (getClass() != obj.getClass())
 			return false;
 		final Adopted other = (Adopted) obj;
-		return expression.equals(other.expression);
+		return expression.toString().equals(other.expression.toString());
 	}
 }
