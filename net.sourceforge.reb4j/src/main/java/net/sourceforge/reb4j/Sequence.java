@@ -10,7 +10,7 @@ import net.sourceforge.reb4j.Alternation.Alternative;
  * in series.
  */
 public final class Sequence extends AbstractExpression
-	implements Alternation.Alternative, SequenceOps
+	implements Alternation.Alternative, Sequenceable
 {
 	private static final long serialVersionUID = 1L;
 	
@@ -139,48 +139,5 @@ public final class Sequence extends AbstractExpression
 		final Sequence other = (Sequence) obj;
 		return components.equals(other.components);
 	}
-
-	public static interface Sequenceable extends Expression, SequenceOps
-	{}
 }
 
-
-/**
- * Operations that may be performed on {@link Sequence}s and {@link Sequence.Sequenceable}s.
- */
-interface SequenceOps
-{
-	@Deprecated
-	Sequence then(Sequence.Sequenceable right);
-	
-	@Deprecated
-	Sequence then(Sequence right);
-	
-	
-	/**
-	 * Constructs a sequence consisting of the receiver followed by the 
-	 * specified sub-expression.
-	 * 
-	 * @param right
-	 * 	the sub-expression that must appear after the receiver in order to match;
-	 * 	must not be <code>null</code>.
-	 * @return a new sequence.
-	 * @throws NullPointerException
-	 * 	if <var>right</var> is <code>null</code>
-	 */
-	Sequence andThen(Sequence.Sequenceable right);
-	
-	/**
-	 * Constructs a sequence consisting of the receiver followed by the 
-	 * specified sub-expression.
-	 * 
-	 * @param right
-	 * 	the sub-expression that must appear after the receiver in order to match;
-	 * 	must not be <code>null</code>.
-	 * @return a new sequence.
-	 * @throws NullPointerException
-	 * 	if <var>right</var> is <code>null</code>
-	 */
-	Sequence andThen(Sequence right);
-	
-}

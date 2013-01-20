@@ -1,6 +1,5 @@
 package net.sourceforge.reb4j;
 
-import net.sourceforge.reb4j.Sequence.Sequenceable;
 
 /**
  * Extension to {@link AbstractAlternative} adding the

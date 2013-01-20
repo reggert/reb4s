@@ -51,7 +51,7 @@ public class Raw extends AbstractSequenceableAlternative
 	
 	
 	/**
-	 * Overloaded version of {@link Sequence.Sequenceable#andThen(net.sourceforge.reb4j.Sequence.Sequenceable)} 
+	 * Overloaded version of {@link Sequenceable#andThen(net.sourceforge.reb4j.Sequence.Sequenceable)} 
 	 * for when the argument is an instance of {@link Raw}.
 	 * 
 	 * @param right an instance of {@link Raw}; must not be <code>null</code>.
@@ -66,7 +66,7 @@ public class Raw extends AbstractSequenceableAlternative
 	}
 
 	/**
-	 * Overloaded version of {@link Sequence.Sequenceable#andThen(net.sourceforge.reb4j.Sequence.Sequenceable)} 
+	 * Overloaded version of {@link Sequenceable#andThen(net.sourceforge.reb4j.Sequence.Sequenceable)} 
 	 * for when the argument is an instance of {@link Compound}.
 	 * 
 	 * @param right an instance of {@link Compound}; must not be <code>null</code>.
@@ -81,7 +81,7 @@ public class Raw extends AbstractSequenceableAlternative
 	}
 
 	/**
-	 * Overloaded version of {@link Sequence.Sequenceable#andThen(net.sourceforge.reb4j.Sequence.Sequenceable)} 
+	 * Overloaded version of {@link Sequenceable#andThen(net.sourceforge.reb4j.Sequence.Sequenceable)} 
 	 * for when the argument is an instance of {@link Literal}.
 	 * 
 	 * @param right an instance of {@link Literal}; must not be <code>null</code>.
