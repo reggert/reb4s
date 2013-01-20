@@ -6,7 +6,7 @@ package net.sourceforge.reb4j.scala
 @SerialVersionUID(1L)
 sealed abstract class Raw private[scala] (rawExpression : => String)
 	extends Expression 
-	with Alternation.Alternative 
+	with Alternative 
 	with Sequenceable
 {
 	override lazy val expression = rawExpression

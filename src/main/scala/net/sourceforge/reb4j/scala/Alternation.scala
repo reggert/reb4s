@@ -4,11 +4,10 @@ package net.sourceforge.reb4j.scala
  * Expression representing a set of alternatives that may be matched.
  */
 @SerialVersionUID(1L)
-final class Alternation private[scala] (val alternatives : List[Alternation.Alternative]) 
+final class Alternation private[scala] (val alternatives : List[Alternative]) 
 	extends Expression
 	with Alternation.Ops
 {
-	import Alternation.Alternative
 	override lazy val expression = alternatives.mkString("|")
 	
 	override def || (right : Alternation) = new Alternation(alternatives ++ right.alternatives)
@@ -59,18 +58,5 @@ object Alternation
 		 * specified argument expression.
 		 */
 		final def or (right : Alternative) = this || right
-	}
-	
-	
-	/**
-	 * Interface representing an expression that can be used as an alternative
-	 * in an alternation expression.
-	 */
-	trait Alternative extends Expression with Alternation.Ops
-	{
-		override final def || (right : Alternation) = 
-				new Alternation(this +: right.alternatives)
-		override final def || (right : Alternative) = 
-			new Alternation(List(this, right))
 	}
 }

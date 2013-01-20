@@ -7,7 +7,7 @@ package net.sourceforge.reb4j.scala
 @SerialVersionUID(1L)
 final class Sequence private[scala] (val components : List[Sequenceable]) 
 	extends Expression 
-	with Alternation.Alternative
+	with Alternative
 	with Sequenceable
 {
 	lazy val expression = components.mkString

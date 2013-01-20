@@ -1,6 +1,6 @@
 package net.sourceforge.reb4j.scala.charclass
 import java.lang.Character.UnicodeBlock
-import net.sourceforge.reb4j.scala.{Expression, Alternation, Quantifiable, Sequenceable}
+import net.sourceforge.reb4j.scala.{Expression, Alternative, Quantifiable, Sequenceable}
 
 /**
  * Base class representing an expression that matches a single character 
@@ -8,7 +8,7 @@ import net.sourceforge.reb4j.scala.{Expression, Alternation, Quantifiable, Seque
  */
 @SerialVersionUID(1L)
 abstract class CharClass extends Expression 
-	with Alternation.Alternative
+	with Alternative
 	with Sequenceable
 	with Quantifiable
 {

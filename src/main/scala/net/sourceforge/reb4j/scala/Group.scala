@@ -6,7 +6,7 @@ package net.sourceforge.reb4j.scala
 @SerialVersionUID(1L)
 sealed abstract class Group private[scala] (private val opening : String) 
 	extends Expression 
-	with Alternation.Alternative
+	with Alternative
 	with Sequenceable
 	with Quantifiable
 {
