@@ -8,7 +8,7 @@ package net.sourceforge.reb4j.scala
 @SerialVersionUID(1L)
 final class Quantified private[scala] (val base : Quantifiable, val quantifier : String) 
 	extends Expression 
-	with Alternation.Alternative
+	with Alternative
 	with Sequenceable
 {
 	override lazy val expression = base.expression + quantifier
