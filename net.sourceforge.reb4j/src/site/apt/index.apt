@@ -54,13 +54,13 @@ final CharLiteral theNumberFive = Literal.literal('5');
 	non-static method for accomplishing this.
 	
 	The non-static 
-	{{{./apidocs/net/sourceforge/reb4j/Sequenceable.html#then(net.sourceforge.reb4j.Sequenceable)}Sequenceable.then}}
+	{{{./apidocs/net/sourceforge/reb4j/Sequenceable.html#andThen(net.sourceforge.reb4j.Sequenceable)}Sequenceable.andThen}}
 	method allows you to define a sequence of sub-expressions by chaining.
 
 -------------------------------------------------------------------------------
 final Literal ab = Literal.literal("ab");
 final Literal cd = Literal.literal("cd");
-final Sequence abcd = ab.then(cd);
+final Sequence abcd = ab.andThen(cd);
 -------------------------------------------------------------------------------			
 			
 	However, the static 
@@ -207,7 +207,7 @@ final Quantified a_at_most_twice = a.repeat(0, 2);
 -------------------------------------------------------------------------------
 final Quantified ABCs = Group.nonCapturing(Literal.literal("ABC")).atLeastOnce();
 final Quantified oneTwoThrees = Regex.literal("123").atLeastOnce();
-final Sequence ABCsAndOneTwoThrees = Group.capture(ABCs).then(oneTwoThrees);
+final Sequence ABCsAndOneTwoThrees = Group.capture(ABCs).andThen(oneTwoThrees);
 final Pattern pattern = ABCsAndOneTwoThrees.toPattern();
 final Matcher matcher = pattern.matcher("ABCABCABC123123123");
 if (matcher.matches())

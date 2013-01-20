@@ -24,16 +24,16 @@ public class IPAddressExampleTest
 	public final Alternative oneDigitOctet = 
 		Perl.DIGIT;
 	public final Alternative twoDigitOctet = 
-		CharClass.range('1', '9').then(Perl.DIGIT);
+		CharClass.range('1', '9').andThen(Perl.DIGIT);
 	public final Alternative oneHundredsOctet = 
-		Literal.literal('1').then(Perl.DIGIT.repeat(2));
+		Literal.literal('1').andThen(Perl.DIGIT.repeat(2));
 	public final Alternative lowTwoHundredsOctet = Sequence.sequence(
 			Literal.literal('2'),
 			CharClass.range('0', '4'),
 			Perl.DIGIT
 		);
 	public final Alternative highTwoHundredsOctet = 
-		Literal.literal("25").then(CharClass.range('0', '5'));
+		Literal.literal("25").andThen(CharClass.range('0', '5'));
 	public final Alternation octet = Alternation.alternatives(
 			oneDigitOctet, 
 			twoDigitOctet, 

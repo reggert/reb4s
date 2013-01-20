@@ -29,7 +29,29 @@ public class Raw extends AbstractSequenceableAlternative
 	{return rawExpression;}
 	
 	/**
-	 * Overloaded version of {@link Sequence.Sequenceable#then(net.sourceforge.reb4j.Sequence.Sequenceable)} 
+	 * @Deprecated Use {@link #andThen(Raw)} instead.
+	 */
+	@Deprecated
+	public Compound then(final Raw right)
+	{return andThen(right);}
+
+	/**
+	 * @Deprecated Use {@link #andThen(Compound)} instead.
+	 */
+	@Deprecated
+	public Compound then(final Compound right)
+	{return andThen(right);}
+
+	/**
+	 * @Deprecated Use {@link #andThen(Literal)} instead.
+	 */
+	@Deprecated
+	public Compound then(final Literal right)
+	{return andThen(right);}
+	
+	
+	/**
+	 * Overloaded version of {@link Sequence.Sequenceable#andThen(net.sourceforge.reb4j.Sequence.Sequenceable)} 
 	 * for when the argument is an instance of {@link Raw}.
 	 * 
 	 * @param right an instance of {@link Raw}; must not be <code>null</code>.
@@ -37,14 +59,14 @@ public class Raw extends AbstractSequenceableAlternative
 	 * @throws NullPointerException
 	 * 	if <var>right</var> is <code>null</code>.
 	 */
-	public Compound then(final Raw right)
+	public Compound andThen(final Raw right)
 	{
 		if (right == null) throw new NullPointerException("right");
 		return new Compound(List.list(this, right));
 	}
 
 	/**
-	 * Overloaded version of {@link Sequence.Sequenceable#then(net.sourceforge.reb4j.Sequence.Sequenceable)} 
+	 * Overloaded version of {@link Sequence.Sequenceable#andThen(net.sourceforge.reb4j.Sequence.Sequenceable)} 
 	 * for when the argument is an instance of {@link Compound}.
 	 * 
 	 * @param right an instance of {@link Compound}; must not be <code>null</code>.
@@ -52,14 +74,14 @@ public class Raw extends AbstractSequenceableAlternative
 	 * @throws NullPointerException
 	 * 	if <var>right</var> is <code>null</code>.
 	 */
-	public Compound then(final Compound right)
+	public Compound andThen(final Compound right)
 	{
 		if (right == null) throw new NullPointerException("right");
 		return new Compound(right.components.cons(this));
 	}
 
 	/**
-	 * Overloaded version of {@link Sequence.Sequenceable#then(net.sourceforge.reb4j.Sequence.Sequenceable)} 
+	 * Overloaded version of {@link Sequence.Sequenceable#andThen(net.sourceforge.reb4j.Sequence.Sequenceable)} 
 	 * for when the argument is an instance of {@link Literal}.
 	 * 
 	 * @param right an instance of {@link Literal}; must not be <code>null</code>.
@@ -67,16 +89,15 @@ public class Raw extends AbstractSequenceableAlternative
 	 * @throws NullPointerException
 	 * 	if <var>right</var> is <code>null</code>.
 	 */
-	public Compound then(final Literal right)
+	public Compound andThen(final Literal right)
 	{
 		if (right == null) throw new NullPointerException("right");
 		return this.then(new EscapedLiteral(right));
 	}
+	
 
 	/**
 	 * Expression consisting of multiple 
-	 * @author Rich
-	 *
 	 */
 	public static final class Compound extends Raw
 	{
@@ -103,13 +124,23 @@ public class Raw extends AbstractSequenceableAlternative
 		}
 		
 		@Override
+		@Deprecated
 		public Compound then(final Raw right)
+		{return andThen(right);}
+		
+		@Override
+		@Deprecated
+		public Compound then(final Compound right)
+		{return andThen(right);}
+		
+		@Override
+		public Compound andThen(final Raw right)
 		{
 			return new Compound(components.append(List.single(right)));
 		}
 		
 		@Override
-		public Compound then(final Compound right)
+		public Compound andThen(final Compound right)
 		{
 			return new Compound(components.append(right.components));
 		}

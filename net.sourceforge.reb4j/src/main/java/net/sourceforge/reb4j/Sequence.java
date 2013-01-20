@@ -101,11 +101,21 @@ public final class Sequence extends AbstractExpression
 	{return new Alternation(this, right);}
 	
 	@Override
+	@Deprecated
 	public Sequence then(final Sequenceable right)
+	{return andThen(right);}
+
+	@Override
+	@Deprecated
+	public Sequence then(final Sequence right)
+	{return andThen(right);}
+	
+	@Override
+	public Sequence andThen(final Sequenceable right)
 	{return new Sequence(this, right);}
 
 	@Override
-	public Sequence then(final Sequence right)
+	public Sequence andThen(final Sequence right)
 	{return new Sequence(this, right);}
 	
 	@Override
@@ -140,18 +150,12 @@ public final class Sequence extends AbstractExpression
  */
 interface SequenceOps
 {
-	/**
-	 * Constructs a sequence consisting of the receiver followed by the 
-	 * specified sub-expression.
-	 * 
-	 * @param right
-	 * 	the sub-expression that must appear after the receiver in order to match;
-	 * 	must not be <code>null</code>.
-	 * @return a new sequence.
-	 * @throws NullPointerException
-	 * 	if <var>right</var> is <code>null</code>
-	 */
+	@Deprecated
 	Sequence then(Sequence.Sequenceable right);
+	
+	@Deprecated
+	Sequence then(Sequence right);
+	
 	
 	/**
 	 * Constructs a sequence consisting of the receiver followed by the 
@@ -164,5 +168,19 @@ interface SequenceOps
 	 * @throws NullPointerException
 	 * 	if <var>right</var> is <code>null</code>
 	 */
-	Sequence then(Sequence right);
+	Sequence andThen(Sequence.Sequenceable right);
+	
+	/**
+	 * Constructs a sequence consisting of the receiver followed by the 
+	 * specified sub-expression.
+	 * 
+	 * @param right
+	 * 	the sub-expression that must appear after the receiver in order to match;
+	 * 	must not be <code>null</code>.
+	 * @return a new sequence.
+	 * @throws NullPointerException
+	 * 	if <var>right</var> is <code>null</code>
+	 */
+	Sequence andThen(Sequence right);
+	
 }
