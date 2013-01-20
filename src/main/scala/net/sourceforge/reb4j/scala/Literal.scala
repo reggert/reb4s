@@ -6,7 +6,7 @@ package net.sourceforge.reb4j.scala
 @SerialVersionUID(1L)
 sealed abstract class Literal private[scala] extends Expression 
 	with Alternation.Alternative
-	with Sequence.Sequenceable
+	with Sequenceable
 {
 	import Literal.StringLiteral
 	

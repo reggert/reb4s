@@ -9,7 +9,7 @@ package net.sourceforge.reb4j.scala
 final class Quantified private[scala] (val base : Quantifiable, val quantifier : String) 
 	extends Expression 
 	with Alternation.Alternative
-	with Sequence.Sequenceable
+	with Sequenceable
 {
 	override lazy val expression = base.expression + quantifier
 	override def equals (other : Any) = other match

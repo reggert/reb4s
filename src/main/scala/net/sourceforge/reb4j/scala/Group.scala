@@ -7,7 +7,7 @@ package net.sourceforge.reb4j.scala
 sealed abstract class Group private[scala] (private val opening : String) 
 	extends Expression 
 	with Alternation.Alternative
-	with Sequence.Sequenceable
+	with Sequenceable
 	with Quantifiable
 {
 	val nested : Expression
