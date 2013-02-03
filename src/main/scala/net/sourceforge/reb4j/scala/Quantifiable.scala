@@ -13,7 +13,7 @@ trait Quantifiable extends Expression
 	 * Returns an expression that matches the receiver repeated any number 
 	 * of times, using greedy matching.
 	 * 
-	 * @see [[net.sourceforge.reb4j.scala.Quantifiable.*]]
+	 * @see [[net.sourceforge.reb4j.scala.Quantifiable#*]]
 	 */
 	final def anyTimes = new Quantified(this, "*")
 	
@@ -21,7 +21,7 @@ trait Quantifiable extends Expression
 	 * Returns an expression that matches the receiver repeated any number 
 	 * of times, using reluctant matching.
 	 * 
-	 * @see [[net.sourceforge.reb4j.scala.Quantifiable.*?]]
+	 * @see [[net.sourceforge.reb4j.scala.Quantifiable#*?]]
 	 */
 	final def anyTimesReluctantly = new Quantified(this, "*?")
 	
@@ -29,7 +29,7 @@ trait Quantifiable extends Expression
 	 * Returns an expression that matches the receiver repeated any number 
 	 * of times, using possessive matching.
 	 * 
-	 * @see [[net.sourceforge.reb4j.scala.Quantifiable.*+]]
+	 * @see [[net.sourceforge.reb4j.scala.Quantifiable#*+]]
 	 */
 	final def anyTimesPossessively = new Quantified(this, "*+")
 	
@@ -37,7 +37,7 @@ trait Quantifiable extends Expression
 	 * Returns an expression that matches the receiver repeated any number 
 	 * of times, using greedy matching.
 	 * 
-	 * @see [[net.sourceforge.reb4j.scala.Quantifiable.anyTimes]]
+	 * @see [[net.sourceforge.reb4j.scala.Quantifiable#anyTimes]]
 	 */
 	final def * = anyTimes
 	
@@ -45,7 +45,7 @@ trait Quantifiable extends Expression
 	 * Returns an expression that matches the receiver repeated any number 
 	 * of times, using reluctant matching.
 	 * 
-	 * @see [[net.sourceforge.reb4j.scala.Quantifiable.anyTimesReluctantly]]
+	 * @see [[net.sourceforge.reb4j.scala.Quantifiable#anyTimesReluctantly]]
 	 */
 	final def *? = anyTimesReluctantly
 	
@@ -53,7 +53,7 @@ trait Quantifiable extends Expression
 	 * Returns an expression that matches the receiver repeated any number 
 	 * of times, using possessive matching.
 	 * 
-	 * @see [[net.sourceforge.reb4j.scala.Quantifiable.anyTimesPossessively]]
+	 * @see [[net.sourceforge.reb4j.scala.Quantifiable#anyTimesPossessively]]
 	 */
 	final def *+ = anyTimesPossessively
 	
@@ -62,7 +62,7 @@ trait Quantifiable extends Expression
 	 * Returns an expression that matches the receiver repeated at least 
 	 * once, using greedy matching.
 	 * 
-	 * @see [[net.sourceforge.reb4j.scala.Quantifiable.+]]
+	 * @see [[net.sourceforge.reb4j.scala.Quantifiable#+]]
 	 */
 	final def atLeastOnce = new Quantified(this, "+")
 	
@@ -70,7 +70,7 @@ trait Quantifiable extends Expression
 	 * Returns an expression that matches the receiver repeated at least 
 	 * once, using reluctant matching.
 	 * 
-	 * @see [[net.sourceforge.reb4j.scala.Quantifiable.+?]]
+	 * @see [[net.sourceforge.reb4j.scala.Quantifiable#+?]]
 	 */
 	final def atLeastOnceReluctantly = new Quantified(this, "+?")
 	
@@ -78,7 +78,7 @@ trait Quantifiable extends Expression
 	 * Returns an expression that matches the receiver repeated at least 
 	 * once, using possessive matching.
 	 * 
-	 * @see [[net.sourceforge.reb4j.scala.Quantifiable.++]]
+	 * @see [[net.sourceforge.reb4j.scala.Quantifiable#++]]
 	 */
 	final def atLeastOncePossessively = new Quantified(this, "++")
 	
@@ -86,7 +86,7 @@ trait Quantifiable extends Expression
 	 * Returns an expression that matches the receiver repeated at least 
 	 * once, using greedy matching.
 	 * 
-	 * @see [[net.sourceforge.reb4j.scala.Quantifiable.atLeastOnce]]
+	 * @see [[net.sourceforge.reb4j.scala.Quantifiable#atLeastOnce]]
 	 */
 	final def + = atLeastOnce
 	
@@ -94,7 +94,7 @@ trait Quantifiable extends Expression
 	 * Returns an expression that matches the receiver repeated at least 
 	 * once, using reluctant matching.
 	 * 
-	 * @see [[net.sourceforge.reb4j.scala.Quantifiable.atLeastOnceReluctantly]]
+	 * @see [[net.sourceforge.reb4j.scala.Quantifiable#atLeastOnceReluctantly]]
 	 */
 	final def +? = atLeastOnceReluctantly
 	
@@ -102,7 +102,7 @@ trait Quantifiable extends Expression
 	 * Returns an expression that matches the receiver repeated at least 
 	 * once, using possessive matching.
 	 * 
-	 * @see [[net.sourceforge.reb4j.scala.Quantifiable.atLeastOncePossessively]]
+	 * @see [[net.sourceforge.reb4j.scala.Quantifiable#atLeastOncePossessively]]
 	 */
 	final def ++ = atLeastOncePossessively
 	
@@ -111,7 +111,7 @@ trait Quantifiable extends Expression
 	 * Returns an expression that matches the receiver appearing once or not 
 	 * at all, using greedy matching.
 	 * 
-	 * @see [[net.sourceforge.reb4j.scala.Quantifiable.?]]
+	 * @see [[net.sourceforge.reb4j.scala.Quantifiable#?]]
 	 */
 	final def optional = new Quantified(this, "?")
 	
@@ -119,7 +119,7 @@ trait Quantifiable extends Expression
 	 * Returns an expression that matches the receiver appearing once or not 
 	 * at all, using reluctant matching.
 	 * 
-	 * @see [[net.sourceforge.reb4j.scala.Quantifiable.??]]
+	 * @see [[net.sourceforge.reb4j.scala.Quantifiable#??]]
 	 */
 	final def optionalReluctantly = new Quantified(this, "??")
 	
@@ -127,7 +127,7 @@ trait Quantifiable extends Expression
 	 * Returns an expression that matches the receiver appearing once or not 
 	 * at all, using possessive matching.
 	 * 
-	 * @see [[net.sourceforge.reb4j.scala.Quantifiable.?+]]
+	 * @see [[net.sourceforge.reb4j.scala.Quantifiable#?+]]
 	 */
 	final def optionalPossessively = new Quantified(this, "?+")
 	
@@ -135,7 +135,7 @@ trait Quantifiable extends Expression
 	 * Returns an expression that matches the receiver appearing once or not 
 	 * at all, using greedy matching.
 	 * 
-	 * @see [[net.sourceforge.reb4j.scala.Quantifiable.optional]]
+	 * @see [[net.sourceforge.reb4j.scala.Quantifiable#optional]]
 	 */
 	final def ? = optional
 	
@@ -143,7 +143,7 @@ trait Quantifiable extends Expression
 	 * Returns an expression that matches the receiver appearing once or not 
 	 * at all, using reluctant matching.
 	 * 
-	 * @see [[net.sourceforge.reb4j.scala.Quantifiable.optionalReluctantly]]
+	 * @see [[net.sourceforge.reb4j.scala.Quantifiable#optionalReluctantly]]
 	 */
 	final def ?? = optionalReluctantly
 	
@@ -151,7 +151,7 @@ trait Quantifiable extends Expression
 	 * Returns an expression that matches the receiver appearing once or not 
 	 * at all, using possessive matching.
 	 * 
-	 * @see [[net.sourceforge.reb4j.scala.Quantifiable.optionalPossessively]]
+	 * @see [[net.sourceforge.reb4j.scala.Quantifiable#optionalPossessively]]
 	 */
 	final def ?+ = optionalPossessively
 	
