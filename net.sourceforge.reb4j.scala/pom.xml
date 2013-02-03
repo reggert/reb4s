@@ -47,6 +47,10 @@
 						<arg>-language:implicitConversions</arg>
 						<arg>-language:postfixOps</arg>
 					</args>
+					<jvmArgs>
+						<jvmArg>-XX:MaxPermSize=128M</jvmArg>
+					</jvmArgs>
+					<recompileMode>incremental</recompileMode>
 				</configuration>
 			</plugin>
 			<plugin>
