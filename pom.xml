@@ -22,6 +22,10 @@
 		<version>7</version>
 	</parent>
 	
+	<prerequisites>
+		<maven>3.0.4</maven>
+	</prerequisites>
+	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<packageVersion>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}</packageVersion>
@@ -114,9 +118,9 @@
 					<version>1.8.1</version>
 				</plugin>
 				<plugin>
-					<groupId>org.scala-tools</groupId>
-					<artifactId>maven-scala-plugin</artifactId>
-					<version>2.15.2</version>
+					<groupId>net.alchim31.maven</groupId>
+					<artifactId>scala-maven-plugin</artifactId>
+					<version>3.1.2</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.felix</groupId>
@@ -144,11 +148,12 @@
 										<ignore />
 									</action>
 								</pluginExecution>
+								
 								<pluginExecution>
 									<pluginExecutionFilter>
-										<groupId>org.scala-tools</groupId>
-										<artifactId>maven-scala-plugin</artifactId>
-										<versionRange>[2.0,)</versionRange>
+										<groupId>net.alchim31.maven</groupId>
+										<artifactId>scala-maven-plugin</artifactId>
+										<versionRange>[3.1,)</versionRange>
 										<goals>
 											<goal>compile</goal>
 											<goal>testCompile</goal>
@@ -214,11 +219,6 @@
 				<configuration>
 					<show>public</show>
 				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>net.alchim31.maven</groupId>
-				<artifactId>scala-maven-plugin</artifactId>
-				<version>3.1.2</version>
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
