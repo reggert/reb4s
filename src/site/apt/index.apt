@@ -53,7 +53,7 @@ val justA = Literal('a') // single-character literals have special semantics
 
 -------------------------------------------------------------------------------
 val abcd = Literal("ab") ~~ Literal("cd")
-val efgh = Literal("ef") then Literal("gh")
+val efgh = Literal("ef") andThen Literal("gh")
 -------------------------------------------------------------------------------			
 			
 ** Alternation
