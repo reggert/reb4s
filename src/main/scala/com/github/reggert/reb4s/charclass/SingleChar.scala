@@ -1,5 +1,5 @@
-package net.sourceforge.reb4j.scala.charclass
-import net.sourceforge.reb4j.scala.Literal
+package com.github.reggert.reb4s.charclass
+import com.github.reggert.reb4s.Literal
 
 final class SingleChar private[charclass] (val char : Char) 
 	extends CharClass 

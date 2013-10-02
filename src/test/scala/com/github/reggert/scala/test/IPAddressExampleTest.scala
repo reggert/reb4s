@@ -1,11 +1,12 @@
-package net.sourceforge.reb4j.scala.test
+package com.github.reggert.reb4s.test
+
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 import org.scalatest.FunSuite
 import org.scalatest.Suite
-import net.sourceforge.reb4j.scala.charclass.CharClass._
+import com.github.reggert.reb4s.charclass.CharClass._
 import org.scalatest.matchers.ShouldMatchers
-import net.sourceforge.reb4j.scala._
+import com.github.reggert.reb4s._
 
 @RunWith(classOf[JUnitRunner])
 class IPAddressExampleTest extends Suite with ShouldMatchers with Implicits

@@ -1,4 +1,4 @@
-package net.sourceforge.reb4j.scala
+package com.github.reggert.reb4s
 
 /**
  * Expression that has been grouped in parentheses.

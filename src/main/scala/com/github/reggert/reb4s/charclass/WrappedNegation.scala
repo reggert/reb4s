@@ -1,4 +1,4 @@
-package net.sourceforge.reb4j.scala.charclass
+package com.github.reggert.reb4s.charclass
 
 /**
  * Trait marking character classes that must be wrapped in

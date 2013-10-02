@@ -1,4 +1,4 @@
-package net.sourceforge.reb4j.scala
+package com.github.reggert.reb4s
 import java.util.regex.Pattern
 import scala.util.matching.Regex
 

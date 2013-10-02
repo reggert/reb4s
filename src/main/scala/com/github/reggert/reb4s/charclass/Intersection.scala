@@ -1,4 +1,4 @@
-package net.sourceforge.reb4j.scala.charclass
+package com.github.reggert.reb4s.charclass
 
 /**
  * Character class representing the intersection of two or more character 

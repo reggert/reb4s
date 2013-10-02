@@ -1,6 +1,6 @@
-package net.sourceforge.reb4j.scala.charclass
+package com.github.reggert.reb4s.charclass
 import java.lang.Character.UnicodeBlock
-import net.sourceforge.reb4j.scala.{Expression, Alternative, Quantifiable, Sequenceable}
+import com.github.reggert.reb4s.{Expression, Alternative, Quantifiable, Sequenceable}
 
 /**
  * Base class representing an expression that matches a single character 

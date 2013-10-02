@@ -1,4 +1,4 @@
-package net.sourceforge.reb4j.scala
+package com.github.reggert.reb4s
 
 /**
  * An expression to which a quantifier has been attached.

@@ -1,4 +1,4 @@
-package net.sourceforge.reb4j.scala
+package com.github.reggert.reb4s
 
 /**
  * Expression representing a set of alternatives that may be matched.

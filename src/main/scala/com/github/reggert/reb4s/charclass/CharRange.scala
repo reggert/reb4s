@@ -1,4 +1,4 @@
-package net.sourceforge.reb4j.scala.charclass
+package com.github.reggert.reb4s.charclass
 
 /**
  * Character class matching any character between a range of characters.

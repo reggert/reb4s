@@ -1,4 +1,4 @@
-package net.sourceforge.reb4j.scala
+package com.github.reggert.reb4s
 
 /**
  * Flag that can be passed to the [[java.util.regex.Pattern]] 
