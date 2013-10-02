@@ -6,7 +6,7 @@ package com.github.reggert.reb4s
  * in a [[net.sourceforge.reb4j.scala.Group]] or other container.
  */
 @SerialVersionUID(1L)
-final class Quantified private[scala] (val base : Quantifiable, val quantifier : String) 
+final class Quantified private[reb4s] (val base : Quantifiable, val quantifier : String) 
 	extends Expression 
 	with Alternative
 	with Sequenceable

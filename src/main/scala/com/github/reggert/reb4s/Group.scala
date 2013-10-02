@@ -4,7 +4,7 @@ package com.github.reggert.reb4s
  * Expression that has been grouped in parentheses.
  */
 @SerialVersionUID(1L)
-sealed abstract class Group private[scala] (private val opening : String) 
+sealed abstract class Group private[reb4s] (private val opening : String) 
 	extends Expression 
 	with Alternative
 	with Sequenceable

@@ -5,7 +5,7 @@ package com.github.reggert.reb4s
  * another.
  */
 @SerialVersionUID(1L)
-final class Sequence private[scala] (val components : List[Sequenceable]) 
+final class Sequence private[reb4s] (val components : List[Sequenceable]) 
 	extends Expression 
 	with Alternative
 	with Sequenceable

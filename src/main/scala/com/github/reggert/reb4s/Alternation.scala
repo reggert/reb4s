@@ -4,7 +4,7 @@ package com.github.reggert.reb4s
  * Expression representing a set of alternatives that may be matched.
  */
 @SerialVersionUID(1L)
-final class Alternation private[scala] (val alternatives : List[Alternative]) 
+final class Alternation private[reb4s] (val alternatives : List[Alternative]) 
 	extends Expression
 	with Alternative
 {

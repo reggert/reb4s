@@ -6,7 +6,7 @@ import scala.language.postfixOps
  * Expression that matches a specific string.
  */
 @SerialVersionUID(1L)
-sealed abstract class Literal private[scala] extends Expression 
+sealed abstract class Literal private[reb4s] extends Expression 
 	with Alternative
 	with Sequenceable
 {

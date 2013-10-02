@@ -6,7 +6,7 @@ import scala.language.postfixOps
  * Raw regular expression.
  */
 @SerialVersionUID(1L)
-sealed abstract class Raw private[scala] (rawExpression : => String)
+sealed abstract class Raw private[reb4s] (rawExpression : => String)
 	extends Expression 
 	with Alternative 
 	with Sequenceable

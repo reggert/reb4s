@@ -7,7 +7,7 @@ import scala.util.matching.Regex
  * class and adopted for use by '''reb4j'''.
  */
 @SerialVersionUID(1L)
-final class Adopted private[scala] (override val expression : String) extends Expression
+final class Adopted private[reb4s] (override val expression : String) extends Expression
 {
 	override def equals(other : Any) = other match
 	{
