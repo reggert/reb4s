@@ -1,5 +1,7 @@
 package net.sourceforge.reb4j.scala.charclass
 
+import scala.language.postfixOps
+
 final class Union private[charclass] (val subsets : List[CharClass]) 
 	extends CharClass 
 	with BracketsRequired 

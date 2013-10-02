@@ -1,5 +1,7 @@
 package net.sourceforge.reb4j.scala
 
+import scala.language.postfixOps
+
 /**
  * Expression that matches a specific string.
  */
@@ -47,7 +49,7 @@ sealed abstract class Literal private[scala] extends Expression
 	 * Concatenates this literal with the argument.
 	 */
 	@deprecated(message="then is now a reserved word in Scala 2.10; use + instead", since="2.1.0")
-	final def then (right : Literal) = this + right
+	final def `then` (right : Literal) = this + right
 	
 	/**
 	 * Concatenates this literal with the specified raw expression.
@@ -65,7 +67,7 @@ sealed abstract class Literal private[scala] extends Expression
 	 * Concatenates this literal with the specified raw expression.
 	 */
 	@deprecated(message="then is now a reserved word in Scala 2.10; use + instead", since="2.1.0")
-	final def then (right : Raw) = this + right
+	final def `then` (right : Raw) = this + right
 }
 
 

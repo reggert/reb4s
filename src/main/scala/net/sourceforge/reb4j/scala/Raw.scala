@@ -1,5 +1,7 @@
 package net.sourceforge.reb4j.scala
 
+import scala.language.postfixOps
+
 /**
  * Raw regular expression.
  */
@@ -37,13 +39,13 @@ sealed abstract class Raw private[scala] (rawExpression : => String)
 	def ~~ (right : CompoundRaw) = CompoundRaw(this::right.components)
 	
 	@deprecated(message="then is now a reserved word in Scala 2.10; use + instead", since="2.1.0")
-	final def then (right : Raw) = this + right
+	final def `then` (right : Raw) = this + right
 	
 	@deprecated(message="then is now a reserved word in Scala 2.10; use + instead", since="2.1.0")
-	final def then (right : CompoundRaw) = this + right
+	final def `then` (right : CompoundRaw) = this + right
 	
 	@deprecated(message="then is now a reserved word in Scala 2.10; use + instead", since="2.1.0")
-	final def then (right : Literal) = this + right
+	final def `then` (right : Literal) = this + right
 	
 	
 }

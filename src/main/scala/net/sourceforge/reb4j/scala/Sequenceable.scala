@@ -30,11 +30,11 @@ trait Sequenceable extends Expression
 	 * Concatenates this expression with the argument.
 	 */
 	@deprecated(message="then is now a reserved word in Scala 2.10; use andThen instead", since="2.1.0")
-	final def then (right : Sequenceable) = this andThen right
+	final def `then` (right : Sequenceable) = this andThen right
 		
 	/**
 	 * Concatenates this expression with the argument.
 	 */
 	@deprecated(message="then is now a reserved word in Scala 2.10; use andThen instead", since="2.1.0")
-	final def then (right : Sequence) = this andThen right
+	final def `then` (right : Sequence) = this andThen right
 }
