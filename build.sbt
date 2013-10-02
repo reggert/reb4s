@@ -8,9 +8,9 @@ scalacOptions += "-deprecation"
 
 scalacOptions += "-feature"
 
-libraryDependencies in test += "org.scalatest" %% "scalatest" % "1.9.1"
+libraryDependencies in Test += "org.scalatest" %% "scalatest" % "1.9.1"
 
-libraryDependencies in test += "junit" % "junit" % "4.11"
+libraryDependencies in Test += "junit" % "junit" % "4.11"
 
 osgiSettings
 
