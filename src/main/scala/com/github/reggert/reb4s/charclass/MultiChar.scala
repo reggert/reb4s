@@ -15,49 +15,49 @@ final class MultiChar private[charclass] (val chars : Set[Char])
 		
 	/**
 	 * Specialization of the union operator for use with instances of
-	 * [[net.sourceforge.reb4j.scala.charclass.SingleChar]], returning
+	 * [[SingleChar]], returning
 	 * an instance of this class rather than an instance of
-	 * [[net.sourceforge.reb4j.scala.charclass.Union]].
+	 * [[Union]].
 	 */
 	def || (right : SingleChar) = new MultiChar(chars + right.char)
 	
 	/**
 	 * Specialization of the union operator for use with instances of
-	 * [[net.sourceforge.reb4j.scala.charclass.MultiChar]], returning
+	 * [[MultiChar]], returning
 	 * an instance of this class rather than an instance of
-	 * [[net.sourceforge.reb4j.scala.charclass.Union]].
+	 * [[Union]].
 	 */
 	def || (right : MultiChar) = new MultiChar(chars ++ right.chars)
 	
 	/**
 	 * Specialization of the union operator for use with instances of
-	 * [[net.sourceforge.reb4j.scala.charclass.SingleChar]], returning
+	 * [[SingleChar]], returning
 	 * an instance of this class rather than an instance of
-	 * [[net.sourceforge.reb4j.scala.charclass.Union]].
+	 * [[Union]].
 	 */
 	def union (right : SingleChar) = this || right
 	
 	/**
 	 * Specialization of the union operator for use with instances of
-	 * [[net.sourceforge.reb4j.scala.charclass.MultiChar]], returning
+	 * [[MultiChar]], returning
 	 * an instance of this class rather than an instance of
-	 * [[net.sourceforge.reb4j.scala.charclass.Union]].
+	 * [[Union]].
 	 */
 	def union (right : MultiChar) = this || right
 	
 	/**
 	 * Specialization of the union operator for use with instances of
-	 * [[net.sourceforge.reb4j.scala.charclass.SingleChar]], returning
+	 * [[SingleChar]], returning
 	 * an instance of this class rather than an instance of
-	 * [[net.sourceforge.reb4j.scala.charclass.Union]].
+	 * [[Union]].
 	 */
 	def or (right : SingleChar) = this || right
 	
 	/**
 	 * Specialization of the union operator for use with instances of
-	 * [[net.sourceforge.reb4j.scala.charclass.MultiChar]], returning
+	 * [[MultiChar]], returning
 	 * an instance of this class rather than an instance of
-	 * [[net.sourceforge.reb4j.scala.charclass.Union]].
+	 * [[Union]].
 	 */
 	def or (right : MultiChar) = this || right
 	

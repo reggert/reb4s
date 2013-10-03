@@ -15,7 +15,7 @@ abstract class Expression extends Serializable with NotNull with Immutable
 	def expression : String
 	
 	/**
-	 * Always returns the same value as [[net.sourceforge.reb4j.scala.Expression.expression]].
+	 * Always returns the same value as [[Expression#expression]].
 	 */
 	final override def toString = expression
 	
