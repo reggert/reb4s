@@ -1,4 +1,4 @@
-package com.github.reggert.reb4s
+package io.github.reggert.reb4s
 
 /**
  * Flag that can be passed to the [[java.util.regex.Pattern]] 

@@ -1,4 +1,4 @@
-package com.github.reggert.reb4s.charclass
+package io.github.reggert.reb4s.charclass
 
 /**
  * Character class representing the negation of another character class.

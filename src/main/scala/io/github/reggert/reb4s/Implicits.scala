@@ -1,4 +1,4 @@
-package com.github.reggert.reb4s
+package io.github.reggert.reb4s
 
 import scala.language.implicitConversions
 

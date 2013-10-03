@@ -1,6 +1,6 @@
-package com.github.reggert.reb4s.charclass
+package io.github.reggert.reb4s.charclass
 import java.lang.Character.UnicodeBlock
-import com.github.reggert.reb4s.{Expression, Alternative, Quantifiable, Sequenceable}
+import io.github.reggert.reb4s.{Expression, Alternative, Quantifiable, Sequenceable}
 
 /**
  * Base class representing an expression that matches a single character 

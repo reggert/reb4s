@@ -1,4 +1,4 @@
-package com.github.reggert.reb4s.charclass
+package io.github.reggert.reb4s.charclass
 
 import scala.language.postfixOps
 

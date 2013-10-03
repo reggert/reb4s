@@ -1,5 +1,5 @@
-package com.github.reggert.reb4s.charclass
-import com.github.reggert.reb4s.Literal
+package io.github.reggert.reb4s.charclass
+import io.github.reggert.reb4s.Literal
 
 final class SingleChar private[charclass] (val char : Char) 
 	extends CharClass 

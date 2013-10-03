@@ -1,4 +1,4 @@
-package com.github.reggert.reb4s.charclass
+package io.github.reggert.reb4s.charclass
 
 /**
  * Trait indicating that a character class expression must be enclosed

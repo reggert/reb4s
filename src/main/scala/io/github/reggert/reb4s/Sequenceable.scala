@@ -1,4 +1,4 @@
-package com.github.reggert.reb4s
+package io.github.reggert.reb4s
 
 /**
  * Interface implemented by expressions that may be used as 

@@ -1,4 +1,4 @@
-package com.github.reggert.reb4s.charclass
+package io.github.reggert.reb4s.charclass
 
 /**
  * Character class matching any character between a range of characters.

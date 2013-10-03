@@ -1,4 +1,4 @@
-package com.github.reggert.reb4s
+package io.github.reggert.reb4s
 
 /**
  * Expression that has been grouped in parentheses.

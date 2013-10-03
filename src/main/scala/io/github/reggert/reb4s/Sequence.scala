@@ -1,4 +1,4 @@
-package com.github.reggert.reb4s
+package io.github.reggert.reb4s
 
 /**
  * Expression that matches a series of sub-expressions appearing one after 

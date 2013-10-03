@@ -1,4 +1,4 @@
-package com.github.reggert.reb4s.charclass
+package io.github.reggert.reb4s.charclass
 
 /**
  * Trait marking character classes that must be wrapped in
