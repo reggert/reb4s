@@ -18,7 +18,7 @@ libraryDependencies += "junit" % "junit" % "4.11" % "test"
 
 osgiSettings
 
-OsgiKeys.bundleSymbolicName := name.value
+OsgiKeys.exportPackage := Seq(s"${organization.value}.*;version=${version.value}")
 
 licenses := Seq("GNU Lesser General Public License v3.0" -> url("http://www.gnu.org/licenses/lgpl-3.0.html"))
 
