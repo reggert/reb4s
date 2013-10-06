@@ -1,0 +1,240 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>charclass - io.github.reggert.reb4s.charclass</title>
+          <meta name="description" content="charclass - io.github.reggert.reb4s.charclass" />
+          <meta name="keywords" content="charclass io.github.reggert.reb4s.charclass" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../../../index.html';
+            var hash = 'io.github.reggert.reb4s.charclass.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img src="../../../../../lib/package_big.png" />
+        <p id="owner"><a href="../../../../package.html" class="extype" name="io">io</a>.<a href="../../../package.html" class="extype" name="io.github">github</a>.<a href="../../package.html" class="extype" name="io.github.reggert">reggert</a>.<a href="../package.html" class="extype" name="io.github.reggert.reb4s">reb4s</a></p>
+        <h1>charclass</h1>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">charclass</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        
+        
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="io.github.reggert.reb4s.charclass.CharClass" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="CharClassextendsExpressionwithAlternativewithSequenceablewithQuantifiable"></a>
+      <a id="CharClass:CharClass"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="CharClass.html"><span class="name">CharClass</span></a><span class="result"> extends <a href="../Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a> with <a href="../Alternative.html" class="extype" name="io.github.reggert.reb4s.Alternative">Alternative</a> with <a href="../Sequenceable.html" class="extype" name="io.github.reggert.reb4s.Sequenceable">Sequenceable</a> with <a href="../Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Base class representing an expression that matches a single character
+within a class of characters.</p>
+    </li><li name="io.github.reggert.reb4s.charclass.CharRange" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CharRangeextendsCharClasswithWrappedNegation[io.github.reggert.reb4s.charclass.CharRange]withBracketsRequired"></a>
+      <a id="CharRange:CharRange"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="CharRange.html"><span class="name">CharRange</span></a><span class="result"> extends <a href="CharClass.html" class="extype" name="io.github.reggert.reb4s.charclass.CharClass">CharClass</a> with <span class="extype" name="io.github.reggert.reb4s.charclass.WrappedNegation">WrappedNegation</span>[<a href="CharRange.html" class="extype" name="io.github.reggert.reb4s.charclass.CharRange">CharRange</a>] with <span class="extype" name="io.github.reggert.reb4s.charclass.BracketsRequired">BracketsRequired</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Character class matching any character between a range of characters.</p>
+    </li><li name="io.github.reggert.reb4s.charclass.Intersection" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="IntersectionextendsCharClasswithBracketsRequiredwithWrappedNegation[io.github.reggert.reb4s.charclass.Intersection]"></a>
+      <a id="Intersection:Intersection"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Intersection.html"><span class="name">Intersection</span></a><span class="result"> extends <a href="CharClass.html" class="extype" name="io.github.reggert.reb4s.charclass.CharClass">CharClass</a> with <span class="extype" name="io.github.reggert.reb4s.charclass.BracketsRequired">BracketsRequired</span> with <span class="extype" name="io.github.reggert.reb4s.charclass.WrappedNegation">WrappedNegation</span>[<a href="Intersection.html" class="extype" name="io.github.reggert.reb4s.charclass.Intersection">Intersection</a>]</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Character class representing the intersection of two or more character
+classes.</p>
+    </li><li name="io.github.reggert.reb4s.charclass.MultiChar" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="MultiCharextendsCharClasswithBracketsRequiredwithWrappedNegation[io.github.reggert.reb4s.charclass.MultiChar]"></a>
+      <a id="MultiChar:MultiChar"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="MultiChar.html"><span class="name">MultiChar</span></a><span class="result"> extends <a href="CharClass.html" class="extype" name="io.github.reggert.reb4s.charclass.CharClass">CharClass</a> with <span class="extype" name="io.github.reggert.reb4s.charclass.BracketsRequired">BracketsRequired</span> with <span class="extype" name="io.github.reggert.reb4s.charclass.WrappedNegation">WrappedNegation</span>[<a href="MultiChar.html" class="extype" name="io.github.reggert.reb4s.charclass.MultiChar">MultiChar</a>]</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Character class that matches any of the specified characters.</p>
+    </li><li name="io.github.reggert.reb4s.charclass.NamedPredefinedClass" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="NamedPredefinedClassextendsPredefinedClass"></a>
+      <a id="NamedPredefinedClass:NamedPredefinedClass"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="NamedPredefinedClass.html"><span class="name">NamedPredefinedClass</span></a><span class="result"> extends <a href="PredefinedClass.html" class="extype" name="io.github.reggert.reb4s.charclass.PredefinedClass">PredefinedClass</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Class representing a predefined character class referenced by name.</p>
+    </li><li name="io.github.reggert.reb4s.charclass.Negated" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Negated[T&lt;:io.github.reggert.reb4s.charclass.WrappedNegation[T]]extendsCharClasswithSelfContained"></a>
+      <a id="Negated[T&lt;:WrappedNegation[T]]:Negated[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Negated.html"><span class="name">Negated</span></a><span class="tparams">[<span name="T">T &lt;: <span class="extype" name="io.github.reggert.reb4s.charclass.WrappedNegation">WrappedNegation</span>[<span class="extype" name="io.github.reggert.reb4s.charclass.Negated.T">T</span>]</span>]</span><span class="result"> extends <a href="CharClass.html" class="extype" name="io.github.reggert.reb4s.charclass.CharClass">CharClass</a> with <a href="SelfContained.html" class="extype" name="io.github.reggert.reb4s.charclass.SelfContained">SelfContained</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Character class representing the negation of another character class.</p>
+    </li><li name="io.github.reggert.reb4s.charclass.PredefinedClass" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="PredefinedClassextendsCharClasswithSelfContained"></a>
+      <a id="PredefinedClass:PredefinedClass"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="PredefinedClass.html"><span class="name">PredefinedClass</span></a><span class="result"> extends <a href="CharClass.html" class="extype" name="io.github.reggert.reb4s.charclass.CharClass">CharClass</a> with <a href="SelfContained.html" class="extype" name="io.github.reggert.reb4s.charclass.SelfContained">SelfContained</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Class representing a predefined character class.</p>
+    </li><li name="io.github.reggert.reb4s.charclass.SelfContained" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="SelfContainedextendsCharClass"></a>
+      <a id="SelfContained:SelfContained"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="SelfContained.html"><span class="name">SelfContained</span></a><span class="result"> extends <a href="CharClass.html" class="extype" name="io.github.reggert.reb4s.charclass.CharClass">CharClass</a></span>
+      </span>
+      </h4>
+      
+    </li><li name="io.github.reggert.reb4s.charclass.SingleChar" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SingleCharextendsCharClasswithWrappedNegation[io.github.reggert.reb4s.charclass.SingleChar]withSelfContained"></a>
+      <a id="SingleChar:SingleChar"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="SingleChar.html"><span class="name">SingleChar</span></a><span class="result"> extends <a href="CharClass.html" class="extype" name="io.github.reggert.reb4s.charclass.CharClass">CharClass</a> with <span class="extype" name="io.github.reggert.reb4s.charclass.WrappedNegation">WrappedNegation</span>[<a href="SingleChar.html" class="extype" name="io.github.reggert.reb4s.charclass.SingleChar">SingleChar</a>] with <a href="SelfContained.html" class="extype" name="io.github.reggert.reb4s.charclass.SelfContained">SelfContained</a></span>
+      </span>
+      </h4>
+      
+    </li><li name="io.github.reggert.reb4s.charclass.Union" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="UnionextendsCharClasswithBracketsRequiredwithWrappedNegation[io.github.reggert.reb4s.charclass.Union]"></a>
+      <a id="Union:Union"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Union.html"><span class="name">Union</span></a><span class="result"> extends <a href="CharClass.html" class="extype" name="io.github.reggert.reb4s.charclass.CharClass">CharClass</a> with <span class="extype" name="io.github.reggert.reb4s.charclass.BracketsRequired">BracketsRequired</span> with <span class="extype" name="io.github.reggert.reb4s.charclass.WrappedNegation">WrappedNegation</span>[<a href="Union.html" class="extype" name="io.github.reggert.reb4s.charclass.Union">Union</a>]</span>
+      </span>
+      </h4>
+      
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="io.github.reggert.reb4s.charclass.CharClass" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CharClass"></a>
+      <a id="CharClass:CharClass"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CharClass$.html"><span class="name">CharClass</span></a><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Factory object for creating character class expressions.</p>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+      <script defer="defer" type="text/javascript" id="jquery-js" src="../../../../../lib/jquery.js"></script><script defer="defer" type="text/javascript" id="jquery-ui-js" src="../../../../../lib/jquery-ui.js"></script><script defer="defer" type="text/javascript" id="tools-tooltip-js" src="../../../../../lib/tools.tooltip.js"></script><script defer="defer" type="text/javascript" id="template-js" src="../../../../../lib/template.js"></script>
+    </body>
+      </html>
