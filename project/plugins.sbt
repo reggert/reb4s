@@ -1,6 +1,6 @@
-//addSbtPlugin("com.typesafe.sbt" % "sbt-osgi" % "0.7.0-SNAPSHOT")
+addSbtPlugin("io.github.reggert" % "sbt-osgi" % "0.7.0-SNAPSHOT")
 
-addSbtPlugin("com.typesafe.sbt" % "sbt-osgi" % "0.6.0")
+//addSbtPlugin("com.typesafe.sbt" % "sbt-osgi" % "0.6.0")
 
 addSbtPlugin("com.typesafe.sbt" % "sbt-site" % "0.7.1")
 
