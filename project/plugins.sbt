@@ -1,3 +1,5 @@
+resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
+
 addSbtPlugin("io.github.reggert" % "sbt-osgi" % "0.7.0-SNAPSHOT")
 
 //addSbtPlugin("com.typesafe.sbt" % "sbt-osgi" % "0.6.0")
