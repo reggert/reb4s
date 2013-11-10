@@ -150,15 +150,15 @@ trait ExpressionGenerators {
 				Gen.const(q ?),
 				Gen.const(q ??),
 				Gen.const(q ?+),
-				for {n <- arbitrary[Int] suchThat {_ > 0}} yield (q repeat n),
-				for {n <- arbitrary[Int] suchThat {_ > 0}} yield (q repeatReluctantly n),
-				for {n <- arbitrary[Int] suchThat {_ > 0}} yield (q repeatPossessively n),
-				for {(n, m) <- arbitrary[(Int, Int)] suchThat {case (n, m) => (n >= 0 && m > n)}} yield (q.repeat(n, m)),
-				for {(n, m) <- arbitrary[(Int, Int)] suchThat {case (n, m) => (n >= 0 && m > n)}} yield (q.repeatReluctantly(n, m)),
-				for {(n, m) <- arbitrary[(Int, Int)] suchThat {case (n, m) => (n >= 0 && m > n)}} yield (q.repeatPossessively(n, m)),
-				for {n <- arbitrary[Int] suchThat {_ > 0}} yield q.atLeast(n),
-				for {n <- arbitrary[Int] suchThat {_ > 0}} yield q.atLeastReluctantly(n),
-				for {n <- arbitrary[Int] suchThat {_ > 0}} yield q.atLeastPossessively(n)
+				(for {n <- arbitrary[Int] if n > 0} yield (q repeat n)),
+				(for {n <- arbitrary[Int] if n > 0} yield (q repeatReluctantly n)),
+				(for {n <- arbitrary[Int] if n > 0} yield (q repeatPossessively n)),
+				(for {(n, m) <- arbitrary[(Int, Int)] if (n >= 0 && m > n)} yield (q.repeat(n, m))),
+				(for {(n, m) <- arbitrary[(Int, Int)] if (n >= 0 && m > n)} yield (q.repeatReluctantly(n, m))),
+				(for {(n, m) <- arbitrary[(Int, Int)] if (n >= 0 && m > n)} yield (q.repeatPossessively(n, m))),
+				(for {n <- arbitrary[Int] if n > 0} yield q.atLeast(n)),
+				(for {n <- arbitrary[Int] if n > 0} yield q.atLeastReluctantly(n)),
+				(for {n <- arbitrary[Int] if n > 0} yield q.atLeastPossessively(n))
 			)
 	} yield qq
 	
@@ -182,8 +182,9 @@ trait ExpressionGenerators {
 	} yield ccn
 	
 	def genCharRange : Gen[CharRange] = for {
-		(min, max) <- arbitrary[(Char, Char)] suchThat {case (a, b) => a < b}
-	} yield CharClass.range(min, max)
+		(first, last) <- arbitrary[(Char, Char)]
+		if first < last
+	} yield {assert(first < last, "WTF?!"); CharClass.range(first, last)}
 	
 	def genIntersection : Gen[Intersection] = for {
 		(first, second) <- arbitrary[(CharClass, CharClass)]
