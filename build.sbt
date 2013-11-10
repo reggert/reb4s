@@ -8,7 +8,7 @@ licenses := Seq("GNU Lesser General Public License v3.0" -> url("http://www.gnu.
 
 homepage := Some(url("http://reggert.github.io/reb4s"))
 
-scalaVersion := "2.10.2"
+scalaVersion := "2.10.3"
 
 scalacOptions += "-unchecked"
 
@@ -21,4 +21,6 @@ autoAPIMappings := true
 libraryDependencies += "org.scalatest" %% "scalatest" % "1.9.1" % "test"
 
 libraryDependencies += "junit" % "junit" % "4.11" % "test"
+
+libraryDependencies += "org.scalacheck" %% "scalacheck" % "1.11.0" % "test"
 
