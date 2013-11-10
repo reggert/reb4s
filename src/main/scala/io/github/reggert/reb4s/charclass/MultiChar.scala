@@ -4,12 +4,17 @@ import io.github.reggert.reb4s.Literal
 
 /**
  * Character class that matches any of the specified characters.
+ * 
+ * @throws IllegalArgumentException 
+ * 	if there are not at least 2 characters specified.
  */
 final class MultiChar private[charclass] (val chars : Set[Char]) 
 	extends CharClass
 	with BracketsRequired 
 	with WrappedNegation[MultiChar]
 {
+	require(chars.size >= 2)
+	
 	override def unitableForm() = 
 		Literal.escape(chars.toSeq)
 		
