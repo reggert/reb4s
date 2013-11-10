@@ -18,9 +18,5 @@ scalacOptions += "-feature"
 
 autoAPIMappings := true
 
-libraryDependencies += "org.scalatest" %% "scalatest" % "1.9.1" % "test"
-
-libraryDependencies += "junit" % "junit" % "4.11" % "test"
-
 libraryDependencies += "org.scalacheck" %% "scalacheck" % "1.11.0" % "test"
 
