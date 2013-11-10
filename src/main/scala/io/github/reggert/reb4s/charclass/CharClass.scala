@@ -132,7 +132,7 @@ object CharClass
 	 * 
 	 * @param first the lowest value character that will match
 	 * @param last the highest value character that will match
-	 * @throws IllegalArgumentException if {first} is greater than {last}.
+	 * @throws IllegalArgumentException if {first} is not less than than {last}.
 	 */
 	def range(first : Char, last : Char) = new CharRange(first, last)
 	
