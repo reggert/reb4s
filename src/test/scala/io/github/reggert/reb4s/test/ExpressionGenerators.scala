@@ -16,51 +16,28 @@ import java.util.regex.Pattern
 trait ExpressionGenerators {
 	
 	implicit val arbExpression = Arbitrary(genExpression)
-	
 	implicit val arbPattern = Arbitrary(genPattern)
-	
 	implicit val arbAdopted = Arbitrary(genAdopted)
-	
 	implicit val arbAlternation = Arbitrary(genAlternation)
-	
 	implicit val arbAlternative = Arbitrary(genAlternative)
-	
 	implicit val arbFlag = Arbitrary(genFlag)
-	
 	implicit val arbGroup = Arbitrary(genGroup)
-	
 	implicit val arbCharLiteral = Arbitrary(genCharLiteral)
-	
 	implicit val arbStringLiteral = Arbitrary(genStringLiteral)
-	
 	implicit val arbLiteral = Arbitrary(genLiteral)
-	
 	implicit val arbQuantifiable = Arbitrary(genQuantifiable)
-	
 	implicit val arbQuantified = Arbitrary(genQuantified)
-	
 	implicit val arbSequence = Arbitrary(genSequence)
-	
 	implicit val arbSequenceable = Arbitrary(genSequenceable)
-	
 	implicit val arbCharClass = Arbitrary(genCharClass)
-	
 	implicit val arbCharRange = Arbitrary(genCharRange)
-	
 	implicit val arbIntersection = Arbitrary(genIntersection)
-	
 	implicit val arbMultiChar = Arbitrary(genMultiChar)
-	
 	implicit val arbSingleChar = Arbitrary(genSingleChar)
-	
 	implicit val arbPredefinedClass = Arbitrary(genPredefinedClass)
-	
 	implicit val arbCompoundRaw = Arbitrary(genCompoundRaw)
-	
 	implicit val arbRaw = Arbitrary(genRaw)
-	
 	implicit val arbRawQuantifiable = Arbitrary(genRawQuantifiable)
-	
 	implicit val arbUnion = Arbitrary(genUnion)
 	
 	
