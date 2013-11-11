@@ -7,12 +7,12 @@ import java.util.regex.Pattern
 
 
 trait AdoptedGenerators {
-	implicit val arbPattern = Arbitrary(genPattern)
+	private implicit val arbPattern = Arbitrary(genPattern)
 	implicit val arbAdopted = Arbitrary(genAdopted)
 	
 	
 	// This generator only generates patterns for quoted strings
-	def genPattern : Gen[Pattern] = for {
+	private def genPattern : Gen[Pattern] = for {
 		s <- arbitrary[String]
 	} yield Pattern.compile(Pattern.quote(s))
 	
