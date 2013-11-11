@@ -10,6 +10,7 @@ trait RawGenerators extends LiteralGenerators {
 	implicit val arbCompoundRaw = Arbitrary(genCompoundRaw)
 	implicit val arbRaw = Arbitrary(genRaw)
 	implicit val arbRawQuantifiable = Arbitrary(genRawQuantifiable)
+	implicit val arbEscapedLiteral = Arbitrary(genEscapedLiteral)
 	
 	
 	def genCompoundRaw : Gen[CompoundRaw] = for {
@@ -19,9 +20,9 @@ trait RawGenerators extends LiteralGenerators {
 	} yield CompoundRaw(first::second::otherComponents)
 	
 	def genRaw : Gen[Raw] = Gen.oneOf(
+			arbitrary[EscapedLiteral], 
 			arbitrary[Raw with Quantifiable], 
-			for {lit <- arbitrary[Literal]} yield EscapedLiteral(lit),
-			Gen.lzy(arbitrary[CompoundRaw])
+			arbitrary[CompoundRaw]
 		)
 	
 	def genRawQuantifiable : Gen[Raw with Quantifiable] = Gen.oneOf(
@@ -35,4 +36,6 @@ trait RawGenerators extends LiteralGenerators {
 			InputEndSkipEOL,
 			InputEnd
 		)
+		
+	def genEscapedLiteral : Gen[EscapedLiteral] = arbitrary[Literal] map {EscapedLiteral}
 }
