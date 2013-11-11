@@ -31,7 +31,8 @@ trait ExpressionGenerators extends CharClassGenerators
 			Gen.oneOf(
 					arbitrary[Adopted],
 					arbitrary[Literal], 
-					arbitrary[Raw with Quantifiable]
+					arbitrary[Raw with Quantifiable],
+					arbitrary[CharClass]
 				),
 			Gen.oneOf(
 					Gen.lzy(arbitrary[Alternation]), 
