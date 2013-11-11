@@ -14,7 +14,7 @@ import io.github.reggert.reb4s.charclass.SingleChar
 import java.util.regex.Pattern
 
 trait ExpressionGenerators extends CharClassGenerators 
-	with LiteralGenerators with RawGenerators with AdoptedGenerators
+	with UtilGenerators with LiteralGenerators with RawGenerators with AdoptedGenerators
 {
 	implicit val arbExpression = Arbitrary(genExpression)
 	implicit val arbAlternation = Arbitrary(genAlternation)
@@ -44,9 +44,8 @@ trait ExpressionGenerators extends CharClassGenerators
 		
 	def genAlternation : Gen[Alternation] = for {
 		first <- arbitrary[Alternative]
-		second <- arbitrary[Alternative]
-		otherAlternatives <- Gen.listOf(arbitrary[Alternative])
-	} yield ((first || second) /: otherAlternatives) {_ || _}
+		otherAlternatives <- genNonEmptyRecursiveList(arbitrary[Alternative])
+	} yield ((first || otherAlternatives.head) /: otherAlternatives.tail) {_ || _}
 	
 	def genAlternative : Gen[Alternative] = Gen.oneOf(
 			Gen.oneOf(
@@ -136,9 +135,8 @@ trait ExpressionGenerators extends CharClassGenerators
 	
 	def genSequence : Gen[Sequence] = for {
 		first <- arbitrary[Sequenceable]
-		second <- arbitrary[Sequenceable]
-		otherTerms <- Gen.listOf(arbitrary[Sequenceable]) 
-	} yield ((first ~~ second) /: otherTerms) {_ ~~ _}
+		otherTerms <- genNonEmptyRecursiveList(arbitrary[Sequenceable]) 
+	} yield ((first ~~ otherTerms.head) /: otherTerms.tail) {_ ~~ _}
 	
 	def genSequenceable : Gen[Sequenceable] = Gen.oneOf(
 			arbitrary[CharClass],
