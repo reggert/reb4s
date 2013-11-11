@@ -15,7 +15,7 @@ trait RawGenerators extends UtilGenerators with LiteralGenerators {
 
 	def genCompoundRaw : Gen[CompoundRaw] = for {
 		first <- arbitrary[Raw]
-		otherComponents <- genNonEmptyRecursiveList[Raw]
+		otherComponents <- genNonEmptyRecursiveList(arbitrary[Raw])
 	} yield CompoundRaw(first::otherComponents)
 	
 	def genRaw : Gen[Raw] = Gen.oneOf(
