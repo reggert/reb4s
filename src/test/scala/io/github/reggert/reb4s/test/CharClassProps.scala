@@ -28,7 +28,7 @@ object SingleCharProps extends Properties("SingleChar")
 
 object MultiCharProps extends Properties("MultiChar")
 	with ExpressionProperties[MultiChar] 
-	with CharClassGenerators
+	with CharClassGenerators with CharClassShrinkers
 {
 	property("toPattern") = toPattern(arbitrary[MultiChar])
 }
