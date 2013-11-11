@@ -8,6 +8,7 @@ import io.github.reggert.reb4s.charclass.MultiChar
 import io.github.reggert.reb4s.charclass.CharRange
 import io.github.reggert.reb4s.charclass.Intersection
 import io.github.reggert.reb4s.charclass.Union
+import io.github.reggert.reb4s.charclass.PredefinedClass
 
 object CharClassProps extends Properties("CharClass") 
 	with ExpressionProperties[CharClass] 
@@ -56,3 +57,10 @@ object UnionProps extends Properties("Union")
 	property("toPattern") = toPattern(arbitrary[Union])
 }
 
+
+object PredefinedClassProps extends Properties("PredefinedClass")
+	with ExpressionProperties[PredefinedClass] 
+	with CharClassGenerators
+{
+	property("toPattern") = toPattern(arbitrary[PredefinedClass])
+}
