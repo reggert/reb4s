@@ -11,7 +11,7 @@ import io.github.reggert.reb4s.charclass.Intersection
 import io.github.reggert.reb4s.charclass.CharClass
 import io.github.reggert.reb4s.charclass.Union
 
-trait CharClassGenerators {
+trait CharClassGenerators extends UtilGenerators {
 	implicit val arbCharClass = Arbitrary(genCharClass)
 	implicit val arbCharRange = Arbitrary(genCharRange)
 	implicit val arbIntersection = Arbitrary(genIntersection)
@@ -40,15 +40,13 @@ trait CharClassGenerators {
 	
 	def genIntersection : Gen[Intersection] = for {
 		first <- arbitrary[CharClass]
-		second <- arbitrary[CharClass]
-		otherSupersets <- Gen.listOf(arbitrary[CharClass])
-	} yield ((first && second) /: otherSupersets) {_ && _}
+		otherSupersets <- genNonEmptyRecursiveList(arbitrary[CharClass])
+	} yield ((first && otherSupersets.head) /: otherSupersets.tail) {_ && _}
 	
 	def genUnion : Gen[Union] = for {
 		first <- arbitrary[CharClass]
-		second <- arbitrary[CharClass]
-		otherSubsets <- Gen.listOf(arbitrary[CharClass])
-	} yield ((first || second) /: otherSubsets) {_ || _}
+		otherSubsets <- genNonEmptyRecursiveList(arbitrary[CharClass])
+	} yield ((first || otherSubsets.head) /: otherSubsets.tail) {_ || _}
 	
 	
 	def genMultiChar : Gen[MultiChar] = for {
