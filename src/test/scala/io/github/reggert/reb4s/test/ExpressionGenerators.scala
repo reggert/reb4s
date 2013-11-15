@@ -16,18 +16,26 @@ import java.util.regex.Pattern
 trait ExpressionGenerators extends CharClassGenerators 
 	with UtilGenerators with LiteralGenerators with RawGenerators with AdoptedGenerators
 {
-	implicit val arbExpression = Arbitrary(genExpression)
-	implicit val arbAlternation = Arbitrary(genAlternation)
-	implicit val arbAlternative = Arbitrary(genAlternative)
+	implicit val arbExpression = Arbitrary(genExpression())
+	implicit val arbAlternation = Arbitrary(genAlternation())
+	implicit val arbAlternative : Arbitrary[Alternative] = Arbitrary(genAlternative())
 	implicit val arbFlag = Arbitrary(genFlag)
-	implicit val arbGroup = Arbitrary(genGroup)
-	implicit val arbQuantifiable = Arbitrary(genQuantifiable)
-	implicit val arbQuantified = Arbitrary(genQuantified)
-	implicit val arbSequence = Arbitrary(genSequence)
-	implicit val arbSequenceable = Arbitrary(genSequenceable)
+	implicit val arbGroup = Arbitrary(genGroup())
+	implicit val arbQuantifiable = Arbitrary(genQuantifiable())
+	implicit val arbQuantified = Arbitrary(genQuantified(arbitrary[Int]))
+	implicit val arbSequence : Arbitrary[Sequence] = Arbitrary(genSequence())
+	implicit val arbSequenceable = Arbitrary(genSequenceable())
 	
 	
-	def genExpression : Gen[Expression] = Gen.oneOf(
+	def genExpression(
+			adoptedGen : => Gen[Adopted] = arbitrary[Adopted],
+			literalGen : => Gen[Literal] = arbitrary[Literal],
+			rawQuantifiableGen : => Gen[Raw with Quantifiable] = arbitrary[Raw with Quantifiable],
+			charClassGen : => Gen[CharClass] = arbitrary[CharClass],
+			alternationGen : => Gen[Alternation] = arbitrary[Alternation],
+			groupGen : => Gen[Group] = arbitrary[Group],
+			sequenceGen : => Gen[Sequence] = arbitrary[Sequence]
+		) : Gen[Expression] = Gen.oneOf(
 			Gen.oneOf(
 					arbitrary[Adopted],
 					arbitrary[Literal], 
@@ -42,26 +50,25 @@ trait ExpressionGenerators extends CharClassGenerators
 				)
 		)
 		
-	def genAlternation : Gen[Alternation] = for {
-		first <- arbitrary[Alternative]
-		otherAlternatives <- genNonEmptyRecursiveList(arbitrary[Alternative])
+	def genAlternation(alternativeGen : => Gen[Alternative] = arbitrary[Alternative]) : Gen[Alternation] = for {
+		first <- alternativeGen
+		otherAlternatives <- genNonEmptyRecursiveList(alternativeGen)
 	} yield ((first || otherAlternatives.head) /: otherAlternatives.tail) {_ || _}
 	
-	def genAlternative : Gen[Alternative] = Gen.oneOf(
-			Gen.oneOf(
-					arbitrary[CharClass],
-					arbitrary[Literal],
-					arbitrary[Raw]
-				),
-			Gen.oneOf(
-					Gen.lzy(arbitrary[Alternation]),
-					Gen.lzy(arbitrary[Group]),
-					Gen.lzy(arbitrary[Quantified]),
-					Gen.lzy(arbitrary[Sequence])
-				)
+	def genAlternative(
+			charClassGen : => Gen[CharClass] = arbitrary[CharClass], 
+			literalGen : => Gen[Literal] = arbitrary[Literal], 
+			rawGen : => Gen[Raw] = arbitrary[Raw],
+			alternationGen : => Gen[Alternation] = arbitrary[Alternation],
+			groupGen : => Gen[Group] = arbitrary[Group],
+			quantifiedGen : => Gen[Quantified] = arbitrary[Quantified],
+			sequenceGen : => Gen[Sequence] = arbitrary[Sequence]
+		) : Gen[Alternative] = Gen.oneOf(
+			Gen.oneOf(charClassGen, literalGen, rawGen),
+			Gen.oneOf(Gen.lzy(alternationGen), Gen.lzy(groupGen), Gen.lzy(quantifiedGen), Gen.lzy(sequenceGen))
 		)
 	
-	def genFlag : Gen[Flag] = Gen.oneOf(
+	def genFlag() : Gen[Flag] = Gen.oneOf(
 			Flag.CaseInsensitive,
 			Flag.UnixLines,
 			Flag.Multiline,
@@ -70,31 +77,35 @@ trait ExpressionGenerators extends CharClassGenerators
 			Flag.Comments
 		)
 	
-	def genGroup : Gen[Group] = for {
+	def genGroup(
+			flagGen : => Gen[Flag] = arbitrary[Flag], 
+			expressionGen : => Gen[Expression] = arbitrary[Expression]
+		) : Gen[Group] = for {
 		g <- Gen.oneOf(
-				Gen.resultOf(Group.Capture),
-				Gen.resultOf(Group.Independent),
-				Gen.resultOf(Group.NegativeLookAhead),
-				Gen.resultOf(Group.NegativeLookBehind),
-				Gen.resultOf(Group.NonCapturing),
-				Gen.resultOf(Group.PositiveLookAhead),
-				Gen.resultOf(Group.PositiveLookBehind),
+				expressionGen.map(Group.Capture),
+				expressionGen.map(Group.Independent),
+				expressionGen.map(Group.NegativeLookAhead),
+				expressionGen.map(Group.NegativeLookBehind),
+				expressionGen.map(Group.NonCapturing),
+				expressionGen.map(Group.PositiveLookAhead),
+				expressionGen.map(Group.PositiveLookBehind),
 				(for {
-					flags <- Gen.listOf(arbitrary[Flag])
-					genEnabled = Gen.lzy(Gen.resultOf {e : Expression => Group.EnableFlags(e, flags : _*)})
-					genDisabled = Gen.lzy(Gen.resultOf {e : Expression => Group.DisableFlags(e, flags : _*)})
+					flags <- Gen.listOf(flagGen)
+					genEnabled = Gen.lzy(expressionGen map {e : Expression => Group.EnableFlags(e, flags : _*)})
+					genDisabled = Gen.lzy(expressionGen map {e : Expression => Group.DisableFlags(e, flags : _*)})
 					g <- Gen.oneOf(genEnabled, genDisabled)
 				} yield g)
 			)
 	} yield g
 	
-	def genQuantifiable : Gen[Quantifiable] = Gen.oneOf(
-			arbitrary[Raw with Quantifiable],
-			arbitrary[CharLiteral],
-			Gen.lzy(arbitrary[Group])
-		)
+	def genQuantifiable(
+			rawQuantifiableGen : => Gen[Raw with Quantifiable] = arbitrary[Raw with Quantifiable], 
+			charLiteralGen : => Gen[CharLiteral] = arbitrary[CharLiteral],
+			groupGen : => Gen[Group] = arbitrary[Group]
+		) : Gen[Quantifiable] = 
+		Gen.oneOf(rawQuantifiableGen, charLiteralGen, Gen.lzy(groupGen))
 	
-	def genQuantified : Gen[Quantified] = for {
+	def genQuantified(intGen : Gen[Int] = arbitrary[Int]) : Gen[Quantified] = for {
 		q <- Gen.oneOf(
 				Gen.oneOf(
 						Gen.resultOf[Quantifiable, Quantified](_ *),
@@ -109,21 +120,21 @@ trait ExpressionGenerators extends CharClassGenerators
 					),
 				Gen.oneOf(
 						(for {
-							n <- arbitrary[Int] if n > 0
+							n <- intGen if n > 0
 							greedy <- Gen.resultOf[Quantifiable, Quantified](_ repeat n)
 							reluctant <- Gen.resultOf[Quantifiable, Quantified](_ repeatReluctantly n)
 							possessive <- Gen.resultOf[Quantifiable, Quantified](_ repeatPossessively n)
 							repeated <- Gen.oneOf(greedy, reluctant, possessive)
 						} yield repeated),
 						(for {
-							(n, m) <- arbitrary[(Int, Int)] if (n >= 0 && m > n)
+							List(n, m) <- Gen.listOfN(2, intGen) if (n >= 0 && m > n)
 							greedy <- Gen.resultOf[Quantifiable, Quantified](_.repeat(n, m))
 							reluctant <- Gen.resultOf[Quantifiable, Quantified](_.repeatReluctantly(n, m))
 							possessive <- Gen.resultOf[Quantifiable, Quantified](_.repeatPossessively(n, m))
 							repeated <- Gen.oneOf(greedy, reluctant, possessive)
 						} yield repeated),
 						(for {
-							n <- arbitrary[Int] if n > 0
+							n <- intGen if n > 0
 							greedy <- Gen.resultOf[Quantifiable, Quantified](_ atLeast n)
 							reluctant <- Gen.resultOf[Quantifiable, Quantified](_ atLeastReluctantly n)
 							possessive <- Gen.resultOf[Quantifiable, Quantified](_ atLeastPossessively n)
@@ -133,17 +144,18 @@ trait ExpressionGenerators extends CharClassGenerators
 			)
 	} yield q
 	
-	def genSequence : Gen[Sequence] = for {
-		first <- arbitrary[Sequenceable]
-		otherTerms <- genNonEmptyRecursiveList(arbitrary[Sequenceable]) 
+	def genSequence(sequenceableGen : => Gen[Sequenceable] = arbitrary[Sequenceable]) : Gen[Sequence] = for {
+		first <- sequenceableGen
+		otherTerms <- genNonEmptyRecursiveList(sequenceableGen) 
 	} yield ((first ~~ otherTerms.head) /: otherTerms.tail) {_ ~~ _}
 	
-	def genSequenceable : Gen[Sequenceable] = Gen.oneOf(
-			arbitrary[CharClass],
-			arbitrary[Literal],
-			arbitrary[Raw],
-			Gen.lzy(arbitrary[Group]) 
-		)
+	def genSequenceable(
+			charClassGen : => Gen[CharClass] = arbitrary[CharClass],
+			literalGen : => Gen[Literal] = arbitrary[Literal],
+			rawGen : => Gen[Raw] = arbitrary[Raw],
+			groupGen : => Gen[Group] = arbitrary[Group]
+		) : Gen[Sequenceable] = 
+			Gen.oneOf(charClassGen, literalGen, rawGen, Gen.lzy(groupGen))
 }
 
 
