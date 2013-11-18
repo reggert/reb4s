@@ -5,12 +5,14 @@ package io.github.reggert.reb4s
  * No further quantifier may be attached without first wrapping this expression
  * in a [[Group]] or other container.
  */
-@SerialVersionUID(1L)
-final class Quantified private[reb4s] (val base : Quantifiable, val quantifier : String) 
+@SerialVersionUID(2L)
+sealed abstract class Quantified 
 	extends Expression 
 	with Alternative
 	with Sequenceable
 {
+	def base : Quantifiable
+	def quantifier : String
 	override lazy val expression = base.expression + quantifier
 	override def equals (other : Any) = other match
 	{
@@ -21,4 +23,60 @@ final class Quantified private[reb4s] (val base : Quantifiable, val quantifier :
 	}
 	override lazy val hashCode = 
 		31 * quantifier.hashCode + base.hashCode;
+}
+
+
+object Quantified 
+{
+	sealed abstract class Mode(val symbol : String)
+	final case object Greedy extends Mode("")
+	final case object Reluctant extends Mode("?")
+	final case object Possessive extends Mode("+")
+	
+	final case class RepeatExactly(
+			base : Quantifiable, 
+			repetitions : Int, 
+			mode : Mode = Greedy
+		) extends Quantified
+	{
+		override def quantifier = s"{$repetitions}${mode.symbol}"
+	}
+	
+	
+	final case class RepeatRange(
+			base : Quantifiable, 
+			minRepetitions : Int, 
+			maxRepetitions : Option[Int], 
+			mode : Mode = Greedy
+		) extends Quantified
+	{
+		override def quantifier = s"{$minRepetitions,${maxRepetitions.getOrElse("")}${mode.symbol}"
+	}
+	
+	
+	final case class AtLeastOnce(
+			base : Quantifiable,
+			mode : Mode = Greedy
+		) extends Quantified
+	{
+		override def quantifier = s"+${mode.symbol}"
+	}
+	
+	
+	final case class AnyTimes(
+			base : Quantifiable,
+			mode : Mode = Greedy
+		) extends Quantified
+	{
+		override def quantifier = s"*${mode.symbol}"
+	}
+	
+	
+	final case class Optional(
+			base : Quantifiable,
+			mode : Mode = Greedy
+		) extends Quantified
+	{
+		override def quantifier = s"?${mode.symbol}"
+	}
 }

@@ -106,6 +106,7 @@ trait ExpressionGenerators extends CharClassGenerators
 		Gen.oneOf(rawQuantifiableGen, charLiteralGen, Gen.lzy(groupGen))
 	
 	def genQuantified(intGen : Gen[Int] = arbitrary[Int]) : Gen[Quantified] = for {
+		mode <- Gen.oneOf(Quantified.Greedy, Quantified.Reluctant, Quantified.Possessive)
 		q <- Gen.oneOf(
 				Gen.oneOf(
 						Gen.resultOf[Quantifiable, Quantified](_ *),
@@ -121,24 +122,15 @@ trait ExpressionGenerators extends CharClassGenerators
 				Gen.oneOf(
 						(for {
 							n <- intGen if n > 0
-							greedy <- Gen.resultOf[Quantifiable, Quantified](_ repeat n)
-							reluctant <- Gen.resultOf[Quantifiable, Quantified](_ repeatReluctantly n)
-							possessive <- Gen.resultOf[Quantifiable, Quantified](_ repeatPossessively n)
-							repeated <- Gen.oneOf(greedy, reluctant, possessive)
+							repeated <- Gen.resultOf[Quantifiable, Quantified](_.repeat(n, mode))
 						} yield repeated),
 						(for {
 							List(n, m) <- Gen.listOfN(2, intGen) if (n >= 0 && m > n)
-							greedy <- Gen.resultOf[Quantifiable, Quantified](_.repeat(n, m))
-							reluctant <- Gen.resultOf[Quantifiable, Quantified](_.repeatReluctantly(n, m))
-							possessive <- Gen.resultOf[Quantifiable, Quantified](_.repeatPossessively(n, m))
-							repeated <- Gen.oneOf(greedy, reluctant, possessive)
+							repeated <- Gen.resultOf[Quantifiable, Quantified](_.repeatRange(n, m, mode))
 						} yield repeated),
 						(for {
 							n <- intGen if n > 0
-							greedy <- Gen.resultOf[Quantifiable, Quantified](_ atLeast n)
-							reluctant <- Gen.resultOf[Quantifiable, Quantified](_ atLeastReluctantly n)
-							possessive <- Gen.resultOf[Quantifiable, Quantified](_ atLeastPossessively n)
-							repeated <- Gen.oneOf(greedy, reluctant, possessive)
+							repeated <- Gen.resultOf[Quantifiable, Quantified](_.atLeast(n, mode))
 						} yield repeated)
 					)
 			)
