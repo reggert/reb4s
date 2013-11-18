@@ -21,9 +21,9 @@ trait RawGenerators extends UtilGenerators with LiteralGenerators {
 	def genRaw(
 			escapedLiteralGen : => Gen[EscapedLiteral] = arbitrary[EscapedLiteral], 
 			rawQuantifiableGen : => Gen[Raw with Quantifiable] = arbitrary[Raw with Quantifiable], 
-			compoundRawGen : => Gen[CompoundRaw] = arbitrary[CompoundRaw]
+			compoundRawGen : => Gen[CompoundRaw] = Gen.lzy(arbitrary[CompoundRaw])
 		) : Gen[Raw] = 
-		Gen.oneOf(escapedLiteralGen, rawQuantifiableGen, Gen.lzy(compoundRawGen))
+		Gen.frequency(2 -> escapedLiteralGen, 2 -> rawQuantifiableGen, 1 -> compoundRawGen)
 	
 	def genRawQuantifiable() : Gen[Raw with Quantifiable] = Gen.oneOf(
 			AnyChar,
