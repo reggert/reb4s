@@ -50,7 +50,7 @@ object Quantified
 			mode : Mode = Greedy
 		) extends Quantified
 	{
-		override def quantifier = s"{$minRepetitions,${maxRepetitions.getOrElse("")}${mode.symbol}"
+		override def quantifier = s"{$minRepetitions,${maxRepetitions.getOrElse("")}}${mode.symbol}"
 	}
 	
 	
