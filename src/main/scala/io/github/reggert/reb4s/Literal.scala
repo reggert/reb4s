@@ -37,37 +37,6 @@ sealed abstract class Literal private[reb4s] extends Expression
 	 * Concatenates this literal with the specified raw expression.
 	 */
 	final def ~~ (right : CompoundRaw) = EscapedLiteral(this) ~~ right
-	
-	
-	/**
-	 * Concatenates this literal with the argument.
-	 */
-	@deprecated(message="Not consistent with API of Sequence; use ~~ instead", since="2.1.0")
-	final def + (right : Literal) = StringLiteral(unescaped + right.unescaped)
-	
-	/**
-	 * Concatenates this literal with the argument.
-	 */
-	@deprecated(message="then is now a reserved word in Scala 2.10; use + instead", since="2.1.0")
-	final def `then` (right : Literal) = this + right
-	
-	/**
-	 * Concatenates this literal with the specified raw expression.
-	 */
-	@deprecated(message="Not consistent with API of Sequence; use ~~ instead", since="2.1.0")
-	final def + (right : Raw) = EscapedLiteral(this) + right
-	
-	/**
-	 * Concatenates this literal with the specified raw expression.
-	 */
-	@deprecated(message="Not consistent with API of Sequence; use ~~ instead", since="2.1.0")
-	final def + (right : CompoundRaw) = EscapedLiteral(this) + right
-	
-	/**
-	 * Concatenates this literal with the specified raw expression.
-	 */
-	@deprecated(message="then is now a reserved word in Scala 2.10; use + instead", since="2.1.0")
-	final def `then` (right : Raw) = this + right
 }
 
 

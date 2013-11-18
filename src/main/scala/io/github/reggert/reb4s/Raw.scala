@@ -13,16 +13,6 @@ sealed abstract class Raw private[reb4s] (rawExpression : => String)
 {
 	override lazy val expression = rawExpression
 	
-	@deprecated(message="Not consistent with API of Sequence; use ~~ instead", since="2.1.0")
-	final def + (right : Raw) = CompoundRaw(List(this, right))
-	
-	@deprecated(message="Not consistent with API of Sequence; use ~~ instead", since="2.1.0")
-	final def + (right : Literal) : CompoundRaw = this + EscapedLiteral(right)
-	
-	@deprecated(message="Not consistent with API of Sequence; use ~~ instead", since="2.1.0")
-	final def + (right : CompoundRaw) = CompoundRaw(this::right.components)
-	
-	
 	/**
 	 * Concatenates this expression with the argument.
 	 */
@@ -37,17 +27,6 @@ sealed abstract class Raw private[reb4s] (rawExpression : => String)
 	 * Concatenates this expression with the escaped form of the argument.
 	 */
 	def ~~ (right : CompoundRaw) = CompoundRaw(this::right.components)
-	
-	@deprecated(message="then is now a reserved word in Scala 2.10; use + instead", since="2.1.0")
-	final def `then` (right : Raw) = this + right
-	
-	@deprecated(message="then is now a reserved word in Scala 2.10; use + instead", since="2.1.0")
-	final def `then` (right : CompoundRaw) = this + right
-	
-	@deprecated(message="then is now a reserved word in Scala 2.10; use + instead", since="2.1.0")
-	final def `then` (right : Literal) = this + right
-	
-	
 }
 
 
