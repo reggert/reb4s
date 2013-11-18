@@ -76,6 +76,36 @@ trait ExpressionShrinkers extends LiteralShrinkers with RawShrinkers {
 		case group : Group.EnableFlags => for (g <- shrinkEnableFlags.shrink(group)) yield g
 	}
 	
-	// TODO: implement this!
-	implicit val shrinkQuantified : Shrink[Quantified] = ???
+	implicit val shrinkAnyTimes : Shrink[Quantified.AnyTimes] = Shrink {quantified =>
+		for (nested <- shrink(quantified.base)) 
+			yield Quantified.AnyTimes(nested, quantified.mode)
+	}
+	
+	implicit val shrinkAtLeastOnce : Shrink[Quantified.AtLeastOnce] = Shrink {quantified =>
+		for (nested <- shrink(quantified.base)) 
+			yield Quantified.AtLeastOnce(nested, quantified.mode)
+	}
+	
+	implicit val shrinkOptional : Shrink[Quantified.Optional] = Shrink {quantified =>
+		for (nested <- shrink(quantified.base)) 
+			yield Quantified.Optional(nested, quantified.mode)
+	}
+	
+	implicit val shrinkRepeatExactly : Shrink[Quantified.RepeatExactly] = Shrink {quantified =>
+		for (nested <- shrink(quantified.base)) 
+			yield Quantified.RepeatExactly(nested, quantified.repetitions, quantified.mode)
+	}
+	
+	implicit val shrinkRepeatRange : Shrink[Quantified.RepeatRange] = Shrink {quantified =>
+		for (nested <- shrink(quantified.base)) 
+			yield Quantified.RepeatRange(nested, quantified.minRepetitions, quantified.maxRepetitions, quantified.mode)
+	}
+	
+	implicit val shrinkQuantified : Shrink[Quantified] = Shrink {
+		case quantified : Quantified.AnyTimes => for (q <- shrinkAnyTimes.shrink(quantified)) yield q
+		case quantified : Quantified.AtLeastOnce => for (q <- shrinkAtLeastOnce.shrink(quantified)) yield q
+		case quantified : Quantified.Optional => for (q <- shrinkOptional.shrink(quantified)) yield q
+		case quantified : Quantified.RepeatExactly => for (q <- shrinkRepeatExactly.shrink(quantified)) yield q
+		case quantified : Quantified.RepeatRange => for (q <- shrinkRepeatRange.shrink(quantified)) yield q
+	}
 }
