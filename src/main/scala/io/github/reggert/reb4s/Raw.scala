@@ -27,6 +27,21 @@ sealed abstract class Raw private[reb4s] (rawExpression : => String)
 	 * Concatenates this expression with the escaped form of the argument.
 	 */
 	def ~~ (right : CompoundRaw) = CompoundRaw(this::right.components)
+	
+	/**
+	 * Concatenates this expression with the argument.
+	 */
+	def andThen (right : Raw) = this ~~ right
+	
+	/**
+	 * Concatenates this expression with the escaped form of the argument.
+	 */
+	def andThen (right : Literal) : CompoundRaw = this ~~ right
+	
+	/**
+	 * Concatenates this expression with the escaped form of the argument.
+	 */
+	def andThen (right : CompoundRaw) = this ~~ right
 }
 
 

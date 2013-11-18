@@ -37,6 +37,21 @@ sealed abstract class Literal private[reb4s] extends Expression
 	 * Concatenates this literal with the specified raw expression.
 	 */
 	final def ~~ (right : CompoundRaw) = EscapedLiteral(this) ~~ right
+	
+	/**
+	 * Concatenates this literal with the argument.
+	 */
+	final def andThen (right : Literal) = this ~~ right
+	
+	/**
+	 * Concatenates this literal with the specified raw expression.
+	 */
+	final def andThen (right : Raw) = this ~~ right
+	
+	/**
+	 * Concatenates this literal with the specified raw expression.
+	 */
+	final def andThen (right : CompoundRaw) = this ~~ right
 }
 
 
