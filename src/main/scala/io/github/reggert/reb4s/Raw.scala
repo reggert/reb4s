@@ -64,7 +64,7 @@ final case class CompoundRaw(components : List[Raw]) extends Raw(components mkSt
 
 
 /**
- * Adapter from [[net.sourceforge.reb4j.scala.Literal]] to [[Raw].
+ * Adapter from [[Literal]] to [[Raw]].
  */
 final case class EscapedLiteral(literal : Literal) extends Raw(literal.escaped)
 
