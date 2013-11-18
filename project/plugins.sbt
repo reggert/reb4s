@@ -1,4 +1,4 @@
-resolvers += "SBT Plugin Snapshots" at "http://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/"
+resolvers += "SBT Plugin Snapshots" at "http://repo.scala-sbt.org/scalasbt/sbt-plugin-snapshots/"
 
 addSbtPlugin("com.typesafe.sbt" % "sbt-osgi" % "0.7.0-SNAPSHOT")
 
