@@ -1,4 +1,4 @@
-resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
+resolvers += "SBT Plugin Snapshots" at "http://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/"
 
 addSbtPlugin("com.typesafe.sbt" % "sbt-osgi" % "0.7.0-SNAPSHOT")
 
