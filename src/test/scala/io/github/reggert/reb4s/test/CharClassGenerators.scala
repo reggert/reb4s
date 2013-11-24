@@ -12,68 +12,56 @@ import io.github.reggert.reb4s.charclass.CharClass
 import io.github.reggert.reb4s.charclass.Union
 
 trait CharClassGenerators extends UtilGenerators {
-	implicit val arbCharClass : Arbitrary[CharClass] = Arbitrary(Gen.sized {depth => genCharClass(depth)()})
-	implicit val arbCharRange = Arbitrary(genCharRange())
-	implicit val arbIntersection = Arbitrary(Gen.sized {depth => genIntersection(depth)()})
-	implicit val arbUnion = Arbitrary(Gen.sized {depth => genUnion(depth)()})
-	implicit val arbMultiChar = Arbitrary(genMultiChar())
-	implicit val arbSingleChar = Arbitrary(genSingleChar())
-	implicit val arbPredefinedClass = Arbitrary(genPredefinedClass())
+	implicit val arbCharClass : Arbitrary[CharClass] = Arbitrary(Gen.sized {depth => genCharClass(depth)})
+	implicit val arbCharRange = Arbitrary(genCharRange)
+	implicit val arbIntersection = Arbitrary(Gen.sized {depth => genIntersection(depth)})
+	implicit val arbUnion = Arbitrary(Gen.sized {depth => genUnion(depth)})
+	implicit val arbMultiChar = Arbitrary(genMultiChar)
+	implicit val arbSingleChar = Arbitrary(genSingleChar)
+	implicit val arbPredefinedClass = Arbitrary(genPredefinedClass)
 	
 	
-	def genCharClass(depth : Int)
-		(
-			singleCharGen : => Gen[SingleChar] = arbitrary[SingleChar],
-			multiCharGen : => Gen[MultiChar] = arbitrary[MultiChar],
-			charRangeGen : => Gen[CharRange] = arbitrary[CharRange],
-			predefinedClassGen : => Gen[PredefinedClass] = arbitrary[PredefinedClass],
-			intersectionGen : (Int) => Gen[Intersection] = genIntersection(_)(),
-			unionGen : (Int) => Gen[Union] = genUnion(_)()
-		) : Gen[CharClass] =
+	def genCharClass(depth : Int) : Gen[CharClass] =
 	{
 		def nonRecursiveGen = 
 			Gen.oneOf(
-					singleCharGen,
-					multiCharGen,
-					charRangeGen,
-					predefinedClassGen
+					genSingleChar,
+					genMultiChar,
+					genCharRange,
+					genPredefinedClass
 				)
-		def recursiveGen = 
-			Gen.oneOf(intersectionGen(depth - 1), unionGen(depth - 1))
+		def recursiveGen = Gen.oneOf(genIntersection(depth - 1), genUnion(depth - 1))
 		for {
 			cc <- if (depth == 0) nonRecursiveGen else Gen.lzy(recursiveGen)
 			ccn <- Gen.oneOf(cc, ~cc)
 		} yield ccn
 	}
 	
-	
-	
-	def genCharRange(charGen : => Gen[Char] = arbitrary[Char]) : Gen[CharRange] = for {
-		first::last::Nil <- Gen.listOfN(2, charGen)
+	def genCharRange : Gen[CharRange] = for {
+		first::last::Nil <- Gen.listOfN(2, arbitrary[Char])
 		if first < last
 	} yield CharClass.range(first, last)
 	
-	def genIntersection(depth : Int)(charClassGen : (Int) => Gen[CharClass] = genCharClass(_)()) : Gen[Intersection] = for {
-		first <- charClassGen(depth)
-		otherSupersets <- genNonEmptyRecursiveList(charClassGen(depth))
+	def genIntersection(depth : Int) : Gen[Intersection] = for {
+		first <- genCharClass(depth)
+		otherSupersets <- genNonEmptyRecursiveList(genCharClass(depth))
 	} yield ((first && otherSupersets.head) /: otherSupersets.tail) {_ && _}
 	
-	def genUnion(depth : Int)(charClassGen : (Int) => Gen[CharClass] = genCharClass(_)()) : Gen[Union] = for {
-		first <- charClassGen(depth)
-		otherSubsets <- genNonEmptyRecursiveList(charClassGen(depth))
+	def genUnion(depth : Int) : Gen[Union] = for {
+		first <- genCharClass(depth)
+		otherSubsets <- genNonEmptyRecursiveList(genCharClass(depth))
 	} yield ((first || otherSubsets.head) /: otherSubsets.tail) {_ || _}
 	
-	
-	def genMultiChar(charGen : => Gen[Char] = arbitrary[Char]) : Gen[MultiChar] = for {
-		first::second::Nil <- Gen.listOfN(2, charGen) if first != second
-		otherChars <- Gen.listOf(charGen)
+	def genMultiChar : Gen[MultiChar] = for {
+		first::second::Nil <- Gen.listOfN(2, arbitrary[Char]) if first != second
+		otherChars <- Gen.listOf(arbitrary[Char])
 	} yield CharClass.chars(first::second::otherChars)
 	
-	def genSingleChar(charGen : => Gen[Char] = arbitrary[Char]) : Gen[SingleChar] = for {
-		c <- charGen
+	def genSingleChar : Gen[SingleChar] = for {
+		c <- arbitrary[Char]
 	} yield CharClass.char(c)
 	
-	def genPredefinedClass() : Gen[PredefinedClass] = Gen.oneOf(
+	def genPredefinedClass : Gen[PredefinedClass] = Gen.oneOf(
 			CharClass.Perl.Digit,
 			CharClass.Perl.Space,
 			CharClass.Perl.Word,
