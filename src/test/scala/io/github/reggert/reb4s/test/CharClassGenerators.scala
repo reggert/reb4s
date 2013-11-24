@@ -12,47 +12,55 @@ import io.github.reggert.reb4s.charclass.CharClass
 import io.github.reggert.reb4s.charclass.Union
 
 trait CharClassGenerators extends UtilGenerators {
-	implicit val arbCharClass : Arbitrary[CharClass] = Arbitrary(genCharClass())
+	implicit val arbCharClass : Arbitrary[CharClass] = Arbitrary(Gen.sized {depth => genCharClass(depth)()})
 	implicit val arbCharRange = Arbitrary(genCharRange())
-	implicit val arbIntersection = Arbitrary(genIntersection())
-	implicit val arbUnion = Arbitrary(genUnion())
+	implicit val arbIntersection = Arbitrary(Gen.sized {depth => genIntersection(depth)()})
+	implicit val arbUnion = Arbitrary(Gen.sized {depth => genUnion(depth)()})
 	implicit val arbMultiChar = Arbitrary(genMultiChar())
 	implicit val arbSingleChar = Arbitrary(genSingleChar())
 	implicit val arbPredefinedClass = Arbitrary(genPredefinedClass())
 	
 	
-	def genCharClass(
+	def genCharClass(depth : Int)
+		(
 			singleCharGen : => Gen[SingleChar] = arbitrary[SingleChar],
 			multiCharGen : => Gen[MultiChar] = arbitrary[MultiChar],
 			charRangeGen : => Gen[CharRange] = arbitrary[CharRange],
 			predefinedClassGen : => Gen[PredefinedClass] = arbitrary[PredefinedClass],
-			intersectionGen : => Gen[Intersection] = arbitrary[Intersection],
-			unionGen : => Gen[Union] = arbitrary[Union]
-		) : Gen[CharClass] = for {
-		cc <- Gen.oneOf(
-				singleCharGen,
-				multiCharGen,
-				charRangeGen,
-				predefinedClassGen,
-				Gen.lzy(intersectionGen),
-				Gen.lzy(unionGen)
-			)
-		ccn <- Gen.oneOf(cc, ~cc)
-	} yield ccn
+			intersectionGen : (Int) => Gen[Intersection] = genIntersection(_)(),
+			unionGen : (Int) => Gen[Union] = genUnion(_)()
+		) : Gen[CharClass] =
+	{
+		def nonRecursiveGen = 
+			Gen.oneOf(
+					singleCharGen,
+					multiCharGen,
+					charRangeGen,
+					predefinedClassGen
+				)
+		def recursiveGen = 
+			Gen.oneOf(intersectionGen(depth - 1), unionGen(depth - 1))
+		for {
+			cc <- if (depth == 0) nonRecursiveGen else Gen.lzy(recursiveGen)
+			ccn <- Gen.oneOf(cc, ~cc)
+		} yield ccn
+	}
+	
+	
 	
 	def genCharRange(charGen : => Gen[Char] = arbitrary[Char]) : Gen[CharRange] = for {
 		first::last::Nil <- Gen.listOfN(2, charGen)
 		if first < last
 	} yield CharClass.range(first, last)
 	
-	def genIntersection(charClassGen : => Gen[CharClass] = arbitrary[CharClass]) : Gen[Intersection] = for {
-		first <- charClassGen
-		otherSupersets <- genNonEmptyRecursiveList(charClassGen)
+	def genIntersection(depth : Int)(charClassGen : (Int) => Gen[CharClass] = genCharClass(_)()) : Gen[Intersection] = for {
+		first <- charClassGen(depth)
+		otherSupersets <- genNonEmptyRecursiveList(charClassGen(depth))
 	} yield ((first && otherSupersets.head) /: otherSupersets.tail) {_ && _}
 	
-	def genUnion(charClassGen : => Gen[CharClass] = arbitrary[CharClass]) : Gen[Union] = for {
-		first <- charClassGen
-		otherSubsets <- genNonEmptyRecursiveList(charClassGen)
+	def genUnion(depth : Int)(charClassGen : (Int) => Gen[CharClass] = genCharClass(_)()) : Gen[Union] = for {
+		first <- charClassGen(depth)
+		otherSubsets <- genNonEmptyRecursiveList(charClassGen(depth))
 	} yield ((first || otherSubsets.head) /: otherSubsets.tail) {_ || _}
 	
 	
