@@ -36,7 +36,7 @@ trait ExpressionGenerators extends CharClassGenerators
 				genQuantified(depth - 1),
 				genSequence(depth - 1)
 			)
-		if (depth == 0) nonRecursiveGen else recursiveGen	
+		if (depth == 0) nonRecursiveGen else Gen.lzy(recursiveGen)	
 	} 
 		
 	def genAlternation(depth : Int) : Gen[Alternation] = 
@@ -58,7 +58,7 @@ trait ExpressionGenerators extends CharClassGenerators
 				genQuantified(depth - 1), 
 				genSequence(depth - 1)
 			)
-		if (depth == 0) nonRecursiveGen else recursiveGen
+		if (depth == 0) nonRecursiveGen else Gen.lzy(recursiveGen)
 	}
 	
 	def genFlag : Gen[Flag] = Gen.oneOf(
@@ -95,7 +95,7 @@ trait ExpressionGenerators extends CharClassGenerators
 		require (depth >= 0)
 		def nonRecursiveGen = Gen.oneOf(genRawQuantifiable, genCharLiteral)
 		def recursiveGen = genGroup(depth - 1)
-		if (depth == 0) nonRecursiveGen else recursiveGen
+		if (depth == 0) nonRecursiveGen else Gen.lzy(recursiveGen)
 	}
 	
 	def genQuantified(depth : Int) : Gen[Quantified] = for {
@@ -133,7 +133,7 @@ trait ExpressionGenerators extends CharClassGenerators
 		require (depth >= 0)
 		def nonRecursiveGen = Gen.oneOf(Gen.sized {d => genCharClass(d)}, genLiteral)
 		def recursiveGen = Gen.oneOf(genRaw(depth - 1), genGroup(depth - 1))
-		if (depth == 0) nonRecursiveGen else recursiveGen
+		if (depth == 0) nonRecursiveGen else Gen.lzy(recursiveGen)
 	}
 }
 

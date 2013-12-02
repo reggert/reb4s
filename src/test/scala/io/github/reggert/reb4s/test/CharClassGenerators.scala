@@ -33,7 +33,7 @@ trait CharClassGenerators extends UtilGenerators {
 				)
 		def recursiveGen = Gen.oneOf(genIntersection(depth - 1), genUnion(depth - 1))
 		for {
-			cc <- if (depth == 0) nonRecursiveGen else recursiveGen
+			cc <- if (depth == 0) nonRecursiveGen else Gen.lzy(recursiveGen)
 			ccn <- Gen.oneOf(cc, ~cc)
 		} yield ccn
 	}

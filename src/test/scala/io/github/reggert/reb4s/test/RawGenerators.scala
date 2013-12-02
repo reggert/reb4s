@@ -20,7 +20,7 @@ trait RawGenerators extends UtilGenerators with LiteralGenerators {
 		require (depth >= 0)
 		def nonRecursiveGen = Gen.oneOf(genEscapedLiteral, genRawQuantifiable)
 		def recursiveGen = genCompoundRaw(depth - 1)
-		if (depth == 0) nonRecursiveGen else recursiveGen
+		if (depth == 0) nonRecursiveGen else Gen.lzy(recursiveGen)
 	} 
 		
 	def genRawQuantifiable : Gen[Raw with Quantifiable] = Gen.oneOf(
