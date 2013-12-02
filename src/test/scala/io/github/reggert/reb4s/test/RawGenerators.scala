@@ -13,17 +13,16 @@ trait RawGenerators extends UtilGenerators with LiteralGenerators {
 	implicit val arbRaw = Arbitrary(Gen.sized {depth => genRaw(depth)})
 	
 
-	def genCompoundRaw(depth : Int) : Gen[CompoundRaw] = for {
-		first <- genRaw(depth)
-		otherComponents <- genNonEmptyRecursiveList(genRaw(depth))
-	} yield CompoundRaw(first::otherComponents)
+	def genCompoundRaw(depth : Int) : Gen[CompoundRaw] = 
+		genRecursiveList(2){genRaw(depth)} map (CompoundRaw)
 	
-	def genRaw(depth : Int) : Gen[Raw] = 
-		if (depth == 0)
-			Gen.oneOf(genEscapedLiteral, genRawQuantifiable)
-		else
-			genCompoundRaw(depth - 1)
-	
+	def genRaw(depth : Int) : Gen[Raw] = {
+		require (depth >= 0)
+		def nonRecursiveGen = Gen.oneOf(genEscapedLiteral, genRawQuantifiable)
+		def recursiveGen = genCompoundRaw(depth - 1)
+		if (depth == 0) nonRecursiveGen else recursiveGen
+	} 
+		
 	def genRawQuantifiable : Gen[Raw with Quantifiable] = Gen.oneOf(
 			AnyChar,
 			LineBegin,
