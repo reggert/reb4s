@@ -5,7 +5,7 @@ import org.scalacheck.Arbitrary.arbitrary
 import org.scalacheck.Gen
 
 trait UtilGenerators {
-	implicit def arbitraryRecursiveList[T : Arbitrary] = Arbitrary(genRecursiveList(arbitrary[T]))
+	implicit def arbitraryRecursiveList[T : Arbitrary] = Arbitrary(genRecursiveList(0)(arbitrary[T]))
 	
 	def genNonEmptyRecursiveList[T](g : => Gen[T]) : Gen[List[T]] = Gen.sized {size =>
 		def recurse(maxSize : Int) : Gen[List[T]] = for {
@@ -15,8 +15,15 @@ trait UtilGenerators {
 		recurse(size)
 	}
 	
-	def genRecursiveList[T](g : => Gen[T]) : Gen[List[T]] = 
-		Gen.oneOf(Gen.const(Nil), genNonEmptyRecursiveList(g))
+	def genRecursiveList[T](minLength : Int = 0)(g : => Gen[T]) : Gen[List[T]] = minLength match {
+		case 0 => Gen.oneOf(Gen.const(Nil), genNonEmptyRecursiveList(g))
+		case 1 => genNonEmptyRecursiveList(g)
+		case n => require(n > 0);
+			for {
+				e <- g
+				l <- genRecursiveList(minLength - 1)(g)
+			} yield e::l
+	}
 }
 
 
