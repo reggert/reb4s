@@ -23,6 +23,7 @@ trait CharClassGenerators extends UtilGenerators {
 	
 	def genCharClass(depth : Int) : Gen[CharClass] =
 	{
+		require (depth >= 0)
 		def nonRecursiveGen = 
 			Gen.oneOf(
 					genSingleChar,
@@ -32,7 +33,7 @@ trait CharClassGenerators extends UtilGenerators {
 				)
 		def recursiveGen = Gen.oneOf(genIntersection(depth - 1), genUnion(depth - 1))
 		for {
-			cc <- if (depth == 0) nonRecursiveGen else Gen.lzy(recursiveGen)
+			cc <- if (depth == 0) nonRecursiveGen else recursiveGen
 			ccn <- Gen.oneOf(cc, ~cc)
 		} yield ccn
 	}
@@ -43,14 +44,12 @@ trait CharClassGenerators extends UtilGenerators {
 	} yield CharClass.range(first, last)
 	
 	def genIntersection(depth : Int) : Gen[Intersection] = for {
-		first <- genCharClass(depth)
-		otherSupersets <- genNonEmptyRecursiveList(genCharClass(depth))
-	} yield ((first && otherSupersets.head) /: otherSupersets.tail) {_ && _}
+		supersets <- genRecursiveList(minLength = 2) {genCharClass(depth)}
+	} yield ((supersets(0) && supersets(1)) /: supersets.drop(2)) {_ && _}
 	
 	def genUnion(depth : Int) : Gen[Union] = for {
-		first <- genCharClass(depth)
-		otherSubsets <- genNonEmptyRecursiveList(genCharClass(depth))
-	} yield ((first || otherSubsets.head) /: otherSubsets.tail) {_ || _}
+		subsets <- genRecursiveList(minLength = 2) {genCharClass(depth)}
+	} yield ((subsets(0) || subsets(1)) /: subsets.drop(2)) {_ || _}
 	
 	def genMultiChar : Gen[MultiChar] = for {
 		first::second::Nil <- Gen.listOfN(2, arbitrary[Char]) if first != second
