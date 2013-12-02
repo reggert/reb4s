@@ -16,59 +16,52 @@ import java.util.regex.Pattern
 trait ExpressionGenerators extends CharClassGenerators 
 	with UtilGenerators with LiteralGenerators with RawGenerators with AdoptedGenerators
 {
-	implicit val arbExpression = Arbitrary(genExpression())
-	implicit val arbAlternation = Arbitrary(genAlternation())
-	implicit val arbAlternative : Arbitrary[Alternative] = Arbitrary(genAlternative())
+	implicit val arbExpression = Arbitrary(Gen.sized {depth => genExpression(depth)})
+	implicit val arbAlternation = Arbitrary(Gen.sized {depth => genAlternation(depth)})
+	implicit val arbAlternative = Arbitrary(Gen.sized {depth => genAlternative(depth)})
 	implicit val arbFlag = Arbitrary(genFlag)
-	implicit val arbGroup = Arbitrary(genGroup())
-	implicit val arbQuantifiable = Arbitrary(genQuantifiable())
-	implicit val arbQuantified = Arbitrary(genQuantified(arbitrary[Int]))
-	implicit val arbSequence : Arbitrary[Sequence] = Arbitrary(genSequence())
-	implicit val arbSequenceable = Arbitrary(genSequenceable())
+	implicit val arbGroup = Arbitrary(Gen.sized {depth => genGroup(depth)})
+	implicit val arbQuantifiable = Arbitrary(Gen.sized {depth => genQuantifiable(depth)})
+	implicit val arbQuantified = Arbitrary(Gen.sized {depth => genQuantified(depth)})
+	implicit val arbSequence = Arbitrary(Gen.sized {depth => genSequence(depth)})
+	implicit val arbSequenceable = Arbitrary(Gen.sized {depth => genSequenceable(depth)})
 	
 	
-	def genExpression(
-			adoptedGen : => Gen[Adopted] = arbitrary[Adopted],
-			literalGen : => Gen[Literal] = arbitrary[Literal],
-			rawQuantifiableGen : => Gen[Raw with Quantifiable] = arbitrary[Raw with Quantifiable],
-			charClassGen : => Gen[CharClass] = arbitrary[CharClass],
-			alternationGen : => Gen[Alternation] = arbitrary[Alternation],
-			groupGen : => Gen[Group] = arbitrary[Group],
-			sequenceGen : => Gen[Sequence] = arbitrary[Sequence]
-		) : Gen[Expression] = Gen.oneOf(
-			Gen.oneOf(
-					arbitrary[Adopted],
-					arbitrary[Literal], 
-					arbitrary[Raw with Quantifiable],
-					arbitrary[CharClass]
-				),
-			Gen.oneOf(
-					Gen.lzy(arbitrary[Alternation]), 
-					Gen.lzy(arbitrary[Group]), 
-					Gen.lzy(arbitrary[Quantified]), 
-					Gen.lzy(arbitrary[Sequence])
-				)
-		)
+	def genExpression(depth : Int) : Gen[Expression] = {
+		require (depth >= 0)
+		def nonRecursiveGen = Gen.oneOf(genAdopted, genLiteral, genRawQuantifiable, Gen.sized {d => genCharClass(d)})
+		def recursiveGen = Gen.oneOf(
+				genAlternation(depth - 1),
+				genGroup(depth - 1),
+				genQuantified(depth - 1),
+				genSequence(depth - 1)
+			)
+		if (depth == 0) nonRecursiveGen else recursiveGen	
+	} 
 		
-	def genAlternation(alternativeGen : => Gen[Alternative] = arbitrary[Alternative]) : Gen[Alternation] = for {
-		first <- alternativeGen
-		otherAlternatives <- genNonEmptyRecursiveList(alternativeGen)
-	} yield ((first || otherAlternatives.head) /: otherAlternatives.tail) {_ || _}
+	def genAlternation(depth : Int) : Gen[Alternation] = 
+		for {
+			alternatives <- genRecursiveList(minLength=2){
+				for {
+					d <- Gen.choose(0, depth)
+					alternative <- genAlternative(d)
+				} yield alternative
+			}
+		} yield ((alternatives(0) || alternatives(1)) /: alternatives.drop(2)) {_ || _}
 	
-	def genAlternative(
-			charClassGen : => Gen[CharClass] = arbitrary[CharClass], 
-			literalGen : => Gen[Literal] = arbitrary[Literal], 
-			rawGen : => Gen[Raw] = arbitrary[Raw],
-			alternationGen : => Gen[Alternation] = arbitrary[Alternation],
-			groupGen : => Gen[Group] = arbitrary[Group],
-			quantifiedGen : => Gen[Quantified] = arbitrary[Quantified],
-			sequenceGen : => Gen[Sequence] = arbitrary[Sequence]
-		) : Gen[Alternative] = Gen.oneOf(
-			Gen.oneOf(charClassGen, literalGen, rawGen),
-			Gen.oneOf(Gen.lzy(alternationGen), Gen.lzy(groupGen), Gen.lzy(quantifiedGen), Gen.lzy(sequenceGen))
-		)
+	def genAlternative(depth : Int) : Gen[Alternative] = {
+		require (depth >= 0)
+		def nonRecursiveGen = Gen.oneOf(Gen.sized {d => genCharClass(d)}, genLiteral, Gen.sized {d => genRaw(d)})
+		def recursiveGen = Gen.oneOf(
+				genAlternation(depth - 1), 
+				genGroup(depth - 1), 
+				genQuantified(depth - 1), 
+				genSequence(depth - 1)
+			)
+		if (depth == 0) nonRecursiveGen else recursiveGen
+	}
 	
-	def genFlag() : Gen[Flag] = Gen.oneOf(
+	def genFlag : Gen[Flag] = Gen.oneOf(
 			Flag.CaseInsensitive,
 			Flag.UnixLines,
 			Flag.Multiline,
@@ -77,77 +70,71 @@ trait ExpressionGenerators extends CharClassGenerators
 			Flag.Comments
 		)
 	
-	def genGroup(
-			flagGen : => Gen[Flag] = arbitrary[Flag], 
-			expressionGen : => Gen[Expression] = arbitrary[Expression]
-		) : Gen[Group] = for {
-		g <- Gen.oneOf(
-				expressionGen.map(Group.Capture),
-				expressionGen.map(Group.Independent),
-				expressionGen.map(Group.NegativeLookAhead),
-				expressionGen.map(Group.NegativeLookBehind),
-				expressionGen.map(Group.NonCapturing),
-				expressionGen.map(Group.PositiveLookAhead),
-				expressionGen.map(Group.PositiveLookBehind),
-				(for {
-					flags <- Gen.listOf(flagGen)
-					genEnabled = Gen.lzy(expressionGen map {e : Expression => Group.EnableFlags(e, flags : _*)})
-					genDisabled = Gen.lzy(expressionGen map {e : Expression => Group.DisableFlags(e, flags : _*)})
-					g <- Gen.oneOf(genEnabled, genDisabled)
-				} yield g)
-			)
-	} yield g
+	def genGroup(depth : Int) : Gen[Group] = {
+		val expressionGen = genExpression(depth)
+		for {
+			g <- Gen.oneOf(
+					expressionGen.map(Group.Capture),
+					expressionGen.map(Group.Independent),
+					expressionGen.map(Group.NegativeLookAhead),
+					expressionGen.map(Group.NegativeLookBehind),
+					expressionGen.map(Group.NonCapturing),
+					expressionGen.map(Group.PositiveLookAhead),
+					expressionGen.map(Group.PositiveLookBehind),
+					(for {
+						flags <- Gen.listOf(genFlag)
+						genEnabled = Gen.lzy(expressionGen map {e : Expression => Group.EnableFlags(e, flags : _*)})
+						genDisabled = Gen.lzy(expressionGen map {e : Expression => Group.DisableFlags(e, flags : _*)})
+						g <- Gen.oneOf(genEnabled, genDisabled)
+					} yield g)
+				)
+		} yield g
+	}
 	
-	def genQuantifiable(
-			rawQuantifiableGen : => Gen[Raw with Quantifiable] = arbitrary[Raw with Quantifiable], 
-			charLiteralGen : => Gen[CharLiteral] = arbitrary[CharLiteral],
-			groupGen : => Gen[Group] = arbitrary[Group]
-		) : Gen[Quantifiable] = 
-		Gen.oneOf(rawQuantifiableGen, charLiteralGen, Gen.lzy(groupGen))
+	def genQuantifiable(depth : Int) : Gen[Quantifiable] = {
+		require (depth >= 0)
+		def nonRecursiveGen = Gen.oneOf(genRawQuantifiable, genCharLiteral)
+		def recursiveGen = genGroup(depth - 1)
+		if (depth == 0) nonRecursiveGen else recursiveGen
+	}
 	
-	def genQuantified(intGen : Gen[Int] = arbitrary[Int]) : Gen[Quantified] = for {
+	def genQuantified(depth : Int) : Gen[Quantified] = for {
 		mode <- Gen.oneOf(Quantified.Greedy, Quantified.Reluctant, Quantified.Possessive)
-		q <- Gen.oneOf(
-				Gen.oneOf(
-						Gen.resultOf[Quantifiable, Quantified](_ *),
-						Gen.resultOf[Quantifiable, Quantified](_ *?),
-						Gen.resultOf[Quantifiable, Quantified](_ *+),
-						Gen.resultOf[Quantifiable, Quantified](_ +),
-						Gen.resultOf[Quantifiable, Quantified](_ +?),
-						Gen.resultOf[Quantifiable, Quantified](_ ++),
-						Gen.resultOf[Quantifiable, Quantified](_ ?),
-						Gen.resultOf[Quantifiable, Quantified](_ ??),
-						Gen.resultOf[Quantifiable, Quantified](_ ?+)
-					),
-				Gen.oneOf(
-						(for {
-							n <- intGen if n > 0
-							repeated <- Gen.resultOf[Quantifiable, Quantified](_.repeat(n, mode))
-						} yield repeated),
-						(for {
-							List(n, m) <- Gen.listOfN(2, intGen) if (n >= 0 && m > n)
-							repeated <- Gen.resultOf[Quantifiable, Quantified](_.repeatRange(n, m, mode))
-						} yield repeated),
-						(for {
-							n <- intGen if n > 0
-							repeated <- Gen.resultOf[Quantifiable, Quantified](_.atLeast(n, mode))
-						} yield repeated)
-					)
+		quantifiableGen = genQuantifiable(depth)
+		quantified <- Gen.oneOf(
+				quantifiableGen map (_.anyTimes(mode)),
+				quantifiableGen map (_.atLeastOnce(mode)),
+				quantifiableGen map (_.optional(mode)),
+				(for {
+					n <- arbitrary[Int] if n > 0
+					quantifiable <- quantifiableGen
+				} yield quantifiable.repeat(n, mode)),
+				(for {
+					List(n, m) <- Gen.listOfN(2, arbitrary[Int]) if (n >= 0 && m > n)
+					quantifiable <- quantifiableGen
+				} yield quantifiable.repeatRange(n, m, mode)),
+				(for {
+					n <- arbitrary[Int] if n > 0
+					quantifiable <- quantifiableGen	
+				} yield quantifiable.atLeast(n, mode))
 			)
-	} yield q
+	} yield quantified
 	
-	def genSequence(sequenceableGen : => Gen[Sequenceable] = arbitrary[Sequenceable]) : Gen[Sequence] = for {
-		first <- sequenceableGen
-		otherTerms <- genNonEmptyRecursiveList(sequenceableGen) 
-	} yield ((first ~~ otherTerms.head) /: otherTerms.tail) {_ ~~ _}
+	def genSequence(depth : Int) : Gen[Sequence] = for {
+		terms <- genRecursiveList(minLength = 2) {
+			for {
+				d <- Gen.choose(0, depth)
+				term <- genSequenceable(d)
+			} yield term
+		}
+	} yield ((terms(0) ~~ terms(1)) /: terms.drop(2)) {_ ~~ _}
 	
-	def genSequenceable(
-			charClassGen : => Gen[CharClass] = arbitrary[CharClass],
-			literalGen : => Gen[Literal] = arbitrary[Literal],
-			rawGen : => Gen[Raw] = arbitrary[Raw],
-			groupGen : => Gen[Group] = arbitrary[Group]
-		) : Gen[Sequenceable] = 
-			Gen.oneOf(charClassGen, literalGen, rawGen, Gen.lzy(groupGen))
+	def genSequenceable(depth : Int) : Gen[Sequenceable] = {
+		require (depth >= 0)
+		def nonRecursiveGen = Gen.oneOf(Gen.sized {d => genCharClass(d)}, genLiteral)
+		def recursiveGen = Gen.oneOf(genRaw(depth - 1), genGroup(depth - 1))
+		if (depth == 0) nonRecursiveGen else recursiveGen
+	}
 }
 
 
