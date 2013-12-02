@@ -16,7 +16,10 @@ sealed abstract class Raw private[reb4s] (rawExpression : => String)
 	/**
 	 * Concatenates this expression with the argument.
 	 */
-	def ~~ (right : Raw) = CompoundRaw(List(this, right))
+	def ~~ (right : Raw) : CompoundRaw = right match {
+		case compound : CompoundRaw => this ~~ compound
+		case _ => CompoundRaw(List(this, right))
+	}
 	
 	/**
 	 * Concatenates this expression with the escaped form of the argument.
@@ -51,7 +54,10 @@ sealed abstract class Raw private[reb4s] (rawExpression : => String)
 final case class CompoundRaw(components : List[Raw]) extends Raw(components mkString)
 {
 	require(components.length >= 2)
-	override def ~~ (right : Raw) = CompoundRaw(components :+ right)
+	override def ~~ (right : Raw) = right match {
+		case compound : CompoundRaw => this ~~ compound
+		case _ => CompoundRaw(components :+ right)
+	}
 	override def ~~ (right : Literal) = this ~~ EscapedLiteral(right)
 	override def ~~ (right : CompoundRaw) = CompoundRaw(this.components ++ right.components)
 }
