@@ -8,19 +8,39 @@ import io.github.reggert.reb4s.{AnyChar, CompoundRaw, EscapedLiteral, InputBegin
 
 trait RawGenerators extends UtilGenerators with LiteralGenerators {
 	implicit val arbRawQuantifiable = Arbitrary(genRawQuantifiable)
-	implicit val arbCompoundRaw : Arbitrary[CompoundRaw] = Arbitrary(Gen.sized {depth => genCompoundRaw(depth)})
-	implicit val arbEscapedLiteral = Arbitrary(genEscapedLiteral)
-	implicit val arbRaw = Arbitrary(Gen.sized {depth => genRaw(depth)})
+	implicit val arbCompoundRaw : Arbitrary[CompoundRaw] = 
+		Arbitrary(Gen.sized {size => Gen.choose(2, size) flatMap (genCompoundRaw)})
+	implicit val arbEscapedLiteral = 
+		Arbitrary(Gen.sized {size => Gen.choose(1, size) flatMap (genEscapedLiteral)})
+	implicit val arbRaw = Arbitrary(Gen.sized {size => Gen.choose(1, size) flatMap (genRaw)})
 	
 
-	def genCompoundRaw(depth : Int) : Gen[CompoundRaw] = 
-		genRecursiveList(2){genRaw(depth)} map (CompoundRaw)
+	def genCompoundRaw(size : Int) : Gen[CompoundRaw] = {
+		require(size >= 2)
+		val sizesGen = size match
+		{
+			case 2 => Gen.const(1::1::Nil)
+			case _ => genSizes(size) filter {_.length >= 2}
+		}
+		for {
+			sizes <- sizesGen
+			subtreeGens = for {s <- sizes} yield genRaw(s) 
+			subtreesGen = (Gen.const(Nil : List[Raw]) /: subtreeGens) {(ssGen, sGen) => 
+				for {
+					ss <- ssGen
+					s <- sGen
+				} yield s::ss
+			}
+			subtrees <- subtreesGen
+		} yield CompoundRaw(subtrees)
+	}
 	
-	def genRaw(depth : Int) : Gen[Raw] = {
-		require (depth >= 0)
-		def nonRecursiveGen = Gen.oneOf(genEscapedLiteral, genRawQuantifiable)
-		def recursiveGen = genCompoundRaw(depth - 1)
-		if (depth == 0) nonRecursiveGen else Gen.lzy(recursiveGen)
+	def genRaw(size : Int) : Gen[Raw] = {
+		require (size > 0)
+		size match {
+			case 1 => Gen.oneOf(genEscapedLiteral(1), genRawQuantifiable)
+			case _ => Gen.oneOf(genEscapedLiteral(size), Gen.lzy(genCompoundRaw(size)))
+		}
 	} 
 		
 	def genRawQuantifiable : Gen[Raw with Quantifiable] = Gen.oneOf(
@@ -35,8 +55,8 @@ trait RawGenerators extends UtilGenerators with LiteralGenerators {
 			InputEnd
 		)
 		
-	def genEscapedLiteral : Gen[EscapedLiteral] = 
-		genLiteral map {EscapedLiteral}
+	def genEscapedLiteral(size : Int) : Gen[EscapedLiteral] = 
+		genLiteral(size) map {EscapedLiteral}
 }
 
 

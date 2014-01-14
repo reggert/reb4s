@@ -7,16 +7,22 @@ import Literal.{CharLiteral, StringLiteral}
 
 trait LiteralGenerators {
 	implicit val arbCharLiteral = Arbitrary(genCharLiteral)
-	implicit val arbStringLiteral = Arbitrary(genStringLiteral)
-	implicit val arbLiteral = Arbitrary(genLiteral)
+	implicit val arbStringLiteral = 
+		Arbitrary(Gen.sized {size => Gen.choose(2, size) flatMap (genStringLiteral)})
+	implicit val arbLiteral = 
+		Arbitrary(Gen.sized {size => Gen.choose(1, size) flatMap (genLiteral)})
 	
 	
 	def genCharLiteral : Gen[CharLiteral] = 
 		for {c <- arbitrary[Char]} yield CharLiteral(c)
 	
-	def genStringLiteral : Gen[StringLiteral] = 
-		for {s <- arbitrary[String]} yield StringLiteral(s)
+	def genStringLiteral(size : Int) : Gen[StringLiteral] = {
+		require(size > 0)
+		for {s <- Gen.listOfN(size, arbitrary[Char])} yield StringLiteral(s.mkString)
+	}
 	
-	def genLiteral : Gen[Literal] = 
-		Gen.oneOf(genCharLiteral, genStringLiteral)
+	def genLiteral(size : Int) : Gen[Literal] = size match {
+			case 1 => genCharLiteral
+			case _ => genStringLiteral(size)
+		} 
 }
