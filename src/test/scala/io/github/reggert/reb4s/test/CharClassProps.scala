@@ -28,7 +28,8 @@ object SingleCharProps extends Properties("SingleChar")
 
 object MultiCharProps extends Properties("MultiChar")
 	with ExpressionProperties[MultiChar] 
-	with CharClassGenerators with CharClassShrinkers
+	with CharClassGenerators 
+	with CharClassShrinkers
 {
 	property("toPattern") = toPattern(arbitrary[MultiChar])
 }
@@ -45,6 +46,7 @@ object CharRangeProps extends Properties("CharRange")
 object IntersectionProps extends Properties("Intersection")
 	with ExpressionProperties[Intersection] 
 	with CharClassGenerators
+	with CharClassShrinkers
 {
 	property("toPattern") = toPattern(arbitrary[Intersection])
 }
@@ -53,6 +55,7 @@ object IntersectionProps extends Properties("Intersection")
 object UnionProps extends Properties("Union")
 	with ExpressionProperties[Union] 
 	with CharClassGenerators
+	with CharClassShrinkers
 {
 	property("toPattern") = toPattern(arbitrary[Union])
 }
