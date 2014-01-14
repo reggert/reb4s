@@ -8,7 +8,5 @@ import org.scalacheck.Prop.forAll
 import io.github.reggert.reb4s.Expression
 
 trait ExpressionProperties[E <: Expression] {
-	def toPattern(g : Gen[E]) = forAll(g) {e : E =>
-		try {e.toPattern; true} catch {case e : PatternSyntaxException => false}
-	}
+	def toPattern(g : Gen[E]) = forAll(g) {e : E => e.toPattern; true}
 }
