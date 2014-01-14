@@ -92,12 +92,12 @@ object Literal
 	/**
 	 * Characters that need to be escaped in expressions.
 	 */
-	val needsEscape = "()[]{}.,-\\|+*?$^&:!<>=".toSet
+	val needsEscape = """()[]{}.,-\|+*?$^&:!<>=""".toSet
 		
 	/**
 	 * Helper function to escape the specified character (if necessary).
 	 */
-	def escapeChar(c : Char) = if (needsEscape.contains(c)) "\\" + c else String.valueOf(c)
+	def escapeChar(c : Char) = if (needsEscape(c)) "\\" + c else String.valueOf(c)
 	
 	/**
 	 * Helper function to escape the specified string (if necessary).
