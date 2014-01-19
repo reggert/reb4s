@@ -13,10 +13,6 @@ publishArtifact in Test := false
 pomIncludeRepository := { _ => false }
 
 pomExtra in ThisBuild := (
-  <organization>
-		<name>Richard W. Eggert II</name>
-		<url>https://github.com/reggert</url>
-	</organization>
 	<issueManagement>
 		<system>GitHub</system>
 		<url>https://github.com/reggert/reb4s/issues</url>
