@@ -23,6 +23,13 @@ final class Sequence private[reb4s] (val components : List[Sequenceable])
 	}
 	override lazy val hashCode = 31 * components.hashCode
 	
-	override def isBounded = !components.exists(!_.isBounded)
+	override def boundedLength = (Option(0) /: components) {(computedLength, component) =>
+		for {
+			prev <- computedLength
+			next <- component.boundedLength
+			sum = prev.toLong + next.toLong
+			if sum <= Int.MaxValue
+		} yield sum.toInt
+	}
 }
 

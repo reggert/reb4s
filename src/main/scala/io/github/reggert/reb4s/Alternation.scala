@@ -21,5 +21,10 @@ final class Alternation private[reb4s] (val alternatives : List[Alternative])
 	
 	override lazy val hashCode = 31 * alternatives.hashCode
 	
-	override def isBounded = !alternatives.exists(!_.isBounded)
+	override def boundedLength = (Option(0) /: alternatives) {(computedLength, alternative) =>
+		for {
+			prev <- computedLength
+			next <- alternative.boundedLength
+		} yield Math.max(prev, next)
+	}
 }

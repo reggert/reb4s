@@ -46,7 +46,6 @@ sealed abstract class Raw private[reb4s] (rawExpression : => String)
 	 */
 	def andThen (right : CompoundRaw) = this ~~ right
 	
-	override final def isBounded = true
 }
 
 
@@ -62,6 +61,14 @@ final case class CompoundRaw(components : List[Raw]) extends Raw(components mkSt
 	}
 	override def ~~ (right : Literal) = this ~~ EscapedLiteral(right)
 	override def ~~ (right : CompoundRaw) = CompoundRaw(this.components ++ right.components)
+	override def boundedLength = (Option(0) /: components) {(computedLength, component) =>
+		for {
+			prev <- computedLength
+			next <- component.boundedLength
+			sum = prev.toLong + next.toLong
+			if sum <= Int.MaxValue
+		} yield sum.toInt
+	}
 }
 
 
@@ -69,48 +76,58 @@ final case class CompoundRaw(components : List[Raw]) extends Raw(components mkSt
  * Adapter from [[Literal]] to [[Raw]].
  */
 final case class EscapedLiteral(literal : Literal) extends Raw(literal.escaped)
+{
+	override def boundedLength = literal.boundedLength
+}
+
+sealed abstract class Entity private[reb4s] (rawExpression : => String) 
+	extends Raw(rawExpression)
+	with Quantifiable
+{
+	override final def boundedLength = Some(1)
+}
 
 /**
  * Matches any single character.
  */
-case object AnyChar extends Raw(".") with Quantifiable
+case object AnyChar extends Entity(".") 
 
 /**
  * Matches the beginning of a line.
  */
-case object LineBegin extends Raw("^") with Quantifiable
+case object LineBegin extends Entity("^")
 
 /**
  * Matches the end of a line.
  */
-case object LineEnd extends Raw("$") with Quantifiable
+case object LineEnd extends Entity("$") 
 
 /**
  * Matches a word boundary.
  */
-case object WordBoundary extends Raw("\\b") with Quantifiable
+case object WordBoundary extends Entity("\\b") 
 
 /**
  * Matches a non-word-boundary.
  */
-case object NonwordBoundary extends Raw("\\B") with Quantifiable
+case object NonwordBoundary extends Entity("\\B")
 
 /**
  * Matches the beginning of input.
  */
-case object InputBegin extends Raw("\\A") with Quantifiable
+case object InputBegin extends Entity("\\A") 
 
 /**
  * Matches the end of the previous match.
  */
-case object MatchEnd extends Raw("\\G") with Quantifiable
+case object MatchEnd extends Entity("\\G") 
 
 /**
  * Matches the end of input, skipping end-of-line markers.
  */
-case object InputEndSkipEOL extends Raw("\\Z") with Quantifiable
+case object InputEndSkipEOL extends Entity("\\Z") 
 
 /**
  * Matches the end of input.
  */
-case object InputEnd extends Raw("\\z") with Quantifiable
+case object InputEnd extends Entity("\\z") 

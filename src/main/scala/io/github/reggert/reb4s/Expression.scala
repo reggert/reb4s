@@ -33,8 +33,12 @@ abstract class Expression extends Serializable with NotNull with Immutable
 		new Regex(toString, groupNames.toList : _*)
 	
 	/**
-	 * Indicates whether the expression has a bounded length.
+	 * If the expression has a computable maximum length, this returns it.
+	 * Otherwise, it returns None.
+	 * 
+	 * This is used for determining whether an expression is suitable for 
+	 * look-behind.
 	 */
-	def isBounded : Boolean
+	def boundedLength : Option[Int]
 }
 

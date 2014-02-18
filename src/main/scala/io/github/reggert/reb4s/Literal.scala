@@ -53,7 +53,7 @@ sealed abstract class Literal private[reb4s] extends Expression
 	 */
 	final def andThen (right : CompoundRaw) = this ~~ right
 	
-	override final def isBounded = true
+	override final def boundedLength = Some(unescaped.length)
 }
 
 

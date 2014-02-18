@@ -12,7 +12,7 @@ sealed abstract class Group private[reb4s] (private val opening : String)
 {
 	val nested : Expression
 	override lazy val expression = opening + nested + ")"
-	override final def isBounded = nested.isBounded
+	override final def boundedLength = nested.boundedLength
 }
 
 /**
@@ -54,7 +54,7 @@ object Group
 	@throws(classOf[UnboundedLookBehindException])
 	final case class PositiveLookBehind(nested : Expression) extends Group("(?<=")
 	{
-		if (!nested.isBounded) throw new UnboundedLookBehindException(nested)
+		if (nested.boundedLength.isEmpty) throw new UnboundedLookBehindException(nested)
 	}
 	
 	/**
@@ -65,7 +65,7 @@ object Group
 	@throws(classOf[UnboundedLookBehindException])
 	final case class NegativeLookBehind(nested : Expression) extends Group("(?<!")
 	{
-		if (!nested.isBounded) throw new UnboundedLookBehindException(nested)
+		if (nested.boundedLength.isEmpty) throw new UnboundedLookBehindException(nested)
 	}
 	
 	/**

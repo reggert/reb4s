@@ -102,7 +102,7 @@ abstract class CharClass extends Expression
 	 */
 	final def or (right : CharClass) : Union = this || right
 	
-	override final def isBounded = true
+	override final def boundedLength = Some(1)
 }
 
 
