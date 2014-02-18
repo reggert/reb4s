@@ -26,10 +26,6 @@ sealed abstract class LookBehindProps[GroupType <: Group](name : String)(constru
 					quantifiableGen map (_.atLeastOnce(mode)),
 					(for {
 						n <- arbitrary[Int] if n > 0
-						quantifiable <- quantifiableGen
-					} yield quantifiable.repeat(n, mode)),
-					(for {
-						n <- arbitrary[Int] if n > 0
 						quantifiable <- quantifiableGen	
 					} yield quantifiable.atLeast(n, mode))
 				)
