@@ -1,5 +1,7 @@
 package io.github.reggert.reb4s.charclass
 
+import io.github.reggert.reb4s.Literal.escapeChar
+
 /**
  * Character class matching any character between a range of characters.
  */
@@ -10,7 +12,7 @@ final class CharRange private[charclass] (val first : Char, val last : Char)
 {
 	require (first <= last, "first must be <= last")
 	
-	override lazy val unitableForm = first + "-" + last
+	override lazy val unitableForm = escapeChar(first) + "-" + escapeChar(last)
 	override def equals(other : Any) = other match
 	{
 		case that : CharRange => 
