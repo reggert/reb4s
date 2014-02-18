@@ -48,13 +48,25 @@ object Group
 	
 	/**
 	 * Constructs a group that uses positive look-behind.
+	 * 
+	 * @throws UnboundedLookBehindException if the argument is unbounded.
 	 */
+	@throws(classOf[UnboundedLookBehindException])
 	final case class PositiveLookBehind(nested : Expression) extends Group("(?<=")
+	{
+		if (!nested.isBounded) throw new UnboundedLookBehindException(nested)
+	}
 	
 	/**
 	 * Constructs a group that uses negative look-behind.
+	 * 
+	 * @throws UnboundedLookBehindException if the argument is unbounded.
 	 */
+	@throws(classOf[UnboundedLookBehindException])
 	final case class NegativeLookBehind(nested : Expression) extends Group("(?<!")
+	{
+		if (!nested.isBounded) throw new UnboundedLookBehindException(nested)
+	}
 	
 	/**
 	 * Constructs a group that enables the specified matcher flags.
