@@ -27,7 +27,4 @@ trait DegenerateExpressionGenerators extends ExpressionGenerators
 				)
 		} yield quantified
 	}
-	
-	def genUnboundedGroup[GroupType <: Group](size : Int)(constructor : Expression => GroupType) : Gen[GroupType] =
-		for {nested <- genIndefinite(size)} yield constructor(nested)
 }
