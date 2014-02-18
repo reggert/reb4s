@@ -117,10 +117,10 @@ trait ExpressionGenerators extends CharClassGenerators
 					expressionGen.map(Group.Capture),
 					expressionGen.map(Group.Independent),
 					expressionGen.map(Group.NegativeLookAhead),
-					expressionGen.map(Group.NegativeLookBehind),
+					expressionGen.filter(_.isBounded).map(Group.NegativeLookBehind),
 					expressionGen.map(Group.NonCapturing),
 					expressionGen.map(Group.PositiveLookAhead),
-					expressionGen.map(Group.PositiveLookBehind),
+					expressionGen.filter(_.isBounded).map(Group.PositiveLookBehind),
 					(for {
 						flags <- Gen.choose(0, 6) flatMap {flagCount => Gen.listOfN(flagCount, genFlag)}
 						genEnabled = Gen.lzy(expressionGen map {e : Expression => Group.EnableFlags(e, flags : _*)})
