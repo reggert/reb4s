@@ -12,6 +12,7 @@ sealed abstract class Group private[reb4s] (private val opening : String)
 {
 	val nested : Expression
 	override lazy val expression = opening + nested + ")"
+	override final def isBounded = nested.isBounded
 }
 
 /**

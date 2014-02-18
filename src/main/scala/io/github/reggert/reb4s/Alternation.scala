@@ -20,4 +20,6 @@ final class Alternation private[reb4s] (val alternatives : List[Alternative])
 	}
 	
 	override lazy val hashCode = 31 * alternatives.hashCode
+	
+	override def isBounded = !alternatives.exists(!_.isBounded)
 }

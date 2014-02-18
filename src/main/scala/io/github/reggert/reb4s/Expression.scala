@@ -31,5 +31,10 @@ abstract class Expression extends Serializable with NotNull with Immutable
 	 */
 	final def toRegex(groupNames : String*) : Regex = 
 		new Regex(toString, groupNames.toList : _*)
+	
+	/**
+	 * Indicates whether the expression has a bounded length.
+	 */
+	def isBounded : Boolean
 }
 

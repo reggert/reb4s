@@ -52,6 +52,8 @@ sealed abstract class Literal private[reb4s] extends Expression
 	 * Concatenates this literal with the specified raw expression.
 	 */
 	final def andThen (right : CompoundRaw) = this ~~ right
+	
+	override final def isBounded = true
 }
 
 

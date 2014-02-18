@@ -22,5 +22,7 @@ final class Sequence private[reb4s] (val components : List[Sequenceable])
 		case _ => false
 	}
 	override lazy val hashCode = 31 * components.hashCode
+	
+	override def isBounded = !components.exists(!_.isBounded)
 }
 

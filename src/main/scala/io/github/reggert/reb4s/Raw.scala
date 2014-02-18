@@ -45,6 +45,8 @@ sealed abstract class Raw private[reb4s] (rawExpression : => String)
 	 * Concatenates this expression with the escaped form of the argument.
 	 */
 	def andThen (right : CompoundRaw) = this ~~ right
+	
+	override final def isBounded = true
 }
 
 

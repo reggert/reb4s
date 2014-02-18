@@ -40,6 +40,7 @@ object Quantified
 		) extends Quantified
 	{
 		override def quantifier = s"{$repetitions}${mode.symbol}"
+		override def isBounded = base.isBounded
 	}
 	
 	
@@ -51,6 +52,7 @@ object Quantified
 		) extends Quantified
 	{
 		override def quantifier = s"{$minRepetitions,${maxRepetitions.getOrElse("")}}${mode.symbol}"
+		override def isBounded = maxRepetitions.isDefined && base.isBounded
 	}
 	
 	
@@ -60,6 +62,7 @@ object Quantified
 		) extends Quantified
 	{
 		override def quantifier = s"+${mode.symbol}"
+		override def isBounded = false
 	}
 	
 	
@@ -69,6 +72,7 @@ object Quantified
 		) extends Quantified
 	{
 		override def quantifier = s"*${mode.symbol}"
+		override def isBounded = false
 	}
 	
 	
@@ -78,5 +82,6 @@ object Quantified
 		) extends Quantified
 	{
 		override def quantifier = s"?${mode.symbol}"
+		override def isBounded = base.isBounded
 	}
 }

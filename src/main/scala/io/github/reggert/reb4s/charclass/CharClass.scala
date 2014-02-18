@@ -101,6 +101,8 @@ abstract class CharClass extends Expression
 	 * specified character class.
 	 */
 	final def or (right : CharClass) : Union = this || right
+	
+	override final def isBounded = true
 }
 
 
