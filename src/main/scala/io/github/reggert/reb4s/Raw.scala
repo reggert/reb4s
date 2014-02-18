@@ -66,7 +66,7 @@ final case class CompoundRaw(components : List[Raw]) extends Raw(components mkSt
 			prev <- computedLength
 			next <- component.boundedLength
 			sum = prev.toLong + next.toLong
-			if sum <= Int.MaxValue
+			if sum <= MaximumLegalBoundedLength
 		} yield sum.toInt
 	}
 }

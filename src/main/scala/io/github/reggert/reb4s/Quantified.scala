@@ -44,7 +44,7 @@ object Quantified
 			for {
 				baseLength <- base.boundedLength
 				sum = baseLength.toLong * repetitions
-				if sum <= Int.MaxValue
+				if sum <= MaximumLegalBoundedLength
 			} yield sum.toInt
 	}
 	
@@ -62,7 +62,7 @@ object Quantified
 				baseLength <- base.boundedLength
 				multiplier <- maxRepetitions
 				sum = baseLength.toLong * multiplier
-				if sum <= Int.MaxValue
+				if sum <= MaximumLegalBoundedLength
 			} yield sum.toInt
 	}
 	

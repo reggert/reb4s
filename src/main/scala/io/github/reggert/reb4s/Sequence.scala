@@ -28,7 +28,7 @@ final class Sequence private[reb4s] (val components : List[Sequenceable])
 			prev <- computedLength
 			next <- component.boundedLength
 			sum = prev.toLong + next.toLong
-			if sum <= Int.MaxValue
+			if sum <= MaximumLegalBoundedLength
 		} yield sum.toInt
 	}
 }
