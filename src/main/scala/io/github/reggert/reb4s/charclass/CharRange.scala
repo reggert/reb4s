@@ -8,7 +8,7 @@ final class CharRange private[charclass] (val first : Char, val last : Char)
 	with WrappedNegation[CharRange] 
 	with BracketsRequired 
 {
-	require (first < last, "first must be < last")
+	require (first <= last, "first must be <= last")
 	
 	override lazy val unitableForm = first + "-" + last
 	override def equals(other : Any) = other match
