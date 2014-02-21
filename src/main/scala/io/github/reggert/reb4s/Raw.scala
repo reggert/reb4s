@@ -54,7 +54,7 @@ sealed abstract class Raw private[reb4s] (rawExpression : => String)
  */
 final case class CompoundRaw(components : List[Raw]) extends Raw(components mkString)
 {
-	require(components.length >= 2)
+	require(components.length >= 2, s"components.length=${components.length} < 2")
 	override def ~~ (right : Raw) = right match {
 		case compound : CompoundRaw => this ~~ compound
 		case _ => CompoundRaw(components :+ right)
