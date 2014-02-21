@@ -16,7 +16,7 @@ trait RawGenerators extends UtilGenerators with LiteralGenerators {
 	
 
 	def genCompoundRaw(size : Int) : Gen[CompoundRaw] = {
-		require(size >= 2)
+		require(size >= 2, s"size=$size < 2")
 		val sizesGen = size match
 		{
 			case 2 => Gen.const(1::1::Nil)
@@ -36,7 +36,7 @@ trait RawGenerators extends UtilGenerators with LiteralGenerators {
 	}
 	
 	def genRaw(size : Int) : Gen[Raw] = {
-		require (size > 0)
+		require (size > 0, s"size=$size <= 0")
 		size match {
 			case 1 => Gen.oneOf(genEscapedLiteral(1), genRawQuantifiable)
 			case _ => Gen.oneOf(genEscapedLiteral(size), Gen.lzy(genCompoundRaw(size)))

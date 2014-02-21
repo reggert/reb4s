@@ -27,7 +27,7 @@ trait CharClassGenerators extends UtilGenerators {
 	
 	def genCharClass(size : Int) : Gen[CharClass] =
 	{
-		require (size > 0)
+		require (size > 0, s"size=$size <= 0")
 		val nonInverted = size match {
 			case 1 => 
 		    	Gen.oneOf(genSingleChar, genCharRange, genPredefinedClass)
@@ -51,7 +51,7 @@ trait CharClassGenerators extends UtilGenerators {
 	
 	
 	private def genCombined[CombinedType <: CharClass](size : Int)(combine : (CharClass, CharClass) => CombinedType) : Gen[CombinedType] = {
-		require(size >= 2)
+		require(size >= 2, s"size=$size < 2")
 		val sizesGen = size match
 		{
 			case 2 => Gen.const(1::1::Nil)
@@ -78,7 +78,7 @@ trait CharClassGenerators extends UtilGenerators {
 	  
 	
 	def genMultiChar(size : Int) : Gen[MultiChar] = {
-	  require(size > 0)
+	  require(size > 0, s"size=$size <= 0")
 	  for {chars <- Gen.listOfN(size, arbitrary[Char])} yield CharClass.chars(chars)
 	}
 	

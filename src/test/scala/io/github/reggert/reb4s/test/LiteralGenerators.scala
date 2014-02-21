@@ -17,7 +17,7 @@ trait LiteralGenerators {
 		for {c <- arbitrary[Char]} yield CharLiteral(c)
 	
 	def genStringLiteral(size : Int) : Gen[StringLiteral] = {
-		require(size > 0)
+		require(size > 0, s"size=$size <= 0")
 		for {s <- Gen.listOfN(size, arbitrary[Char])} yield StringLiteral(s.mkString)
 	}
 	

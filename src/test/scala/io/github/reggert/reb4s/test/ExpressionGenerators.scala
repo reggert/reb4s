@@ -36,7 +36,7 @@ trait ExpressionGenerators extends CharClassGenerators
 	
 	
 	def genExpression(size : Int) : Gen[Expression] = {
-		require (size > 0)
+		require (size > 0, s"size=$size <= 0")
 		size match {
 			case 1 => Gen.oneOf(
 					genAdopted(1), 
@@ -63,7 +63,7 @@ trait ExpressionGenerators extends CharClassGenerators
 		(combine : (SubtreeType, SubtreeType) => CombinedType)
 		(fold : (CombinedType, SubtreeType) => CombinedType) : Gen[CombinedType] = 
 	{
-		require(size >= 2)
+		require(size >= 2, s"size=$size < 2")
 		val sizesGen = size match
 		{
 			case 2 => Gen.const(1::1::Nil)
@@ -88,7 +88,7 @@ trait ExpressionGenerators extends CharClassGenerators
 		
 	
 	def genAlternative(size : Int) : Gen[Alternative] = {
-		require (size > 0)
+		require (size > 0, s"size=$size <= 0")
 		size match {
 			case 1 => Gen.oneOf(genLiteral(1), genRaw(1), genCharClass(1))
 			case _ => Gen.lzy(Gen.oneOf(
@@ -132,7 +132,7 @@ trait ExpressionGenerators extends CharClassGenerators
 	}
 	
 	def genQuantifiable(size : Int) : Gen[Quantifiable] = {
-		require (size > 0)
+		require (size > 0, s"size=$size <= 0")
 		size match {
 			case 1 =>
 				Gen.oneOf(
@@ -144,7 +144,7 @@ trait ExpressionGenerators extends CharClassGenerators
 	}
 	
 	def genQuantified(size : Int) : Gen[Quantified] = {
-		require(size > 0)
+		require(size > 0, s"size=$size <= 0")
 		for {
 			mode <- Gen.oneOf(Quantified.Greedy, Quantified.Reluctant, Quantified.Possessive)
 			quantifiableGen = genQuantifiable(size)
@@ -174,7 +174,7 @@ trait ExpressionGenerators extends CharClassGenerators
 	
 		
 	def genSequenceable(size : Int) : Gen[Sequenceable] = {
-		require (size > 0)
+		require (size > 0, s"size=$size <= 0")
 		size match {
 			case 1 => Gen.oneOf(
 					genCharClass(1),

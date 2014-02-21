@@ -13,7 +13,7 @@ final class MultiChar private[charclass] (val chars : Set[Char])
 	with BracketsRequired 
 	with WrappedNegation[MultiChar]
 {
-	require(chars.size >= 2)
+	require(chars.size >= 2, s"chars.size=${chars.size} < 2")
 	
 	override def unitableForm() = 
 		Literal.escape(chars.toSeq)

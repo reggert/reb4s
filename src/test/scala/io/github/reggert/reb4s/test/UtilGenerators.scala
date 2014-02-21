@@ -8,7 +8,7 @@ import scala.annotation.tailrec
 trait UtilGenerators {
 	
 	def genSizes(totalSize : Int) : Gen[List[Int]] = {
-		require(totalSize >= 0)
+		require(totalSize >= 0, s"totalSize=$totalSize < 0")
 		def recurse(remainingSize : Int) : Gen[List[Int]] =
 			remainingSize match {
 				case 0 => Nil

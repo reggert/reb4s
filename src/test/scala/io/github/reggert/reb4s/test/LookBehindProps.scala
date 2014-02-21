@@ -17,7 +17,7 @@ sealed abstract class LookBehindProps[GroupType <: Group](name : String)(constru
 	with ExpressionGenerators with ExpressionShrinkers
 {
 	def genIndefinite(size : Int) : Gen[Quantified] = {
-		require(size > 0)
+		require(size > 0, s"size=$size <= 0")
 		for {
 			mode <- Gen.oneOf(Quantified.Greedy, Quantified.Reluctant, Quantified.Possessive)
 			quantifiableGen = genQuantifiable(size)
