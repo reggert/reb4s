@@ -40,5 +40,14 @@ abstract class Expression extends Serializable with NotNull with Immutable
 	 * look-behind.
 	 */
 	def boundedLength : Option[Int]
+	
+	/**
+	 * Indicates whether applying repetition to the expression invalidates the
+	 * boundedness computation. This generally indicates that the expression may
+	 * match a zero-repetition ({0, n} or ?).
+	 * 
+	 * This is used to determine boundedness of enclosing expressions.
+	 */
+	def repetitionInvalidatesBounds : Boolean
 }
 

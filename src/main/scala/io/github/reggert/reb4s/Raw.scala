@@ -69,6 +69,7 @@ final case class CompoundRaw(components : List[Raw]) extends Raw(components mkSt
 			if sum <= MaximumLegalBoundedLength
 		} yield sum.toInt
 	}
+	override def repetitionInvalidatesBounds : Boolean = components forall {_.repetitionInvalidatesBounds}
 }
 
 
@@ -78,6 +79,7 @@ final case class CompoundRaw(components : List[Raw]) extends Raw(components mkSt
 final case class EscapedLiteral(literal : Literal) extends Raw(literal.escaped)
 {
 	override def boundedLength = literal.boundedLength
+	override def repetitionInvalidatesBounds : Boolean = literal.unescaped.isEmpty
 }
 
 sealed abstract class Entity private[reb4s] (rawExpression : => String) 
@@ -85,6 +87,7 @@ sealed abstract class Entity private[reb4s] (rawExpression : => String)
 	with Quantifiable
 {
 	override final def boundedLength = Some(1)
+	override final def repetitionInvalidatesBounds : Boolean = false
 }
 
 /**

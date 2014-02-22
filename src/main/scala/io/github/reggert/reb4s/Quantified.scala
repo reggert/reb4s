@@ -46,6 +46,8 @@ object Quantified
 				sum = baseLength.toLong * repetitions
 				if sum <= MaximumLegalBoundedLength
 			} yield sum.toInt
+		// For some reason, Pattern allows this.
+		override def repetitionInvalidatesBounds : Boolean = false
 	}
 	
 	
@@ -64,6 +66,7 @@ object Quantified
 				sum = baseLength.toLong * multiplier
 				if sum <= MaximumLegalBoundedLength
 			} yield sum.toInt
+		override def repetitionInvalidatesBounds : Boolean = minRepetitions == 0 || base.repetitionInvalidatesBounds
 	}
 	
 	
@@ -74,6 +77,7 @@ object Quantified
 	{
 		override def quantifier = s"+${mode.symbol}"
 		override def boundedLength = None
+		override def repetitionInvalidatesBounds : Boolean = false
 	}
 	
 	
@@ -84,6 +88,7 @@ object Quantified
 	{
 		override def quantifier = s"*${mode.symbol}"
 		override def boundedLength = None
+		override def repetitionInvalidatesBounds : Boolean = true
 	}
 	
 	
@@ -94,5 +99,6 @@ object Quantified
 	{
 		override def quantifier = s"?${mode.symbol}"
 		override def boundedLength = base.boundedLength
+		override def repetitionInvalidatesBounds : Boolean = true
 	}
 }

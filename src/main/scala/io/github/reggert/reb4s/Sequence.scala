@@ -31,5 +31,7 @@ final class Sequence private[reb4s] (val components : List[Sequenceable])
 			if sum <= MaximumLegalBoundedLength
 		} yield sum.toInt
 	}
+	
+	override def repetitionInvalidatesBounds : Boolean = components forall {_.repetitionInvalidatesBounds}
 }
 
