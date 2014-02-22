@@ -53,6 +53,7 @@ object Quantified
 				
 		// For some reason, Pattern allows this.
 		override def repetitionInvalidatesBounds : Boolean = false
+		override def possiblyZeroLength : Boolean = repetitions == 0 || base.possiblyZeroLength
 	}
 	
 	
@@ -77,6 +78,7 @@ object Quantified
 				} yield sum.toInt
 				
 		override def repetitionInvalidatesBounds : Boolean = minRepetitions == 0 || base.repetitionInvalidatesBounds
+		override def possiblyZeroLength : Boolean = minRepetitions == 0 || base.possiblyZeroLength
 	}
 	
 	
@@ -88,6 +90,7 @@ object Quantified
 		override def quantifier = s"+${mode.symbol}"
 		override def boundedLength = None
 		override def repetitionInvalidatesBounds : Boolean = false
+		override def possiblyZeroLength : Boolean = true
 	}
 	
 	
@@ -99,6 +102,7 @@ object Quantified
 		override def quantifier = s"*${mode.symbol}"
 		override def boundedLength = None
 		override def repetitionInvalidatesBounds : Boolean = true
+		override def possiblyZeroLength : Boolean = true
 	}
 	
 	
@@ -110,5 +114,6 @@ object Quantified
 		override def quantifier = s"?${mode.symbol}"
 		override def boundedLength = base.boundedLength
 		override def repetitionInvalidatesBounds : Boolean = true
+		override def possiblyZeroLength : Boolean = true
 	}
 }

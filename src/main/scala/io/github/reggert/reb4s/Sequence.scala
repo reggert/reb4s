@@ -33,5 +33,6 @@ final class Sequence private[reb4s] (val components : List[Sequenceable])
 	}
 	
 	override def repetitionInvalidatesBounds : Boolean = components forall {_.repetitionInvalidatesBounds}
+	override def possiblyZeroLength : Boolean = components forall {_.possiblyZeroLength}
 }
 

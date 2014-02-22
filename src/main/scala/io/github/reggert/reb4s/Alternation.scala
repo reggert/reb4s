@@ -28,5 +28,7 @@ final class Alternation private[reb4s] (val alternatives : List[Alternative])
 		} yield Math.max(prev, next)
 	}
 	
-	override def repetitionInvalidatesBounds : Boolean = alternatives exists {_.repetitionInvalidatesBounds}
+	override def repetitionInvalidatesBounds : Boolean = possiblyZeroLength
+	
+	override def possiblyZeroLength : Boolean = alternatives exists {_.possiblyZeroLength}
 }

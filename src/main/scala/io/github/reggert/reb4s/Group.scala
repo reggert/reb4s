@@ -14,6 +14,7 @@ sealed abstract class Group private[reb4s] (private val opening : String)
 	override lazy val expression = opening + nested + ")"
 	override final def boundedLength = nested.boundedLength
 	override final def repetitionInvalidatesBounds : Boolean = nested.repetitionInvalidatesBounds
+	override final def possiblyZeroLength : Boolean = nested.possiblyZeroLength
 }
 
 /**

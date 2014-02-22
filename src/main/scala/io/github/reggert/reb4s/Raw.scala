@@ -70,6 +70,7 @@ final case class CompoundRaw(components : List[Raw]) extends Raw(components mkSt
 		} yield sum.toInt
 	}
 	override def repetitionInvalidatesBounds : Boolean = components forall {_.repetitionInvalidatesBounds}
+	override def possiblyZeroLength : Boolean = components forall {_.possiblyZeroLength}
 }
 
 
@@ -79,7 +80,8 @@ final case class CompoundRaw(components : List[Raw]) extends Raw(components mkSt
 final case class EscapedLiteral(literal : Literal) extends Raw(literal.escaped)
 {
 	override def boundedLength = literal.boundedLength
-	override def repetitionInvalidatesBounds : Boolean = literal.unescaped.isEmpty
+	override def repetitionInvalidatesBounds : Boolean = possiblyZeroLength
+	override def possiblyZeroLength = literal.unescaped.isEmpty
 }
 
 sealed abstract class Entity private[reb4s] (rawExpression : => String) 
@@ -88,12 +90,16 @@ sealed abstract class Entity private[reb4s] (rawExpression : => String)
 {
 	override final def boundedLength = Some(1)
 	override final def repetitionInvalidatesBounds : Boolean = false
+	override def possiblyZeroLength = true
 }
 
 /**
  * Matches any single character.
  */
 case object AnyChar extends Entity(".") 
+{
+	override def possiblyZeroLength = false
+}
 
 /**
  * Matches the beginning of a line.

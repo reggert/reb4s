@@ -55,7 +55,9 @@ sealed abstract class Literal private[reb4s] extends Expression
 	
 	override final def boundedLength = Some(unescaped.length)
 	
-	override final def repetitionInvalidatesBounds : Boolean = unescaped.isEmpty
+	override final def repetitionInvalidatesBounds : Boolean = possiblyZeroLength
+	
+	override final def possiblyZeroLength = unescaped.isEmpty
 }
 
 

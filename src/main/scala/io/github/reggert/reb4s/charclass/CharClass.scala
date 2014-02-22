@@ -105,6 +105,8 @@ abstract class CharClass extends Expression
 	override final def boundedLength = Some(1)
 	
 	override final def repetitionInvalidatesBounds : Boolean = false
+	
+	override def possiblyZeroLength : Boolean = false
 }
 
 

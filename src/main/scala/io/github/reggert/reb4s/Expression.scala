@@ -49,5 +49,12 @@ abstract class Expression extends Serializable with NotNull with Immutable
 	 * This is used to determine boundedness of enclosing expressions.
 	 */
 	def repetitionInvalidatesBounds : Boolean
+	
+	/**
+	 * Indicates whether the expression may possibly be zero length.
+	 * 
+	 * Used in some cases for determining repetitionInvalidatesBounds.
+	 */
+	def possiblyZeroLength : Boolean
 }
 
