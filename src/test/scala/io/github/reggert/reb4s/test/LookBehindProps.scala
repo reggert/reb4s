@@ -32,9 +32,10 @@ sealed abstract class LookBehindProps[GroupType <: Group](name : String)(constru
 		} yield quantified
 	}
 	
-	property("UnboundedLookBehindException") = forAll(Gen.sized(n => genIndefinite(n + 1))){nested =>
-		Prop.throws(classOf[UnboundedLookBehindException])(constructor(nested))
-	}
+	property("indefinite nested expression causes UnboundedLookBehindException") = 
+		forAll(Gen.sized(n => genIndefinite(n + 1))){nested =>
+			Prop.throws(classOf[UnboundedLookBehindException])(constructor(nested))
+		}
 }
 
 object UnboundedPositiveLookBehindProps extends LookBehindProps("UnboundedPositiveLookBehind")(PositiveLookBehind)
