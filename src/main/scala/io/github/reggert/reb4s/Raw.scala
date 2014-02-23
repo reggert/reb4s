@@ -81,7 +81,7 @@ final case class EscapedLiteral(literal : Literal) extends Raw(literal.escaped)
 {
 	override def boundedLength = literal.boundedLength
 	override def repetitionInvalidatesBounds : Boolean = possiblyZeroLength
-	override def possiblyZeroLength = literal.unescaped.isEmpty
+	override def possiblyZeroLength = literal.possiblyZeroLength
 }
 
 sealed abstract class Entity private[reb4s] (rawExpression : => String) 
