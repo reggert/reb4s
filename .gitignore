@@ -3,4 +3,5 @@ target
 .classpath
 .cache
 .settings
+.worksheet
 META-INF
