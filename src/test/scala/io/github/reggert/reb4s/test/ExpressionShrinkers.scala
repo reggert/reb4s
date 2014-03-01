@@ -11,10 +11,10 @@ trait ExpressionShrinkers extends LiteralShrinkers with RawShrinkers {
 		case literal : Literal => shrink(literal) 
 		case raw : Raw => shrink(raw)
 		case charclass : CharClass => shrink(charclass)
-		case alternation : Alternation => shrink(alternation)
-		case group : Group => shrink(group)
-		case quantified : Quantified => shrink(quantified)
-		case sequence : Sequence => shrink(sequence)
+		case alternation : Alternation => alternation.alternatives ++: shrink(alternation)
+		case group : Group => group.nested +: shrink(group)
+		case quantified : Quantified => quantified.base +: shrink(quantified)
+		case sequence : Sequence => sequence.components ++: shrink(sequence)
 		case adopted : Adopted => shrink(adopted)
 	}
 	
@@ -22,19 +22,24 @@ trait ExpressionShrinkers extends LiteralShrinkers with RawShrinkers {
 		case literal : Literal => shrink(literal) 
 		case raw : Raw => shrink(raw)
 		case charclass : CharClass => shrink(charclass)
-		case alternation : Alternation => shrink(alternation)
-		case group : Group => shrink(group)
-		case quantified : Quantified => shrink(quantified)
-		case sequence : Sequence => shrink(sequence)
+		case alternation : Alternation => alternation.alternatives ++: shrink(alternation)
+		case group : Group =>
+			(Some(group.nested) collect {case alt : Alternative => alt}) ++: shrink(group)
+		case quantified : Quantified =>
+			(Some(quantified.base) collect {case alt : Alternative => alt}) ++: shrink(quantified)
+		case sequence : Sequence => 
+			(sequence.components collect {case alt : Alternative => alt}) ++: shrink(sequence)
 	}
 	
 	implicit val shrinkSequenceable : Shrink[Sequenceable] = Shrink {
 		case literal : Literal => shrink(literal) 
 		case raw : Raw => shrink(raw)
 		case charclass : CharClass => shrink(charclass)
-		case group : Group => shrink(group)
-		case quantified : Quantified => shrink(quantified)
-		case sequence : Sequence => shrink(sequence)
+		case group : Group =>
+			(Some(group.nested) collect {case seq : Sequenceable => seq}) ++: shrink(group)
+		case quantified : Quantified =>
+			(Some(quantified.base) collect {case seq : Sequenceable => seq}) ++: shrink(quantified)
+		case sequence : Sequence => sequence.components ++: shrink(sequence)
 	}
 	
 	implicit val shrinkAlternation : Shrink[Alternation] = Shrink {alternation =>
