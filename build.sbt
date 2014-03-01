@@ -16,5 +16,5 @@ scalacOptions += "-feature"
 
 autoAPIMappings := true
 
-libraryDependencies += "org.scalacheck" %% "scalacheck" % "1.11.1" % "test"
+libraryDependencies += "org.scalacheck" %% "scalacheck" % "1.11.3" % "test"
 
