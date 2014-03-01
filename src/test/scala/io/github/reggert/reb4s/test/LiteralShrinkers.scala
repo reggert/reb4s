@@ -5,7 +5,7 @@ import Shrink.shrink
 import io.github.reggert.reb4s.Literal
 import Literal.{CharLiteral, StringLiteral}
 
-trait LiteralShrinkers {
+trait LiteralShrinkers extends CharShrinkers {
 	
 	implicit val shrinkStringLiteral : Shrink[StringLiteral] = Shrink {stringLiteral =>
 		for {

@@ -6,7 +6,7 @@ import io.github.reggert.reb4s.charclass.{Intersection, MultiChar, Union}
 import io.github.reggert.reb4s.charclass.CharClass
 import io.github.reggert.reb4s.charclass.SingleChar
 
-trait CharClassShrinkers {
+trait CharClassShrinkers extends CharShrinkers {
 	
 	implicit val shrinkUnion : Shrink[Union] = Shrink {
 		case union : Union => for {
