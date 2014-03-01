@@ -98,7 +98,7 @@ object Literal
 	/**
 	 * Characters that need to be escaped in expressions.
 	 */
-	val needsEscape = """()[]{}.,-\|+*?$^&:!<>=""".toSet
+	val needsEscape = """()[]{}.,-\|+*?$^&:!<>=#""".toSet
 		
 	/**
 	 * Helper function to escape the specified character (if necessary).
