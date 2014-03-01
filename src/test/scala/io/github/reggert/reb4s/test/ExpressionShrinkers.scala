@@ -2,15 +2,8 @@ package io.github.reggert.reb4s.test
 
 import org.scalacheck.Shrink
 import Shrink.shrink
-import io.github.reggert.reb4s.Expression
-import io.github.reggert.reb4s.Quantifiable
-import io.github.reggert.reb4s.Literal
-import io.github.reggert.reb4s.Raw
-import io.github.reggert.reb4s.charclass.CharClass
-import io.github.reggert.reb4s.Alternation
-import io.github.reggert.reb4s.Quantified
-import io.github.reggert.reb4s.Sequence
-import io.github.reggert.reb4s.Group
+import io.github.reggert.reb4s._
+import io.github.reggert.reb4s.charclass._
 
 trait ExpressionShrinkers extends LiteralShrinkers with RawShrinkers {
 
@@ -19,6 +12,26 @@ trait ExpressionShrinkers extends LiteralShrinkers with RawShrinkers {
 		case raw : Raw => shrink(raw)
 		case charclass : CharClass => shrink(charclass)
 		case alternation : Alternation => shrink(alternation)
+		case group : Group => shrink(group)
+		case quantified : Quantified => shrink(quantified)
+		case sequence : Sequence => shrink(sequence)
+		case adopted : Adopted => shrink(adopted)
+	}
+	
+	implicit val shrinkAlternative : Shrink[Alternative] = Shrink {
+		case literal : Literal => shrink(literal) 
+		case raw : Raw => shrink(raw)
+		case charclass : CharClass => shrink(charclass)
+		case alternation : Alternation => shrink(alternation)
+		case group : Group => shrink(group)
+		case quantified : Quantified => shrink(quantified)
+		case sequence : Sequence => shrink(sequence)
+	}
+	
+	implicit val shrinkSequenceable : Shrink[Sequenceable] = Shrink {
+		case literal : Literal => shrink(literal) 
+		case raw : Raw => shrink(raw)
+		case charclass : CharClass => shrink(charclass)
 		case group : Group => shrink(group)
 		case quantified : Quantified => shrink(quantified)
 		case sequence : Sequence => shrink(sequence)
