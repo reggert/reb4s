@@ -115,11 +115,22 @@ trait ExpressionShrinkers extends LiteralShrinkers with RawShrinkers {
 	
 	implicit val shrinkRepeatExactly : Shrink[Quantified.RepeatExactly] = Shrink {quantified =>
 		(Some(quantified) filter {_.mode != Quantified.Greedy} map {_.copy(mode = Quantified.Greedy)}) ++:
+		(for (repetitions <- shrink(quantified.repetitions) if repetitions > 0) yield quantified.copy(repetitions = repetitions)) ++:
 		(for (base <- shrink(quantified.base)) yield quantified.copy(base = base))
 	}
 	
 	implicit val shrinkRepeatRange : Shrink[Quantified.RepeatRange] = Shrink {quantified =>
 		(Some(quantified) filter {_.mode != Quantified.Greedy} map {_.copy(mode = Quantified.Greedy)}) ++:
+		(for {
+			minRepetitions <- shrink(quantified.minRepetitions) 
+			if minRepetitions >= 0
+			if quantified.maxRepetitions.isEmpty || minRepetitions < quantified.maxRepetitions.get
+		} yield quantified.copy(minRepetitions = minRepetitions)) ++:
+		(for {
+			maxRepetitions <- shrink(quantified.maxRepetitions) 
+			if maxRepetitions.isDefined
+			if maxRepetitions.get > quantified.minRepetitions
+		} yield quantified.copy(maxRepetitions = maxRepetitions)) ++:
 		(for (base <- shrink(quantified.base)) yield quantified.copy(base = base))
 	}
 	
