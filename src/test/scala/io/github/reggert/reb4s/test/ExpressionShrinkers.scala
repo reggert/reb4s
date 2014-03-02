@@ -83,47 +83,47 @@ trait ExpressionShrinkers extends LiteralShrinkers with RawShrinkers {
 	}
 	
 	implicit val shrinkGroup : Shrink[Group] = Shrink {
-		case group : Group.Capture => for (g <- shrinkCapture.shrink(group)) yield g
-		case group : Group.Independent => for (g <- shrinkIndependent.shrink(group)) yield g
-		case group : Group.NegativeLookAhead => for (g <- shrinkNegativeLookAhead.shrink(group)) yield g
-		case group : Group.NegativeLookBehind => for (g <- shrinkNegativeLookBehind.shrink(group)) yield g
-		case group : Group.NonCapturing => for (g <- shrinkNonCapturing.shrink(group)) yield g
-		case group : Group.PositiveLookAhead => for (g <- shrinkPositiveLookAhead.shrink(group)) yield g
-		case group : Group.PositiveLookBehind => for (g <- shrinkPositiveLookBehind.shrink(group)) yield g
-		case group : Group.DisableFlags => for (g <- shrinkDisableFlags.shrink(group)) yield g
-		case group : Group.EnableFlags => for (g <- shrinkEnableFlags.shrink(group)) yield g
+		case group : Group.Capture => for (g <- shrink(group)) yield g
+		case group : Group.Independent => for (g <- shrink(group)) yield g
+		case group : Group.NegativeLookAhead => for (g <- shrink(group)) yield g
+		case group : Group.NegativeLookBehind => for (g <- shrink(group)) yield g
+		case group : Group.NonCapturing => for (g <- shrink(group)) yield g
+		case group : Group.PositiveLookAhead => for (g <- shrink(group)) yield g
+		case group : Group.PositiveLookBehind => for (g <- shrink(group)) yield g
+		case group : Group.DisableFlags => for (g <- shrink(group)) yield g
+		case group : Group.EnableFlags => for (g <- shrink(group)) yield g
 	}
 	
 	implicit val shrinkAnyTimes : Shrink[Quantified.AnyTimes] = Shrink {quantified =>
-		for (nested <- shrink(quantified.base)) 
-			yield Quantified.AnyTimes(nested, quantified.mode)
+		(Some(quantified) filter {_.mode != Quantified.Greedy} map {_.copy(mode = Quantified.Greedy)}) ++:
+		(for (base <- shrink(quantified.base)) yield quantified.copy(base = base))
 	}
 	
 	implicit val shrinkAtLeastOnce : Shrink[Quantified.AtLeastOnce] = Shrink {quantified =>
-		for (nested <- shrink(quantified.base)) 
-			yield Quantified.AtLeastOnce(nested, quantified.mode)
+		(Some(quantified) filter {_.mode != Quantified.Greedy} map {_.copy(mode = Quantified.Greedy)}) ++:
+		(for (base <- shrink(quantified.base)) yield quantified.copy(base = base))
 	}
 	
 	implicit val shrinkOptional : Shrink[Quantified.Optional] = Shrink {quantified =>
-		for (nested <- shrink(quantified.base)) 
-			yield Quantified.Optional(nested, quantified.mode)
+		(Some(quantified) filter {_.mode != Quantified.Greedy} map {_.copy(mode = Quantified.Greedy)}) ++:
+		(for (base <- shrink(quantified.base)) yield quantified.copy(base = base))
 	}
 	
 	implicit val shrinkRepeatExactly : Shrink[Quantified.RepeatExactly] = Shrink {quantified =>
-		for (nested <- shrink(quantified.base)) 
-			yield Quantified.RepeatExactly(nested, quantified.repetitions, quantified.mode)
+		(Some(quantified) filter {_.mode != Quantified.Greedy} map {_.copy(mode = Quantified.Greedy)}) ++:
+		(for (base <- shrink(quantified.base)) yield quantified.copy(base = base))
 	}
 	
 	implicit val shrinkRepeatRange : Shrink[Quantified.RepeatRange] = Shrink {quantified =>
-		for (nested <- shrink(quantified.base)) 
-			yield Quantified.RepeatRange(nested, quantified.minRepetitions, quantified.maxRepetitions, quantified.mode)
+		(Some(quantified) filter {_.mode != Quantified.Greedy} map {_.copy(mode = Quantified.Greedy)}) ++:
+		(for (base <- shrink(quantified.base)) yield quantified.copy(base = base))
 	}
 	
 	implicit val shrinkQuantified : Shrink[Quantified] = Shrink {
-		case quantified : Quantified.AnyTimes => for (q <- shrinkAnyTimes.shrink(quantified)) yield q
-		case quantified : Quantified.AtLeastOnce => for (q <- shrinkAtLeastOnce.shrink(quantified)) yield q
-		case quantified : Quantified.Optional => for (q <- shrinkOptional.shrink(quantified)) yield q
-		case quantified : Quantified.RepeatExactly => for (q <- shrinkRepeatExactly.shrink(quantified)) yield q
-		case quantified : Quantified.RepeatRange => for (q <- shrinkRepeatRange.shrink(quantified)) yield q
+		case quantified : Quantified.AnyTimes => for (q <- shrink(quantified)) yield q
+		case quantified : Quantified.AtLeastOnce => for (q <- shrink(quantified)) yield q
+		case quantified : Quantified.Optional => for (q <- shrink(quantified)) yield q
+		case quantified : Quantified.RepeatExactly => for (q <- shrink(quantified)) yield q
+		case quantified : Quantified.RepeatRange => for (q <- shrink(quantified)) yield q
 	}
 }
