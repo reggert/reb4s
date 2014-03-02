@@ -75,11 +75,15 @@ trait ExpressionShrinkers extends LiteralShrinkers with RawShrinkers {
 	implicit val shrinkPositiveLookBehind = shrinkGroupType(Group.PositiveLookBehind)
 	
 	implicit val shrinkDisableFlags : Shrink[Group.DisableFlags] = Shrink {
-		case Group.DisableFlags(nested, flags) => for (n <- shrink(nested)) yield Group.DisableFlags(n, flags)
+		case Group.DisableFlags(nested, flags) => 
+			(for (f <- shrink(flags)) yield Group.DisableFlags(nested, f)) ++:
+			(for (n <- shrink(nested)) yield Group.DisableFlags(n, flags))
 	}
 	
 	implicit val shrinkEnableFlags : Shrink[Group.EnableFlags] = Shrink {
-		case Group.EnableFlags(nested, flags) => for (n <- shrink(nested)) yield Group.EnableFlags(n, flags)
+		case Group.EnableFlags(nested, flags) =>
+			(for (f <- shrink(flags)) yield Group.EnableFlags(nested, f)) ++:
+			(for (n <- shrink(nested)) yield Group.EnableFlags(n, flags))
 	}
 	
 	implicit val shrinkGroup : Shrink[Group] = Shrink {
