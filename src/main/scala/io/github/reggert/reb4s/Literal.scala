@@ -99,11 +99,25 @@ object Literal
 	 * Characters that need to be escaped in expressions.
 	 */
 	val needsEscape = """()[]{}.,-\|+*?$^&:!<>=#""".toSet
+	
+	val specialEscapes = Map (
+			'\n' -> """\n""",
+			'\t' -> """\t""",
+			'\r' -> """\r""",
+			'\f' -> """\f""",
+			'\u0007' -> """\a""",
+			'\u001b' -> """\e""",
+			'\0' -> """\00"""
+		)
 		
 	/**
 	 * Helper function to escape the specified character (if necessary).
 	 */
-	def escapeChar(c : Char) = if (needsEscape(c)) "\\" + c else String.valueOf(c)
+	def escapeChar(c : Char) = 
+		if (needsEscape(c)) 
+			"\\" + c
+		else 
+			specialEscapes.get(c) getOrElse c.toString
 	
 	/**
 	 * Helper function to escape the specified string (if necessary).
