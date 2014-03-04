@@ -34,19 +34,28 @@ trait CharClassShrinkers extends CharShrinkers {
 	
 	implicit val shrinkCharRange : Shrink[CharRange] = Shrink {charRange =>
 		for {
-			first <- shrink(charRange.first)
-			last <- shrink(charRange.last)
+			first <- charRange.first #:: shrink(charRange.first)
+			last <- charRange.last #:: shrink(charRange.last)
 			if first <= last
+			if first != charRange.first || last != charRange.last
 		} yield CharClass.range(first, last)
+	}
+	
+	implicit val shrinkPredefinedClass : Shrink[PredefinedClass] = Shrink {
+		case _ : NamedPredefinedClass => Stream(CharClass.Perl.Digit)
+		case _ => Stream.empty
 	}
 	
 	implicit val shrinkCharClass : Shrink[CharClass] = Shrink {
 		case multichar : MultiChar => 
-			(multichar.chars map {CharClass.char}) ++: shrink(multichar)
+			(multichar.chars.toTraversable map {CharClass.char}) ++: shrink(multichar)
 		case singlechar : SingleChar => shrink(singlechar)
 		case union : Union => union.subsets ++: shrink(union)
 		case intersection : Intersection => intersection.supersets ++: shrink(intersection)
-		case range : CharRange => shrink(range)
+		case range : CharRange => CharClass.char(range.first) +: CharClass.char(range.last) +: shrink(range)
 		case negated : Negated[_] => negated.positive +: shrink(negated.positive)
+		case predefined : PredefinedClass => CharClass.char('a') +: shrink(predefined)
 	}
 }
+
+object CharClassShrinkers extends CharClassShrinkers
