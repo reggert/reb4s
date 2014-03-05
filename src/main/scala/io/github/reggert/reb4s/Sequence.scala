@@ -32,7 +32,7 @@ final class Sequence private[reb4s] (val components : List[Sequenceable])
 		} yield sum.toInt
 	}
 	
-	protected[reb4s] override def repetitionInvalidatesBounds : Boolean = components forall {_.repetitionInvalidatesBounds}
+	protected[reb4s] override def repetitionInvalidatesBounds : Boolean = components exists {_.repetitionInvalidatesBounds}
 	protected[reb4s] override def possiblyZeroLength : Boolean = components forall {_.possiblyZeroLength}
 }
 
