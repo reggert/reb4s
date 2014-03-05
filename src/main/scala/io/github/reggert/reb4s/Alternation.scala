@@ -21,14 +21,14 @@ final class Alternation private[reb4s] (val alternatives : List[Alternative])
 	
 	override lazy val hashCode = 31 * alternatives.hashCode
 	
-	override def boundedLength = (Option(0) /: alternatives) {(computedLength, alternative) =>
+	protected[reb4s] override def boundedLength = (Option(0) /: alternatives) {(computedLength, alternative) =>
 		for {
 			prev <- computedLength
 			next <- alternative.boundedLength
 		} yield Math.max(prev, next)
 	}
 	
-	override def repetitionInvalidatesBounds : Boolean = true
+	protected[reb4s] override def repetitionInvalidatesBounds : Boolean = true
 	
-	override def possiblyZeroLength : Boolean = alternatives exists {_.possiblyZeroLength}
+	protected[reb4s] override def possiblyZeroLength : Boolean = alternatives exists {_.possiblyZeroLength}
 }

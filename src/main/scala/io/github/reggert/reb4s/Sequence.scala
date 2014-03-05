@@ -23,7 +23,7 @@ final class Sequence private[reb4s] (val components : List[Sequenceable])
 	}
 	override lazy val hashCode = 31 * components.hashCode
 	
-	override def boundedLength = (Option(0) /: components) {(computedLength, component) =>
+	protected[reb4s] override def boundedLength = (Option(0) /: components) {(computedLength, component) =>
 		for {
 			prev <- computedLength
 			next <- component.boundedLength
@@ -32,7 +32,7 @@ final class Sequence private[reb4s] (val components : List[Sequenceable])
 		} yield sum.toInt
 	}
 	
-	override def repetitionInvalidatesBounds : Boolean = components forall {_.repetitionInvalidatesBounds}
-	override def possiblyZeroLength : Boolean = components forall {_.possiblyZeroLength}
+	protected[reb4s] override def repetitionInvalidatesBounds : Boolean = components forall {_.repetitionInvalidatesBounds}
+	protected[reb4s] override def possiblyZeroLength : Boolean = components forall {_.possiblyZeroLength}
 }
 

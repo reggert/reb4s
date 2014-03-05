@@ -102,11 +102,11 @@ abstract class CharClass extends Expression
 	 */
 	final def or (right : CharClass) : Union = this || right
 	
-	override final def boundedLength = Some(1)
+	protected[reb4s] override final def boundedLength = Some(1)
 	
-	override final def repetitionInvalidatesBounds : Boolean = false
+	protected[reb4s] override final def repetitionInvalidatesBounds : Boolean = false
 	
-	override def possiblyZeroLength : Boolean = false
+	protected[reb4s] override final def possiblyZeroLength : Boolean = false
 }
 
 

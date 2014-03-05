@@ -39,7 +39,7 @@ abstract class Expression extends Serializable with NotNull with Immutable
 	 * This is used for determining whether an expression is suitable for 
 	 * look-behind.
 	 */
-	def boundedLength : Option[Int]
+	protected[reb4s] def boundedLength : Option[Int]
 	
 	/**
 	 * Indicates whether applying repetition to the expression invalidates the
@@ -48,13 +48,13 @@ abstract class Expression extends Serializable with NotNull with Immutable
 	 * 
 	 * This is used to determine boundedness of enclosing expressions.
 	 */
-	def repetitionInvalidatesBounds : Boolean
+	protected[reb4s] def repetitionInvalidatesBounds : Boolean
 	
 	/**
 	 * Indicates whether the expression may possibly be zero length.
 	 * 
 	 * Used in some cases for determining repetitionInvalidatesBounds.
 	 */
-	def possiblyZeroLength : Boolean
+	protected[reb4s] def possiblyZeroLength : Boolean
 }
 

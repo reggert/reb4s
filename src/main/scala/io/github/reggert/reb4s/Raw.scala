@@ -61,7 +61,7 @@ final case class CompoundRaw(components : List[Raw]) extends Raw(components mkSt
 	}
 	override def ~~ (right : Literal) = this ~~ EscapedLiteral(right)
 	override def ~~ (right : CompoundRaw) = CompoundRaw(this.components ++ right.components)
-	override def boundedLength = (Option(0) /: components) {(computedLength, component) =>
+	protected[reb4s] override def boundedLength = (Option(0) /: components) {(computedLength, component) =>
 		for {
 			prev <- computedLength
 			next <- component.boundedLength
@@ -69,8 +69,8 @@ final case class CompoundRaw(components : List[Raw]) extends Raw(components mkSt
 			if sum <= MaximumLegalBoundedLength
 		} yield sum.toInt
 	}
-	override def repetitionInvalidatesBounds : Boolean = components forall {_.repetitionInvalidatesBounds}
-	override def possiblyZeroLength : Boolean = components forall {_.possiblyZeroLength}
+	protected[reb4s] override def repetitionInvalidatesBounds : Boolean = components forall {_.repetitionInvalidatesBounds}
+	protected[reb4s] override def possiblyZeroLength : Boolean = components forall {_.possiblyZeroLength}
 }
 
 
@@ -79,18 +79,18 @@ final case class CompoundRaw(components : List[Raw]) extends Raw(components mkSt
  */
 final case class EscapedLiteral(literal : Literal) extends Raw(literal.escaped)
 {
-	override def boundedLength = literal.boundedLength
-	override def repetitionInvalidatesBounds : Boolean = possiblyZeroLength
-	override def possiblyZeroLength = literal.possiblyZeroLength
+	protected[reb4s] override def boundedLength = literal.boundedLength
+	protected[reb4s] override def repetitionInvalidatesBounds : Boolean = possiblyZeroLength
+	protected[reb4s] override def possiblyZeroLength = literal.possiblyZeroLength
 }
 
 sealed abstract class Entity private[reb4s] (rawExpression : => String) 
 	extends Raw(rawExpression)
 	with Quantifiable
 {
-	override final def boundedLength = Some(1)
-	override final def repetitionInvalidatesBounds : Boolean = false
-	override def possiblyZeroLength = true
+	protected[reb4s] override final def boundedLength = Some(1)
+	protected[reb4s] override final def repetitionInvalidatesBounds : Boolean = false
+	protected[reb4s] override def possiblyZeroLength = true
 }
 
 /**
@@ -98,7 +98,7 @@ sealed abstract class Entity private[reb4s] (rawExpression : => String)
  */
 case object AnyChar extends Entity(".") 
 {
-	override def possiblyZeroLength = false
+	protected[reb4s] override def possiblyZeroLength = false
 }
 
 /**

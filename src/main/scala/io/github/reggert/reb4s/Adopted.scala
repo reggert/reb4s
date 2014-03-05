@@ -17,11 +17,11 @@ final class Adopted private[reb4s] (override val expression : String) extends Ex
 	
 	override lazy val hashCode = 31 * expression.hashCode
 	
-	override def boundedLength = None // can't know for sure
+	protected[reb4s] override def boundedLength = None // can't know for sure
 	
-	override def repetitionInvalidatesBounds : Boolean = true // can't know for sure
+	protected[reb4s] override def repetitionInvalidatesBounds : Boolean = true // can't know for sure
 	
-	override def possiblyZeroLength : Boolean = true // can't know for sure
+	protected[reb4s] override def possiblyZeroLength : Boolean = true // can't know for sure
 }
 
 
