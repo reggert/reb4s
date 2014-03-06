@@ -18,3 +18,4 @@ autoAPIMappings := true
 
 libraryDependencies += "org.scalacheck" %% "scalacheck" % "1.11.3" % "test"
 
+testOptions in Test += Tests.Argument(TestFrameworks.ScalaCheck, "-s", "200000")
