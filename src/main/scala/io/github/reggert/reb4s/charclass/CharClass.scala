@@ -231,7 +231,7 @@ object CharClass
 	
 	/**
 	 * Module containing predefined character classes matching character traits
-	 * defined by the [[java.lang.Character]] class.
+	 * defined by the java.lang.Character class.
 	 */
 	object Java
 	{

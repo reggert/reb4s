@@ -3,7 +3,7 @@ import java.util.regex.Pattern
 import scala.util.matching.Regex
 
 /**
- * An expression that has been precompiled by the [[java.util.regex.Pattern]]
+ * An expression that has been precompiled by the java.util.regex.Pattern
  * class and adopted for use by '''reb4j'''.
  */
 @SerialVersionUID(1L)
@@ -27,7 +27,7 @@ final class Adopted private[reb4s] (override val expression : String) extends Ex
 
 /**
  * Factory methods that adopt the regular expression represented by the specified
- * [[java.util.regex.Pattern]] or [[scala.util.matching.Regex]].
+ * java.util.regex.Pattern or [[scala.util.matching.Regex]].
  */
 object Adopted
 {

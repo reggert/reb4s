@@ -1,7 +1,7 @@
 package io.github.reggert.reb4s
 
 /**
- * Flag that can be passed to the [[java.util.regex.Pattern]] 
+ * Flag that can be passed to the java.util.regex.Pattern 
  * regular expression engine.
  */
 @SerialVersionUID(1L)

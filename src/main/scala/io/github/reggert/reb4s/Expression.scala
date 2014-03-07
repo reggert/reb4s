@@ -10,7 +10,7 @@ abstract class Expression extends Serializable with NotNull with Immutable
 {
 	/**
 	 * Returns the regular expression represented by this object, in a form 
-	 * suitable to passing to the [[java.util.regex.Pattern]] class.
+	 * suitable to passing to the java.util.regex.Pattern class.
 	 */
 	def expression : String
 	
@@ -21,7 +21,7 @@ abstract class Expression extends Serializable with NotNull with Immutable
 	
 	/**
 	 * Passes the regular expression represented by this object to 
-	 * [[java.util.regex.Pattern]] and returns the result.
+	 * java.util.regex.Pattern and returns the result.
 	 */
 	final def toPattern : Pattern = Pattern.compile(expression)
 	
