@@ -124,6 +124,36 @@ in a <a href="Group.html" class="extype" name="io.github.reggert.reb4s.Group">Gr
       </span>
       </h4>
       
+    </li><li name="io.github.reggert.reb4s.Expression#boundedLength" visbl="prt" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="boundedLength:Option[Int]"></a>
+      <a id="boundedLength:Option[Int]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">boundedLength</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Option" class="extype" target="_top">Option</a>[<a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Int" class="extype" target="_top">Int</a>]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">If the expression has a computable maximum length, this returns it.</p><div class="fullcomment"><div class="comment cmt"><p>If the expression has a computable maximum length, this returns it.
+Otherwise, it returns None.</p><p>This is used for determining whether an expression is suitable for
+look-behind.
+</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="package.html" class="extype" name="io.github.reggert.reb4s">io.github.reggert.reb4s</a>] </dd><dt>Definition Classes</dt><dd><a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a></dd></dl></div>
+    </li><li name="io.github.reggert.reb4s.Expression#possiblyZeroLength" visbl="prt" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="possiblyZeroLength:Boolean"></a>
+      <a id="possiblyZeroLength:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">possiblyZeroLength</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Indicates whether the expression may possibly be zero length.</p><div class="fullcomment"><div class="comment cmt"><p>Indicates whether the expression may possibly be zero length.</p><p>Used in some cases for determining repetitionInvalidatesBounds.
+</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="package.html" class="extype" name="io.github.reggert.reb4s">io.github.reggert.reb4s</a>] </dd><dt>Definition Classes</dt><dd><a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a></dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Quantified#quantifier" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="quantifier:String"></a>
       <a id="quantifier:String"></a>
@@ -137,6 +167,23 @@ in a <a href="Group.html" class="extype" name="io.github.reggert.reb4s.Group">Gr
       </span>
       </h4>
       
+    </li><li name="io.github.reggert.reb4s.Expression#repetitionInvalidatesBounds" visbl="prt" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="repetitionInvalidatesBounds:Boolean"></a>
+      <a id="repetitionInvalidatesBounds:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">repetitionInvalidatesBounds</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Indicates whether applying repetition to the expression invalidates the
+boundedness computation.</p><div class="fullcomment"><div class="comment cmt"><p>Indicates whether applying repetition to the expression invalidates the
+boundedness computation. This generally indicates that the expression may
+match a zero-repetition ({0, n} or ?).</p><p>This is used to determine boundedness of enclosing expressions.
+</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="package.html" class="extype" name="io.github.reggert.reb4s">io.github.reggert.reb4s</a>] </dd><dt>Definition Classes</dt><dd><a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a></dd></dl></div>
     </li></ol>
             </div>
 
@@ -463,8 +510,8 @@ expression.
       </span>
       </h4>
       <p class="shortcomment cmt">Passes the regular expression represented by this object to
-<span class="extype" name="java.util.regex.Pattern">java.util.regex.Pattern</span> and returns the result.</p><div class="fullcomment"><div class="comment cmt"><p>Passes the regular expression represented by this object to
-<span class="extype" name="java.util.regex.Pattern">java.util.regex.Pattern</span> and returns the result.
+java.</p><div class="fullcomment"><div class="comment cmt"><p>Passes the regular expression represented by this object to
+java.util.regex.Pattern and returns the result.
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a></dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Expression#toRegex" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toRegex(groupNames:String*):scala.util.matching.Regex"></a>

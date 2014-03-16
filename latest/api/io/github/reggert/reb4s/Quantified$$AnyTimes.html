@@ -220,6 +220,22 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="io.github.reggert.reb4s.Quantified.AnyTimes">AnyTimes</a> → <a href="Quantified.html" class="extype" name="io.github.reggert.reb4s.Quantified">Quantified</a></dd></dl></div>
+    </li><li name="io.github.reggert.reb4s.Quantified.AnyTimes#boundedLength" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="boundedLength:None.type"></a>
+      <a id="boundedLength:None.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">boundedLength</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.None" class="extype" target="_top">None</a>.type</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">If the expression has a computable maximum length, this returns it.</p><div class="fullcomment"><div class="comment cmt"><p>If the expression has a computable maximum length, this returns it.
+Otherwise, it returns None.</p><p>This is used for determining whether an expression is suitable for
+look-behind.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="io.github.reggert.reb4s.Quantified.AnyTimes">AnyTimes</a> → <a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a></dd></dl></div>
     </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a>
       <a id="clone():AnyRef"></a>
@@ -422,6 +438,20 @@ expression.</p><div class="fullcomment"><div class="comment cmt"><p>Constructs a
 any of the alternatives contained within the specified argument
 expression.
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Alternative.html" class="extype" name="io.github.reggert.reb4s.Alternative">Alternative</a></dd></dl></div>
+    </li><li name="io.github.reggert.reb4s.Quantified.AnyTimes#possiblyZeroLength" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="possiblyZeroLength:Boolean"></a>
+      <a id="possiblyZeroLength:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">possiblyZeroLength</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Indicates whether the expression may possibly be zero length.</p><div class="fullcomment"><div class="comment cmt"><p>Indicates whether the expression may possibly be zero length.</p><p>Used in some cases for determining repetitionInvalidatesBounds.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="io.github.reggert.reb4s.Quantified.AnyTimes">AnyTimes</a> → <a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a></dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Quantified.AnyTimes#quantifier" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="quantifier:String"></a>
       <a id="quantifier:String"></a>
@@ -435,6 +465,23 @@ expression.
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="io.github.reggert.reb4s.Quantified.AnyTimes">AnyTimes</a> → <a href="Quantified.html" class="extype" name="io.github.reggert.reb4s.Quantified">Quantified</a></dd></dl></div>
+    </li><li name="io.github.reggert.reb4s.Quantified.AnyTimes#repetitionInvalidatesBounds" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="repetitionInvalidatesBounds:Boolean"></a>
+      <a id="repetitionInvalidatesBounds:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">repetitionInvalidatesBounds</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Indicates whether applying repetition to the expression invalidates the
+boundedness computation.</p><div class="fullcomment"><div class="comment cmt"><p>Indicates whether applying repetition to the expression invalidates the
+boundedness computation. This generally indicates that the expression may
+match a zero-repetition ({0, n} or ?).</p><p>This is used to determine boundedness of enclosing expressions.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="io.github.reggert.reb4s.Quantified.AnyTimes">AnyTimes</a> → <a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>
@@ -461,8 +508,8 @@ expression.
       </span>
       </h4>
       <p class="shortcomment cmt">Passes the regular expression represented by this object to
-<span class="extype" name="java.util.regex.Pattern">java.util.regex.Pattern</span> and returns the result.</p><div class="fullcomment"><div class="comment cmt"><p>Passes the regular expression represented by this object to
-<span class="extype" name="java.util.regex.Pattern">java.util.regex.Pattern</span> and returns the result.
+java.</p><div class="fullcomment"><div class="comment cmt"><p>Passes the regular expression represented by this object to
+java.util.regex.Pattern and returns the result.
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a></dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Expression#toRegex" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toRegex(groupNames:String*):scala.util.matching.Regex"></a>

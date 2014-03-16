@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>Quantifiable - io.github.reggert.reb4s.Quantifiable</title>
-          <meta name="description" content="Quantifiable - io.github.reggert.reb4s.Quantifiable" />
-          <meta name="keywords" content="Quantifiable io.github.reggert.reb4s.Quantifiable" />
+          <title>Entity - io.github.reggert.reb4s.Entity</title>
+          <meta name="description" content="Entity - io.github.reggert.reb4s.Entity" />
+          <meta name="keywords" content="Entity io.github.reggert.reb4s.Entity" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -12,7 +12,7 @@
       <script type="text/javascript">
          if(top === self) {
             var url = '../../../../index.html';
-            var hash = 'io.github.reggert.reb4s.Quantifiable';
+            var hash = 'io.github.reggert.reb4s.Entity';
             var anchor = window.location.hash;
             var anchor_opt = '';
             if (anchor.length >= 1)
@@ -24,30 +24,27 @@
         </head>
         <body class="type">
       <div id="definition">
-        <img src="../../../../lib/trait_big.png" />
+        <img src="../../../../lib/class_big.png" />
         <p id="owner"><a href="../../../package.html" class="extype" name="io">io</a>.<a href="../../package.html" class="extype" name="io.github">github</a>.<a href="../package.html" class="extype" name="io.github.reggert">reggert</a>.<a href="package.html" class="extype" name="io.github.reggert.reb4s">reb4s</a></p>
-        <h1>Quantifiable</h1>
+        <h1>Entity</h1>
       </div>
 
       <h4 id="signature" class="signature">
       <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">trait</span>
+        <span class="modifier">sealed abstract </span>
+        <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">Quantifiable</span><span class="result"> extends <a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a></span>
+        <span class="name">Entity</span><span class="result"> extends <a href="Raw.html" class="extype" name="io.github.reggert.reb4s.Raw">Raw</a> with <a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></span>
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Interface implemented by regular expression builders that can accept
-quantifiers.</p><p>In order to quantifier an expression that does not include this trait, it
-should first be wrapped in a <a href="Group.html" class="extype" name="io.github.reggert.reb4s.Group">Group</a> of some sort.
-</p></div><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a>, <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Immutable" class="extype" target="_top">Immutable</a>, <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.NotNull" class="extype" target="_top">NotNull</a>, <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Serializable" class="extype" target="_top">Serializable</a>, <span class="extype" name="java.io.Serializable">Serializable</span>, <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a>, <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Any" class="extype" target="_top">Any</a></div>
+          <div class="superTypes hiddenContent"><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a>, <a href="Raw.html" class="extype" name="io.github.reggert.reb4s.Raw">Raw</a>, <a href="Sequenceable.html" class="extype" name="io.github.reggert.reb4s.Sequenceable">Sequenceable</a>, <a href="Alternative.html" class="extype" name="io.github.reggert.reb4s.Alternative">Alternative</a>, <a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a>, <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Immutable" class="extype" target="_top">Immutable</a>, <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.NotNull" class="extype" target="_top">NotNull</a>, <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Serializable" class="extype" target="_top">Serializable</a>, <span class="extype" name="java.io.Serializable">Serializable</span>, <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a>, <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Any" class="extype" target="_top">Any</a></div>
         </div><div class="toggleContainer block">
           <span class="toggle">Known Subclasses</span>
-          <div class="subClasses hiddenContent"><a href="AnyChar$.html" class="extype" name="io.github.reggert.reb4s.AnyChar">AnyChar</a>, <a href="Group$$Capture.html" class="extype" name="io.github.reggert.reb4s.Group.Capture">Capture</a>, <a href="charclass/CharClass.html" class="extype" name="io.github.reggert.reb4s.charclass.CharClass">CharClass</a>, <a href="Literal$$CharLiteral.html" class="extype" name="io.github.reggert.reb4s.Literal.CharLiteral">CharLiteral</a>, <a href="charclass/CharRange.html" class="extype" name="io.github.reggert.reb4s.charclass.CharRange">CharRange</a>, <a href="Group$$DisableFlags.html" class="extype" name="io.github.reggert.reb4s.Group.DisableFlags">DisableFlags</a>, <a href="Group$$EnableFlags.html" class="extype" name="io.github.reggert.reb4s.Group.EnableFlags">EnableFlags</a>, <a href="Entity.html" class="extype" name="io.github.reggert.reb4s.Entity">Entity</a>, <a href="Group.html" class="extype" name="io.github.reggert.reb4s.Group">Group</a>, <a href="Group$$Independent.html" class="extype" name="io.github.reggert.reb4s.Group.Independent">Independent</a>, <a href="InputBegin$.html" class="extype" name="io.github.reggert.reb4s.InputBegin">InputBegin</a>, <a href="InputEnd$.html" class="extype" name="io.github.reggert.reb4s.InputEnd">InputEnd</a>, <a href="InputEndSkipEOL$.html" class="extype" name="io.github.reggert.reb4s.InputEndSkipEOL">InputEndSkipEOL</a>, <a href="charclass/Intersection.html" class="extype" name="io.github.reggert.reb4s.charclass.Intersection">Intersection</a>, <a href="LineBegin$.html" class="extype" name="io.github.reggert.reb4s.LineBegin">LineBegin</a>, <a href="LineEnd$.html" class="extype" name="io.github.reggert.reb4s.LineEnd">LineEnd</a>, <a href="MatchEnd$.html" class="extype" name="io.github.reggert.reb4s.MatchEnd">MatchEnd</a>, <a href="charclass/MultiChar.html" class="extype" name="io.github.reggert.reb4s.charclass.MultiChar">MultiChar</a>, <a href="charclass/NamedPredefinedClass.html" class="extype" name="io.github.reggert.reb4s.charclass.NamedPredefinedClass">NamedPredefinedClass</a>, <a href="charclass/Negated.html" class="extype" name="io.github.reggert.reb4s.charclass.Negated">Negated</a>, <a href="Group$$NegativeLookAhead.html" class="extype" name="io.github.reggert.reb4s.Group.NegativeLookAhead">NegativeLookAhead</a>, <a href="Group$$NegativeLookBehind.html" class="extype" name="io.github.reggert.reb4s.Group.NegativeLookBehind">NegativeLookBehind</a>, <a href="Group$$NonCapturing.html" class="extype" name="io.github.reggert.reb4s.Group.NonCapturing">NonCapturing</a>, <a href="NonwordBoundary$.html" class="extype" name="io.github.reggert.reb4s.NonwordBoundary">NonwordBoundary</a>, <a href="Group$$PositiveLookAhead.html" class="extype" name="io.github.reggert.reb4s.Group.PositiveLookAhead">PositiveLookAhead</a>, <a href="Group$$PositiveLookBehind.html" class="extype" name="io.github.reggert.reb4s.Group.PositiveLookBehind">PositiveLookBehind</a>, <a href="charclass/PredefinedClass.html" class="extype" name="io.github.reggert.reb4s.charclass.PredefinedClass">PredefinedClass</a>, <a href="charclass/SelfContained.html" class="extype" name="io.github.reggert.reb4s.charclass.SelfContained">SelfContained</a>, <a href="charclass/SingleChar.html" class="extype" name="io.github.reggert.reb4s.charclass.SingleChar">SingleChar</a>, <a href="charclass/Union.html" class="extype" name="io.github.reggert.reb4s.charclass.Union">Union</a>, <a href="WordBoundary$.html" class="extype" name="io.github.reggert.reb4s.WordBoundary">WordBoundary</a></div>
+          <div class="subClasses hiddenContent"><a href="AnyChar$.html" class="extype" name="io.github.reggert.reb4s.AnyChar">AnyChar</a>, <a href="InputBegin$.html" class="extype" name="io.github.reggert.reb4s.InputBegin">InputBegin</a>, <a href="InputEnd$.html" class="extype" name="io.github.reggert.reb4s.InputEnd">InputEnd</a>, <a href="InputEndSkipEOL$.html" class="extype" name="io.github.reggert.reb4s.InputEndSkipEOL">InputEndSkipEOL</a>, <a href="LineBegin$.html" class="extype" name="io.github.reggert.reb4s.LineBegin">LineBegin</a>, <a href="LineEnd$.html" class="extype" name="io.github.reggert.reb4s.LineEnd">LineEnd</a>, <a href="MatchEnd$.html" class="extype" name="io.github.reggert.reb4s.MatchEnd">MatchEnd</a>, <a href="NonwordBoundary$.html" class="extype" name="io.github.reggert.reb4s.NonwordBoundary">NonwordBoundary</a>, <a href="WordBoundary$.html" class="extype" name="io.github.reggert.reb4s.WordBoundary">WordBoundary</a></div>
         </div></div>
         
 
@@ -65,7 +62,7 @@ should first be wrapped in a <a href="Group.html" class="extype" name="io.github
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="io.github.reggert.reb4s.Quantifiable"><span>Quantifiable</span></li><li class="in" name="io.github.reggert.reb4s.Expression"><span>Expression</span></li><li class="in" name="scala.Immutable"><span>Immutable</span></li><li class="in" name="scala.NotNull"><span>NotNull</span></li><li class="in" name="scala.Serializable"><span>Serializable</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="io.github.reggert.reb4s.Entity"><span>Entity</span></li><li class="in" name="io.github.reggert.reb4s.Quantifiable"><span>Quantifiable</span></li><li class="in" name="io.github.reggert.reb4s.Raw"><span>Raw</span></li><li class="in" name="io.github.reggert.reb4s.Sequenceable"><span>Sequenceable</span></li><li class="in" name="io.github.reggert.reb4s.Alternative"><span>Alternative</span></li><li class="in" name="io.github.reggert.reb4s.Expression"><span>Expression</span></li><li class="in" name="scala.Immutable"><span>Immutable</span></li><li class="in" name="scala.NotNull"><span>NotNull</span></li><li class="in" name="scala.Serializable"><span>Serializable</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -87,76 +84,10 @@ should first be wrapped in a <a href="Group.html" class="extype" name="io.github
 
         
 
-        <div id="values" class="values members">
-              <h3>Abstract Value Members</h3>
-              <ol><li name="io.github.reggert.reb4s.Expression#boundedLength" visbl="prt" data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="boundedLength:Option[Int]"></a>
-      <a id="boundedLength:Option[Int]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier">abstract </span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">boundedLength</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Option" class="extype" target="_top">Option</a>[<a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Int" class="extype" target="_top">Int</a>]</span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">If the expression has a computable maximum length, this returns it.</p><div class="fullcomment"><div class="comment cmt"><p>If the expression has a computable maximum length, this returns it.
-Otherwise, it returns None.</p><p>This is used for determining whether an expression is suitable for
-look-behind.
-</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="package.html" class="extype" name="io.github.reggert.reb4s">io.github.reggert.reb4s</a>] </dd><dt>Definition Classes</dt><dd><a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a></dd></dl></div>
-    </li><li name="io.github.reggert.reb4s.Expression#expression" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="expression:String"></a>
-      <a id="expression:String"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier">abstract </span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">expression</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Returns the regular expression represented by this object, in a form
-suitable to passing to the java.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the regular expression represented by this object, in a form
-suitable to passing to the java.util.regex.Pattern class.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a></dd></dl></div>
-    </li><li name="io.github.reggert.reb4s.Expression#possiblyZeroLength" visbl="prt" data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="possiblyZeroLength:Boolean"></a>
-      <a id="possiblyZeroLength:Boolean"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier">abstract </span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">possiblyZeroLength</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Indicates whether the expression may possibly be zero length.</p><div class="fullcomment"><div class="comment cmt"><p>Indicates whether the expression may possibly be zero length.</p><p>Used in some cases for determining repetitionInvalidatesBounds.
-</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="package.html" class="extype" name="io.github.reggert.reb4s">io.github.reggert.reb4s</a>] </dd><dt>Definition Classes</dt><dd><a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a></dd></dl></div>
-    </li><li name="io.github.reggert.reb4s.Expression#repetitionInvalidatesBounds" visbl="prt" data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="repetitionInvalidatesBounds:Boolean"></a>
-      <a id="repetitionInvalidatesBounds:Boolean"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier">abstract </span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">repetitionInvalidatesBounds</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Indicates whether applying repetition to the expression invalidates the
-boundedness computation.</p><div class="fullcomment"><div class="comment cmt"><p>Indicates whether applying repetition to the expression invalidates the
-boundedness computation. This generally indicates that the expression may
-match a zero-repetition ({0, n} or ?).</p><p>This is used to determine boundedness of enclosing expressions.
-</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="package.html" class="extype" name="io.github.reggert.reb4s">io.github.reggert.reb4s</a>] </dd><dt>Definition Classes</dt><dd><a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a></dd></dl></div>
-    </li></ol>
-            </div>
+        
 
         <div id="values" class="values members">
-              <h3>Concrete Value Members</h3>
+              <h3>Value Members</h3>
               <ol><li name="scala.AnyRef#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="!=(x$1:AnyRef):Boolean"></a>
       <a id="!=(AnyRef):Boolean"></a>
@@ -211,7 +142,7 @@ match a zero-repetition ({0, n} or ?).</p><p>This is used to determine boundedne
       <p class="shortcomment cmt">Returns an expression that matches the receiver repeated any number
 of times, using greedy matching.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an expression that matches the receiver repeated any number
 of times, using greedy matching.
-</p></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="#anyTimes(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.AnyTimes" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#anyTimes">Quantifiable#anyTimes</a>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="Quantifiable.html#anyTimes(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.AnyTimes" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#anyTimes">Quantifiable#anyTimes</a>
 </p></span></dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Quantifiable#*+" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="*+:io.github.reggert.reb4s.Quantified.AnyTimes"></a>
@@ -228,7 +159,7 @@ of times, using greedy matching.
       <p class="shortcomment cmt">Returns an expression that matches the receiver repeated any number
 of times, using possessive matching.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an expression that matches the receiver repeated any number
 of times, using possessive matching.
-</p></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="#anyTimes(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.AnyTimes" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#anyTimes">Quantifiable#anyTimes</a>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="Quantifiable.html#anyTimes(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.AnyTimes" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#anyTimes">Quantifiable#anyTimes</a>
 </p></span></dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Quantifiable#*?" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="*?:io.github.reggert.reb4s.Quantified.AnyTimes"></a>
@@ -245,7 +176,7 @@ of times, using possessive matching.
       <p class="shortcomment cmt">Returns an expression that matches the receiver repeated any number
 of times, using reluctant matching.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an expression that matches the receiver repeated any number
 of times, using reluctant matching.
-</p></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="#anyTimes(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.AnyTimes" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#anyTimes">Quantifiable#anyTimes</a>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="Quantifiable.html#anyTimes(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.AnyTimes" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#anyTimes">Quantifiable#anyTimes</a>
 </p></span></dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Quantifiable#+" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="+:io.github.reggert.reb4s.Quantified.AtLeastOnce"></a>
@@ -262,7 +193,7 @@ of times, using reluctant matching.
       <p class="shortcomment cmt">Returns an expression that matches the receiver repeated at least
 once, using greedy matching.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an expression that matches the receiver repeated at least
 once, using greedy matching.
-</p></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="#atLeastOnce(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.AtLeastOnce" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#atLeastOnce">Quantifiable#atLeastOnce</a>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="Quantifiable.html#atLeastOnce(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.AtLeastOnce" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#atLeastOnce">Quantifiable#atLeastOnce</a>
 </p></span></dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Quantifiable#++" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="++:io.github.reggert.reb4s.Quantified.AtLeastOnce"></a>
@@ -279,7 +210,7 @@ once, using greedy matching.
       <p class="shortcomment cmt">Returns an expression that matches the receiver repeated at least
 once, using possessive matching.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an expression that matches the receiver repeated at least
 once, using possessive matching.
-</p></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="#atLeastOnce(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.AtLeastOnce" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#atLeastOnce">Quantifiable#atLeastOnce</a>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="Quantifiable.html#atLeastOnce(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.AtLeastOnce" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#atLeastOnce">Quantifiable#atLeastOnce</a>
 </p></span></dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Quantifiable#+?" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="+?:io.github.reggert.reb4s.Quantified.AtLeastOnce"></a>
@@ -296,7 +227,7 @@ once, using possessive matching.
       <p class="shortcomment cmt">Returns an expression that matches the receiver repeated at least
 once, using reluctant matching.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an expression that matches the receiver repeated at least
 once, using reluctant matching.
-</p></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="#atLeast(n:Int,mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.RepeatRange" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#atLeast">Quantifiable#atLeast</a>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="Quantifiable.html#atLeast(n:Int,mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.RepeatRange" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#atLeast">Quantifiable#atLeast</a>
 </p></span></dd></dl></div>
     </li><li name="scala.AnyRef#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="==(x$1:AnyRef):Boolean"></a>
@@ -339,7 +270,7 @@ once, using reluctant matching.
       <p class="shortcomment cmt">Returns an expression that matches the receiver appearing once or not
 at all, using greedy matching.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an expression that matches the receiver appearing once or not
 at all, using greedy matching.
-</p></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="#optional(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.Optional" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#optional">Quantifiable#optional</a>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="Quantifiable.html#optional(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.Optional" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#optional">Quantifiable#optional</a>
 </p></span></dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Quantifiable#?+" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="?+:io.github.reggert.reb4s.Quantified.Optional"></a>
@@ -356,7 +287,7 @@ at all, using greedy matching.
       <p class="shortcomment cmt">Returns an expression that matches the receiver appearing once or not
 at all, using possessive matching.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an expression that matches the receiver appearing once or not
 at all, using possessive matching.
-</p></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="#optional(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.Optional" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#optional">Quantifiable#optional</a>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="Quantifiable.html#optional(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.Optional" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#optional">Quantifiable#optional</a>
 </p></span></dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Quantifiable#??" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="??:io.github.reggert.reb4s.Quantified.Optional"></a>
@@ -373,9 +304,79 @@ at all, using possessive matching.
       <p class="shortcomment cmt">Returns an expression that matches the receiver appearing once or not
 at all, using reluctant matching.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an expression that matches the receiver appearing once or not
 at all, using reluctant matching.
-</p></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="#optional(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.Optional" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#optional">Quantifiable#optional</a>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="Quantifiable.html#optional(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.Optional" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#optional">Quantifiable#optional</a>
 </p></span></dd></dl></div>
-    </li><li name="io.github.reggert.reb4s.Quantifiable#anyTimes" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="io.github.reggert.reb4s.Raw#andThen" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="andThen(right:io.github.reggert.reb4s.CompoundRaw):io.github.reggert.reb4s.CompoundRaw"></a>
+      <a id="andThen(CompoundRaw):CompoundRaw"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">andThen</span><span class="params">(<span name="right">right: <a href="CompoundRaw.html" class="extype" name="io.github.reggert.reb4s.CompoundRaw">CompoundRaw</a></span>)</span><span class="result">: <a href="CompoundRaw.html" class="extype" name="io.github.reggert.reb4s.CompoundRaw">CompoundRaw</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Concatenates this expression with the escaped form of the argument.</p><div class="fullcomment"><div class="comment cmt"><p>Concatenates this expression with the escaped form of the argument.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Raw.html" class="extype" name="io.github.reggert.reb4s.Raw">Raw</a></dd></dl></div>
+    </li><li name="io.github.reggert.reb4s.Raw#andThen" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="andThen(right:io.github.reggert.reb4s.Literal):io.github.reggert.reb4s.CompoundRaw"></a>
+      <a id="andThen(Literal):CompoundRaw"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">andThen</span><span class="params">(<span name="right">right: <a href="Literal.html" class="extype" name="io.github.reggert.reb4s.Literal">Literal</a></span>)</span><span class="result">: <a href="CompoundRaw.html" class="extype" name="io.github.reggert.reb4s.CompoundRaw">CompoundRaw</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Concatenates this expression with the escaped form of the argument.</p><div class="fullcomment"><div class="comment cmt"><p>Concatenates this expression with the escaped form of the argument.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Raw.html" class="extype" name="io.github.reggert.reb4s.Raw">Raw</a></dd></dl></div>
+    </li><li name="io.github.reggert.reb4s.Raw#andThen" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="andThen(right:io.github.reggert.reb4s.Raw):io.github.reggert.reb4s.CompoundRaw"></a>
+      <a id="andThen(Raw):CompoundRaw"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">andThen</span><span class="params">(<span name="right">right: <a href="Raw.html" class="extype" name="io.github.reggert.reb4s.Raw">Raw</a></span>)</span><span class="result">: <a href="CompoundRaw.html" class="extype" name="io.github.reggert.reb4s.CompoundRaw">CompoundRaw</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Concatenates this expression with the argument.</p><div class="fullcomment"><div class="comment cmt"><p>Concatenates this expression with the argument.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Raw.html" class="extype" name="io.github.reggert.reb4s.Raw">Raw</a></dd></dl></div>
+    </li><li name="io.github.reggert.reb4s.Sequenceable#andThen" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="andThen(right:io.github.reggert.reb4s.Sequence):io.github.reggert.reb4s.Sequence"></a>
+      <a id="andThen(Sequence):Sequence"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">andThen</span><span class="params">(<span name="right">right: <a href="Sequence.html" class="extype" name="io.github.reggert.reb4s.Sequence">Sequence</a></span>)</span><span class="result">: <a href="Sequence.html" class="extype" name="io.github.reggert.reb4s.Sequence">Sequence</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Concatenates this expression with the argument.</p><div class="fullcomment"><div class="comment cmt"><p>Concatenates this expression with the argument.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Sequenceable.html" class="extype" name="io.github.reggert.reb4s.Sequenceable">Sequenceable</a></dd></dl></div>
+    </li><li name="io.github.reggert.reb4s.Sequenceable#andThen" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="andThen(right:io.github.reggert.reb4s.Sequenceable):io.github.reggert.reb4s.Sequence"></a>
+      <a id="andThen(Sequenceable):Sequence"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">andThen</span><span class="params">(<span name="right">right: <a href="Sequenceable.html" class="extype" name="io.github.reggert.reb4s.Sequenceable">Sequenceable</a></span>)</span><span class="result">: <a href="Sequence.html" class="extype" name="io.github.reggert.reb4s.Sequence">Sequence</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Concatenates this expression with the argument.</p><div class="fullcomment"><div class="comment cmt"><p>Concatenates this expression with the argument.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Sequenceable.html" class="extype" name="io.github.reggert.reb4s.Sequenceable">Sequenceable</a></dd></dl></div>
+    </li><li name="io.github.reggert.reb4s.Quantifiable#anyTimes" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="anyTimes(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.AnyTimes"></a>
       <a id="anyTimes(Mode):AnyTimes"></a>
       <h4 class="signature">
@@ -388,7 +389,9 @@ at all, using reluctant matching.
       </span>
       </h4>
       <p class="shortcomment cmt">Returns an expression that matches the receiver repeated any number
-of times.</p>
+of times.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an expression that matches the receiver repeated any number
+of times.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd></dl></div>
     </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <a id="asInstanceOf[T0]:T0"></a>
@@ -419,7 +422,7 @@ specified minimum number of times.</p><div class="fullcomment"><div class="comme
 specified minimum number of times.
 </p></div><dl class="paramcmts block"><dt class="param">n</dt><dd class="cmt"><p>
 	the minimum number of times that the pattern may be repeated;
-	must be be &gt;= 0;</p></dd></dl><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt">IllegalArgumentException<p>
+	must be be &gt;= 0;</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>Exceptions thrown</dt><dd><span class="cmt">IllegalArgumentException<p>
 	if <var>n</var> &lt; 0.
 </p></span></dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Quantifiable#atLeastOnce" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -437,8 +440,24 @@ specified minimum number of times.
       <p class="shortcomment cmt">Returns an expression that matches the receiver repeated at least
 once.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an expression that matches the receiver repeated at least
 once.
-</p></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="#+:io.github.reggert.reb4s.Quantified.AtLeastOnce" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#+">Quantifiable#+</a>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="Quantifiable.html#+:io.github.reggert.reb4s.Quantified.AtLeastOnce" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#+">Quantifiable#+</a>
 </p></span></dd></dl></div>
+    </li><li name="io.github.reggert.reb4s.Entity#boundedLength" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="boundedLength:Some[Int]"></a>
+      <a id="boundedLength:Some[Int]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">boundedLength</span><span class="result">: <span class="extype" name="scala.Some">Some</span>[<a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Int" class="extype" target="_top">Int</a>]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">If the expression has a computable maximum length, this returns it.</p><div class="fullcomment"><div class="comment cmt"><p>If the expression has a computable maximum length, this returns it.
+Otherwise, it returns None.</p><p>This is used for determining whether an expression is suitable for
+look-behind.
+</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="package.html" class="extype" name="io.github.reggert.reb4s">io.github.reggert.reb4s</a>] </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="io.github.reggert.reb4s.Entity">Entity</a> → <a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a></dd></dl></div>
     </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a>
       <a id="clone():AnyRef"></a>
@@ -484,6 +503,19 @@ once.
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="io.github.reggert.reb4s.Raw#expression" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="expression:String"></a>
+      <a id="expression:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">lazy val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">expression</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Raw.html" class="extype" name="io.github.reggert.reb4s.Raw">Raw</a> → <a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a></dd></dl></div>
     </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <a id="finalize():Unit"></a>
@@ -596,8 +628,56 @@ once.
       <p class="shortcomment cmt">Returns an expression that matches the receiver appearing once or not
 at all.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an expression that matches the receiver appearing once or not
 at all.
-</p></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="#?:io.github.reggert.reb4s.Quantified.Optional" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#?">Quantifiable#?</a>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="Quantifiable.html#?:io.github.reggert.reb4s.Quantified.Optional" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#?">Quantifiable#?</a>
 </p></span></dd></dl></div>
+    </li><li name="io.github.reggert.reb4s.Alternative#or" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="or(right:io.github.reggert.reb4s.Alternative):io.github.reggert.reb4s.Alternation"></a>
+      <a id="or(Alternative):Alternation"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">or</span><span class="params">(<span name="right">right: <a href="Alternative.html" class="extype" name="io.github.reggert.reb4s.Alternative">Alternative</a></span>)</span><span class="result">: <a href="Alternation.html" class="extype" name="io.github.reggert.reb4s.Alternation">Alternation</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Constructs an expression matching either the receiver or the
+specified argument expression.</p><div class="fullcomment"><div class="comment cmt"><p>Constructs an expression matching either the receiver or the
+specified argument expression.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Alternative.html" class="extype" name="io.github.reggert.reb4s.Alternative">Alternative</a></dd></dl></div>
+    </li><li name="io.github.reggert.reb4s.Alternative#or" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="or(right:io.github.reggert.reb4s.Alternation):io.github.reggert.reb4s.Alternation"></a>
+      <a id="or(Alternation):Alternation"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">or</span><span class="params">(<span name="right">right: <a href="Alternation.html" class="extype" name="io.github.reggert.reb4s.Alternation">Alternation</a></span>)</span><span class="result">: <a href="Alternation.html" class="extype" name="io.github.reggert.reb4s.Alternation">Alternation</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Constructs an expression matching either the receiver or the
+any of the alternatives contained within the specified argument
+expression.</p><div class="fullcomment"><div class="comment cmt"><p>Constructs an expression matching either the receiver or the
+any of the alternatives contained within the specified argument
+expression.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Alternative.html" class="extype" name="io.github.reggert.reb4s.Alternative">Alternative</a></dd></dl></div>
+    </li><li name="io.github.reggert.reb4s.Entity#possiblyZeroLength" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="possiblyZeroLength:Boolean"></a>
+      <a id="possiblyZeroLength:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">possiblyZeroLength</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Indicates whether the expression may possibly be zero length.</p><div class="fullcomment"><div class="comment cmt"><p>Indicates whether the expression may possibly be zero length.</p><p>Used in some cases for determining repetitionInvalidatesBounds.
+</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="package.html" class="extype" name="io.github.reggert.reb4s">io.github.reggert.reb4s</a>] </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="io.github.reggert.reb4s.Entity">Entity</a> → <a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a></dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Quantifiable#repeat" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="repeat(n:Int,mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.RepeatExactly"></a>
       <a id="repeat(Int,Mode):RepeatExactly"></a>
@@ -615,7 +695,7 @@ number of times.</p><div class="fullcomment"><div class="comment cmt"><p>Returns
 number of times.
 </p></div><dl class="paramcmts block"><dt class="param">n</dt><dd class="cmt"><p>
 	the exact number of times the pattern must be repeated for the
-	quantified expression to match; must be &gt;= 0.</p></dd></dl><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt">IllegalArgumentException<p>if n &lt; 0.
+	quantified expression to match; must be &gt;= 0.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>Exceptions thrown</dt><dd><span class="cmt">IllegalArgumentException<p>if n &lt; 0.
 </p></span></dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Quantifiable#repeatRange" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="repeatRange(min:Int,max:Int,mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.RepeatRange"></a>
@@ -635,9 +715,26 @@ times within the specified range.
 </p></div><dl class="paramcmts block"><dt class="param">min</dt><dd class="cmt"><p>
 	the minimum number of times that the pattern may be repeated;
 	must be &gt;= 0.</p></dd><dt class="param">max</dt><dd class="cmt"><p>the maximum number of times that the pattern may be repeated;
-	must be &gt;= <var>min</var>.</p></dd></dl><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt">IllegalArgumentException<p>
+	must be &gt;= <var>min</var>.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>Exceptions thrown</dt><dd><span class="cmt">IllegalArgumentException<p>
 	if <var>min</var> &lt; 0 or <var>max</var> &lt; <var>min</var>.
 </p></span></dd></dl></div>
+    </li><li name="io.github.reggert.reb4s.Entity#repetitionInvalidatesBounds" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="repetitionInvalidatesBounds:Boolean"></a>
+      <a id="repetitionInvalidatesBounds:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">repetitionInvalidatesBounds</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Indicates whether applying repetition to the expression invalidates the
+boundedness computation.</p><div class="fullcomment"><div class="comment cmt"><p>Indicates whether applying repetition to the expression invalidates the
+boundedness computation. This generally indicates that the expression may
+match a zero-repetition ({0, n} or ?).</p><p>This is used to determine boundedness of enclosing expressions.
+</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="package.html" class="extype" name="io.github.reggert.reb4s">io.github.reggert.reb4s</a>] </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="io.github.reggert.reb4s.Entity">Entity</a> → <a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>
@@ -754,6 +851,110 @@ construct a <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.util.
     </span>)</span>
               
         </dd></dl></div>
+    </li><li name="io.github.reggert.reb4s.Alternative#||" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="||(right:io.github.reggert.reb4s.Alternative):io.github.reggert.reb4s.Alternation"></a>
+      <a id="||(Alternative):Alternation"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bar$bar" class="name">||</span><span class="params">(<span name="right">right: <a href="Alternative.html" class="extype" name="io.github.reggert.reb4s.Alternative">Alternative</a></span>)</span><span class="result">: <a href="Alternation.html" class="extype" name="io.github.reggert.reb4s.Alternation">Alternation</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Constructs an expression matching either the receiver or the
+specified argument expression.</p><div class="fullcomment"><div class="comment cmt"><p>Constructs an expression matching either the receiver or the
+specified argument expression.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Alternative.html" class="extype" name="io.github.reggert.reb4s.Alternative">Alternative</a></dd></dl></div>
+    </li><li name="io.github.reggert.reb4s.Alternative#||" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="||(right:io.github.reggert.reb4s.Alternation):io.github.reggert.reb4s.Alternation"></a>
+      <a id="||(Alternation):Alternation"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bar$bar" class="name">||</span><span class="params">(<span name="right">right: <a href="Alternation.html" class="extype" name="io.github.reggert.reb4s.Alternation">Alternation</a></span>)</span><span class="result">: <a href="Alternation.html" class="extype" name="io.github.reggert.reb4s.Alternation">Alternation</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Constructs an expression matching either the receiver or the
+any of the alternatives contained within the specified argument
+expression.</p><div class="fullcomment"><div class="comment cmt"><p>Constructs an expression matching either the receiver or the
+any of the alternatives contained within the specified argument
+expression.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Alternative.html" class="extype" name="io.github.reggert.reb4s.Alternative">Alternative</a></dd></dl></div>
+    </li><li name="io.github.reggert.reb4s.Raw#~~" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="~~(right:io.github.reggert.reb4s.CompoundRaw):io.github.reggert.reb4s.CompoundRaw"></a>
+      <a id="~~(CompoundRaw):CompoundRaw"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $tilde$tilde" class="name">~~</span><span class="params">(<span name="right">right: <a href="CompoundRaw.html" class="extype" name="io.github.reggert.reb4s.CompoundRaw">CompoundRaw</a></span>)</span><span class="result">: <a href="CompoundRaw.html" class="extype" name="io.github.reggert.reb4s.CompoundRaw">CompoundRaw</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Concatenates this expression with the escaped form of the argument.</p><div class="fullcomment"><div class="comment cmt"><p>Concatenates this expression with the escaped form of the argument.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Raw.html" class="extype" name="io.github.reggert.reb4s.Raw">Raw</a></dd></dl></div>
+    </li><li name="io.github.reggert.reb4s.Raw#~~" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="~~(right:io.github.reggert.reb4s.Literal):io.github.reggert.reb4s.CompoundRaw"></a>
+      <a id="~~(Literal):CompoundRaw"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $tilde$tilde" class="name">~~</span><span class="params">(<span name="right">right: <a href="Literal.html" class="extype" name="io.github.reggert.reb4s.Literal">Literal</a></span>)</span><span class="result">: <a href="CompoundRaw.html" class="extype" name="io.github.reggert.reb4s.CompoundRaw">CompoundRaw</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Concatenates this expression with the escaped form of the argument.</p><div class="fullcomment"><div class="comment cmt"><p>Concatenates this expression with the escaped form of the argument.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Raw.html" class="extype" name="io.github.reggert.reb4s.Raw">Raw</a></dd></dl></div>
+    </li><li name="io.github.reggert.reb4s.Raw#~~" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="~~(right:io.github.reggert.reb4s.Raw):io.github.reggert.reb4s.CompoundRaw"></a>
+      <a id="~~(Raw):CompoundRaw"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $tilde$tilde" class="name">~~</span><span class="params">(<span name="right">right: <a href="Raw.html" class="extype" name="io.github.reggert.reb4s.Raw">Raw</a></span>)</span><span class="result">: <a href="CompoundRaw.html" class="extype" name="io.github.reggert.reb4s.CompoundRaw">CompoundRaw</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Concatenates this expression with the argument.</p><div class="fullcomment"><div class="comment cmt"><p>Concatenates this expression with the argument.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Raw.html" class="extype" name="io.github.reggert.reb4s.Raw">Raw</a></dd></dl></div>
+    </li><li name="io.github.reggert.reb4s.Sequenceable#~~" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="~~(right:io.github.reggert.reb4s.Sequence):io.github.reggert.reb4s.Sequence"></a>
+      <a id="~~(Sequence):Sequence"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $tilde$tilde" class="name">~~</span><span class="params">(<span name="right">right: <a href="Sequence.html" class="extype" name="io.github.reggert.reb4s.Sequence">Sequence</a></span>)</span><span class="result">: <a href="Sequence.html" class="extype" name="io.github.reggert.reb4s.Sequence">Sequence</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Concatenates this expression with the argument.</p><div class="fullcomment"><div class="comment cmt"><p>Concatenates this expression with the argument.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Sequenceable.html" class="extype" name="io.github.reggert.reb4s.Sequenceable">Sequenceable</a></dd></dl></div>
+    </li><li name="io.github.reggert.reb4s.Sequenceable#~~" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="~~(right:io.github.reggert.reb4s.Sequenceable):io.github.reggert.reb4s.Sequence"></a>
+      <a id="~~(Sequenceable):Sequence"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $tilde$tilde" class="name">~~</span><span class="params">(<span name="right">right: <a href="Sequenceable.html" class="extype" name="io.github.reggert.reb4s.Sequenceable">Sequenceable</a></span>)</span><span class="result">: <a href="Sequence.html" class="extype" name="io.github.reggert.reb4s.Sequence">Sequence</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Concatenates this expression with the argument.</p><div class="fullcomment"><div class="comment cmt"><p>Concatenates this expression with the argument.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Sequenceable.html" class="extype" name="io.github.reggert.reb4s.Sequenceable">Sequenceable</a></dd></dl></div>
     </li></ol>
             </div>
 
@@ -763,7 +964,15 @@ construct a <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.util.
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="io.github.reggert.reb4s.Expression">
+        <div class="parent" name="io.github.reggert.reb4s.Quantifiable">
+              <h3>Inherited from <a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></h3>
+            </div><div class="parent" name="io.github.reggert.reb4s.Raw">
+              <h3>Inherited from <a href="Raw.html" class="extype" name="io.github.reggert.reb4s.Raw">Raw</a></h3>
+            </div><div class="parent" name="io.github.reggert.reb4s.Sequenceable">
+              <h3>Inherited from <a href="Sequenceable.html" class="extype" name="io.github.reggert.reb4s.Sequenceable">Sequenceable</a></h3>
+            </div><div class="parent" name="io.github.reggert.reb4s.Alternative">
+              <h3>Inherited from <a href="Alternative.html" class="extype" name="io.github.reggert.reb4s.Alternative">Alternative</a></h3>
+            </div><div class="parent" name="io.github.reggert.reb4s.Expression">
               <h3>Inherited from <a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a></h3>
             </div><div class="parent" name="scala.Immutable">
               <h3>Inherited from <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Immutable" class="extype" target="_top">Immutable</a></h3>
