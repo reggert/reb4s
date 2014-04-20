@@ -6,7 +6,7 @@ package io.github.reggert.reb4s
  */
 @SerialVersionUID(1L)
 sealed class Flag private (val c : Char) extends Serializable 
-	with NotNull with Immutable
+	with Immutable
 {
 	override final def toString = String.valueOf(c)
 	

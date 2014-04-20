@@ -6,7 +6,7 @@ import scala.util.matching.Regex
  * Base class extended by all '''reb4j''' expression builders.
  */
 @SerialVersionUID(1L)
-abstract class Expression extends Serializable with NotNull with Immutable
+abstract class Expression extends Serializable with Immutable
 {
 	/**
 	 * Returns the regular expression represented by this object, in a form 
