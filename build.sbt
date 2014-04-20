@@ -8,6 +8,8 @@ homepage := Some(url("http://reggert.github.io/reb4s"))
 
 scalaVersion := "2.10.3"
 
+crossScalaVersions := Seq("2.10.3", "2.11.0")
+
 scalacOptions += "-unchecked"
 
 scalacOptions += "-deprecation"
