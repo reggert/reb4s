@@ -6,7 +6,7 @@ licenses := Seq("GNU Lesser General Public License v3.0" -> url("http://www.gnu.
 
 homepage := Some(url("http://reggert.github.io/reb4s"))
 
-scalaVersion := "2.10.3"
+scalaVersion := "2.11.0"
 
 crossScalaVersions := Seq("2.10.3", "2.11.0")
 
@@ -18,6 +18,6 @@ scalacOptions += "-feature"
 
 autoAPIMappings := true
 
-libraryDependencies += "org.scalacheck" %% "scalacheck" % "1.11.3" % "test"
+libraryDependencies += "org.scalacheck" %% "scalacheck" % "1.11.4" % "test"
 
 testOptions in Test += Tests.Argument(TestFrameworks.ScalaCheck, "-s", "200000")
