@@ -62,14 +62,16 @@ To use **reb4s** in a **Maven** project, add the following to the `dependencies`
     <dependency>
         <groupId>io.github.reggert</groupId>
         <artifactId>reb4s_2.10</artifactId>
-        <version>3.0.0</version>
+        <version>3.1.0</version>
     </dependency> 
+    
+Replace "2.10" with "2.11" for projects using Scala 2.11. 
 
 ##Using sbt
 
 To use **reb4s** in an **sbt** project, add the following to your `build.sbt` file (or other `.sbt` file appropriate to your project):
 
-    libraryDependencies += "io.github.reggert" %% "reb4s" % "3.0.0"
+    libraryDependencies += "io.github.reggert" %% "reb4s" % "3.1.0"
 
 
 #Requirements
