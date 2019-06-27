@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/reggert/reb4s.png)](https://travis-ci.org/reggert/reb4s)
 
-#About reb4s
+# About reb4s
 
 The purpose of **reb4s** is to provide a pure Scala wrapper around
 the regular expression syntax provided by the JRE's 
