@@ -1,4 +1,4 @@
-osgiSettings
+enablePlugins(SbtOsgi)
 
 OsgiKeys.exportPackage := Seq(s"${organization.value}.*;version=${version.value}")
 

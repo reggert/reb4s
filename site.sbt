@@ -1,8 +1,4 @@
-site.settings
-
-site.includeScaladoc()
-
-ghpages.settings
+enablePlugins(SiteScaladocPlugin)
 
 git.remoteRepo := "git@github.com:reggert/reb4s.git"
 
