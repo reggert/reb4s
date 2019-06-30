@@ -6,11 +6,11 @@ import io.github.reggert.reb4s.Literal
 import Literal.{CharLiteral, StringLiteral}
 
 trait LiteralGenerators {
-	implicit val arbCharLiteral = Arbitrary(genCharLiteral)
-	implicit val arbStringLiteral = 
-		Arbitrary(Gen.sized {size => Gen.choose(2, size) flatMap (genStringLiteral)})
-	implicit val arbLiteral = 
-		Arbitrary(Gen.sized {size => Gen.choose(1, size) flatMap (genLiteral)})
+	implicit val arbCharLiteral: Arbitrary[CharLiteral] = Arbitrary(genCharLiteral)
+	implicit val arbStringLiteral: Arbitrary[StringLiteral] =
+		Arbitrary(Gen.sized {size => if (size < 2) Gen.fail else Gen.choose(2, size) flatMap genStringLiteral })
+	implicit val arbLiteral: Arbitrary[Literal] =
+		Arbitrary(Gen.sized {size => if (size < 1) Gen.fail else Gen.choose(1, size) flatMap genLiteral })
 	
 	
 	def genCharLiteral : Gen[CharLiteral] = 

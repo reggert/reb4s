@@ -7,7 +7,8 @@ import java.util.regex.Pattern
 
 
 trait AdoptedGenerators {
-	implicit val arbAdopted = Arbitrary(Gen.sized {size => Gen.choose(1, size) flatMap (genAdopted)})
+	implicit val arbAdopted: Arbitrary[Adopted] =
+		Arbitrary(Gen.sized {size => if (size < 1) Gen.fail else Gen.choose(1, size) flatMap genAdopted })
 	
 	
 	// This generator only generates patterns for quoted strings

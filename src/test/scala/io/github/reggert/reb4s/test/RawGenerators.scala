@@ -1,18 +1,17 @@
 package io.github.reggert.reb4s.test
 
-import org.scalacheck.Arbitrary
-import org.scalacheck.Arbitrary.arbitrary
-import org.scalacheck.Gen
+import io.github.reggert.reb4s._
+import org.scalacheck.{Arbitrary, Gen}
 
-import io.github.reggert.reb4s.{AnyChar, CompoundRaw, EscapedLiteral, InputBegin, InputEnd, InputEndSkipEOL, LineBegin, LineEnd, Literal, MatchEnd, NonwordBoundary, Quantifiable, Raw, WordBoundary}
 
 trait RawGenerators extends UtilGenerators with LiteralGenerators {
-	implicit val arbRawQuantifiable = Arbitrary(genRawQuantifiable)
+	implicit val arbRawQuantifiable: Arbitrary[Raw with Quantifiable] = Arbitrary(genRawQuantifiable)
 	implicit val arbCompoundRaw : Arbitrary[CompoundRaw] = 
-		Arbitrary(Gen.sized {size => Gen.choose(2, size) flatMap (genCompoundRaw)})
-	implicit val arbEscapedLiteral = 
-		Arbitrary(Gen.sized {size => Gen.choose(1, size) flatMap (genEscapedLiteral)})
-	implicit val arbRaw = Arbitrary(Gen.sized {size => Gen.choose(1, size) flatMap (genRaw)})
+		Arbitrary(Gen.sized {size => if (size < 2) Gen.fail else Gen.choose(2, size) flatMap genCompoundRaw })
+	implicit val arbEscapedLiteral: Arbitrary[EscapedLiteral] =
+		Arbitrary(Gen.sized {size => if (size < 1) Gen.fail else Gen.choose(1, size) flatMap genEscapedLiteral })
+	implicit val arbRaw: Arbitrary[Raw] =
+		Arbitrary(Gen.sized { size => if (size < 1) Gen.fail else Gen.choose(1, size) flatMap genRaw })
 	
 
 	def genCompoundRaw(size : Int) : Gen[CompoundRaw] = {
@@ -56,7 +55,7 @@ trait RawGenerators extends UtilGenerators with LiteralGenerators {
 		)
 		
 	def genEscapedLiteral(size : Int) : Gen[EscapedLiteral] = 
-		genLiteral(size) map {EscapedLiteral}
+		genLiteral(size) map EscapedLiteral
 }
 
 

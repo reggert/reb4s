@@ -11,18 +11,19 @@ import io.github.reggert.reb4s.charclass.Intersection
 import io.github.reggert.reb4s.charclass.CharClass
 import io.github.reggert.reb4s.charclass.Union
 
+
 trait CharClassGenerators extends UtilGenerators {
 	implicit val arbCharClass : Arbitrary[CharClass] = 
-	  Arbitrary(Gen.sized{size => Gen.choose(1, size) flatMap (genCharClass)})
-	implicit val arbCharRange = Arbitrary(genCharRange)
-	implicit val arbIntersection = 
-	  Arbitrary(Gen.sized{size => Gen.choose(2, size) flatMap (genIntersection)})
-	implicit val arbUnion = 
-	  Arbitrary(Gen.sized{size => Gen.choose(2, size) flatMap (genUnion)})
-	implicit val arbMultiChar = 
-	  Arbitrary(Gen.sized{size => Gen.choose(2, size) flatMap (genMultiChar)})
-	implicit val arbSingleChar = Arbitrary(genSingleChar)
-	implicit val arbPredefinedClass = Arbitrary(genPredefinedClass)
+	  Arbitrary(Gen.sized{size => if (size < 1) Gen.fail else Gen.choose(1, size) flatMap genCharClass })
+	implicit val arbCharRange: Arbitrary[CharRange] = Arbitrary(genCharRange)
+	implicit val arbIntersection: Arbitrary[Intersection] =
+	  Arbitrary(Gen.sized{size => if (size < 2) Gen.fail else Gen.choose(2, size) flatMap genIntersection })
+	implicit val arbUnion: Arbitrary[Union] =
+	  Arbitrary(Gen.sized{size => if (size < 2) Gen.fail else Gen.choose(2, size) flatMap genUnion })
+	implicit val arbMultiChar: Arbitrary[MultiChar] =
+	  Arbitrary(Gen.sized{size => if (size < 2) Gen.fail else Gen.choose(2, size) flatMap genMultiChar })
+	implicit val arbSingleChar: Arbitrary[SingleChar] = Arbitrary(genSingleChar)
+	implicit val arbPredefinedClass: Arbitrary[PredefinedClass] = Arbitrary(genPredefinedClass)
 	
 	
 	def genCharClass(size : Int) : Gen[CharClass] =
@@ -34,7 +35,7 @@ trait CharClassGenerators extends UtilGenerators {
 			case _ =>
 		    	Gen.oneOf(
 		    			Gen.lzy(genMultiChar(size)),
-		    			Gen.lzy(genIntersection((size))),
+		    			Gen.lzy(genIntersection(size)),
 		    			Gen.lzy(genUnion(size))
 		    		)
 		}
@@ -50,6 +51,7 @@ trait CharClassGenerators extends UtilGenerators {
 	} yield if (first < last) CharClass.range(first, last) else CharClass.range(last, first)
 	
 	
+	//noinspection ZeroIndexToHead
 	private def genCombined[CombinedType <: CharClass](size : Int)(combine : (CharClass, CharClass) => CombinedType) : Gen[CombinedType] = {
 		require(size >= 2, s"size=$size < 2")
 		val sizesGen = size match

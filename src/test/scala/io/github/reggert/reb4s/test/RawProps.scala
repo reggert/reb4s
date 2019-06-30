@@ -4,7 +4,6 @@ import org.scalacheck.Arbitrary.arbitrary
 import org.scalacheck.Properties
 import io.github.reggert.reb4s.{CompoundRaw, Quantifiable, Raw}
 import io.github.reggert.reb4s.EscapedLiteral
-import org.scalacheck.Test.Parameters.Default
 
 object RawProps extends Properties("Raw")
 	with ExpressionProperties[Raw] with RawGenerators with RawShrinkers
