@@ -28,9 +28,8 @@ As a quick example, here's one way to use **reb4s** to describe a pattern that v
 	
 	val oneDigitOctet = Perl.Digit
 	val twoDigitOctet = range('1', '9') ~~ Perl.Digit
-	val oneHundredsOctet = '1' ~~ (Perl.Digit repeat 2)
-	val lowTwoHundredsOctet = '2' ~~ range('0', '4') ~~ Perl.Digit
-	val highTwoHundredsOctet = "25" ~~ range('0', '5')
+	val threeDigitOctet =
+	    ('1' ~~ (Perl.Digit repeat 2))||('2' ~~ range('0', '4') ~~ Perl.Digit)||("25" ~~ range('0', '5'))
 	val octet = oneDigitOctet||twoDigitOctet||oneHundredsOctet||lowTwoHundredsOctet||highTwoHundredsOctet
 	val dottedDecimalIPAddress = 
 		Capture(octet) ~~ '.' ~~ 
@@ -57,7 +56,7 @@ For reference, the generated regular expression looks like this:
 
 ## Using Maven
 
-To use **reb4s** in a **Maven** project, add the following to the `dependencies` section of your `pom.xml` file:
+To use **reb4s** in a **Maven** project, add the following to the `dependencies` section of your `pom.xml` file (replacing `2.10` with the Scala version in use as necessary):
 
     <dependency>
         <groupId>io.github.reggert</groupId>
@@ -65,8 +64,6 @@ To use **reb4s** in a **Maven** project, add the following to the `dependencies`
         <version>3.1.0</version>
     </dependency> 
     
-Replace "2.10" with "2.11" for projects using Scala 2.11. 
-
 ## Using sbt
 
 To use **reb4s** in an **sbt** project, add the following to your `build.sbt` file (or other `.sbt` file appropriate to your project):
@@ -76,4 +73,4 @@ To use **reb4s** in an **sbt** project, add the following to your `build.sbt` fi
 
 # Requirements
 
-**reb4s** has no dependencies other than the Scala standard library. However, it is currently only built against Scala 2.10. For compatibility with Scala 2.9, take a look at the legacy artifact `reb4j-scala`, version 2.0 or earlier.
+**reb4s** has no dependencies other than the Scala standard library. However, it is currently only built against Scala 2.10 and later. For compatibility with Scala 2.9, take a look at the legacy artifact `reb4j-scala`, version 2.0 or earlier.
