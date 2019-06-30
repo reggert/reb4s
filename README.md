@@ -51,11 +51,11 @@ For reference, the generated regular expression looks like this:
 	(\d|[1-9]\d|1\d{2}|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d{2}|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d{2}|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d{2}|2[0-4]\d|25[0-5])
 
 
-#Obtaining reb4s
+# Obtaining reb4s
 
 **reb4s** is most easily obtained using a dependency manager such as **Maven** or **sbt**, though you can manually download it from [Maven Central](http://search.maven.org/#search|ga|1|g:"io.github.reggert") if you prefer.
 
-##Using Maven
+## Using Maven
 
 To use **reb4s** in a **Maven** project, add the following to the `dependencies` section of your `pom.xml` file:
 
@@ -67,13 +67,13 @@ To use **reb4s** in a **Maven** project, add the following to the `dependencies`
     
 Replace "2.10" with "2.11" for projects using Scala 2.11. 
 
-##Using sbt
+## Using sbt
 
 To use **reb4s** in an **sbt** project, add the following to your `build.sbt` file (or other `.sbt` file appropriate to your project):
 
     libraryDependencies += "io.github.reggert" %% "reb4s" % "3.1.0"
 
 
-#Requirements
+# Requirements
 
 **reb4s** has no dependencies other than the Scala standard library. However, it is currently only built against Scala 2.10. For compatibility with Scala 2.9, take a look at the legacy artifact `reb4j-scala`, version 2.0 or earlier.
