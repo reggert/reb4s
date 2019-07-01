@@ -29,6 +29,7 @@ object Flag
 	case object Multiline extends Flag('m')
 	case object DotAll extends Flag('s')
 	case object UnicodeCase extends Flag('u') 
+	@deprecated(message = "Use Adopted instead if you want to put comments into a pattern", since = "3.2")
 	case object Comments extends Flag('x')
 	
 	/**

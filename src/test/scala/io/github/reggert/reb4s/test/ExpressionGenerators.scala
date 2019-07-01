@@ -101,8 +101,7 @@ trait ExpressionGenerators extends CharClassGenerators
 			Flag.UnixLines,
 			Flag.Multiline,
 			Flag.DotAll,
-			Flag.UnicodeCase, 
-			Flag.Comments
+			Flag.UnicodeCase
 		)
 	
 	def genGroup(size : Int) : Gen[Group] = {
