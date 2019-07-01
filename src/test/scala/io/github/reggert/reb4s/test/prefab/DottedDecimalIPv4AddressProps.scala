@@ -1,6 +1,6 @@
 package io.github.reggert.reb4s.test.prefab
 
-import java.net.InetAddress
+import java.net.{Inet4Address, InetAddress}
 import java.util.regex.Pattern
 
 import io.github.reggert.reb4s._
@@ -90,7 +90,7 @@ object DottedDecimalIPv4AddressProps extends Properties("DottedDecimalIPv4Addres
 	property("parse") =
 		forAll(genOctets) { case (a, b, c, d) =>
 			val s = s"$a.$b.$c.$d"
-			val expectedValue = InetAddress.getByAddress(s, Array(a, b, c, d).map(_.toByte))
+			val expectedValue = InetAddress.getByAddress(s, Array(a, b, c, d).map(_.toByte)).asInstanceOf[Inet4Address]
 			DottedDecimalIPv4Address.parse(s).contains(expectedValue)
 		} &&
 		forAll { (a : Int, b : Int, c : Int, d : Int) =>
