@@ -72,7 +72,11 @@ object DottedDecimalIPv4AddressProps extends Properties("DottedDecimalIPv4Addres
 		}}
 			
 	}
-	
+
+	// Required for cross-compiles against Scala 2.10, which does not provide an Option.contains method.
+	private implicit class Scala10OptionWrapper[A](val option : Option[A]) {
+		def contains(value : A) : Boolean = option.toSeq.contains(value)
+	}
 	
 	property("oneDigitOctet") = oneDigitOctet matchesOnlyNumberInRange(0, 9)
 	property("twoDigitOctet") = twoDigitOctet matchesOnlyNumberInRange(10, 99)
