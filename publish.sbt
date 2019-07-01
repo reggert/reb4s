@@ -12,34 +12,19 @@ publishArtifact in Test := false
 
 pomIncludeRepository := { _ => false }
 
-pomExtra in ThisBuild := (
-	<issueManagement>
-		<system>GitHub</system>
-		<url>https://github.com/reggert/reb4s/issues</url>
-	</issueManagement>
-	<developers>
-		<developer>
-			<id>reggert</id>
-			<name>Richard W. Eggert II</name>
-			<email>reggert@users.sourceforge.net</email>
-			<roles>
-				<role>lead</role>
-				<role>developer</role>
-				<role>administrator</role>
-				<role>release-manager</role>
-				<role>imperator</role>
-			</roles>
-			<timezone>-5</timezone>
-		</developer>
-	</developers>
-	<scm>
-		<connection>
-			scm:git:git://github.com/reggert/reb4s.git
-		</connection>
-		<developerConnection>
-			scm:git:git@github.com:reggert/reb4s.git
-		</developerConnection>
-		<url>https://github.com/reggert/reb4s</url>
-	</scm>
+ThisBuild / developers := List(
+	Developer(
+		id    = "reggert",
+		name  = "Richard W. Eggert II",
+		email = "richard.eggert+reb4s@gmail.com",
+		url   = url("https://github.com/reggert")
+	)
+)
+
+ThisBuild / scmInfo := Some(
+	ScmInfo(
+		url("https://github.com/reggert/reb4s.git"),
+		"scm:git@github.com:reggert/reb4s.git"
+	)
 )
 
