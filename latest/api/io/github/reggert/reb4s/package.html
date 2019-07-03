@@ -1,5 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!DOCTYPE html >
 <html>
         <head>
           <title>reb4s - io.github.reggert.reb4s</title>
@@ -9,6 +8,11 @@
           
       <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
       <link href="../../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../../lib/tools.tooltip.js"></script>
+      
       <script type="text/javascript">
          if(top === self) {
             var url = '../../../../index.html';
@@ -24,9 +28,13 @@
         </head>
         <body class="value">
       <div id="definition">
-        <img src="../../../../lib/package_big.png" />
+        <img alt="Package" src="../../../../lib/package_big.png" />
         <p id="owner"><a href="../../../package.html" class="extype" name="io">io</a>.<a href="../../package.html" class="extype" name="io.github">github</a>.<a href="../package.html" class="extype" name="io.github.reggert">reggert</a></p>
-        <h1>reb4s</h1>
+        <h1>reb4s</h1><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.package" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       </div>
 
       <h4 id="signature" class="signature">
@@ -41,7 +49,7 @@
       
           <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a>, <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Any" class="extype" target="_top">Any</a></div>
+          <div class="superTypes hiddenContent"><a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a>, <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Any" class="extype" target="_top">Any</a></div>
         </div></div>
         
 
@@ -52,7 +60,7 @@
               <ol>
                 
                 <li class="alpha in"><span>Alphabetic</span></li>
-                <li class="inherit out"><span>By inheritance</span></li>
+                <li class="inherit out"><span>By Inheritance</span></li>
               </ol>
             </div>
         <div id="ancestors">
@@ -65,9 +73,8 @@
             <span class="filtertype"></span>
             <ol>
               <li class="hideall out"><span>Hide All</span></li>
-              <li class="showall in"><span>Show all</span></li>
+              <li class="showall in"><span>Show All</span></li>
             </ol>
-            <a href="http://docs.scala-lang.org/overviews/scaladoc/usage.html#members" target="_blank">Learn more about member selection</a>
           </div>
         <div id="visbl">
             <span class="filtertype">Visibility</span>
@@ -81,7 +88,7 @@
 
         <div id="types" class="types members">
               <h3>Type Members</h3>
-              <ol><li name="io.github.reggert.reb4s.Adopted" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+              <ol><li name="io.github.reggert.reb4s.Adopted" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="AdoptedextendsExpression"></a>
       <a id="Adopted:Adopted"></a>
       <h4 class="signature">
@@ -92,9 +99,19 @@
       <span class="symbol">
         <a href="Adopted.html"><span class="name">Adopted</span></a><span class="result"> extends <a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">An expression that has been precompiled by the java.</p>
-    </li><li name="io.github.reggert.reb4s.Alternation" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.package@AdoptedextendsExpression" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">An expression that has been precompiled by the java.util.regex.Pattern
+class and adopted for use by <b>reb4j</b>.</p><div class="fullcomment"><div class="comment cmt"><p>An expression that has been precompiled by the java.util.regex.Pattern
+class and adopted for use by <b>reb4j</b>.
+</p></div><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@SerialVersionUID</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="io.github.reggert.reb4s.Alternation" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="AlternationextendsExpressionwithAlternative"></a>
       <a id="Alternation:Alternation"></a>
       <h4 class="signature">
@@ -105,8 +122,16 @@
       <span class="symbol">
         <a href="Alternation.html"><span class="name">Alternation</span></a><span class="result"> extends <a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a> with <a href="Alternative.html" class="extype" name="io.github.reggert.reb4s.Alternative">Alternative</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">Expression representing a set of alternatives that may be matched.</p>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.package@AlternationextendsExpressionwithAlternative" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Expression representing a set of alternatives that may be matched.</p><div class="fullcomment"><div class="comment cmt"><p>Expression representing a set of alternatives that may be matched.
+</p></div><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@SerialVersionUID</span><span class="args">()</span>
+              
+        </dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Alternative" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="AlternativeextendsExpression"></a>
       <a id="Alternative:Alternative"></a>
@@ -118,8 +143,12 @@
       <span class="symbol">
         <a href="Alternative.html"><span class="name">Alternative</span></a><span class="result"> extends <a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">Interface representing an expression that can be used as an alternative
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.package@AlternativeextendsExpression" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Interface representing an expression that can be used as an alternative
 in an alternation expression.</p>
     </li><li name="io.github.reggert.reb4s.CompoundRaw" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="CompoundRawextendsRawwithProductwithSerializable"></a>
@@ -130,10 +159,14 @@ in an alternation expression.</p>
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <a href="CompoundRaw.html"><span class="name">CompoundRaw</span></a><span class="params">(<span name="components">components: <span class="extype" name="scala.List">List</span>[<a href="Raw.html" class="extype" name="io.github.reggert.reb4s.Raw">Raw</a>]</span>)</span><span class="result"> extends <a href="Raw.html" class="extype" name="io.github.reggert.reb4s.Raw">Raw</a> with <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+        <a href="CompoundRaw.html"><span class="name">CompoundRaw</span></a><span class="params">(<span name="components">components: <span class="extype" name="scala.List">List</span>[<a href="Raw.html" class="extype" name="io.github.reggert.reb4s.Raw">Raw</a>]</span>)</span><span class="result"> extends <a href="Raw.html" class="extype" name="io.github.reggert.reb4s.Raw">Raw</a> with <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">Expression consisting of a sequence of raw expressions.</p>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.package@CompoundRawextendsRawwithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Expression consisting of a sequence of raw expressions.</p>
     </li><li name="io.github.reggert.reb4s.Entity" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="EntityextendsRawwithQuantifiable"></a>
       <a id="Entity:Entity"></a>
@@ -145,7 +178,11 @@ in an alternation expression.</p>
       <span class="symbol">
         <a href="Entity.html"><span class="name">Entity</span></a><span class="result"> extends <a href="Raw.html" class="extype" name="io.github.reggert.reb4s.Raw">Raw</a> with <a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.package@EntityextendsRawwithQuantifiable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       
     </li><li name="io.github.reggert.reb4s.EscapedLiteral" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="EscapedLiteralextendsRawwithProductwithSerializable"></a>
@@ -156,12 +193,16 @@ in an alternation expression.</p>
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <a href="EscapedLiteral.html"><span class="name">EscapedLiteral</span></a><span class="params">(<span name="literal">literal: <a href="Literal.html" class="extype" name="io.github.reggert.reb4s.Literal">Literal</a></span>)</span><span class="result"> extends <a href="Raw.html" class="extype" name="io.github.reggert.reb4s.Raw">Raw</a> with <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+        <a href="EscapedLiteral.html"><span class="name">EscapedLiteral</span></a><span class="params">(<span name="literal">literal: <a href="Literal.html" class="extype" name="io.github.reggert.reb4s.Literal">Literal</a></span>)</span><span class="result"> extends <a href="Raw.html" class="extype" name="io.github.reggert.reb4s.Raw">Raw</a> with <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">Adapter from <a href="Literal.html" class="extype" name="io.github.reggert.reb4s.Literal">Literal</a> to <a href="Raw.html" class="extype" name="io.github.reggert.reb4s.Raw">Raw</a>.</p>
-    </li><li name="io.github.reggert.reb4s.Expression" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="ExpressionextendsSerializablewithNotNullwithImmutable"></a>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.package@EscapedLiteralextendsRawwithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Adapter from <a href="Literal.html" class="extype" name="io.github.reggert.reb4s.Literal">Literal</a> to <a href="Raw.html" class="extype" name="io.github.reggert.reb4s.Raw">Raw</a>.</p>
+    </li><li name="io.github.reggert.reb4s.Expression" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="ExpressionextendsSerializablewithImmutable"></a>
       <a id="Expression:Expression"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -169,12 +210,20 @@ in an alternation expression.</p>
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="Expression.html"><span class="name">Expression</span></a><span class="result"> extends <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Serializable" class="extype" target="_top">Serializable</a> with <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.NotNull" class="extype" target="_top">NotNull</a> with <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Immutable" class="extype" target="_top">Immutable</a></span>
+        <a href="Expression.html"><span class="name">Expression</span></a><span class="result"> extends <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Serializable" class="extype" target="_top">Serializable</a> with <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Immutable" class="extype" target="_top">Immutable</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">Base class extended by all <b>reb4j</b> expression builders.</p>
-    </li><li name="io.github.reggert.reb4s.Flag" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="FlagextendsSerializablewithNotNullwithImmutable"></a>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.package@ExpressionextendsSerializablewithImmutable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Base class extended by all <b>reb4j</b> expression builders.</p><div class="fullcomment"><div class="comment cmt"><p>Base class extended by all <b>reb4j</b> expression builders.
+</p></div><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@SerialVersionUID</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="io.github.reggert.reb4s.Flag" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="FlagextendsSerializablewithImmutable"></a>
       <a id="Flag:Flag"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -182,11 +231,21 @@ in an alternation expression.</p>
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="Flag.html"><span class="name">Flag</span></a><span class="result"> extends <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Serializable" class="extype" target="_top">Serializable</a> with <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.NotNull" class="extype" target="_top">NotNull</a> with <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Immutable" class="extype" target="_top">Immutable</a></span>
+        <a href="Flag.html"><span class="name">Flag</span></a><span class="result"> extends <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Serializable" class="extype" target="_top">Serializable</a> with <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Immutable" class="extype" target="_top">Immutable</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">Flag that can be passed to the java.</p>
-    </li><li name="io.github.reggert.reb4s.Group" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.package@FlagextendsSerializablewithImmutable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Flag that can be passed to the java.util.regex.Pattern
+regular expression engine.</p><div class="fullcomment"><div class="comment cmt"><p>Flag that can be passed to the java.util.regex.Pattern
+regular expression engine.
+</p></div><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@SerialVersionUID</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="io.github.reggert.reb4s.Group" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
       <a id="GroupextendsExpressionwithAlternativewithSequenceablewithQuantifiable"></a>
       <a id="Group:Group"></a>
       <h4 class="signature">
@@ -197,9 +256,17 @@ in an alternation expression.</p>
       <span class="symbol">
         <a href="Group.html"><span class="name">Group</span></a><span class="result"> extends <a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a> with <a href="Alternative.html" class="extype" name="io.github.reggert.reb4s.Alternative">Alternative</a> with <a href="Sequenceable.html" class="extype" name="io.github.reggert.reb4s.Sequenceable">Sequenceable</a> with <a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">Expression that has been grouped in parentheses.</p>
-    </li><li name="io.github.reggert.reb4s.Implicits" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.package@GroupextendsExpressionwithAlternativewithSequenceablewithQuantifiable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Expression that has been grouped in parentheses.</p><div class="fullcomment"><div class="comment cmt"><p>Expression that has been grouped in parentheses.
+</p></div><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@SerialVersionUID</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="io.github.reggert.reb4s.Implicits" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
       <a id="ImplicitsextendsAnyRef"></a>
       <a id="Implicits:Implicits"></a>
       <h4 class="signature">
@@ -208,11 +275,19 @@ in an alternation expression.</p>
         <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <a href="Implicits.html"><span class="name">Implicits</span></a><span class="result"> extends <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>
+        <a href="Implicits.html"><span class="name">Implicits</span></a><span class="result"> extends <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">Implicit functions to simply the construction of expressions.</p>
-    </li><li name="io.github.reggert.reb4s.Literal" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.package@ImplicitsextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Implicit functions to simply the construction of expressions.</p><div class="fullcomment"><div class="comment cmt"><p>Implicit functions to simply the construction of expressions.</p><p>The functions may be imported en masse by having the trait or class
+that uses it extend it with <code>extends</code> or <code>with</code>
+as appropriate, or may be imported selectively or as a group by
+using <code>import</code> on the companion object.
+</p></div></div>
+    </li><li name="io.github.reggert.reb4s.Literal" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
       <a id="LiteralextendsExpressionwithAlternativewithSequenceable"></a>
       <a id="Literal:Literal"></a>
       <h4 class="signature">
@@ -223,9 +298,17 @@ in an alternation expression.</p>
       <span class="symbol">
         <a href="Literal.html"><span class="name">Literal</span></a><span class="result"> extends <a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a> with <a href="Alternative.html" class="extype" name="io.github.reggert.reb4s.Alternative">Alternative</a> with <a href="Sequenceable.html" class="extype" name="io.github.reggert.reb4s.Sequenceable">Sequenceable</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">Expression that matches a specific string.</p>
-    </li><li name="io.github.reggert.reb4s.Quantifiable" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.package@LiteralextendsExpressionwithAlternativewithSequenceable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Expression that matches a specific string.</p><div class="fullcomment"><div class="comment cmt"><p>Expression that matches a specific string.
+</p></div><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@SerialVersionUID</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="io.github.reggert.reb4s.Quantifiable" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
       <a id="QuantifiableextendsExpression"></a>
       <a id="Quantifiable:Quantifiable"></a>
       <h4 class="signature">
@@ -236,10 +319,17 @@ in an alternation expression.</p>
       <span class="symbol">
         <a href="Quantifiable.html"><span class="name">Quantifiable</span></a><span class="result"> extends <a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">Interface implemented by regular expression builders that can accept
-quantifiers.</p>
-    </li><li name="io.github.reggert.reb4s.Quantified" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.package@QuantifiableextendsExpression" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Interface implemented by regular expression builders that can accept
+quantifiers.</p><div class="fullcomment"><div class="comment cmt"><p>Interface implemented by regular expression builders that can accept
+quantifiers.</p><p>In order to quantifier an expression that does not include this trait, it
+should first be wrapped in a <a href="Group.html" class="extype" name="io.github.reggert.reb4s.Group">Group</a> of some sort.
+</p></div></div>
+    </li><li name="io.github.reggert.reb4s.Quantified" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
       <a id="QuantifiedextendsExpressionwithAlternativewithSequenceable"></a>
       <a id="Quantified:Quantified"></a>
       <h4 class="signature">
@@ -250,9 +340,19 @@ quantifiers.</p>
       <span class="symbol">
         <a href="Quantified.html"><span class="name">Quantified</span></a><span class="result"> extends <a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a> with <a href="Alternative.html" class="extype" name="io.github.reggert.reb4s.Alternative">Alternative</a> with <a href="Sequenceable.html" class="extype" name="io.github.reggert.reb4s.Sequenceable">Sequenceable</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">An expression to which a quantifier has been attached.</p>
-    </li><li name="io.github.reggert.reb4s.Raw" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.package@QuantifiedextendsExpressionwithAlternativewithSequenceable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">An expression to which a quantifier has been attached.</p><div class="fullcomment"><div class="comment cmt"><p>An expression to which a quantifier has been attached.
+No further quantifier may be attached without first wrapping this expression
+in a <a href="Group.html" class="extype" name="io.github.reggert.reb4s.Group">Group</a> or other container.
+</p></div><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@SerialVersionUID</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="io.github.reggert.reb4s.Raw" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
       <a id="RawextendsExpressionwithAlternativewithSequenceable"></a>
       <a id="Raw:Raw"></a>
       <h4 class="signature">
@@ -263,9 +363,17 @@ quantifiers.</p>
       <span class="symbol">
         <a href="Raw.html"><span class="name">Raw</span></a><span class="result"> extends <a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a> with <a href="Alternative.html" class="extype" name="io.github.reggert.reb4s.Alternative">Alternative</a> with <a href="Sequenceable.html" class="extype" name="io.github.reggert.reb4s.Sequenceable">Sequenceable</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">Raw regular expression.</p>
-    </li><li name="io.github.reggert.reb4s.Sequence" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.package@RawextendsExpressionwithAlternativewithSequenceable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Raw regular expression.</p><div class="fullcomment"><div class="comment cmt"><p>Raw regular expression.
+</p></div><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@SerialVersionUID</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="io.github.reggert.reb4s.Sequence" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="SequenceextendsExpressionwithAlternativewithSequenceable"></a>
       <a id="Sequence:Sequence"></a>
       <h4 class="signature">
@@ -276,9 +384,18 @@ quantifiers.</p>
       <span class="symbol">
         <a href="Sequence.html"><span class="name">Sequence</span></a><span class="result"> extends <a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a> with <a href="Alternative.html" class="extype" name="io.github.reggert.reb4s.Alternative">Alternative</a> with <a href="Sequenceable.html" class="extype" name="io.github.reggert.reb4s.Sequenceable">Sequenceable</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">Expression that matches a series of sub-expressions appearing one after
-another.</p>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.package@SequenceextendsExpressionwithAlternativewithSequenceable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Expression that matches a series of sub-expressions appearing one after
+another.</p><div class="fullcomment"><div class="comment cmt"><p>Expression that matches a series of sub-expressions appearing one after
+another.
+</p></div><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@SerialVersionUID</span><span class="args">()</span>
+              
+        </dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Sequenceable" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="SequenceableextendsExpression"></a>
       <a id="Sequenceable:Sequenceable"></a>
@@ -290,8 +407,12 @@ another.</p>
       <span class="symbol">
         <a href="Sequenceable.html"><span class="name">Sequenceable</span></a><span class="result"> extends <a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">Interface implemented by expressions that may be used as
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.package@SequenceableextendsExpression" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Interface implemented by expressions that may be used as
 sub-expressions in sequences.</p>
     </li><li name="io.github.reggert.reb4s.UnboundedLookBehindException" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="UnboundedLookBehindExceptionextendsExceptionwithProductwithSerializable"></a>
@@ -302,9 +423,13 @@ sub-expressions in sequences.</p>
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <a href="UnboundedLookBehindException.html"><span class="name">UnboundedLookBehindException</span></a><span class="params">(<span name="unboundedExpression">unboundedExpression: <a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a></span>)</span><span class="result"> extends <span class="extype" name="scala.Exception">Exception</span> with <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+        <a href="UnboundedLookBehindException.html"><span class="name">UnboundedLookBehindException</span></a><span class="params">(<span name="unboundedExpression">unboundedExpression: <a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a></span>)</span><span class="result"> extends <span class="extype" name="scala.Exception">Exception</span> with <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.package@UnboundedLookBehindExceptionextendsExceptionwithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       
     </li></ol>
             </div>
@@ -322,11 +447,15 @@ sub-expressions in sequences.</p>
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a href="Adopted$.html"><span class="name">Adopted</span></a><span class="result"> extends <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+        <a href="Adopted$.html"><span class="name">Adopted</span></a><span class="result"> extends <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">Factory methods that adopt the regular expression represented by the specified
-java.</p>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.package@Adopted" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Factory methods that adopt the regular expression represented by the specified
+java.util.regex.Pattern or <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.util.matching.Regex" class="extype" target="_top">scala.util.matching.Regex</a>.</p>
     </li><li name="io.github.reggert.reb4s.AnyChar" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="AnyChar"></a>
       <a id="AnyChar:AnyChar"></a>
@@ -336,10 +465,14 @@ java.</p>
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a href="AnyChar$.html"><span class="name">AnyChar</span></a><span class="result"> extends <a href="Entity.html" class="extype" name="io.github.reggert.reb4s.Entity">Entity</a> with <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+        <a href="AnyChar$.html"><span class="name">AnyChar</span></a><span class="result"> extends <a href="Entity.html" class="extype" name="io.github.reggert.reb4s.Entity">Entity</a> with <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">Matches any single character.</p>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.package@AnyChar" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Matches any single character.</p>
     </li><li name="io.github.reggert.reb4s.Flag" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="Flag"></a>
       <a id="Flag:Flag"></a>
@@ -349,11 +482,15 @@ java.</p>
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a href="Flag$.html"><span class="name">Flag</span></a><span class="result"> extends <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+        <a href="Flag$.html"><span class="name">Flag</span></a><span class="result"> extends <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.package@Flag" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       
-    </li><li name="io.github.reggert.reb4s.Group" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="io.github.reggert.reb4s.Group" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="Group"></a>
       <a id="Group:Group"></a>
       <h4 class="signature">
@@ -362,10 +499,16 @@ java.</p>
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a href="Group$.html"><span class="name">Group</span></a><span class="result"> extends <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+        <a href="Group$.html"><span class="name">Group</span></a><span class="result"> extends <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">Factory object for groups.</p>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.package@Group" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Factory object for groups.</p><div class="fullcomment"><div class="comment cmt"><p>Factory object for groups.  Import the members of this object to
+enable automatic grouping.
+</p></div></div>
     </li><li name="io.github.reggert.reb4s.Implicits" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="Implicits"></a>
       <a id="Implicits:Implicits"></a>
@@ -377,8 +520,12 @@ java.</p>
       <span class="symbol">
         <a href="Implicits$.html"><span class="name">Implicits</span></a><span class="result"> extends <a href="Implicits.html" class="extype" name="io.github.reggert.reb4s.Implicits">Implicits</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">Companion object to <a href="Implicits.html" class="extype" name="io.github.reggert.reb4s.Implicits">Implicits</a> that allows the implicit
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.package@Implicits" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Companion object to <a href="Implicits.html" class="extype" name="io.github.reggert.reb4s.Implicits">Implicits</a> that allows the implicit
 functions to be selectively imported.</p>
     </li><li name="io.github.reggert.reb4s.InputBegin" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="InputBegin"></a>
@@ -389,10 +536,14 @@ functions to be selectively imported.</p>
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a href="InputBegin$.html"><span class="name">InputBegin</span></a><span class="result"> extends <a href="Entity.html" class="extype" name="io.github.reggert.reb4s.Entity">Entity</a> with <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+        <a href="InputBegin$.html"><span class="name">InputBegin</span></a><span class="result"> extends <a href="Entity.html" class="extype" name="io.github.reggert.reb4s.Entity">Entity</a> with <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">Matches the beginning of input.</p>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.package@InputBegin" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Matches the beginning of input.</p>
     </li><li name="io.github.reggert.reb4s.InputEnd" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="InputEnd"></a>
       <a id="InputEnd:InputEnd"></a>
@@ -402,10 +553,14 @@ functions to be selectively imported.</p>
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a href="InputEnd$.html"><span class="name">InputEnd</span></a><span class="result"> extends <a href="Entity.html" class="extype" name="io.github.reggert.reb4s.Entity">Entity</a> with <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+        <a href="InputEnd$.html"><span class="name">InputEnd</span></a><span class="result"> extends <a href="Entity.html" class="extype" name="io.github.reggert.reb4s.Entity">Entity</a> with <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">Matches the end of input.</p>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.package@InputEnd" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Matches the end of input.</p>
     </li><li name="io.github.reggert.reb4s.InputEndSkipEOL" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="InputEndSkipEOL"></a>
       <a id="InputEndSkipEOL:InputEndSkipEOL"></a>
@@ -415,10 +570,14 @@ functions to be selectively imported.</p>
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a href="InputEndSkipEOL$.html"><span class="name">InputEndSkipEOL</span></a><span class="result"> extends <a href="Entity.html" class="extype" name="io.github.reggert.reb4s.Entity">Entity</a> with <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+        <a href="InputEndSkipEOL$.html"><span class="name">InputEndSkipEOL</span></a><span class="result"> extends <a href="Entity.html" class="extype" name="io.github.reggert.reb4s.Entity">Entity</a> with <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">Matches the end of input, skipping end-of-line markers.</p>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.package@InputEndSkipEOL" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Matches the end of input, skipping end-of-line markers.</p>
     </li><li name="io.github.reggert.reb4s.LineBegin" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="LineBegin"></a>
       <a id="LineBegin:LineBegin"></a>
@@ -428,10 +587,14 @@ functions to be selectively imported.</p>
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a href="LineBegin$.html"><span class="name">LineBegin</span></a><span class="result"> extends <a href="Entity.html" class="extype" name="io.github.reggert.reb4s.Entity">Entity</a> with <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+        <a href="LineBegin$.html"><span class="name">LineBegin</span></a><span class="result"> extends <a href="Entity.html" class="extype" name="io.github.reggert.reb4s.Entity">Entity</a> with <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">Matches the beginning of a line.</p>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.package@LineBegin" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Matches the beginning of a line.</p>
     </li><li name="io.github.reggert.reb4s.LineEnd" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="LineEnd"></a>
       <a id="LineEnd:LineEnd"></a>
@@ -441,10 +604,14 @@ functions to be selectively imported.</p>
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a href="LineEnd$.html"><span class="name">LineEnd</span></a><span class="result"> extends <a href="Entity.html" class="extype" name="io.github.reggert.reb4s.Entity">Entity</a> with <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+        <a href="LineEnd$.html"><span class="name">LineEnd</span></a><span class="result"> extends <a href="Entity.html" class="extype" name="io.github.reggert.reb4s.Entity">Entity</a> with <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">Matches the end of a line.</p>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.package@LineEnd" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Matches the end of a line.</p>
     </li><li name="io.github.reggert.reb4s.Literal" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="Literal"></a>
       <a id="Literal:Literal"></a>
@@ -454,10 +621,14 @@ functions to be selectively imported.</p>
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a href="Literal$.html"><span class="name">Literal</span></a><span class="result"> extends <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+        <a href="Literal$.html"><span class="name">Literal</span></a><span class="result"> extends <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">Constructs a literal expression.</p>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.package@Literal" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Constructs a literal expression.</p>
     </li><li name="io.github.reggert.reb4s.MatchEnd" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="MatchEnd"></a>
       <a id="MatchEnd:MatchEnd"></a>
@@ -467,10 +638,14 @@ functions to be selectively imported.</p>
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a href="MatchEnd$.html"><span class="name">MatchEnd</span></a><span class="result"> extends <a href="Entity.html" class="extype" name="io.github.reggert.reb4s.Entity">Entity</a> with <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+        <a href="MatchEnd$.html"><span class="name">MatchEnd</span></a><span class="result"> extends <a href="Entity.html" class="extype" name="io.github.reggert.reb4s.Entity">Entity</a> with <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">Matches the end of the previous match.</p>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.package@MatchEnd" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Matches the end of the previous match.</p>
     </li><li name="io.github.reggert.reb4s.NonwordBoundary" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="NonwordBoundary"></a>
       <a id="NonwordBoundary:NonwordBoundary"></a>
@@ -480,10 +655,14 @@ functions to be selectively imported.</p>
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a href="NonwordBoundary$.html"><span class="name">NonwordBoundary</span></a><span class="result"> extends <a href="Entity.html" class="extype" name="io.github.reggert.reb4s.Entity">Entity</a> with <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+        <a href="NonwordBoundary$.html"><span class="name">NonwordBoundary</span></a><span class="result"> extends <a href="Entity.html" class="extype" name="io.github.reggert.reb4s.Entity">Entity</a> with <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">Matches a non-word-boundary.</p>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.package@NonwordBoundary" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Matches a non-word-boundary.</p>
     </li><li name="io.github.reggert.reb4s.Quantified" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="Quantified"></a>
       <a id="Quantified:Quantified"></a>
@@ -493,9 +672,13 @@ functions to be selectively imported.</p>
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a href="Quantified$.html"><span class="name">Quantified</span></a><span class="result"> extends <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+        <a href="Quantified$.html"><span class="name">Quantified</span></a><span class="result"> extends <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.package@Quantified" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       
     </li><li name="io.github.reggert.reb4s.WordBoundary" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="WordBoundary"></a>
@@ -506,10 +689,14 @@ functions to be selectively imported.</p>
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a href="WordBoundary$.html"><span class="name">WordBoundary</span></a><span class="result"> extends <a href="Entity.html" class="extype" name="io.github.reggert.reb4s.Entity">Entity</a> with <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+        <a href="WordBoundary$.html"><span class="name">WordBoundary</span></a><span class="result"> extends <a href="Entity.html" class="extype" name="io.github.reggert.reb4s.Entity">Entity</a> with <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">Matches a word boundary.</p>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.package@WordBoundary" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Matches a word boundary.</p>
     </li><li name="io.github.reggert.reb4s.charclass" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="charclass"></a>
       <a id="charclass:charclass"></a>
@@ -521,7 +708,11 @@ functions to be selectively imported.</p>
       <span class="symbol">
         <a href="charclass/package.html"><span class="name">charclass</span></a>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.package@charclass" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       
     </li></ol>
             </div>
@@ -533,9 +724,9 @@ functions to be selectively imported.</p>
 
         <div id="inheritedMembers">
         <div class="parent" name="scala.AnyRef">
-              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></h3>
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">
-              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Any" class="extype" target="_top">Any</a></h3>
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Any" class="extype" target="_top">Any</a></h3>
             </div>
         
         </div>
@@ -552,6 +743,7 @@ functions to be selectively imported.</p>
       <div id="tooltip"></div>
 
       <div id="footer">  </div>
-      <script defer="defer" type="text/javascript" id="jquery-js" src="../../../../lib/jquery.js"></script><script defer="defer" type="text/javascript" id="jquery-ui-js" src="../../../../lib/jquery-ui.js"></script><script defer="defer" type="text/javascript" id="tools-tooltip-js" src="../../../../lib/tools.tooltip.js"></script><script defer="defer" type="text/javascript" id="template-js" src="../../../../lib/template.js"></script>
+
+
     </body>
       </html>

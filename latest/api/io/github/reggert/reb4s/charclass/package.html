@@ -1,5 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!DOCTYPE html >
 <html>
         <head>
           <title>charclass - io.github.reggert.reb4s.charclass</title>
@@ -9,6 +8,11 @@
           
       <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
       <link href="../../../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../../../lib/tools.tooltip.js"></script>
+      
       <script type="text/javascript">
          if(top === self) {
             var url = '../../../../../index.html';
@@ -24,9 +28,13 @@
         </head>
         <body class="value">
       <div id="definition">
-        <img src="../../../../../lib/package_big.png" />
+        <img alt="Package" src="../../../../../lib/package_big.png" />
         <p id="owner"><a href="../../../../package.html" class="extype" name="io">io</a>.<a href="../../../package.html" class="extype" name="io.github">github</a>.<a href="../../package.html" class="extype" name="io.github.reggert">reggert</a>.<a href="../package.html" class="extype" name="io.github.reggert.reb4s">reb4s</a></p>
-        <h1>charclass</h1>
+        <h1>charclass</h1><span class="permalink">
+      <a href="../../../../../index.html#io.github.reggert.reb4s.charclass.package" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       </div>
 
       <h4 id="signature" class="signature">
@@ -58,7 +66,7 @@
 
         <div id="types" class="types members">
               <h3>Type Members</h3>
-              <ol><li name="io.github.reggert.reb4s.charclass.CharClass" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+              <ol><li name="io.github.reggert.reb4s.charclass.CharClass" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
       <a id="CharClassextendsExpressionwithAlternativewithSequenceablewithQuantifiable"></a>
       <a id="CharClass:CharClass"></a>
       <h4 class="signature">
@@ -69,9 +77,18 @@
       <span class="symbol">
         <a href="CharClass.html"><span class="name">CharClass</span></a><span class="result"> extends <a href="../Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a> with <a href="../Alternative.html" class="extype" name="io.github.reggert.reb4s.Alternative">Alternative</a> with <a href="../Sequenceable.html" class="extype" name="io.github.reggert.reb4s.Sequenceable">Sequenceable</a> with <a href="../Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">Base class representing an expression that matches a single character
-within a class of characters.</p>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#io.github.reggert.reb4s.charclass.package@CharClassextendsExpressionwithAlternativewithSequenceablewithQuantifiable" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Base class representing an expression that matches a single character
+within a class of characters.</p><div class="fullcomment"><div class="comment cmt"><p>Base class representing an expression that matches a single character
+within a class of characters.
+</p></div><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@SerialVersionUID</span><span class="args">()</span>
+              
+        </dd></dl></div>
     </li><li name="io.github.reggert.reb4s.charclass.CharRange" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="CharRangeextendsCharClasswithWrappedNegation[io.github.reggert.reb4s.charclass.CharRange]withBracketsRequired"></a>
       <a id="CharRange:CharRange"></a>
@@ -83,8 +100,12 @@ within a class of characters.</p>
       <span class="symbol">
         <a href="CharRange.html"><span class="name">CharRange</span></a><span class="result"> extends <a href="CharClass.html" class="extype" name="io.github.reggert.reb4s.charclass.CharClass">CharClass</a> with <span class="extype" name="io.github.reggert.reb4s.charclass.WrappedNegation">WrappedNegation</span>[<a href="CharRange.html" class="extype" name="io.github.reggert.reb4s.charclass.CharRange">CharRange</a>] with <span class="extype" name="io.github.reggert.reb4s.charclass.BracketsRequired">BracketsRequired</span></span>
       </span>
-      </h4>
-      <p class="comment cmt">Character class matching any character between a range of characters.</p>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#io.github.reggert.reb4s.charclass.package@CharRangeextendsCharClasswithWrappedNegation[io.github.reggert.reb4s.charclass.CharRange]withBracketsRequired" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Character class matching any character between a range of characters.</p>
     </li><li name="io.github.reggert.reb4s.charclass.Intersection" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="IntersectionextendsCharClasswithBracketsRequiredwithWrappedNegation[io.github.reggert.reb4s.charclass.Intersection]"></a>
       <a id="Intersection:Intersection"></a>
@@ -96,10 +117,14 @@ within a class of characters.</p>
       <span class="symbol">
         <a href="Intersection.html"><span class="name">Intersection</span></a><span class="result"> extends <a href="CharClass.html" class="extype" name="io.github.reggert.reb4s.charclass.CharClass">CharClass</a> with <span class="extype" name="io.github.reggert.reb4s.charclass.BracketsRequired">BracketsRequired</span> with <span class="extype" name="io.github.reggert.reb4s.charclass.WrappedNegation">WrappedNegation</span>[<a href="Intersection.html" class="extype" name="io.github.reggert.reb4s.charclass.Intersection">Intersection</a>]</span>
       </span>
-      </h4>
-      <p class="comment cmt">Character class representing the intersection of two or more character
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#io.github.reggert.reb4s.charclass.package@IntersectionextendsCharClasswithBracketsRequiredwithWrappedNegation[io.github.reggert.reb4s.charclass.Intersection]" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Character class representing the intersection of two or more character
 classes.</p>
-    </li><li name="io.github.reggert.reb4s.charclass.MultiChar" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="io.github.reggert.reb4s.charclass.MultiChar" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="MultiCharextendsCharClasswithBracketsRequiredwithWrappedNegation[io.github.reggert.reb4s.charclass.MultiChar]"></a>
       <a id="MultiChar:MultiChar"></a>
       <h4 class="signature">
@@ -110,8 +135,14 @@ classes.</p>
       <span class="symbol">
         <a href="MultiChar.html"><span class="name">MultiChar</span></a><span class="result"> extends <a href="CharClass.html" class="extype" name="io.github.reggert.reb4s.charclass.CharClass">CharClass</a> with <span class="extype" name="io.github.reggert.reb4s.charclass.BracketsRequired">BracketsRequired</span> with <span class="extype" name="io.github.reggert.reb4s.charclass.WrappedNegation">WrappedNegation</span>[<a href="MultiChar.html" class="extype" name="io.github.reggert.reb4s.charclass.MultiChar">MultiChar</a>]</span>
       </span>
-      </h4>
-      <p class="comment cmt">Character class that matches any of the specified characters.</p>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#io.github.reggert.reb4s.charclass.package@MultiCharextendsCharClasswithBracketsRequiredwithWrappedNegation[io.github.reggert.reb4s.charclass.MultiChar]" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Character class that matches any of the specified characters.</p><div class="fullcomment"><div class="comment cmt"><p>Character class that matches any of the specified characters.
+</p></div><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt"><p><span class="extype" name="IllegalArgumentException"><code>IllegalArgumentException</code></span> 
+	if there are not at least 2 characters specified.</p></span></dd></dl></div>
     </li><li name="io.github.reggert.reb4s.charclass.NamedPredefinedClass" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="NamedPredefinedClassextendsPredefinedClass"></a>
       <a id="NamedPredefinedClass:NamedPredefinedClass"></a>
@@ -123,8 +154,12 @@ classes.</p>
       <span class="symbol">
         <a href="NamedPredefinedClass.html"><span class="name">NamedPredefinedClass</span></a><span class="result"> extends <a href="PredefinedClass.html" class="extype" name="io.github.reggert.reb4s.charclass.PredefinedClass">PredefinedClass</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">Class representing a predefined character class referenced by name.</p>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#io.github.reggert.reb4s.charclass.package@NamedPredefinedClassextendsPredefinedClass" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Class representing a predefined character class referenced by name.</p>
     </li><li name="io.github.reggert.reb4s.charclass.Negated" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="Negated[T&lt;:io.github.reggert.reb4s.charclass.WrappedNegation[T]]extendsCharClasswithSelfContained"></a>
       <a id="Negated[T&lt;:WrappedNegation[T]]:Negated[T]"></a>
@@ -136,8 +171,12 @@ classes.</p>
       <span class="symbol">
         <a href="Negated.html"><span class="name">Negated</span></a><span class="tparams">[<span name="T">T &lt;: <span class="extype" name="io.github.reggert.reb4s.charclass.WrappedNegation">WrappedNegation</span>[<span class="extype" name="io.github.reggert.reb4s.charclass.Negated.T">T</span>]</span>]</span><span class="result"> extends <a href="CharClass.html" class="extype" name="io.github.reggert.reb4s.charclass.CharClass">CharClass</a> with <a href="SelfContained.html" class="extype" name="io.github.reggert.reb4s.charclass.SelfContained">SelfContained</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">Character class representing the negation of another character class.</p>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#io.github.reggert.reb4s.charclass.package@Negated[T&lt;:io.github.reggert.reb4s.charclass.WrappedNegation[T]]extendsCharClasswithSelfContained" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Character class representing the negation of another character class.</p>
     </li><li name="io.github.reggert.reb4s.charclass.PredefinedClass" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="PredefinedClassextendsCharClasswithSelfContained"></a>
       <a id="PredefinedClass:PredefinedClass"></a>
@@ -149,8 +188,12 @@ classes.</p>
       <span class="symbol">
         <a href="PredefinedClass.html"><span class="name">PredefinedClass</span></a><span class="result"> extends <a href="CharClass.html" class="extype" name="io.github.reggert.reb4s.charclass.CharClass">CharClass</a> with <a href="SelfContained.html" class="extype" name="io.github.reggert.reb4s.charclass.SelfContained">SelfContained</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">Class representing a predefined character class.</p>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#io.github.reggert.reb4s.charclass.package@PredefinedClassextendsCharClasswithSelfContained" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Class representing a predefined character class.</p>
     </li><li name="io.github.reggert.reb4s.charclass.SelfContained" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="SelfContainedextendsCharClass"></a>
       <a id="SelfContained:SelfContained"></a>
@@ -162,7 +205,11 @@ classes.</p>
       <span class="symbol">
         <a href="SelfContained.html"><span class="name">SelfContained</span></a><span class="result"> extends <a href="CharClass.html" class="extype" name="io.github.reggert.reb4s.charclass.CharClass">CharClass</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#io.github.reggert.reb4s.charclass.package@SelfContainedextendsCharClass" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       
     </li><li name="io.github.reggert.reb4s.charclass.SingleChar" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="SingleCharextendsCharClasswithWrappedNegation[io.github.reggert.reb4s.charclass.SingleChar]withSelfContained"></a>
@@ -175,7 +222,11 @@ classes.</p>
       <span class="symbol">
         <a href="SingleChar.html"><span class="name">SingleChar</span></a><span class="result"> extends <a href="CharClass.html" class="extype" name="io.github.reggert.reb4s.charclass.CharClass">CharClass</a> with <span class="extype" name="io.github.reggert.reb4s.charclass.WrappedNegation">WrappedNegation</span>[<a href="SingleChar.html" class="extype" name="io.github.reggert.reb4s.charclass.SingleChar">SingleChar</a>] with <a href="SelfContained.html" class="extype" name="io.github.reggert.reb4s.charclass.SelfContained">SelfContained</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#io.github.reggert.reb4s.charclass.package@SingleCharextendsCharClasswithWrappedNegation[io.github.reggert.reb4s.charclass.SingleChar]withSelfContained" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       
     </li><li name="io.github.reggert.reb4s.charclass.Union" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="UnionextendsCharClasswithBracketsRequiredwithWrappedNegation[io.github.reggert.reb4s.charclass.Union]"></a>
@@ -188,7 +239,11 @@ classes.</p>
       <span class="symbol">
         <a href="Union.html"><span class="name">Union</span></a><span class="result"> extends <a href="CharClass.html" class="extype" name="io.github.reggert.reb4s.charclass.CharClass">CharClass</a> with <span class="extype" name="io.github.reggert.reb4s.charclass.BracketsRequired">BracketsRequired</span> with <span class="extype" name="io.github.reggert.reb4s.charclass.WrappedNegation">WrappedNegation</span>[<a href="Union.html" class="extype" name="io.github.reggert.reb4s.charclass.Union">Union</a>]</span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#io.github.reggert.reb4s.charclass.package@UnionextendsCharClasswithBracketsRequiredwithWrappedNegation[io.github.reggert.reb4s.charclass.Union]" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       
     </li></ol>
             </div>
@@ -206,10 +261,14 @@ classes.</p>
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a href="CharClass$.html"><span class="name">CharClass</span></a><span class="result"> extends <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+        <a href="CharClass$.html"><span class="name">CharClass</span></a><span class="result"> extends <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">Factory object for creating character class expressions.</p>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#io.github.reggert.reb4s.charclass.package@CharClass" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Factory object for creating character class expressions.</p>
     </li></ol>
             </div>
 
@@ -235,6 +294,7 @@ classes.</p>
       <div id="tooltip"></div>
 
       <div id="footer">  </div>
-      <script defer="defer" type="text/javascript" id="jquery-js" src="../../../../../lib/jquery.js"></script><script defer="defer" type="text/javascript" id="jquery-ui-js" src="../../../../../lib/jquery-ui.js"></script><script defer="defer" type="text/javascript" id="tools-tooltip-js" src="../../../../../lib/tools.tooltip.js"></script><script defer="defer" type="text/javascript" id="template-js" src="../../../../../lib/template.js"></script>
+
+
     </body>
       </html>

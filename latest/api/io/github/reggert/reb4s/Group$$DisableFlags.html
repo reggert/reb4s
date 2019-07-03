@@ -1,5 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!DOCTYPE html >
 <html>
         <head>
           <title>DisableFlags - io.github.reggert.reb4s.Group.DisableFlags</title>
@@ -9,6 +8,11 @@
           
       <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
       <link href="../../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../../lib/tools.tooltip.js"></script>
+      
       <script type="text/javascript">
          if(top === self) {
             var url = '../../../../index.html';
@@ -24,9 +28,15 @@
         </head>
         <body class="type">
       <div id="definition">
-        <img src="../../../../lib/class_big.png" />
+        <img alt="Class" src="../../../../lib/class_big.png" />
         <p id="owner"><a href="../../../package.html" class="extype" name="io">io</a>.<a href="../../package.html" class="extype" name="io.github">github</a>.<a href="../package.html" class="extype" name="io.github.reggert">reggert</a>.<a href="package.html" class="extype" name="io.github.reggert.reb4s">reb4s</a>.<a href="Group$.html" class="extype" name="io.github.reggert.reb4s.Group">Group</a></p>
-        <h1>DisableFlags</h1>
+        <h1>DisableFlags</h1><h3><span class="morelinks"><div>Related Doc:
+            <a href="Group$.html" class="extype" name="io.github.reggert.reb4s.Group">package Group</a>
+          </div></span></h3><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       </div>
 
       <h4 id="signature" class="signature">
@@ -35,14 +45,14 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">DisableFlags</span><span class="params">(<span name="nested">nested: <a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a></span>, <span name="flags">flags: <a href="Flag.html" class="extype" name="io.github.reggert.reb4s.Flag">Flag</a>*</span>)</span><span class="result"> extends <a href="Group.html" class="extype" name="io.github.reggert.reb4s.Group">Group</a> with <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+        <span class="name">DisableFlags</span><span class="params">(<span name="nested">nested: <a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a></span>, <span name="flags">flags: <a href="Flag.html" class="extype" name="io.github.reggert.reb4s.Flag">Flag</a>*</span>)</span><span class="result"> extends <a href="Group.html" class="extype" name="io.github.reggert.reb4s.Group">Group</a> with <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Constructs a group that disables the specified matcher flags.
 </p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Product" class="extype" target="_top">Product</a>, <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Equals" class="extype" target="_top">Equals</a>, <a href="Group.html" class="extype" name="io.github.reggert.reb4s.Group">Group</a>, <a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a>, <a href="Sequenceable.html" class="extype" name="io.github.reggert.reb4s.Sequenceable">Sequenceable</a>, <a href="Alternative.html" class="extype" name="io.github.reggert.reb4s.Alternative">Alternative</a>, <a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a>, <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Immutable" class="extype" target="_top">Immutable</a>, <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.NotNull" class="extype" target="_top">NotNull</a>, <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Serializable" class="extype" target="_top">Serializable</a>, <span class="extype" name="java.io.Serializable">Serializable</span>, <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a>, <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Any" class="extype" target="_top">Any</a></div>
+          <div class="superTypes hiddenContent"><a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Product" class="extype" target="_top">Product</a>, <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Equals" class="extype" target="_top">Equals</a>, <a href="Group.html" class="extype" name="io.github.reggert.reb4s.Group">Group</a>, <a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a>, <a href="Sequenceable.html" class="extype" name="io.github.reggert.reb4s.Sequenceable">Sequenceable</a>, <a href="Alternative.html" class="extype" name="io.github.reggert.reb4s.Alternative">Alternative</a>, <a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a>, <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Immutable" class="extype" target="_top">Immutable</a>, <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Serializable" class="extype" target="_top">Serializable</a>, <span class="extype" name="java.io.Serializable">Serializable</span>, <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a>, <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Any" class="extype" target="_top">Any</a></div>
         </div></div>
         
 
@@ -53,22 +63,21 @@
               <ol>
                 
                 <li class="alpha in"><span>Alphabetic</span></li>
-                <li class="inherit out"><span>By inheritance</span></li>
+                <li class="inherit out"><span>By Inheritance</span></li>
               </ol>
             </div>
         <div id="ancestors">
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="io.github.reggert.reb4s.Group.DisableFlags"><span>DisableFlags</span></li><li class="in" name="scala.Product"><span>Product</span></li><li class="in" name="scala.Equals"><span>Equals</span></li><li class="in" name="io.github.reggert.reb4s.Group"><span>Group</span></li><li class="in" name="io.github.reggert.reb4s.Quantifiable"><span>Quantifiable</span></li><li class="in" name="io.github.reggert.reb4s.Sequenceable"><span>Sequenceable</span></li><li class="in" name="io.github.reggert.reb4s.Alternative"><span>Alternative</span></li><li class="in" name="io.github.reggert.reb4s.Expression"><span>Expression</span></li><li class="in" name="scala.Immutable"><span>Immutable</span></li><li class="in" name="scala.NotNull"><span>NotNull</span></li><li class="in" name="scala.Serializable"><span>Serializable</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="io.github.reggert.reb4s.Group.DisableFlags"><span>DisableFlags</span></li><li class="in" name="scala.Product"><span>Product</span></li><li class="in" name="scala.Equals"><span>Equals</span></li><li class="in" name="io.github.reggert.reb4s.Group"><span>Group</span></li><li class="in" name="io.github.reggert.reb4s.Quantifiable"><span>Quantifiable</span></li><li class="in" name="io.github.reggert.reb4s.Sequenceable"><span>Sequenceable</span></li><li class="in" name="io.github.reggert.reb4s.Alternative"><span>Alternative</span></li><li class="in" name="io.github.reggert.reb4s.Expression"><span>Expression</span></li><li class="in" name="scala.Immutable"><span>Immutable</span></li><li class="in" name="scala.Serializable"><span>Serializable</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
             <ol>
               <li class="hideall out"><span>Hide All</span></li>
-              <li class="showall in"><span>Show all</span></li>
+              <li class="showall in"><span>Show All</span></li>
             </ol>
-            <a href="http://docs.scala-lang.org/overviews/scaladoc/usage.html#members" target="_blank">Learn more about member selection</a>
           </div>
         <div id="visbl">
             <span class="filtertype">Visibility</span>
@@ -91,7 +100,11 @@
       <span class="symbol">
         <span class="name">DisableFlags</span><span class="params">(<span name="nested">nested: <a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a></span>, <span name="flags">flags: <a href="Flag.html" class="extype" name="io.github.reggert.reb4s.Flag">Flag</a>*</span>)</span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@&lt;init&gt;(nested:io.github.reggert.reb4s.Expression,flags:io.github.reggert.reb4s.Flag*):io.github.reggert.reb4s.Group.DisableFlags" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       
     </li></ol>
             </div>
@@ -103,19 +116,6 @@
         <div id="values" class="values members">
               <h3>Value Members</h3>
               <ol><li name="scala.AnyRef#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="!=(x$1:AnyRef):Boolean"></a>
-      <a id="!=(AnyRef):Boolean"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier">final </span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
-      </span>
-      </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="scala.Any#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="!=(x$1:Any):Boolean"></a>
       <a id="!=(Any):Boolean"></a>
       <h4 class="signature">
@@ -124,10 +124,14 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
-      </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@!=(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="scala.AnyRef###" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="##():Int"></a>
       <a id="##():Int"></a>
@@ -137,9 +141,13 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Int" class="extype" target="_top">Int</a></span>
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Int" class="extype" target="_top">Int</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@##():Int" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Quantifiable#*" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="*:io.github.reggert.reb4s.Quantified.AnyTimes"></a>
@@ -152,12 +160,15 @@
       <span class="symbol">
         <span title="gt4s: $times" class="name">*</span><span class="result">: <a href="Quantified$$AnyTimes.html" class="extype" name="io.github.reggert.reb4s.Quantified.AnyTimes">AnyTimes</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@*:io.github.reggert.reb4s.Quantified.AnyTimes" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Returns an expression that matches the receiver repeated any number
 of times, using greedy matching.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an expression that matches the receiver repeated any number
 of times, using greedy matching.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="Quantifiable.html#anyTimes(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.AnyTimes" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#anyTimes">Quantifiable#anyTimes</a>
-</p></span></dd></dl></div>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="Quantifiable.html#anyTimes(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.AnyTimes" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#anyTimes">Quantifiable#anyTimes</a></p></span></dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Quantifiable#*+" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="*+:io.github.reggert.reb4s.Quantified.AnyTimes"></a>
       <a id="*+:AnyTimes"></a>
@@ -169,12 +180,15 @@ of times, using greedy matching.
       <span class="symbol">
         <span title="gt4s: $times$plus" class="name">*+</span><span class="result">: <a href="Quantified$$AnyTimes.html" class="extype" name="io.github.reggert.reb4s.Quantified.AnyTimes">AnyTimes</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@*+:io.github.reggert.reb4s.Quantified.AnyTimes" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Returns an expression that matches the receiver repeated any number
 of times, using possessive matching.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an expression that matches the receiver repeated any number
 of times, using possessive matching.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="Quantifiable.html#anyTimes(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.AnyTimes" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#anyTimes">Quantifiable#anyTimes</a>
-</p></span></dd></dl></div>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="Quantifiable.html#anyTimes(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.AnyTimes" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#anyTimes">Quantifiable#anyTimes</a></p></span></dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Quantifiable#*?" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="*?:io.github.reggert.reb4s.Quantified.AnyTimes"></a>
       <a id="*?:AnyTimes"></a>
@@ -186,12 +200,15 @@ of times, using possessive matching.
       <span class="symbol">
         <span title="gt4s: $times$qmark" class="name">*?</span><span class="result">: <a href="Quantified$$AnyTimes.html" class="extype" name="io.github.reggert.reb4s.Quantified.AnyTimes">AnyTimes</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@*?:io.github.reggert.reb4s.Quantified.AnyTimes" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Returns an expression that matches the receiver repeated any number
 of times, using reluctant matching.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an expression that matches the receiver repeated any number
 of times, using reluctant matching.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="Quantifiable.html#anyTimes(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.AnyTimes" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#anyTimes">Quantifiable#anyTimes</a>
-</p></span></dd></dl></div>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="Quantifiable.html#anyTimes(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.AnyTimes" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#anyTimes">Quantifiable#anyTimes</a></p></span></dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Quantifiable#+" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="+:io.github.reggert.reb4s.Quantified.AtLeastOnce"></a>
       <a id="+:AtLeastOnce"></a>
@@ -203,12 +220,15 @@ of times, using reluctant matching.
       <span class="symbol">
         <span title="gt4s: $plus" class="name">+</span><span class="result">: <a href="Quantified$$AtLeastOnce.html" class="extype" name="io.github.reggert.reb4s.Quantified.AtLeastOnce">AtLeastOnce</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@+:io.github.reggert.reb4s.Quantified.AtLeastOnce" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Returns an expression that matches the receiver repeated at least
 once, using greedy matching.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an expression that matches the receiver repeated at least
 once, using greedy matching.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="Quantifiable.html#atLeastOnce(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.AtLeastOnce" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#atLeastOnce">Quantifiable#atLeastOnce</a>
-</p></span></dd></dl></div>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="Quantifiable.html#atLeastOnce(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.AtLeastOnce" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#atLeastOnce">Quantifiable#atLeastOnce</a></p></span></dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Quantifiable#++" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="++:io.github.reggert.reb4s.Quantified.AtLeastOnce"></a>
       <a id="++:AtLeastOnce"></a>
@@ -220,12 +240,15 @@ once, using greedy matching.
       <span class="symbol">
         <span title="gt4s: $plus$plus" class="name">++</span><span class="result">: <a href="Quantified$$AtLeastOnce.html" class="extype" name="io.github.reggert.reb4s.Quantified.AtLeastOnce">AtLeastOnce</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@++:io.github.reggert.reb4s.Quantified.AtLeastOnce" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Returns an expression that matches the receiver repeated at least
 once, using possessive matching.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an expression that matches the receiver repeated at least
 once, using possessive matching.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="Quantifiable.html#atLeastOnce(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.AtLeastOnce" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#atLeastOnce">Quantifiable#atLeastOnce</a>
-</p></span></dd></dl></div>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="Quantifiable.html#atLeastOnce(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.AtLeastOnce" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#atLeastOnce">Quantifiable#atLeastOnce</a></p></span></dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Quantifiable#+?" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="+?:io.github.reggert.reb4s.Quantified.AtLeastOnce"></a>
       <a id="+?:AtLeastOnce"></a>
@@ -237,26 +260,16 @@ once, using possessive matching.
       <span class="symbol">
         <span title="gt4s: $plus$qmark" class="name">+?</span><span class="result">: <a href="Quantified$$AtLeastOnce.html" class="extype" name="io.github.reggert.reb4s.Quantified.AtLeastOnce">AtLeastOnce</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@+?:io.github.reggert.reb4s.Quantified.AtLeastOnce" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Returns an expression that matches the receiver repeated at least
 once, using reluctant matching.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an expression that matches the receiver repeated at least
 once, using reluctant matching.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="Quantifiable.html#atLeast(n:Int,mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.RepeatRange" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#atLeast">Quantifiable#atLeast</a>
-</p></span></dd></dl></div>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="Quantifiable.html#atLeast(n:Int,mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.RepeatRange" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#atLeast">Quantifiable#atLeast</a></p></span></dd></dl></div>
     </li><li name="scala.AnyRef#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="==(x$1:AnyRef):Boolean"></a>
-      <a id="==(AnyRef):Boolean"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier">final </span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
-      </span>
-      </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="scala.Any#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="==(x$1:Any):Boolean"></a>
       <a id="==(Any):Boolean"></a>
       <h4 class="signature">
@@ -265,10 +278,14 @@ once, using reluctant matching.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
-      </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@==(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Quantifiable#?" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="?:io.github.reggert.reb4s.Quantified.Optional"></a>
       <a id="?:Optional"></a>
@@ -280,12 +297,15 @@ once, using reluctant matching.
       <span class="symbol">
         <span title="gt4s: $qmark" class="name">?</span><span class="result">: <a href="Quantified$$Optional.html" class="extype" name="io.github.reggert.reb4s.Quantified.Optional">Optional</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@?:io.github.reggert.reb4s.Quantified.Optional" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Returns an expression that matches the receiver appearing once or not
 at all, using greedy matching.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an expression that matches the receiver appearing once or not
 at all, using greedy matching.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="Quantifiable.html#optional(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.Optional" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#optional">Quantifiable#optional</a>
-</p></span></dd></dl></div>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="Quantifiable.html#optional(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.Optional" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#optional">Quantifiable#optional</a></p></span></dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Quantifiable#?+" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="?+:io.github.reggert.reb4s.Quantified.Optional"></a>
       <a id="?+:Optional"></a>
@@ -297,12 +317,15 @@ at all, using greedy matching.
       <span class="symbol">
         <span title="gt4s: $qmark$plus" class="name">?+</span><span class="result">: <a href="Quantified$$Optional.html" class="extype" name="io.github.reggert.reb4s.Quantified.Optional">Optional</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@?+:io.github.reggert.reb4s.Quantified.Optional" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Returns an expression that matches the receiver appearing once or not
 at all, using possessive matching.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an expression that matches the receiver appearing once or not
 at all, using possessive matching.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="Quantifiable.html#optional(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.Optional" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#optional">Quantifiable#optional</a>
-</p></span></dd></dl></div>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="Quantifiable.html#optional(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.Optional" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#optional">Quantifiable#optional</a></p></span></dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Quantifiable#??" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="??:io.github.reggert.reb4s.Quantified.Optional"></a>
       <a id="??:Optional"></a>
@@ -314,12 +337,15 @@ at all, using possessive matching.
       <span class="symbol">
         <span title="gt4s: $qmark$qmark" class="name">??</span><span class="result">: <a href="Quantified$$Optional.html" class="extype" name="io.github.reggert.reb4s.Quantified.Optional">Optional</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@??:io.github.reggert.reb4s.Quantified.Optional" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Returns an expression that matches the receiver appearing once or not
 at all, using reluctant matching.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an expression that matches the receiver appearing once or not
 at all, using reluctant matching.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="Quantifiable.html#optional(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.Optional" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#optional">Quantifiable#optional</a>
-</p></span></dd></dl></div>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="Quantifiable.html#optional(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.Optional" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#optional">Quantifiable#optional</a></p></span></dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Sequenceable#andThen" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="andThen(right:io.github.reggert.reb4s.Sequence):io.github.reggert.reb4s.Sequence"></a>
       <a id="andThen(Sequence):Sequence"></a>
@@ -331,7 +357,11 @@ at all, using reluctant matching.
       <span class="symbol">
         <span class="name">andThen</span><span class="params">(<span name="right">right: <a href="Sequence.html" class="extype" name="io.github.reggert.reb4s.Sequence">Sequence</a></span>)</span><span class="result">: <a href="Sequence.html" class="extype" name="io.github.reggert.reb4s.Sequence">Sequence</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@andThen(right:io.github.reggert.reb4s.Sequence):io.github.reggert.reb4s.Sequence" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Concatenates this expression with the argument.</p><div class="fullcomment"><div class="comment cmt"><p>Concatenates this expression with the argument.
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Sequenceable.html" class="extype" name="io.github.reggert.reb4s.Sequenceable">Sequenceable</a></dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Sequenceable#andThen" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -345,7 +375,11 @@ at all, using reluctant matching.
       <span class="symbol">
         <span class="name">andThen</span><span class="params">(<span name="right">right: <a href="Sequenceable.html" class="extype" name="io.github.reggert.reb4s.Sequenceable">Sequenceable</a></span>)</span><span class="result">: <a href="Sequence.html" class="extype" name="io.github.reggert.reb4s.Sequence">Sequence</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@andThen(right:io.github.reggert.reb4s.Sequenceable):io.github.reggert.reb4s.Sequence" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Concatenates this expression with the argument.</p><div class="fullcomment"><div class="comment cmt"><p>Concatenates this expression with the argument.
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Sequenceable.html" class="extype" name="io.github.reggert.reb4s.Sequenceable">Sequenceable</a></dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Quantifiable#anyTimes" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -359,7 +393,11 @@ at all, using reluctant matching.
       <span class="symbol">
         <span class="name">anyTimes</span><span class="params">(<span name="mode">mode: <a href="Quantified$$Mode.html" class="extype" name="io.github.reggert.reb4s.Quantified.Mode">Mode</a> = <span class="symbol"><span class="name"><a href="Quantified$.html">Greedy</a></span></span></span>)</span><span class="result">: <a href="Quantified$$AnyTimes.html" class="extype" name="io.github.reggert.reb4s.Quantified.AnyTimes">AnyTimes</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@anyTimes(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.AnyTimes" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Returns an expression that matches the receiver repeated any number
 of times.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an expression that matches the receiver repeated any number
 of times.
@@ -375,7 +413,11 @@ of times.
       <span class="symbol">
         <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@asInstanceOf[T0]:T0" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Quantifiable#atLeast" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="atLeast(n:Int,mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.RepeatRange"></a>
@@ -386,17 +428,20 @@ of times.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">atLeast</span><span class="params">(<span name="n">n: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Int" class="extype" target="_top">Int</a></span>, <span name="mode">mode: <a href="Quantified$$Mode.html" class="extype" name="io.github.reggert.reb4s.Quantified.Mode">Mode</a> = <span class="symbol"><span class="name"><a href="Quantified$.html">Greedy</a></span></span></span>)</span><span class="result">: <a href="Quantified$$RepeatRange.html" class="extype" name="io.github.reggert.reb4s.Quantified.RepeatRange">RepeatRange</a></span>
+        <span class="name">atLeast</span><span class="params">(<span name="n">n: <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Int" class="extype" target="_top">Int</a></span>, <span name="mode">mode: <a href="Quantified$$Mode.html" class="extype" name="io.github.reggert.reb4s.Quantified.Mode">Mode</a> = <span class="symbol"><span class="name"><a href="Quantified$.html">Greedy</a></span></span></span>)</span><span class="result">: <a href="Quantified$$RepeatRange.html" class="extype" name="io.github.reggert.reb4s.Quantified.RepeatRange">RepeatRange</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@atLeast(n:Int,mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.RepeatRange" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Returns an expression that matches the receiver repeated at least the
 specified minimum number of times.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an expression that matches the receiver repeated at least the
 specified minimum number of times.
 </p></div><dl class="paramcmts block"><dt class="param">n</dt><dd class="cmt"><p>
 	the minimum number of times that the pattern may be repeated;
-	must be be &gt;= 0;</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>Exceptions thrown</dt><dd><span class="cmt">IllegalArgumentException<p>
-	if <var>n</var> &lt; 0.
-</p></span></dd></dl></div>
+	must be be &gt;= 0;</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>Exceptions thrown</dt><dd><span class="cmt"><p><span class="extype" name="IllegalArgumentException"><code>IllegalArgumentException</code></span> 
+	if <var>n</var> &lt; 0.</p></span></dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Quantifiable#atLeastOnce" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="atLeastOnce(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.AtLeastOnce"></a>
       <a id="atLeastOnce(Mode):AtLeastOnce"></a>
@@ -408,12 +453,15 @@ specified minimum number of times.
       <span class="symbol">
         <span class="name">atLeastOnce</span><span class="params">(<span name="mode">mode: <a href="Quantified$$Mode.html" class="extype" name="io.github.reggert.reb4s.Quantified.Mode">Mode</a> = <span class="symbol"><span class="name"><a href="Quantified$.html">Greedy</a></span></span></span>)</span><span class="result">: <a href="Quantified$$AtLeastOnce.html" class="extype" name="io.github.reggert.reb4s.Quantified.AtLeastOnce">AtLeastOnce</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@atLeastOnce(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.AtLeastOnce" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Returns an expression that matches the receiver repeated at least
 once.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an expression that matches the receiver repeated at least
 once.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="Quantifiable.html#+:io.github.reggert.reb4s.Quantified.AtLeastOnce" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#+">Quantifiable#+</a>
-</p></span></dd></dl></div>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="Quantifiable.html#+:io.github.reggert.reb4s.Quantified.AtLeastOnce" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#+">Quantifiable#+</a></p></span></dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Group#boundedLength" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="boundedLength:Option[Int]"></a>
       <a id="boundedLength:Option[Int]"></a>
@@ -423,9 +471,13 @@ once.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">boundedLength</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Option" class="extype" target="_top">Option</a>[<a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Int" class="extype" target="_top">Int</a>]</span>
+        <span class="name">boundedLength</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Option" class="extype" target="_top">Option</a>[<a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Int" class="extype" target="_top">Int</a>]</span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@boundedLength:Option[Int]" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">If the expression has a computable maximum length, this returns it.</p><div class="fullcomment"><div class="comment cmt"><p>If the expression has a computable maximum length, this returns it.
 Otherwise, it returns None.</p><p>This is used for determining whether an expression is suitable for
 look-behind.
@@ -439,9 +491,13 @@ look-behind.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">clone</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@clone():Object" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
@@ -458,9 +514,13 @@ look-behind.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Group#expression" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="expression:String"></a>
@@ -473,8 +533,15 @@ look-behind.
       <span class="symbol">
         <span class="name">expression</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
       </span>
-      </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Group.html" class="extype" name="io.github.reggert.reb4s.Group">Group</a> → <a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a></dd></dl></div>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@expression:String" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Returns the regular expression represented by this object, in a form
+suitable to passing to the java.util.regex.Pattern class.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the regular expression represented by this object, in a form
+suitable to passing to the java.util.regex.Pattern class.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Group.html" class="extype" name="io.github.reggert.reb4s.Group">Group</a> → <a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a></dd></dl></div>
     </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <a id="finalize():Unit"></a>
@@ -484,9 +551,13 @@ look-behind.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">finalize</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@finalize():Unit" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
@@ -505,7 +576,11 @@ look-behind.
       <span class="symbol">
         <span class="name">flags</span><span class="result">: <a href="Flag.html" class="extype" name="io.github.reggert.reb4s.Flag">Flag</a>*</span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@flags:io.github.reggert.reb4s.Flag*" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       
     </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
@@ -518,7 +593,11 @@ look-behind.
       <span class="symbol">
         <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@getClass():Class[_]" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
@@ -529,9 +608,13 @@ look-behind.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
@@ -542,9 +625,13 @@ look-behind.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Group.DisableFlags#nested" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="nested:io.github.reggert.reb4s.Expression"></a>
@@ -557,7 +644,11 @@ look-behind.
       <span class="symbol">
         <span class="name">nested</span><span class="result">: <a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@nested:io.github.reggert.reb4s.Expression" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="io.github.reggert.reb4s.Group.DisableFlags">DisableFlags</a> → <a href="Group.html" class="extype" name="io.github.reggert.reb4s.Group">Group</a></dd></dl></div>
     </li><li name="scala.AnyRef#notify" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="notify():Unit"></a>
@@ -568,9 +659,13 @@ look-behind.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">notify</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@notify():Unit" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
     </li><li name="scala.AnyRef#notifyAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="notifyAll():Unit"></a>
@@ -581,9 +676,13 @@ look-behind.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@notifyAll():Unit" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Quantifiable#optional" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="optional(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.Optional"></a>
@@ -596,12 +695,15 @@ look-behind.
       <span class="symbol">
         <span class="name">optional</span><span class="params">(<span name="mode">mode: <a href="Quantified$$Mode.html" class="extype" name="io.github.reggert.reb4s.Quantified.Mode">Mode</a> = <span class="symbol"><span class="name"><a href="Quantified$.html">Greedy</a></span></span></span>)</span><span class="result">: <a href="Quantified$$Optional.html" class="extype" name="io.github.reggert.reb4s.Quantified.Optional">Optional</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@optional(mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.Optional" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Returns an expression that matches the receiver appearing once or not
 at all.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an expression that matches the receiver appearing once or not
 at all.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="Quantifiable.html#?:io.github.reggert.reb4s.Quantified.Optional" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#?">Quantifiable#?</a>
-</p></span></dd></dl></div>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="Quantifiable.html#?:io.github.reggert.reb4s.Quantified.Optional" class="extmbr" name="io.github.reggert.reb4s.Quantifiable#?">Quantifiable#?</a></p></span></dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Alternative#or" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="or(right:io.github.reggert.reb4s.Alternative):io.github.reggert.reb4s.Alternation"></a>
       <a id="or(Alternative):Alternation"></a>
@@ -613,7 +715,11 @@ at all.
       <span class="symbol">
         <span class="name">or</span><span class="params">(<span name="right">right: <a href="Alternative.html" class="extype" name="io.github.reggert.reb4s.Alternative">Alternative</a></span>)</span><span class="result">: <a href="Alternation.html" class="extype" name="io.github.reggert.reb4s.Alternation">Alternation</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@or(right:io.github.reggert.reb4s.Alternative):io.github.reggert.reb4s.Alternation" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Constructs an expression matching either the receiver or the
 specified argument expression.</p><div class="fullcomment"><div class="comment cmt"><p>Constructs an expression matching either the receiver or the
 specified argument expression.
@@ -629,7 +735,11 @@ specified argument expression.
       <span class="symbol">
         <span class="name">or</span><span class="params">(<span name="right">right: <a href="Alternation.html" class="extype" name="io.github.reggert.reb4s.Alternation">Alternation</a></span>)</span><span class="result">: <a href="Alternation.html" class="extype" name="io.github.reggert.reb4s.Alternation">Alternation</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@or(right:io.github.reggert.reb4s.Alternation):io.github.reggert.reb4s.Alternation" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Constructs an expression matching either the receiver or the
 any of the alternatives contained within the specified argument
 expression.</p><div class="fullcomment"><div class="comment cmt"><p>Constructs an expression matching either the receiver or the
@@ -645,9 +755,13 @@ expression.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">possiblyZeroLength</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span class="name">possiblyZeroLength</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@possiblyZeroLength:Boolean" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Indicates whether the expression may possibly be zero length.</p><div class="fullcomment"><div class="comment cmt"><p>Indicates whether the expression may possibly be zero length.</p><p>Used in some cases for determining repetitionInvalidatesBounds.
 </p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="package.html" class="extype" name="io.github.reggert.reb4s">io.github.reggert.reb4s</a>] </dd><dt>Definition Classes</dt><dd><a href="Group.html" class="extype" name="io.github.reggert.reb4s.Group">Group</a> → <a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a></dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Quantifiable#repeat" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -659,16 +773,19 @@ expression.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">repeat</span><span class="params">(<span name="n">n: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Int" class="extype" target="_top">Int</a></span>, <span name="mode">mode: <a href="Quantified$$Mode.html" class="extype" name="io.github.reggert.reb4s.Quantified.Mode">Mode</a> = <span class="symbol"><span class="name"><a href="Quantified$.html">Greedy</a></span></span></span>)</span><span class="result">: <a href="Quantified$$RepeatExactly.html" class="extype" name="io.github.reggert.reb4s.Quantified.RepeatExactly">RepeatExactly</a></span>
+        <span class="name">repeat</span><span class="params">(<span name="n">n: <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Int" class="extype" target="_top">Int</a></span>, <span name="mode">mode: <a href="Quantified$$Mode.html" class="extype" name="io.github.reggert.reb4s.Quantified.Mode">Mode</a> = <span class="symbol"><span class="name"><a href="Quantified$.html">Greedy</a></span></span></span>)</span><span class="result">: <a href="Quantified$$RepeatExactly.html" class="extype" name="io.github.reggert.reb4s.Quantified.RepeatExactly">RepeatExactly</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@repeat(n:Int,mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.RepeatExactly" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Returns an expression that matches the receiver repeated the specified
 number of times.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an expression that matches the receiver repeated the specified
 number of times.
 </p></div><dl class="paramcmts block"><dt class="param">n</dt><dd class="cmt"><p>
 	the exact number of times the pattern must be repeated for the
-	quantified expression to match; must be &gt;= 0.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>Exceptions thrown</dt><dd><span class="cmt">IllegalArgumentException<p>if n &lt; 0.
-</p></span></dd></dl></div>
+	quantified expression to match; must be &gt;= 0.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>Exceptions thrown</dt><dd><span class="cmt"><p><span class="extype" name="IllegalArgumentException"><code>IllegalArgumentException</code></span> if n &lt; 0.</p></span></dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Quantifiable#repeatRange" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="repeatRange(min:Int,max:Int,mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.RepeatRange"></a>
       <a id="repeatRange(Int,Int,Mode):RepeatRange"></a>
@@ -678,18 +795,21 @@ number of times.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">repeatRange</span><span class="params">(<span name="min">min: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Int" class="extype" target="_top">Int</a></span>, <span name="max">max: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Int" class="extype" target="_top">Int</a></span>, <span name="mode">mode: <a href="Quantified$$Mode.html" class="extype" name="io.github.reggert.reb4s.Quantified.Mode">Mode</a> = <span class="symbol"><span class="name"><a href="Quantified$.html">Greedy</a></span></span></span>)</span><span class="result">: <a href="Quantified$$RepeatRange.html" class="extype" name="io.github.reggert.reb4s.Quantified.RepeatRange">RepeatRange</a></span>
+        <span class="name">repeatRange</span><span class="params">(<span name="min">min: <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Int" class="extype" target="_top">Int</a></span>, <span name="max">max: <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Int" class="extype" target="_top">Int</a></span>, <span name="mode">mode: <a href="Quantified$$Mode.html" class="extype" name="io.github.reggert.reb4s.Quantified.Mode">Mode</a> = <span class="symbol"><span class="name"><a href="Quantified$.html">Greedy</a></span></span></span>)</span><span class="result">: <a href="Quantified$$RepeatRange.html" class="extype" name="io.github.reggert.reb4s.Quantified.RepeatRange">RepeatRange</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@repeatRange(min:Int,max:Int,mode:io.github.reggert.reb4s.Quantified.Mode):io.github.reggert.reb4s.Quantified.RepeatRange" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Returns an expression that matches the receiver repeated a number of
 times within the specified range.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an expression that matches the receiver repeated a number of
 times within the specified range.
 </p></div><dl class="paramcmts block"><dt class="param">min</dt><dd class="cmt"><p>
 	the minimum number of times that the pattern may be repeated;
 	must be &gt;= 0.</p></dd><dt class="param">max</dt><dd class="cmt"><p>the maximum number of times that the pattern may be repeated;
-	must be &gt;= <var>min</var>.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>Exceptions thrown</dt><dd><span class="cmt">IllegalArgumentException<p>
-	if <var>min</var> &lt; 0 or <var>max</var> &lt; <var>min</var>.
-</p></span></dd></dl></div>
+	must be &gt;= <var>min</var>.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Quantifiable.html" class="extype" name="io.github.reggert.reb4s.Quantifiable">Quantifiable</a></dd><dt>Exceptions thrown</dt><dd><span class="cmt"><p><span class="extype" name="IllegalArgumentException"><code>IllegalArgumentException</code></span> 
+	if <var>min</var> &lt; 0 or <var>max</var> &lt; <var>min</var>.</p></span></dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Group#repetitionInvalidatesBounds" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="repetitionInvalidatesBounds:Boolean"></a>
       <a id="repetitionInvalidatesBounds:Boolean"></a>
@@ -699,9 +819,13 @@ times within the specified range.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">repetitionInvalidatesBounds</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span class="name">repetitionInvalidatesBounds</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@repetitionInvalidatesBounds:Boolean" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Indicates whether applying repetition to the expression invalidates the
 boundedness computation.</p><div class="fullcomment"><div class="comment cmt"><p>Indicates whether applying repetition to the expression invalidates the
 boundedness computation. This generally indicates that the expression may
@@ -718,7 +842,11 @@ match a zero-repetition ({0, n} or ?).</p><p>This is used to determine boundedne
       <span class="symbol">
         <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Expression#toPattern" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toPattern:java.util.regex.Pattern"></a>
@@ -731,9 +859,13 @@ match a zero-repetition ({0, n} or ?).</p><p>This is used to determine boundedne
       <span class="symbol">
         <span class="name">toPattern</span><span class="result">: <span class="extype" name="java.util.regex.Pattern">Pattern</span></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@toPattern:java.util.regex.Pattern" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Passes the regular expression represented by this object to
-java.</p><div class="fullcomment"><div class="comment cmt"><p>Passes the regular expression represented by this object to
+java.util.regex.Pattern and returns the result.</p><div class="fullcomment"><div class="comment cmt"><p>Passes the regular expression represented by this object to
 java.util.regex.Pattern and returns the result.
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a></dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Expression#toRegex" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -745,12 +877,16 @@ java.util.regex.Pattern and returns the result.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">toRegex</span><span class="params">(<span name="groupNames">groupNames: <span class="extype" name="scala.Predef.String">String</span>*</span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.util.matching.Regex" class="extype" target="_top">Regex</a></span>
+        <span class="name">toRegex</span><span class="params">(<span name="groupNames">groupNames: <span class="extype" name="scala.Predef.String">String</span>*</span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.util.matching.Regex" class="extype" target="_top">Regex</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@toRegex(groupNames:String*):scala.util.matching.Regex" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Uses the regular expression represented by this object to
-construct a <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.util.matching.Regex" class="extype" target="_top">scala.util.matching.Regex</a>.</p><div class="fullcomment"><div class="comment cmt"><p>Uses the regular expression represented by this object to
-construct a <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.util.matching.Regex" class="extype" target="_top">scala.util.matching.Regex</a>.
+construct a <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.util.matching.Regex" class="extype" target="_top">scala.util.matching.Regex</a>.</p><div class="fullcomment"><div class="comment cmt"><p>Uses the regular expression represented by this object to
+construct a <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.util.matching.Regex" class="extype" target="_top">scala.util.matching.Regex</a>.
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a></dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Expression#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
@@ -763,7 +899,11 @@ construct a <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.util.
       <span class="symbol">
         <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@toString():String" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Always returns the same value as <a href="Expression.html#expression:String" class="extmbr" name="io.github.reggert.reb4s.Expression#expression">Expression#expression</a>.</p><div class="fullcomment"><div class="comment cmt"><p>Always returns the same value as <a href="Expression.html#expression:String" class="extmbr" name="io.github.reggert.reb4s.Expression#expression">Expression#expression</a>.
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a> → AnyRef → Any</dd></dl></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -775,9 +915,13 @@ construct a <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.util.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">wait</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@wait():Unit" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
@@ -794,9 +938,13 @@ construct a <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.util.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Long" class="extype" target="_top">Long</a></span>, <span name="arg1">arg1: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Int" class="extype" target="_top">Int</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Long" class="extype" target="_top">Long</a></span>, <span name="arg1">arg1: <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Int" class="extype" target="_top">Int</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
@@ -813,9 +961,13 @@ construct a <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.util.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Long" class="extype" target="_top">Long</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Long" class="extype" target="_top">Long</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@wait(x$1:Long):Unit" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
@@ -834,7 +986,11 @@ construct a <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.util.
       <span class="symbol">
         <span title="gt4s: $bar$bar" class="name">||</span><span class="params">(<span name="right">right: <a href="Alternative.html" class="extype" name="io.github.reggert.reb4s.Alternative">Alternative</a></span>)</span><span class="result">: <a href="Alternation.html" class="extype" name="io.github.reggert.reb4s.Alternation">Alternation</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@||(right:io.github.reggert.reb4s.Alternative):io.github.reggert.reb4s.Alternation" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Constructs an expression matching either the receiver or the
 specified argument expression.</p><div class="fullcomment"><div class="comment cmt"><p>Constructs an expression matching either the receiver or the
 specified argument expression.
@@ -850,7 +1006,11 @@ specified argument expression.
       <span class="symbol">
         <span title="gt4s: $bar$bar" class="name">||</span><span class="params">(<span name="right">right: <a href="Alternation.html" class="extype" name="io.github.reggert.reb4s.Alternation">Alternation</a></span>)</span><span class="result">: <a href="Alternation.html" class="extype" name="io.github.reggert.reb4s.Alternation">Alternation</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@||(right:io.github.reggert.reb4s.Alternation):io.github.reggert.reb4s.Alternation" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Constructs an expression matching either the receiver or the
 any of the alternatives contained within the specified argument
 expression.</p><div class="fullcomment"><div class="comment cmt"><p>Constructs an expression matching either the receiver or the
@@ -868,7 +1028,11 @@ expression.
       <span class="symbol">
         <span title="gt4s: $tilde$tilde" class="name">~~</span><span class="params">(<span name="right">right: <a href="Sequence.html" class="extype" name="io.github.reggert.reb4s.Sequence">Sequence</a></span>)</span><span class="result">: <a href="Sequence.html" class="extype" name="io.github.reggert.reb4s.Sequence">Sequence</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@~~(right:io.github.reggert.reb4s.Sequence):io.github.reggert.reb4s.Sequence" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Concatenates this expression with the argument.</p><div class="fullcomment"><div class="comment cmt"><p>Concatenates this expression with the argument.
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Sequenceable.html" class="extype" name="io.github.reggert.reb4s.Sequenceable">Sequenceable</a></dd></dl></div>
     </li><li name="io.github.reggert.reb4s.Sequenceable#~~" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -882,7 +1046,11 @@ expression.
       <span class="symbol">
         <span title="gt4s: $tilde$tilde" class="name">~~</span><span class="params">(<span name="right">right: <a href="Sequenceable.html" class="extype" name="io.github.reggert.reb4s.Sequenceable">Sequenceable</a></span>)</span><span class="result">: <a href="Sequence.html" class="extype" name="io.github.reggert.reb4s.Sequence">Sequence</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#io.github.reggert.reb4s.Group$$DisableFlags@~~(right:io.github.reggert.reb4s.Sequenceable):io.github.reggert.reb4s.Sequence" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Concatenates this expression with the argument.</p><div class="fullcomment"><div class="comment cmt"><p>Concatenates this expression with the argument.
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Sequenceable.html" class="extype" name="io.github.reggert.reb4s.Sequenceable">Sequenceable</a></dd></dl></div>
     </li></ol>
@@ -895,9 +1063,9 @@ expression.
 
         <div id="inheritedMembers">
         <div class="parent" name="scala.Product">
-              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Product" class="extype" target="_top">Product</a></h3>
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Product" class="extype" target="_top">Product</a></h3>
             </div><div class="parent" name="scala.Equals">
-              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Equals" class="extype" target="_top">Equals</a></h3>
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Equals" class="extype" target="_top">Equals</a></h3>
             </div><div class="parent" name="io.github.reggert.reb4s.Group">
               <h3>Inherited from <a href="Group.html" class="extype" name="io.github.reggert.reb4s.Group">Group</a></h3>
             </div><div class="parent" name="io.github.reggert.reb4s.Quantifiable">
@@ -909,17 +1077,15 @@ expression.
             </div><div class="parent" name="io.github.reggert.reb4s.Expression">
               <h3>Inherited from <a href="Expression.html" class="extype" name="io.github.reggert.reb4s.Expression">Expression</a></h3>
             </div><div class="parent" name="scala.Immutable">
-              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Immutable" class="extype" target="_top">Immutable</a></h3>
-            </div><div class="parent" name="scala.NotNull">
-              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.NotNull" class="extype" target="_top">NotNull</a></h3>
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Immutable" class="extype" target="_top">Immutable</a></h3>
             </div><div class="parent" name="scala.Serializable">
-              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></h3>
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></h3>
             </div><div class="parent" name="java.io.Serializable">
               <h3>Inherited from <span class="extype" name="java.io.Serializable">Serializable</span></h3>
             </div><div class="parent" name="scala.AnyRef">
-              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></h3>
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">
-              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.10.3/index.html#scala.Any" class="extype" target="_top">Any</a></h3>
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Any" class="extype" target="_top">Any</a></h3>
             </div>
         
         </div>
@@ -936,6 +1102,7 @@ expression.
       <div id="tooltip"></div>
 
       <div id="footer">  </div>
-      <script defer="defer" type="text/javascript" id="jquery-js" src="../../../../lib/jquery.js"></script><script defer="defer" type="text/javascript" id="jquery-ui-js" src="../../../../lib/jquery-ui.js"></script><script defer="defer" type="text/javascript" id="tools-tooltip-js" src="../../../../lib/tools.tooltip.js"></script><script defer="defer" type="text/javascript" id="template-js" src="../../../../lib/template.js"></script>
+
+
     </body>
       </html>
