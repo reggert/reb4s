@@ -23,8 +23,9 @@ ThisBuild / developers := List(
 
 ThisBuild / scmInfo := Some(
 	ScmInfo(
-		url("https://github.com/reggert/reb4s.git"),
-		"scm:git@github.com:reggert/reb4s.git"
+		url("https://github.com/reggert/reb4s"),
+		"scm:git:https://github.com/reggert/reb4s.git",
+		"scm:git:git@github.com:reggert/reb4s.git"
 	)
 )
 
