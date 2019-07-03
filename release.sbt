@@ -1,15 +1,11 @@
 releaseCrossBuild := true
 
-useGpg := true
-
 import ReleaseTransformations._
 
 val groupId = "io.github.reggert"
 val stagingName = "reb4s-staging"
 val openStaging = releaseStepCommand(s"""sonatypeOpen "$groupId" "$stagingName""")
 val releaseStaging = releaseStepCommand("sonatypeRelease")
-
-releasePublishArtifactsAction := releaseStepCommand("publishSigned")
 
 releaseProcess := Seq[ReleaseStep](
   checkSnapshotDependencies,              // : ReleaseStep

@@ -4,7 +4,7 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-site" % "1.4.0")
 
 addSbtPlugin("com.typesafe.sbt" % "sbt-ghpages" % "0.6.3")
 
-addSbtPlugin("com.jsuereth" % "sbt-pgp" % "1.1.1")
+addSbtPlugin("io.crashbox" % "sbt-gpg" % "0.2.0")
 
 addSbtPlugin("com.github.gseitz" % "sbt-release" % "1.0.11")
 
