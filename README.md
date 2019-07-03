@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/reggert/reb4s.png)](https://travis-ci.org/reggert/reb4s)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.reggert/reb4s_2.11/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.reggert/reb4s_2.11/)
 
 # About reb4s
 
