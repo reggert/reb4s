@@ -6,9 +6,9 @@ licenses := Seq("GNU Lesser General Public License v3.0" -> url("http://www.gnu.
 
 homepage := Some(url("http://reggert.github.io/reb4s"))
 
-scalaVersion := "2.11.12"
+scalaVersion := "2.12.12"
 
-crossScalaVersions := Seq("2.10.3", "2.11.12", "2.12.8")
+crossScalaVersions := Seq("2.10.7", "2.11.12", "2.12.12", "2.13.4")
 
 scalacOptions += "-unchecked"
 
